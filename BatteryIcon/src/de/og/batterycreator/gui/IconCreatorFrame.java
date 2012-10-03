@@ -42,7 +42,6 @@ public class IconCreatorFrame extends JFrame {
 
 	private static IconCreatorFrame frame;
 
-	private final Vector<ImageIcon> icons = new Vector<ImageIcon>();
 	private final Vector<DefaultCreator> creators = new Vector<DefaultCreator>();
 	private final JMenuBar menuBar = new JMenuBar();
 	private final JToolBar toolBar = new JToolBar();
@@ -53,6 +52,8 @@ public class IconCreatorFrame extends JFrame {
 	private JComboBox<DefaultCreator> creatorBox;
 	private final ConfigPanel configPane = new ConfigPanel();
 
+	private DefaultCreator activCreator = null;
+
 	public static void main(final String[] args) {
 		frame = new IconCreatorFrame();
 
@@ -62,25 +63,12 @@ public class IconCreatorFrame extends JFrame {
 	 * Creates the desired Icons ;-)
 	 */
 	private void create() {
-		final DefaultCreator creator = (DefaultCreator) creatorBox.getSelectedItem();
-		creator.setSettings(configPane.getSettings());
-		creator.createAllImages();
+		activCreator = (DefaultCreator) creatorBox.getSelectedItem();
+		activCreator.setSettings(configPane.getSettings());
+		activCreator.createAllImages();
 
 		list.removeAll();
-		icons.removeAllElements();
-		// icons = new Vector<ImageIcon>();
-		System.gc();
-		final Vector<String> filenames = new Vector<String>();
-		for (int i = 0; i <= 100; i++) {
-			filenames.add(creator.getFileName(i, false));
-			icons.add(creator.getIcon(i, false));
-		}
-		for (int i = 0; i <= 100; i++) {
-			filenames.add(creator.getFileName(i, true));
-			icons.add(creator.getIcon(i, true));
-		}
-		list.repaint(0);
-		list.setListData(filenames);
+		list.setListData(activCreator.getFilenames());
 		list.repaint();
 		pack();
 	}
@@ -195,7 +183,8 @@ public class IconCreatorFrame extends JFrame {
 				renderer.setText(iconName);
 				renderer.setBackground(Color.black);
 				renderer.setForeground(Color.white);
-				renderer.setIcon(icons.elementAt(index));
+				if (activCreator != null)
+					renderer.setIcon(activCreator.getIcons().elementAt(index));
 			}
 			return renderer;
 		}

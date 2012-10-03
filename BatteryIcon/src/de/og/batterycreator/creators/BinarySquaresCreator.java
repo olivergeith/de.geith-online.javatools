@@ -81,7 +81,7 @@ public class BinarySquaresCreator extends DefaultCreator {
 		Color col = settings.getIconColorInActiv();
 		if (activ) {
 			if (charge)
-				col = settings.getChargeColor();
+				col = settings.getIconChargeColor();
 			else
 				col = settings.getIconColor();
 		}

@@ -6,6 +6,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Vector;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -15,6 +16,9 @@ import javax.swing.ImageIcon;
  * 
  */
 public abstract class DefaultCreator {
+
+	private final Vector<ImageIcon> iconMap = new Vector<ImageIcon>();
+	private final Vector<String> filenames = new Vector<String>();;
 
 	@Override
 	public abstract String toString();
@@ -48,19 +52,24 @@ public abstract class DefaultCreator {
 	 * Erzeugt alle Images
 	 */
 	public void createAllImages() {
+		iconMap.removeAllElements();
+		filenames.removeAllElements();
 		createImages();
 		createChargeImages();
-
 	}
 
 	private void createChargeImages() {
-		for (int i = 0; i <= 100; i++)
-			createImage(i, false);
+		for (int i = 0; i <= 100; i++) {
+			filenames.add(getFileName(i, true));
+			iconMap.add(createImage(i, true));
+		}
 	}
 
 	private void createImages() {
-		for (int i = 0; i <= 100; i++)
-			createImage(i, true);
+		for (int i = 0; i <= 100; i++) {
+			filenames.add(getFileName(i, false));
+			iconMap.add(createImage(i, false));
+		}
 
 	}
 
@@ -168,6 +177,17 @@ public abstract class DefaultCreator {
 			System.out.println("Icon " + filename + " not found");
 		}
 		return null;
+	}
+
+	/**
+	 * @return the filenames
+	 */
+	public Vector<String> getFilenames() {
+		return filenames;
+	}
+
+	public Vector<ImageIcon> getIcons() {
+		return iconMap;
 	}
 
 }

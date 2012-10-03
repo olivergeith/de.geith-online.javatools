@@ -13,11 +13,13 @@ public class StyleSettings {
 	private Color fontColor = COLOR_FONT;
 	private Color fontColorLowBatt = COLOR_LOW_BATT;
 	private Color fontColorMedBatt = COLOR_Med_BATT;
+	private Color fontChargeColor = COLOR_FONT;
+
 	private Color iconColorInActiv = Color.darkGray;
 	private Color iconColor = AOKP_BLUE;
 	private Color iconColorLowBatt = COLOR_LOW_BATT;
 	private Color iconColorMedBatt = COLOR_Med_BATT;
-	private Color chargeColor = COLOR_CHARGE;
+	private Color iconChargeColor = COLOR_CHARGE;
 
 	private boolean showFont = true;
 	private boolean coloredFont = false;
@@ -75,12 +77,12 @@ public class StyleSettings {
 		this.iconColorMedBatt = iconColorMedBatt;
 	}
 
-	public Color getChargeColor() {
-		return chargeColor;
+	public Color getIconChargeColor() {
+		return iconChargeColor;
 	}
 
-	public void setChargeColor(final Color chargeColor) {
-		this.chargeColor = chargeColor;
+	public void setIconChargeColor(final Color iconChargeColor) {
+		this.iconChargeColor = iconChargeColor;
 	}
 
 	public int getLowBattTheshold() {
@@ -155,7 +157,7 @@ public class StyleSettings {
 	protected Color getActivIconColor(final int percentage, final boolean charge) {
 		Color col;
 		if (charge)
-			col = getChargeColor();
+			col = getIconChargeColor();
 		else
 			col = getActivIconColor(percentage);
 		return col;
@@ -171,7 +173,7 @@ public class StyleSettings {
 	protected Color getActivFontColor(final int percentage, final boolean charge) {
 		Color col;
 		if (charge)
-			col = getChargeColor();
+			col = getFontChargeColor();
 		else
 			col = getActivFontColor(percentage);
 		return col;
@@ -235,6 +237,21 @@ public class StyleSettings {
 	 */
 	public void setShowChargeSymbol(final boolean showChargeSymbol) {
 		this.showChargeSymbol = showChargeSymbol;
+	}
+
+	/**
+	 * @return the fontChargeColor
+	 */
+	public Color getFontChargeColor() {
+		return fontChargeColor;
+	}
+
+	/**
+	 * @param fontChargeColor
+	 *            the fontChargeColor to set
+	 */
+	public void setFontChargeColor(final Color fontChargeColor) {
+		this.fontChargeColor = fontChargeColor;
 	}
 
 }

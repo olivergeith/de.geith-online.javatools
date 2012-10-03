@@ -1,0 +1,35 @@
+
+[SIZE="6"][B][CENTER]I proudly present my new Battery Icon Creator[/CENTER][/B][/SIZE]
+
+[B]History:[/B]
+I was fed up, with designing my battery-icons with a paint-tool. 204 icons per set is a lot work, if you do it manually!
+As I mostly did abstract and simple icons to be in harmony with AOKP, I had the idea, to develop a little Java Tool to do the work for me ;)
+
+So here it comes....
+
+[B]Features:[/B]
+[LIST]
+[*]Seven highly customizable Styles (more to come...ideas welcome ;-))
+[/LIST]
+
+
+[B]Status:[/B]
+Still in development, but ready for a Version 1.0 Release ;)
+
+[B]Todo:[/B]
+[LIST]
+[*]Persist the settings
+[*]Generate a ready to flash zip-file
+[*]Bugfixing
+[*]Creating new styles
+[*]And finally....A lot of things that you might come up with ;)
+[/LIST]
+
+[B]HowTo:[/B]
+This tool is written in pure Java. So the only thing you need to have is a Java Runtime 1.6 or 1.7.
+
+[LIST]
+[*]Unzip the tool in any directory
+[*]Step into that directory
+[*]Doubleclick in the Jar-file
+[/LIST]

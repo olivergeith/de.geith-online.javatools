@@ -33,8 +33,8 @@ public class StyleSettings {
 
 	private ImageIcon chargeIcon = null;
 
-	private String filePattern = new String();
-	private String filePatternCharge = new String();
+	private String filePattern = new String("stat_sys_battery_circle_");
+	private String filePatternCharge = new String("stat_sys_battery_circle_charge_anim");
 
 	public Color getFontColor() {
 		return fontColor;

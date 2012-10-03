@@ -127,6 +127,7 @@ public class IconCreatorFrame extends JFrame {
 			}
 		});
 		creatorBox.setSelectedIndex(0);
+		creatorBox.setToolTipText("Choose your IconCreator...then press play-button");
 
 		// Menü und Buttonbar erzeugen
 		createAktionen();
@@ -137,7 +138,7 @@ public class IconCreatorFrame extends JFrame {
 	 * Aktionen erzeugen und in einem Vector mit Aktionen ablegen
 	 */
 	private void createAktionen() {
-		beendenAktion = new BeendenAktion("Beenden", CommonIconProvider.getInstance().BUTTON_ICON_EXIT);
+		beendenAktion = new BeendenAktion("Beenden", CommonIconProvider.getInstance().BUTTON_ICON_CANCEL);
 		aboutAktion = new AboutAktion("About", CommonIconProvider.getInstance().BUTTON_ICON_INFO);
 		createAktion = new CreateAktion("Create Icons", CommonIconProvider.getInstance().BUTTON_ICON_START);
 	}
@@ -153,6 +154,7 @@ public class IconCreatorFrame extends JFrame {
 		dateiMenu.add(beendenAktion);
 		dateiMenu.add(aboutAktion);
 		toolBar.add(beendenAktion);
+		toolBar.addSeparator();
 		toolBar.add(creatorBox);
 		toolBar.add(createAktion);
 		toolBar.addSeparator();

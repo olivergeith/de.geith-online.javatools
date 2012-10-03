@@ -154,9 +154,9 @@ public abstract class DefaultCreator {
 	private String getFileNameFull(final boolean charge) {
 		String filename;
 		if (charge == false)
-			filename = "stat_sys_battery_circle_full.png";
+			filename = settings.getFilePattern() + "_full.png";
 		else
-			filename = "stat_sys_battery_circle_charge_animfull.png";
+			filename = settings.getFilePatternCharge() + "full.png";
 		return filename;
 	}
 
@@ -172,9 +172,9 @@ public abstract class DefaultCreator {
 	public String getFileName(final int percentage, final boolean charge) {
 		String filename;
 		if (charge == false)
-			filename = "stat_sys_battery_circle_" + percentage + ".png";
+			filename = settings.getFilePattern() + percentage + ".png";
 		else
-			filename = "stat_sys_battery_circle_charge_anim" + percentage + ".png";
+			filename = settings.getFilePatternCharge() + percentage + ".png";
 		return filename;
 	}
 

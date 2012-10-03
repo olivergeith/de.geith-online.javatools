@@ -13,6 +13,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -34,6 +35,7 @@ public class ConfigPanel extends JPanel {
 	JButton fontColorLowBatt;
 	JButton fontColorMedBatt;
 	JButton fontColorCharge;
+	ChargeIconSelector chargeIconSeletor = new ChargeIconSelector();
 
 	JButton iconColor;
 	JButton iconColorLowBatt;
@@ -43,14 +45,15 @@ public class ConfigPanel extends JPanel {
 	JCheckBox cboxColoredFont = createCheckbox("Different color on low battery", "...");
 	JCheckBox cboxColoredIcon = createCheckbox("Different color on low battery", "...");
 	JCheckBox cboxShowFont = createCheckbox("Show percentages", "...");
-	JCheckBox cboxShowChargeSymbol = createCheckbox("Show Charge-Symbol", "Show Charge-Symbol when charging");
+	JCheckBox cboxShowChargeSymbol = createCheckbox("Charge-Symbol", "Show Charge-Symbol when charging");
 
 	JSlider dialLowBatt = new JSlider(0, 30);
 	JLabel dialLowValue = new JLabel();
 	JSlider dialMedBatt = new JSlider(20, 50);
 	JLabel dialMedValue = new JLabel();
 
-	ChargeIconSelector chargeIconSeletor = new ChargeIconSelector();
+	JTextField filepattern = new JTextField();
+	JTextField filepatternCharge = new JTextField();
 
 	public ConfigPanel() {
 		initComponents();
@@ -137,6 +140,12 @@ public class ConfigPanel extends JPanel {
 		builder.add(dialLowValue, cc.xyw(4, row, 1));
 		builder.add(dialMedBatt, cc.xyw(2, ++row, 1));
 		builder.add(dialMedValue, cc.xyw(4, row, 1));
+		builder.add(createGroupLabel("Misc Stuff..."), cc.xyw(2, ++row, 3));
+		builder.addSeparator("", cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("FileName-Pattern"), cc.xyw(2, ++row, 3));
+		builder.add(filepattern, cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("FileName-Pattern(charge)"), cc.xyw(2, ++row, 3));
+		builder.add(filepatternCharge, cc.xyw(2, ++row, 3));
 
 		final JPanel cfp = builder.getPanel();
 		// cfp.setBackground(Color.black);
@@ -234,6 +243,10 @@ public class ConfigPanel extends JPanel {
 			chargeIconSeletor.setSelectedItem(settings.getChargeIcon());
 		else
 			chargeIconSeletor.setSelectedIndex(0);
+
+		filepattern.setText(settings.getFilePattern());
+		filepatternCharge.setText(settings.getFilePatternCharge());
+
 		validateControls();
 		this.repaint();
 	}
@@ -258,6 +271,8 @@ public class ConfigPanel extends JPanel {
 		settings.setMedBattTheshold(dialMedBatt.getValue());
 		settings.setLowBattTheshold(dialLowBatt.getValue());
 		settings.setChargeIcon((ImageIcon) chargeIconSeletor.getSelectedItem());
+		settings.setFilePattern(filepattern.getText());
+		settings.setFilePatternCharge(filepatternCharge.getText());
 		return settings;
 	}
 
@@ -269,6 +284,7 @@ public class ConfigPanel extends JPanel {
 		cboxColoredFont.setEnabled(cboxShowFont.isSelected());
 		iconColorMedBatt.setEnabled(cboxColoredIcon.isSelected());
 		iconColorLowBatt.setEnabled(cboxColoredIcon.isSelected());
+		chargeIconSeletor.setEnabled(cboxShowChargeSymbol.isSelected());
 	}
 
 }

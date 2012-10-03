@@ -7,9 +7,13 @@ As I mostly did abstract and simple icons to be in harmony with AOKP, I had the 
 
 So here it comes....
 
+[SIZE="6"][B][CENTER]The Battery Icon Creator[/CENTER][/B][/SIZE]
+
 [B]Features:[/B]
 [LIST]
-[*]Seven highly customizable Styles (more to come...ideas welcome ;-))
+[*]Seven highly customizable Styles (more to come...ideas welcome !)
+[*]You can change colors, Style, charge-icon, with or without Text...
+[*]Easy "all in one frame" Interface (you will find out how it works !)
 [/LIST]
 
 
@@ -29,7 +33,28 @@ Still in development, but ready for a Version 1.0 Release ;)
 This tool is written in pure Java. So the only thing you need to have is a Java Runtime 1.6 or 1.7.
 
 [LIST]
+[*]Download the zip attached to this Post
 [*]Unzip the tool in any directory
 [*]Step into that directory
 [*]Doubleclick in the Jar-file
+[*]...or use the start.bat
+[*]Create your images
+[*]...the Tool will create a new folder "pngs" in the above directory
+[*]...find your Icons in there...
 [/LIST]
+
+If you want to know how to create a flashable Zip ...
+... Tutorial here: [url]http://forum.xda-developers.com/showpost.php?p=27021278&postcount=41597[/url]
+
+Want to see them in use?...see my MOD-Post for Resurrection Remix ROM
+[url]http://forum.xda-developers.com/showpost.php?p=32081287&postcount=1388[/url]
+
+
+[B]Final remarks...[/B]
+If you use my tool for you MOD or Custom ROM, please give credit and link to this thread! 
+......
+.....
+....
+...
+..
+.

@@ -12,6 +12,9 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.border.BevelBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import og.basics.gui.colorselectorobjects.JColorSelectButton;
 
@@ -28,18 +31,21 @@ public class ConfigPanel extends JPanel {
 	JButton fontColor;
 	JButton fontColorLowBatt;
 	JButton fontColorMedBatt;
+	JButton fontColorCharge;
+
 	JButton iconColor;
 	JButton iconColorLowBatt;
 	JButton iconColorMedBatt;
 	JButton iconColorInactiv;
-	JButton iconChargeColor;
-	JButton fontChargeColor;
-	JCheckBox cboxColoredFont = createCheckbox("Percentages changes color", "...");
-	JCheckBox cboxColoredIcon = createCheckbox("Icon changes color", "...");
+	JButton iconColorCharge;
+	JCheckBox cboxColoredFont = createCheckbox("Different color on low battery", "...");
+	JCheckBox cboxColoredIcon = createCheckbox("Different color on low battery", "...");
 	JCheckBox cboxShowFont = createCheckbox("Show percentages", "...");
 
-	JSlider dialLowBatt = new JSlider(0, 20);
+	JSlider dialLowBatt = new JSlider(0, 30);
+	JLabel dialLowValue = new JLabel();
 	JSlider dialMedBatt = new JSlider(20, 50);
+	JLabel dialMedValue = new JLabel();
 
 	public ConfigPanel() {
 		initComponents();
@@ -51,28 +57,44 @@ public class ConfigPanel extends JPanel {
 		fontColor = createClickabelColorLabel("Main Color", "Color when normal battery-level");
 		fontColorLowBatt = createClickabelColorLabel("LowBatt", "Color when low battery");
 		fontColorMedBatt = createClickabelColorLabel("MedBatt", "Color when Med battery");
-		fontChargeColor = createClickabelColorLabel("Charge Color", "Color when charging");
+		fontColorCharge = createClickabelColorLabel("Charge Color", "Color when charging");
 
 		iconColor = createClickabelColorLabel("Main Color", "Color when normal battery-level");
 		iconColorInactiv = createClickabelColorLabel("Background", "Color for Background");
 
 		iconColorLowBatt = createClickabelColorLabel("LowBatt", "Color when low battery");
 		iconColorMedBatt = createClickabelColorLabel("MedBatt", "Color when Med battery");
-		iconChargeColor = createClickabelColorLabel("Charge Color", "Color when charging");
-		dialLowBatt.setPreferredSize(new Dimension(50, 40));
-		dialMedBatt.setPreferredSize(new Dimension(50, 40));
+		iconColorCharge = createClickabelColorLabel("Charge Color", "Color when charging");
+		dialLowBatt.setPreferredSize(new Dimension(60, 20));
+		dialMedBatt.setPreferredSize(new Dimension(60, 20));
 
-		dialLowBatt.setMajorTickSpacing(10);
-		dialLowBatt.setMinorTickSpacing(2);
-		dialLowBatt.setPaintTicks(true);
-		dialLowBatt.setPaintLabels(true);
-		dialLowBatt.setSnapToTicks(true);
+		// dialLowBatt.setMajorTickSpacing(10);
+		// dialLowBatt.setMinorTickSpacing(1);
+		dialLowBatt.setPaintTicks(false);
+		dialLowBatt.setPaintLabels(false);
+		// dialLowBatt.setSnapToTicks(true);
+		dialLowBatt.addChangeListener(new ChangeListener() {
 
-		dialMedBatt.setMajorTickSpacing(10);
-		dialMedBatt.setMinorTickSpacing(2);
-		dialMedBatt.setPaintTicks(true);
-		dialMedBatt.setPaintLabels(true);
-		dialMedBatt.setSnapToTicks(true);
+			@Override
+			public void stateChanged(final ChangeEvent arg0) {
+				dialLowValue.setText("" + dialLowBatt.getValue());
+			}
+		});
+		dialLowValue.setBorder(new BevelBorder(1));
+
+		// dialMedBatt.setMajorTickSpacing(10);
+		// dialMedBatt.setMinorTickSpacing(5);
+		dialMedBatt.setPaintTicks(false);
+		dialMedBatt.setPaintLabels(false);
+		// dialMedBatt.setSnapToTicks(true);
+		dialMedBatt.addChangeListener(new ChangeListener() {
+
+			@Override
+			public void stateChanged(final ChangeEvent arg0) {
+				dialMedValue.setText("" + dialMedBatt.getValue());
+			}
+		});
+		dialMedValue.setBorder(new BevelBorder(1));
 
 	}
 
@@ -88,7 +110,7 @@ public class ConfigPanel extends JPanel {
 		builder.addSeparator("", cc.xyw(2, ++row, 3));
 		builder.add(cboxShowFont, cc.xyw(2, ++row, 3));
 		builder.add(fontColor, cc.xyw(2, ++row, 3));
-		builder.add(fontChargeColor, cc.xyw(2, ++row, 3));
+		builder.add(fontColorCharge, cc.xyw(2, ++row, 3));
 		builder.add(cboxColoredFont, cc.xyw(2, ++row, 3));
 		builder.add(fontColorLowBatt, cc.xyw(2, ++row, 1));
 		builder.add(fontColorMedBatt, cc.xyw(4, row, 1));
@@ -96,7 +118,7 @@ public class ConfigPanel extends JPanel {
 		builder.addSeparator("", cc.xyw(2, ++row, 3));
 		builder.add(iconColor, cc.xyw(2, ++row, 1));
 		builder.add(iconColorInactiv, cc.xyw(4, row, 1));
-		builder.add(iconChargeColor, cc.xyw(2, ++row, 3));
+		builder.add(iconColorCharge, cc.xyw(2, ++row, 3));
 		builder.addSeparator("", cc.xyw(2, ++row, 3));
 		builder.add(cboxColoredIcon, cc.xyw(2, ++row, 3));
 		builder.add(iconColorLowBatt, cc.xyw(2, ++row, 1));
@@ -105,7 +127,9 @@ public class ConfigPanel extends JPanel {
 		builder.addSeparator("", cc.xyw(2, ++row, 3));
 		builder.add(createBlueDeviderLabel("...for Low and Med Battery-Levels"), cc.xyw(2, ++row, 3));
 		builder.add(dialLowBatt, cc.xyw(2, ++row, 1));
-		builder.add(dialMedBatt, cc.xyw(4, row, 1));
+		builder.add(dialLowValue, cc.xyw(4, row, 1));
+		builder.add(dialMedBatt, cc.xyw(2, ++row, 1));
+		builder.add(dialMedValue, cc.xyw(4, row, 1));
 
 		final JPanel cfp = builder.getPanel();
 		// cfp.setBackground(Color.black);
@@ -183,13 +207,13 @@ public class ConfigPanel extends JPanel {
 		fontColor.setBackground(settings.getFontColor());
 		fontColorLowBatt.setBackground(settings.getFontColorLowBatt());
 		fontColorMedBatt.setBackground(settings.getFontColorMedBatt());
-		fontChargeColor.setBackground(settings.getFontChargeColor());
+		fontColorCharge.setBackground(settings.getFontChargeColor());
 
 		iconColor.setBackground(settings.getIconColor());
 		iconColorLowBatt.setBackground(settings.getIconColorLowBatt());
 		iconColorMedBatt.setBackground(settings.getIconColorMedBatt());
 		iconColorInactiv.setBackground(settings.getIconColorInActiv());
-		iconChargeColor.setBackground(settings.getIconChargeColor());
+		iconColorCharge.setBackground(settings.getIconChargeColor());
 
 		cboxShowFont.setSelected(settings.isShowFont());
 		cboxColoredFont.setSelected(settings.isColoredFont());
@@ -206,13 +230,13 @@ public class ConfigPanel extends JPanel {
 		settings.setFontColor(fontColor.getBackground());
 		settings.setFontColorLowBatt(fontColorLowBatt.getBackground());
 		settings.setFontColorMedBatt(fontColorMedBatt.getBackground());
-		settings.setFontChargeColor(fontChargeColor.getBackground());
+		settings.setFontChargeColor(fontColorCharge.getBackground());
 
 		settings.setIconColor(iconColor.getBackground());
 		settings.setIconColorLowBatt(iconColorLowBatt.getBackground());
 		settings.setIconColorMedBatt(iconColorMedBatt.getBackground());
 		settings.setIconColorInActiv(iconColorInactiv.getBackground());
-		settings.setIconChargeColor(iconChargeColor.getBackground());
+		settings.setIconChargeColor(iconColorCharge.getBackground());
 
 		settings.setShowFont(cboxShowFont.isSelected());
 		settings.setColoredFont(cboxColoredFont.isSelected());
@@ -227,6 +251,7 @@ public class ConfigPanel extends JPanel {
 		fontColor.setEnabled(cboxShowFont.isSelected());
 		fontColorMedBatt.setEnabled(cboxShowFont.isSelected() && cboxColoredFont.isSelected());
 		fontColorLowBatt.setEnabled(cboxShowFont.isSelected() && cboxColoredFont.isSelected());
+		fontColorCharge.setEnabled(cboxShowFont.isSelected());
 		cboxColoredFont.setEnabled(cboxShowFont.isSelected());
 		iconColorMedBatt.setEnabled(cboxColoredIcon.isSelected());
 		iconColorLowBatt.setEnabled(cboxColoredIcon.isSelected());

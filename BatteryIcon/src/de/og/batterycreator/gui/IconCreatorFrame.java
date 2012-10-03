@@ -79,7 +79,7 @@ public class IconCreatorFrame extends JFrame {
 		setTitle(APP_NAME);
 		setIconImage(logoIcon.getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(300, 100, 300, 600);
+		setBounds(300, 100, 300, 800);
 
 		creators.add(new ArcCreator());
 		creators.add(new ArcDecimalCreator());

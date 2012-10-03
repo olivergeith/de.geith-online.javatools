@@ -2,10 +2,8 @@ package de.og.batterycreator.creators;
 
 import java.awt.BasicStroke;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
@@ -27,7 +25,6 @@ public class ArcCreator extends DefaultCreator {
 		final BufferedImage img = new BufferedImage(41, 41, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = img.createGraphics();
 		g2d.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 19));
-		final FontMetrics metrix = g2d.getFontMetrics();
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setStroke(new BasicStroke(4f));
 
@@ -37,13 +34,7 @@ public class ArcCreator extends DefaultCreator {
 		g2d.setColor(settings.getActivIconColor(percentage, charge));
 		g2d.drawArc(2, 2, 37, 37, 87, -(int) (percentage * (360f / 103.5f)));
 
-		// Farbe für Schrift
-		g2d.setColor(settings.getActivFontColor(percentage, charge));
-		final String str = "" + percentage;
-		final Rectangle2D strRect = metrix.getStringBounds(str, g2d);
-		final int strxpos = img.getWidth() / 2 - (int) strRect.getWidth() / 2;
-		final int strypos = img.getHeight() / 2 + 8;
-		g2d.drawString(str, strxpos, strypos);
+		drawPercentage(g2d, percentage, charge, img);
 
 		// Filewriting
 		writeFile(percentage, charge, img);

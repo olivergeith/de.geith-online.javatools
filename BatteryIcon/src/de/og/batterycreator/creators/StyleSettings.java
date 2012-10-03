@@ -33,6 +33,9 @@ public class StyleSettings {
 
 	private ImageIcon chargeIcon = null;
 
+	private String filePattern = new String();
+	private String filePatternCharge = new String();
+
 	public Color getFontColor() {
 		return fontColor;
 	}
@@ -271,6 +274,36 @@ public class StyleSettings {
 	 */
 	public void setChargeIcon(final ImageIcon chargeIcon) {
 		this.chargeIcon = chargeIcon;
+	}
+
+	/**
+	 * @return the filePattern
+	 */
+	public String getFilePattern() {
+		return filePattern;
+	}
+
+	/**
+	 * @param filePattern
+	 *            the filePattern to set
+	 */
+	public void setFilePattern(final String filePattern) {
+		this.filePattern = filePattern;
+	}
+
+	/**
+	 * @return the filePatternCharge
+	 */
+	public String getFilePatternCharge() {
+		return filePatternCharge;
+	}
+
+	/**
+	 * @param filePatternCharge
+	 *            the filePatternCharge to set
+	 */
+	public void setFilePatternCharge(final String filePatternCharge) {
+		this.filePatternCharge = filePatternCharge;
 	}
 
 }

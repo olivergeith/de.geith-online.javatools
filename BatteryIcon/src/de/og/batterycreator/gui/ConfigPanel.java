@@ -24,7 +24,7 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
 import de.og.batterycreator.creators.StyleSettings;
-import de.og.batterycreator.widgets.ChargeIconSelector;
+import de.og.batterycreator.widgets.chargeiconselector.ChargeIconSelector;
 
 public class ConfigPanel extends JPanel {
 	private static final long serialVersionUID = 1L;

@@ -2,6 +2,8 @@ package de.og.batterycreator.creators;
 
 import java.awt.Color;
 
+import javax.swing.ImageIcon;
+
 public class StyleSettings {
 	// Konstanten
 	public static final Color COLOR_FONT = Color.white;
@@ -28,6 +30,8 @@ public class StyleSettings {
 
 	private int lowBattTheshold = 10;
 	private int MedBattTheshold = 30;
+
+	private ImageIcon chargeIcon = null;
 
 	public Color getFontColor() {
 		return fontColor;
@@ -252,6 +256,21 @@ public class StyleSettings {
 	 */
 	public void setFontChargeColor(final Color fontChargeColor) {
 		this.fontChargeColor = fontChargeColor;
+	}
+
+	/**
+	 * @return the chargeIcon
+	 */
+	public ImageIcon getChargeIcon() {
+		return chargeIcon;
+	}
+
+	/**
+	 * @param chargeIcon
+	 *            the chargeIcon to set
+	 */
+	public void setChargeIcon(final ImageIcon chargeIcon) {
+		this.chargeIcon = chargeIcon;
 	}
 
 }

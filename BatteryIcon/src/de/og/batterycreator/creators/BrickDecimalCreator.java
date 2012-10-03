@@ -2,11 +2,9 @@ package de.og.batterycreator.creators;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
@@ -28,7 +26,6 @@ public class BrickDecimalCreator extends DefaultCreator {
 		final BufferedImage img = new BufferedImage(41, 41, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = img.createGraphics();
 		g2d.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 22));
-		final FontMetrics metrix = g2d.getFontMetrics();
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		final int e = percentage % 10;
@@ -56,15 +53,8 @@ public class BrickDecimalCreator extends DefaultCreator {
 			drawRect(rec, g2d, charge, true, percentage);
 		}
 
-		// Farbe für Schrift
-		g2d.setColor(settings.getActivFontColor(percentage, charge));
-		final String str = "" + percentage;
-		final Rectangle2D strRect = metrix.getStringBounds(str, g2d);
-		final int strxpos = 20 - (int) strRect.getWidth() / 2;
-		final int strypos = 28;
-
-		System.out.println("strypos=" + strypos + " strRect.getHeight()=" + strRect.getHeight());
-		g2d.drawString(str, strxpos, strypos);
+		// Schrift
+		drawPercentage(g2d, percentage, charge, img);
 		// Filewriting
 		writeFile(percentage, charge, img);
 		return new ImageIcon(img);

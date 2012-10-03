@@ -75,15 +75,32 @@ public abstract class DefaultCreator {
 
 	protected void drawPercentage(final Graphics2D g2d, final int percentage, final boolean charge, final BufferedImage img) {
 		if (settings.isShowFont()) {
-			final FontMetrics metrix = g2d.getFontMetrics();
-			// Farbe für Schrift
-			g2d.setColor(settings.getActivFontColor(percentage, charge));
-			final String str = "" + percentage;
-			final Rectangle2D strRect = metrix.getStringBounds(str, g2d);
-			final int strxpos = img.getWidth() / 2 - (int) strRect.getWidth() / 2;
-			final int strypos = img.getHeight() / 2 + 8;
+			if (charge && settings.isShowChargeSymbol()) {
+				drawChargeIcon(g2d, img);
+			} else {
+				final FontMetrics metrix = g2d.getFontMetrics();
+				// Farbe für Schrift
+				g2d.setColor(settings.getActivFontColor(percentage, charge));
+				final String str = "" + percentage;
+				final Rectangle2D strRect = metrix.getStringBounds(str, g2d);
+				final int strxpos = img.getWidth() / 2 - (int) strRect.getWidth() / 2;
+				final int strypos = img.getHeight() / 2 + 8;
 
-			g2d.drawString(str, strxpos, strypos);
+				g2d.drawString(str, strxpos, strypos);
+			}
+		} else if (charge && settings.isShowChargeSymbol()) {
+			drawChargeIcon(g2d, img);
+		}
+	}
+
+	private void drawChargeIcon(final Graphics2D g2d, final BufferedImage img) {
+		final ImageIcon chargeIcon = settings.getChargeIcon();
+		if (chargeIcon != null) {
+			final int w = chargeIcon.getIconWidth();
+			final int h = chargeIcon.getIconHeight();
+			final int x = img.getWidth() / 2 - w / 2;
+			final int y = img.getHeight() / 2 - h / 2;
+			g2d.drawImage(chargeIcon.getImage(), x, y, null);
 		}
 	}
 

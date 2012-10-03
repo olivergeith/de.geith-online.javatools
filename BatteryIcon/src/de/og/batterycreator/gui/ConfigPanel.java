@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -23,6 +24,7 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
 import de.og.batterycreator.creators.StyleSettings;
+import de.og.batterycreator.widgets.ChargeIconSelector;
 
 public class ConfigPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -41,11 +43,14 @@ public class ConfigPanel extends JPanel {
 	JCheckBox cboxColoredFont = createCheckbox("Different color on low battery", "...");
 	JCheckBox cboxColoredIcon = createCheckbox("Different color on low battery", "...");
 	JCheckBox cboxShowFont = createCheckbox("Show percentages", "...");
+	JCheckBox cboxShowChargeSymbol = createCheckbox("Show Charge-Symbol", "Show Charge-Symbol when charging");
 
 	JSlider dialLowBatt = new JSlider(0, 30);
 	JLabel dialLowValue = new JLabel();
 	JSlider dialMedBatt = new JSlider(20, 50);
 	JLabel dialMedValue = new JLabel();
+
+	ChargeIconSelector chargeIconSeletor = new ChargeIconSelector();
 
 	public ConfigPanel() {
 		initComponents();
@@ -109,6 +114,8 @@ public class ConfigPanel extends JPanel {
 		builder.add(createGroupLabel("FontColors"), cc.xyw(2, ++row, 3));
 		builder.addSeparator("", cc.xyw(2, ++row, 3));
 		builder.add(cboxShowFont, cc.xyw(2, ++row, 3));
+		builder.add(cboxShowChargeSymbol, cc.xyw(2, ++row, 1));
+		builder.add(chargeIconSeletor, cc.xyw(4, row, 1));
 		builder.add(fontColor, cc.xyw(2, ++row, 3));
 		builder.add(fontColorCharge, cc.xyw(2, ++row, 3));
 		builder.add(cboxColoredFont, cc.xyw(2, ++row, 3));
@@ -216,12 +223,17 @@ public class ConfigPanel extends JPanel {
 		iconColorCharge.setBackground(settings.getIconChargeColor());
 
 		cboxShowFont.setSelected(settings.isShowFont());
+		cboxShowChargeSymbol.setSelected(settings.isShowChargeSymbol());
 		cboxColoredFont.setSelected(settings.isColoredFont());
 		cboxColoredIcon.setSelected(settings.isColoredIcon());
 
 		dialMedBatt.setValue(settings.getMedBattTheshold());
 		dialLowBatt.setValue(settings.getLowBattTheshold());
 
+		if (settings.getChargeIcon() != null)
+			chargeIconSeletor.setSelectedItem(settings.getChargeIcon());
+		else
+			chargeIconSeletor.setSelectedIndex(0);
 		validateControls();
 		this.repaint();
 	}
@@ -239,11 +251,13 @@ public class ConfigPanel extends JPanel {
 		settings.setIconChargeColor(iconColorCharge.getBackground());
 
 		settings.setShowFont(cboxShowFont.isSelected());
+		settings.setShowChargeSymbol(cboxShowChargeSymbol.isSelected());
 		settings.setColoredFont(cboxColoredFont.isSelected());
 		settings.setColoredIcon(cboxColoredIcon.isSelected());
 
 		settings.setMedBattTheshold(dialMedBatt.getValue());
 		settings.setLowBattTheshold(dialLowBatt.getValue());
+		settings.setChargeIcon((ImageIcon) chargeIconSeletor.getSelectedItem());
 		return settings;
 	}
 

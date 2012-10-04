@@ -42,6 +42,8 @@ import de.og.batterycreator.zipcreator.ZipMaker;
 public class IconCreatorFrame extends JFrame {
 
 	private static final String APP_NAME = "Battery Icon Creator";
+	private static final String VERSION_NR = "2.0";
+
 	private static final long serialVersionUID = 1L;
 	private static final ImageIcon logoIcon = new ImageIcon(ConfigPanel.class.getResource("logo.png"));
 	private final ImageIcon errorIcon = new ImageIcon(this.getClass().getResource("error.png"));
@@ -77,6 +79,11 @@ public class IconCreatorFrame extends JFrame {
 	 */
 	private void doZip() {
 		tracer.clear();
+		tabPane.setSelectedIndex(1);
+		if (activCreator == null) {
+			tracer.appendErrorText("No icons to zip ...please create some (play-button)");
+			return;
+		}
 		final ZipMaker zipper = new ZipMaker(tracer);
 		final Vector<String> files2add = new Vector<String>();
 
@@ -94,6 +101,7 @@ public class IconCreatorFrame extends JFrame {
 			tracer.appendErrorText("There was a Problem creating the Zip: " + e.getStackTrace());
 			e.printStackTrace();
 		}
+		tracer.appendSuccessText("Everything seems ok....:-)");
 	}
 
 	/**
@@ -112,8 +120,8 @@ public class IconCreatorFrame extends JFrame {
 
 	public IconCreatorFrame() {
 		super();
-		tracer.appendInfoText("Starting " + APP_NAME);
-		setTitle(APP_NAME);
+		tracer.appendInfoText("Starting " + APP_NAME + " ----- Version " + VERSION_NR);
+		setTitle(APP_NAME + " ----- Version " + VERSION_NR);
 		setIconImage(logoIcon.getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 100, 300, 800);
@@ -294,7 +302,7 @@ public class IconCreatorFrame extends JFrame {
 			final VersionDetails details = new VersionDetails();
 			details.setApplicationname(APP_NAME);
 			details.setCompany("Geith-Online.de");
-			details.setVersion("1.0");
+			details.setVersion(VERSION_NR);
 			details.setDate("30.09.2012");
 			details.setLogo(logoIcon);
 			details.setCopyright("by Oliver Geith");

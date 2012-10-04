@@ -51,10 +51,10 @@ public class ZipMaker {
 			tracer.appendInfoText(txt);
 	}
 
-	private void traceError(final String txt) {
-		if (tracer != null)
-			tracer.appendErrorText(txt);
-	}
+	// private void traceError(final String txt) {
+	// if (tracer != null)
+	// tracer.appendErrorText(txt);
+	// }
 
 	public File getTemplate() {
 		return template;

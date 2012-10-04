@@ -13,19 +13,30 @@ So here it comes....
 [LIST]
 [*]Seven highly customizable Styles (more to come...ideas welcome !)
 [*]You can change colors, Style, charge-icon, with or without Text...
+[*]Custom Charge Icons...(place them in folder ./custom/charge/ ...see samples there)
 [*]Easy "all in one frame" Interface (you will find out how it works !)
+[*]Creation of flashable Zips for xhdpi and hdpi ROMs
 [/LIST]
 
 
-[B]Status:[/B]
-Still in development, but ready for a Version 1.0 Release ;)
+[B]History/Changelog:[/B]
+Oct-04-2012 : Release 2.0
+[LIST]
+[*]Implemented a feature to generate flashable Zips
+[*]Support for hdpi Roms (experimental and untested...Testers welcome ;-))
+[/LIST]
+
+Oct-03-2012 : Release 1.0
+[LIST]
+[*]Initial Release
+[/LIST]
 
 [B]Todo:[/B]
 [LIST]
 [*]Persist the settings
-[*]Generate a ready to flash zip-file
 [*]Bugfixing
 [*]Creating new styles
+[*]Supporting other icons from Statusbar (Connection, Wifi...)
 [*]And finally....A lot of things that you might come up with ;)
 [/LIST]
 
@@ -34,24 +45,30 @@ This tool is written in pure Java. So the only thing you need to have is a Java 
 
 [LIST]
 [*]Download the zip attached to this Post
-[*]Unzip the tool in any directory
+[*]Unzip the tool to any directory
 [*]Step into that directory
 [*]Doubleclick in the Jar-file
 [*]...or use the start.bat
-[*]Create your images
+[*]Choose Design (Combobox in Buttonbar)
+[*]Create your images (Play-Button)
 [*]...the Tool will create a new folder "pngs" in the above directory
 [*]...find your Icons in there...
+[*]Or create a flashable Zip (Button next to Playbutton)
+[*]...find the Zip in the "flashablezip_out"-folder
 [/LIST]
 
-If you want to know how to create a flashable Zip ...
+If you want to know how to create your own flashable Zip ...
 ... Tutorial here: [url]http://forum.xda-developers.com/showpost.php?p=27021278&postcount=41597[/url]
 
 Want to see them in use?...see my MOD-Post for Resurrection Remix ROM
 [url]http://forum.xda-developers.com/showpost.php?p=32081287&postcount=1388[/url]
 
 
-[B]Final remarks...[/B]
+[B]Final remarks...and thanks[/B]
 If you use my tool for you MOD or Custom ROM, please give credit and link to this thread! 
+
+Thanks for the "Universal Flasher Tool" http://www.htcmania.com/showthread.php?t=258333
+My flashable Zips are created by using their template-zip!
 ......
 .....
 ....

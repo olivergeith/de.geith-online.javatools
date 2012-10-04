@@ -3,24 +3,25 @@
 [SIZE="4"][B]History:[/B][/SIZE]
 I was fed up, with designing my battery-icons with a paint-tool. 204 icons per set is a lot work, if you do it manually!
 As I mostly did abstract and simple icons to be in harmony with AOKP, I had the idea, to develop a little Java Tool to do the work for me ;)
+Now it has grown up !!!
 
-So here it comes....
+[SIZE="4"][B][CENTER]So here is: ...[/CENTER][/B][/SIZE]
 
 [SIZE="6"][B][CENTER]The Battery Icon Creator[/CENTER][/B][/SIZE]
 [SIZE="4"][B]Features:[/B][/SIZE]
 [LIST]
-[*]9 highly customizable Styles (more to come...ideas welcome !)
+[*]10 highly customizable Styles (more to come...ideas welcome !)
 [*]You can change colors, Style, charge-icon, with or without Text...
 [*]Additional Custom charge-icons...(place them in folder ./custom/charge/ ...see samples there)
 [*]Easy "all in one frame" Interface (you will find out how it works !)
-[*]Creation of flashable Zips for xhdpi and hdpi ROMs (This should work with most AOSP, AOKP Roms.
+[*]Creation of flashable Zips for xhdpi and hdpi ROMs (This should work with most AOSP, AOKP Roms.)
 [/LIST]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
 [B]Oct-05-2012[/B] : Release 2.5
 [LIST]
 [*]Load and save settings for each style
-[*]2 new styles "BatterySymbol"
+[*]3 new styles
 [*]News customization : Gradient colors for medium batterylevels
 [/LIST]
 [B]Oct-04-2012[/B] : Release 2.0
@@ -67,7 +68,7 @@ Want to see them in use?...see my MOD-Post for Resurrection Remix ROM
 [LIST]
 [*]Ressurection Remix 3.x.x
 [*]...should work on many more...let me know!
-[LIST]
+[/LIST]
 
 [SIZE="4"][B]Final remarks...and thanks[/B][/SIZE]
 If you use my tool for you MOD or Custom ROM, please give credit and link to this thread! 

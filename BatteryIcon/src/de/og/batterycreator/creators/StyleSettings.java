@@ -1,10 +1,12 @@
 package de.og.batterycreator.creators;
 
 import java.awt.Color;
+import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 
-public class StyleSettings {
+public class StyleSettings implements Serializable {
+	private static final long serialVersionUID = 4747296256398459127L;
 	public static final String FOLDER_XHDPI = "MORPH/system/app/SystemUI.apk/res/drawable-xhdpi/";
 	public static final String FOLDER_HDPI = "MORPH/system/app/SystemUI.apk/res/drawable-hdpi/";
 

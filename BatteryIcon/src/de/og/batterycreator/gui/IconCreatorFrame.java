@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -31,6 +32,7 @@ import og.basics.gui.tracepanel.DefaultTextFileSaveHandler;
 import og.basics.gui.tracepanel.TracePanel;
 import de.og.batterycreator.creators.ArcCreator;
 import de.og.batterycreator.creators.ArcDecimalCreator;
+import de.og.batterycreator.creators.BatterySymbolCreator;
 import de.og.batterycreator.creators.BinaryBarsCreator;
 import de.og.batterycreator.creators.BinarySquaresCreator;
 import de.og.batterycreator.creators.BrickBattCreator;
@@ -42,7 +44,7 @@ import de.og.batterycreator.zipcreator.ZipMaker;
 public class IconCreatorFrame extends JFrame {
 
 	private static final String APP_NAME = "Battery Icon Creator";
-	private static final String VERSION_NR = "2.0";
+	private static final String VERSION_NR = "2.5";
 
 	private static final long serialVersionUID = 1L;
 	private static final ImageIcon logoIcon = new ImageIcon(ConfigPanel.class.getResource("logo.png"));
@@ -59,6 +61,8 @@ public class IconCreatorFrame extends JFrame {
 	private final JToolBar toolBar = new JToolBar();
 	private BeendenAktion beendenAktion;
 	private AboutAktion aboutAktion;
+	private LoadAktion loadAktion;
+	private SaveAktion saveAktion;
 	private CreateAktion createAktion;
 	private ZipAktion zipAktion;
 	private final JList<String> list = new JList<String>();
@@ -133,6 +137,7 @@ public class IconCreatorFrame extends JFrame {
 		creators.add(new BrickDecimalCreator());
 		creators.add(new BinaryBarsCreator());
 		creators.add(new BinarySquaresCreator());
+		creators.add(new BatterySymbolCreator());
 
 		initUI();
 		setVisible(true);
@@ -166,9 +171,10 @@ public class IconCreatorFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(final ActionEvent arg0) {
-				final DefaultCreator creator = (DefaultCreator) creatorBox.getSelectedItem();
-				if (creator != null) {
-					configPane.setSettings(creator.getSettings());
+				final DefaultCreator cre = (DefaultCreator) creatorBox.getSelectedItem();
+
+				if (cre != null) {
+					configPane.setSettings(cre.getSettings());
 				}
 			}
 		});
@@ -196,6 +202,8 @@ public class IconCreatorFrame extends JFrame {
 	private void createAktionen() {
 		beendenAktion = new BeendenAktion("Beenden", CommonIconProvider.getInstance().BUTTON_ICON_CANCEL);
 		aboutAktion = new AboutAktion("About", CommonIconProvider.getInstance().BUTTON_ICON_INFO);
+		loadAktion = new LoadAktion("Load Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_OPEN);
+		saveAktion = new SaveAktion("Save Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_SAVE);
 		createAktion = new CreateAktion("Create Icons", CommonIconProvider.getInstance().BUTTON_ICON_START);
 		zipAktion = new ZipAktion("Create flashable Zip", zipIcon);
 	}
@@ -208,10 +216,14 @@ public class IconCreatorFrame extends JFrame {
 		menuBar.add(dateiMenu);
 		dateiMenu.add(createAktion);
 		dateiMenu.add(zipAktion);
+		dateiMenu.add(loadAktion);
+		dateiMenu.add(saveAktion);
 		dateiMenu.addSeparator();
 		dateiMenu.add(beendenAktion);
 		dateiMenu.add(aboutAktion);
 		toolBar.add(beendenAktion);
+		toolBar.add(loadAktion);
+		toolBar.add(saveAktion);
 		toolBar.addSeparator();
 		toolBar.add(creatorBox);
 		toolBar.add(createAktion);
@@ -273,7 +285,6 @@ public class IconCreatorFrame extends JFrame {
 
 		public void actionPerformed(final ActionEvent arg0) {
 			create();
-
 		}
 	}
 
@@ -286,9 +297,47 @@ public class IconCreatorFrame extends JFrame {
 
 		public void actionPerformed(final ActionEvent arg0) {
 			doZip();
+		}
+	}
 
+	private class LoadAktion extends AbstractAction {
+		private static final long serialVersionUID = 1L;
+
+		public LoadAktion(final String arg0, final Icon arg1) {
+			super(arg0, arg1);
 		}
 
+		public void actionPerformed(final ActionEvent arg0) {
+			if (activCreator != null) {
+				final int n = JOptionPane.showConfirmDialog(IconCreatorFrame.this, "Would you like to load the last saved settings?", "Load Settings...",
+						JOptionPane.YES_NO_OPTION);
+				if (n == JOptionPane.YES_OPTION) {
+					activCreator.loadSettings();
+					configPane.setSettings(activCreator.getSettings());
+					tracer.appendInfoText("Loading settings...");
+				}
+			}
+		}
+	}
+
+	private class SaveAktion extends AbstractAction {
+		private static final long serialVersionUID = 1L;
+
+		public SaveAktion(final String arg0, final Icon arg1) {
+			super(arg0, arg1);
+		}
+
+		public void actionPerformed(final ActionEvent arg0) {
+			if (activCreator != null) {
+				final int n = JOptionPane.showConfirmDialog(IconCreatorFrame.this, "Would you like to save the current settings?", "Save Settings...",
+						JOptionPane.YES_NO_OPTION);
+				if (n == JOptionPane.YES_OPTION) {
+					activCreator.setSettings(configPane.getSettings());
+					activCreator.persistSettings();
+					tracer.appendInfoText("Saving settings...");
+				}
+			}
+		}
 	}
 
 	private class AboutAktion extends AbstractAction {

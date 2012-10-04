@@ -17,6 +17,12 @@ So here it comes....
 [/LIST]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
+[B]Oct-05-2012[/B] : Release 2.5
+[LIST]
+[*]Load and save Settings
+[*]New Style "BatterySymbol"
+[*]...
+[/LIST]
 [B]Oct-04-2012[/B] : Release 2.0
 [LIST]
 [*]Implemented a feature to generate flashable Zips
@@ -29,7 +35,7 @@ So here it comes....
 
 [SIZE="4"][B]Todo:[/B][/SIZE]
 [LIST]
-[*]Persist the settings
+[*]Make the Style-Modules even more customizable
 [*]Bugfixing
 [*]Creating new styles
 [*]Supporting other icons from Statusbar (Connection, Wifi...)

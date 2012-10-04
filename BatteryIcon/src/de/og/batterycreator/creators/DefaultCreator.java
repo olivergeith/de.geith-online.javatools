@@ -5,7 +5,11 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
@@ -194,6 +198,47 @@ public abstract class DefaultCreator {
 
 	public Vector<ImageIcon> getIcons() {
 		return iconMap;
+	}
+
+	// ###############################################################################
+	// Persisting Settings
+	// ###############################################################################
+	public void persistSettings() {
+		try {
+			// Pfad anlegen falls nicht vorhanden
+			final File pa = new File("./settings/");
+			if (!pa.exists())
+				pa.mkdirs();
+
+			final String filename = "./settings/" + getName() + ".cfg";
+
+			final FileOutputStream file = new FileOutputStream(filename);
+			final ObjectOutputStream o = new ObjectOutputStream(file);
+			o.writeObject(settings);
+			o.close();
+		} catch (final IOException e) {
+			System.err.println(e);
+		}
+	}
+
+	public void loadSettings() {
+		try {
+			// Pfad anlegen falls nicht vorhanden
+			final File pa = new File("./settings/");
+			if (!pa.exists())
+				pa.mkdirs();
+
+			final String filename = "./settings/" + getName() + ".cfg";
+
+			final FileInputStream file = new FileInputStream(filename);
+			final ObjectInputStream o = new ObjectInputStream(file);
+			settings = (StyleSettings) o.readObject();
+			o.close();
+		} catch (final IOException e) {
+			System.err.println(e);
+		} catch (final ClassNotFoundException e) {
+			System.err.println(e);
+		}
 	}
 
 }

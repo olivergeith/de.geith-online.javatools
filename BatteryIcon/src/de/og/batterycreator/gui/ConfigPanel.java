@@ -54,6 +54,8 @@ public class ConfigPanel extends JPanel {
 
 	JTextField filepattern = new JTextField();
 	JTextField filepatternCharge = new JTextField();
+	JTextField folderInZip = new JTextField();
+	JCheckBox cboxHDPI = createCheckbox("Set Zip-Output to HDPI", "Set Zip-Output to HDPI...default is XHDPI");
 
 	public ConfigPanel() {
 		initComponents();
@@ -76,11 +78,6 @@ public class ConfigPanel extends JPanel {
 		dialLowBatt.setPreferredSize(new Dimension(60, 20));
 		dialMedBatt.setPreferredSize(new Dimension(60, 20));
 
-		// dialLowBatt.setMajorTickSpacing(10);
-		// dialLowBatt.setMinorTickSpacing(1);
-		dialLowBatt.setPaintTicks(false);
-		dialLowBatt.setPaintLabels(false);
-		// dialLowBatt.setSnapToTicks(true);
 		dialLowBatt.addChangeListener(new ChangeListener() {
 
 			@Override
@@ -90,11 +87,6 @@ public class ConfigPanel extends JPanel {
 		});
 		dialLowValue.setBorder(new BevelBorder(1));
 
-		// dialMedBatt.setMajorTickSpacing(10);
-		// dialMedBatt.setMinorTickSpacing(5);
-		dialMedBatt.setPaintTicks(false);
-		dialMedBatt.setPaintLabels(false);
-		// dialMedBatt.setSnapToTicks(true);
 		dialMedBatt.addChangeListener(new ChangeListener() {
 
 			@Override
@@ -104,6 +96,18 @@ public class ConfigPanel extends JPanel {
 		});
 		dialMedValue.setBorder(new BevelBorder(1));
 
+		cboxHDPI.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(final ActionEvent e) {
+				if (cboxHDPI.isSelected())
+					settings.setFolderWithinZip2Hdpi();
+				else
+					settings.setFolderWithinZip2Xhdpi();
+				folderInZip.setText(settings.getFolderWithinZip());
+			}
+		});
+
+		folderInZip.setAlignmentX(RIGHT_ALIGNMENT);
 	}
 
 	private void myInit() {
@@ -146,6 +150,10 @@ public class ConfigPanel extends JPanel {
 		builder.add(filepattern, cc.xyw(2, ++row, 3));
 		builder.add(createBlueDeviderLabel("FileName-Pattern(charge)"), cc.xyw(2, ++row, 3));
 		builder.add(filepatternCharge, cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("Folder for Icons within flashable-zip"), cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("for hdpi ROM's edit here !!!"), cc.xyw(2, ++row, 3));
+		builder.add(cboxHDPI, cc.xyw(2, ++row, 3));
+		builder.add(folderInZip, cc.xyw(2, ++row, 3));
 
 		final JPanel cfp = builder.getPanel();
 		// cfp.setBackground(Color.black);
@@ -246,6 +254,8 @@ public class ConfigPanel extends JPanel {
 
 		filepattern.setText(settings.getFilePattern());
 		filepatternCharge.setText(settings.getFilePatternCharge());
+		folderInZip.setText(settings.getFolderWithinZip());
+		cboxHDPI.setSelected(settings.isHDPI());
 
 		validateControls();
 		this.repaint();
@@ -273,6 +283,11 @@ public class ConfigPanel extends JPanel {
 		settings.setChargeIcon((ImageIcon) chargeIconSeletor.getSelectedItem());
 		settings.setFilePattern(filepattern.getText());
 		settings.setFilePatternCharge(filepatternCharge.getText());
+		if (cboxHDPI.isSelected())
+			settings.setFolderWithinZip2Hdpi();
+		else
+			settings.setFolderWithinZip2Xhdpi();
+		// settings.setFolderWithinZip(folderInZip.getText());
 		return settings;
 	}
 
@@ -285,6 +300,7 @@ public class ConfigPanel extends JPanel {
 		iconColorMedBatt.setEnabled(cboxColoredIcon.isSelected());
 		iconColorLowBatt.setEnabled(cboxColoredIcon.isSelected());
 		chargeIconSeletor.setEnabled(cboxShowChargeSymbol.isSelected());
-	}
+		folderInZip.setEnabled(false);
 
+	}
 }

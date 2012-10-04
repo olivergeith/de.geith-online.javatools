@@ -17,7 +17,9 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
@@ -25,6 +27,8 @@ import javax.swing.border.EmptyBorder;
 import og.basics.gui.about.UniversalAboutDialog;
 import og.basics.gui.about.VersionDetails;
 import og.basics.gui.icon.CommonIconProvider;
+import og.basics.gui.tracepanel.DefaultTextFileSaveHandler;
+import og.basics.gui.tracepanel.TracePanel;
 import de.og.batterycreator.creators.ArcCreator;
 import de.og.batterycreator.creators.ArcDecimalCreator;
 import de.og.batterycreator.creators.BinaryBarsCreator;
@@ -33,14 +37,20 @@ import de.og.batterycreator.creators.BrickBattCreator;
 import de.og.batterycreator.creators.BrickBattNoGapCreator;
 import de.og.batterycreator.creators.BrickDecimalCreator;
 import de.og.batterycreator.creators.DefaultCreator;
+import de.og.batterycreator.zipcreator.ZipMaker;
 
 public class IconCreatorFrame extends JFrame {
 
 	private static final String APP_NAME = "Battery Icon Creator";
 	private static final long serialVersionUID = 1L;
 	private static final ImageIcon logoIcon = new ImageIcon(ConfigPanel.class.getResource("logo.png"));
+	private final ImageIcon errorIcon = new ImageIcon(this.getClass().getResource("error.png"));
+	private final ImageIcon cfgIcon = new ImageIcon(this.getClass().getResource("cfg.png"));
+	private final ImageIcon zipIcon = new ImageIcon(this.getClass().getResource("zip.png"));
 
 	private static IconCreatorFrame frame;
+	private final TracePanel tracer = new TracePanel(new DefaultTextFileSaveHandler(".", "Logging", ".txt", "Tracefile"));
+	private final JTabbedPane tabPane = new JTabbedPane();
 
 	private final Vector<DefaultCreator> creators = new Vector<DefaultCreator>();
 	private final JMenuBar menuBar = new JMenuBar();
@@ -48,15 +58,42 @@ public class IconCreatorFrame extends JFrame {
 	private BeendenAktion beendenAktion;
 	private AboutAktion aboutAktion;
 	private CreateAktion createAktion;
+	private ZipAktion zipAktion;
 	private final JList<String> list = new JList<String>();
 	private JComboBox<DefaultCreator> creatorBox;
 	private final ConfigPanel configPane = new ConfigPanel();
+
+	private final JPanel mainPanel = new JPanel();
 
 	private DefaultCreator activCreator = null;
 
 	public static void main(final String[] args) {
 		frame = new IconCreatorFrame();
 
+	}
+
+	/**
+	 * Zip the flashable Zip!
+	 */
+	private void doZip() {
+		tracer.clear();
+		final ZipMaker zipper = new ZipMaker(tracer);
+		final Vector<String> files2add = new Vector<String>();
+
+		for (int i = 0; i <= 100; i++) {
+			files2add.add(activCreator.getFilenameAndPath(i, false));
+			files2add.add(activCreator.getFilenameAndPath(i, true));
+		}
+		files2add.add(activCreator.getFilenameAndPathFull(false));
+		files2add.add(activCreator.getFilenameAndPathFull(true));
+
+		try {
+			zipper.addFilesToArchive(files2add, activCreator.getSettings().getFolderWithinZip(), activCreator.getName());
+		} catch (final Exception e) {
+			tracer.appendErrorText("There was a Problem creating the Zip: " + e.getMessage());
+			tracer.appendErrorText("There was a Problem creating the Zip: " + e.getStackTrace());
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -75,7 +112,7 @@ public class IconCreatorFrame extends JFrame {
 
 	public IconCreatorFrame() {
 		super();
-		System.out.println("Starting " + APP_NAME);
+		tracer.appendInfoText("Starting " + APP_NAME);
 		setTitle(APP_NAME);
 		setIconImage(logoIcon.getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -99,11 +136,12 @@ public class IconCreatorFrame extends JFrame {
 	 * Gui Init
 	 */
 	private void initUI() {
-
 		getContentPane().setLayout(new BorderLayout());
+
+		mainPanel.setLayout(new BorderLayout());
 		toolBar.setFloatable(false);
 		setJMenuBar(menuBar);
-		getContentPane().add(toolBar, BorderLayout.NORTH);
+		mainPanel.add(toolBar, BorderLayout.NORTH);
 
 		// Icon Liste
 		list.setCellRenderer(new IconListCellRenderer());
@@ -111,8 +149,8 @@ public class IconCreatorFrame extends JFrame {
 		final JScrollPane scroller = new JScrollPane();
 		scroller.add(list);
 		scroller.getViewport().setView(list);
-		getContentPane().add(scroller, BorderLayout.CENTER);
-		getContentPane().add(configPane, BorderLayout.WEST);
+		mainPanel.add(scroller, BorderLayout.CENTER);
+		mainPanel.add(configPane, BorderLayout.WEST);
 
 		// Comobox mit creatoren anzeigen
 		creatorBox = new JComboBox<DefaultCreator>(creators);
@@ -132,6 +170,16 @@ public class IconCreatorFrame extends JFrame {
 		// Menü und Buttonbar erzeugen
 		createAktionen();
 		makeMenuAndButtonBar();
+		getContentPane().add(createTabbedPane());
+	}
+
+	private JTabbedPane createTabbedPane() {
+		// Tabpane zusammenbasteln
+		tabPane.addTab("Main", cfgIcon, mainPanel, "Create your icons here...");
+		tabPane.addTab("TraceLog", errorIcon, tracer, "TraceLog");
+		// addTabAlbumListing();
+		// addTabWhatsNewListing();
+		return tabPane;
 	}
 
 	/**
@@ -141,6 +189,7 @@ public class IconCreatorFrame extends JFrame {
 		beendenAktion = new BeendenAktion("Beenden", CommonIconProvider.getInstance().BUTTON_ICON_CANCEL);
 		aboutAktion = new AboutAktion("About", CommonIconProvider.getInstance().BUTTON_ICON_INFO);
 		createAktion = new CreateAktion("Create Icons", CommonIconProvider.getInstance().BUTTON_ICON_START);
+		zipAktion = new ZipAktion("Create flashable Zip", zipIcon);
 	}
 
 	/**
@@ -150,6 +199,7 @@ public class IconCreatorFrame extends JFrame {
 		final JMenu dateiMenu = new JMenu("Datei");
 		menuBar.add(dateiMenu);
 		dateiMenu.add(createAktion);
+		dateiMenu.add(zipAktion);
 		dateiMenu.addSeparator();
 		dateiMenu.add(beendenAktion);
 		dateiMenu.add(aboutAktion);
@@ -157,6 +207,7 @@ public class IconCreatorFrame extends JFrame {
 		toolBar.addSeparator();
 		toolBar.add(creatorBox);
 		toolBar.add(createAktion);
+		toolBar.add(zipAktion);
 		toolBar.addSeparator();
 		toolBar.add(aboutAktion);
 	}
@@ -216,6 +267,20 @@ public class IconCreatorFrame extends JFrame {
 			create();
 
 		}
+	}
+
+	private class ZipAktion extends AbstractAction {
+		private static final long serialVersionUID = 1L;
+
+		public ZipAktion(final String arg0, final Icon arg1) {
+			super(arg0, arg1);
+		}
+
+		public void actionPerformed(final ActionEvent arg0) {
+			doZip();
+
+		}
+
 	}
 
 	private class AboutAktion extends AbstractAction {

@@ -5,6 +5,9 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 
 public class StyleSettings {
+	public static final String FOLDER_XHDPI = "MORPH/system/app/SystemUI.apk/res/drawable-xhdpi/";
+	public static final String FOLDER_HDPI = "MORPH/system/app/SystemUI.apk/res/drawable-hdpi/";
+
 	// Konstanten
 	public static final Color COLOR_FONT = Color.white;
 	public static final Color COLOR_CHARGE = Color.green.darker();
@@ -28,6 +31,8 @@ public class StyleSettings {
 	private boolean coloredIcon = true;
 	private boolean showChargeSymbol = false;
 
+	private boolean isHDPI = false;
+
 	private int lowBattTheshold = 10;
 	private int MedBattTheshold = 30;
 
@@ -35,6 +40,22 @@ public class StyleSettings {
 
 	private String filePattern = new String("stat_sys_battery_circle_");
 	private String filePatternCharge = new String("stat_sys_battery_circle_charge_anim");
+
+	private String folderWithinZip = FOLDER_XHDPI;
+
+	public String getFolderWithinZip() {
+		return folderWithinZip;
+	}
+
+	public void setFolderWithinZip2Xhdpi() {
+		folderWithinZip = FOLDER_XHDPI;
+		isHDPI = false;
+	}
+
+	public void setFolderWithinZip2Hdpi() {
+		folderWithinZip = FOLDER_HDPI;
+		isHDPI = true;
+	}
 
 	public Color getFontColor() {
 		return fontColor;
@@ -304,6 +325,13 @@ public class StyleSettings {
 	 */
 	public void setFilePatternCharge(final String filePatternCharge) {
 		this.filePatternCharge = filePatternCharge;
+	}
+
+	/**
+	 * @return the isHDPI
+	 */
+	public boolean isHDPI() {
+		return isHDPI;
 	}
 
 }

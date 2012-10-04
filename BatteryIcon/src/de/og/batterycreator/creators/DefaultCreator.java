@@ -30,16 +30,15 @@ public abstract class DefaultCreator {
 	 */
 	public abstract String getPath();
 
-	/**
-	 * Creates one Image
-	 * 
-	 * @param percentage
-	 * @param charge
-	 */
-	public abstract ImageIcon createImage(final int percentage, final boolean charge);
+	public String getName() {
+		return toString();
+	}
 
 	protected StyleSettings settings = new StyleSettings();
 
+	// ###############################################################################
+	// Settings
+	// ###############################################################################
 	public StyleSettings getSettings() {
 		return settings;
 	}
@@ -48,9 +47,17 @@ public abstract class DefaultCreator {
 		this.settings = settings;
 	}
 
+	// ###############################################################################
+	// Creating Images
+	// ###############################################################################
 	/**
-	 * Erzeugt alle Images
+	 * Creates one Image
+	 * 
+	 * @param percentage
+	 * @param charge
 	 */
+	public abstract ImageIcon createImage(final int percentage, final boolean charge);
+
 	public void createAllImages() {
 		iconMap.removeAllElements();
 		filenames.removeAllElements();
@@ -104,11 +111,9 @@ public abstract class DefaultCreator {
 		}
 	}
 
-	/**
-	 * @param percentage
-	 * @param charge
-	 * @param img
-	 */
+	// ###############################################################################
+	// Writing Stuff to Filesystem
+	// ###############################################################################
 	protected void writeFile(final int percentage, final boolean charge, final BufferedImage img) {
 		// Pfad anlegen falls nicht vorhanden
 		final File pa = new File(getPath() + File.separator);
@@ -127,14 +132,8 @@ public abstract class DefaultCreator {
 		}
 	}
 
-	/**
-	 * @param percentage
-	 * @param charge
-	 * @param img
-	 */
 	private void writeFileFull(final boolean charge, final BufferedImage img) {
-		final String filename = getFileNameFull(charge);
-		final File file = new File(getPath() + File.separator + filename);
+		final File file = new File(getFilenameAndPathFull(charge));
 		try {
 			ImageIO.write(img, "png", file);
 		} catch (final IOException e) {
@@ -142,15 +141,13 @@ public abstract class DefaultCreator {
 		}
 	}
 
-	/**
-	 * Creates the Filename
-	 * 
-	 * @param percentage
-	 *            the percentage
-	 * @param charge
-	 *            true for charge Images
-	 * @return
-	 */
+	// ###############################################################################
+	// Filename for Full Image
+	// ###############################################################################
+	public String getFilenameAndPathFull(final boolean charge) {
+		return getPath() + File.separator + getFileNameFull(charge);
+	}
+
 	private String getFileNameFull(final boolean charge) {
 		String filename;
 		if (charge == false)
@@ -160,15 +157,9 @@ public abstract class DefaultCreator {
 		return filename;
 	}
 
-	/**
-	 * Creates the Filename
-	 * 
-	 * @param percentage
-	 *            the percentage
-	 * @param charge
-	 *            true for charge Images
-	 * @return
-	 */
+	// ###############################################################################
+	// Filename for percentage Images
+	// ###############################################################################
 	public String getFileName(final int percentage, final boolean charge) {
 		String filename;
 		if (charge == false)
@@ -178,15 +169,8 @@ public abstract class DefaultCreator {
 		return filename;
 	}
 
-	/**
-	 * Besorgt das passende Imageicon
-	 * 
-	 * @param percentage
-	 * @param charge
-	 * @return
-	 */
 	public ImageIcon getIcon(final int percentage, final boolean charge) {
-		final String filename = getPath() + File.separator + getFileName(percentage, charge);
+		final String filename = getFilenameAndPath(percentage, charge);
 		try {
 			final ImageIcon icon = new ImageIcon(filename);
 			return icon;
@@ -196,9 +180,14 @@ public abstract class DefaultCreator {
 		return null;
 	}
 
-	/**
-	 * @return the filenames
-	 */
+	public String getFilenameAndPath(final int percentage, final boolean charge) {
+		final String filename = getPath() + File.separator + getFileName(percentage, charge);
+		return filename;
+	}
+
+	// ###############################################################################
+	// All filenames and Icons
+	// ###############################################################################
 	public Vector<String> getFilenames() {
 		return filenames;
 	}

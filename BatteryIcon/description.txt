@@ -10,7 +10,7 @@ Now it has grown up !!!
 [SIZE="6"][B][CENTER]The Battery Icon Creator[/CENTER][/B][/SIZE]
 [SIZE="4"][B]Features:[/B][/SIZE]
 [LIST]
-[*]10 highly customizable Styles (more to come...ideas welcome !)
+[*]11 highly customizable Styles (more to come...ideas welcome !)
 [*]You can change colors, Style, charge-icon, with or without Text...
 [*]Additional Custom charge-icons...(place them in folder ./custom/charge/ ...see samples there)
 [*]Easy "all in one frame" Interface (you will find out how it works !)
@@ -21,7 +21,7 @@ Now it has grown up !!!
 [B]Oct-05-2012[/B] : Release 2.5
 [LIST]
 [*]Load and save settings for each style
-[*]3 new styles
+[*]4 new styles
 [*]News customization : Gradient colors for medium batterylevels
 [/LIST]
 [B]Oct-04-2012[/B] : Release 2.0

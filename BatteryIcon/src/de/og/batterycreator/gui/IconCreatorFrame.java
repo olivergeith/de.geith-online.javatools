@@ -40,6 +40,7 @@ import de.og.batterycreator.creators.BinarySquaresCreator;
 import de.og.batterycreator.creators.BrickBattCreator;
 import de.og.batterycreator.creators.BrickBattNoGapCreator;
 import de.og.batterycreator.creators.BrickDecimalCreator;
+import de.og.batterycreator.creators.ClockCreator;
 import de.og.batterycreator.creators.DefaultCreator;
 import de.og.batterycreator.zipcreator.ZipMaker;
 
@@ -142,6 +143,7 @@ public class IconCreatorFrame extends JFrame {
 		creators.add(new BinarySquaresCreator());
 		creators.add(new BatterySymbolCreator());
 		creators.add(new BatteryVerticalSymbolCreator());
+		creators.add(new ClockCreator());
 
 		initUI();
 		setVisible(true);

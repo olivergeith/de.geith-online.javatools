@@ -46,6 +46,7 @@ public class ConfigPanel extends JPanel {
 	JCheckBox cboxColoredIcon = createCheckbox("Different color on low battery", "...");
 	JCheckBox cboxShowFont = createCheckbox("Show percentages", "...");
 	JCheckBox cboxShowChargeSymbol = createCheckbox("Charge-Symbol", "Show Charge-Symbol when charging");
+	JCheckBox cboxUseGradient = createCheckbox("Gradient for Medium levels", "Use Gradient Colors between Low and Med Batterylevels");
 
 	JSlider dialLowBatt = new JSlider(0, 30);
 	JLabel dialLowValue = new JLabel();
@@ -144,6 +145,7 @@ public class ConfigPanel extends JPanel {
 		builder.add(dialLowValue, cc.xyw(4, row, 1));
 		builder.add(dialMedBatt, cc.xyw(2, ++row, 1));
 		builder.add(dialMedValue, cc.xyw(4, row, 1));
+		builder.add(cboxUseGradient, cc.xyw(2, ++row, 3));
 		builder.add(createGroupLabel("Misc Stuff..."), cc.xyw(2, ++row, 3));
 		builder.addSeparator("", cc.xyw(2, ++row, 3));
 		builder.add(createBlueDeviderLabel("FileName-Pattern"), cc.xyw(2, ++row, 3));
@@ -256,6 +258,7 @@ public class ConfigPanel extends JPanel {
 		filepatternCharge.setText(settings.getFilePatternCharge());
 		folderInZip.setText(settings.getFolderWithinZip());
 		cboxHDPI.setSelected(settings.isHDPI());
+		cboxUseGradient.setSelected(settings.isUseGradiantForMediumColor());
 
 		validateControls();
 		this.repaint();
@@ -287,7 +290,7 @@ public class ConfigPanel extends JPanel {
 			settings.setFolderWithinZip2Hdpi();
 		else
 			settings.setFolderWithinZip2Xhdpi();
-		// settings.setFolderWithinZip(folderInZip.getText());
+		settings.setUseGradiantForMediumColor(cboxUseGradient.isSelected());
 		return settings;
 	}
 

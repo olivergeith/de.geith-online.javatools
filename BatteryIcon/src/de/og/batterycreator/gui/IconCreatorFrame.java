@@ -33,6 +33,7 @@ import og.basics.gui.tracepanel.TracePanel;
 import de.og.batterycreator.creators.ArcCreator;
 import de.og.batterycreator.creators.ArcDecimalCreator;
 import de.og.batterycreator.creators.BatterySymbolCreator;
+import de.og.batterycreator.creators.BatteryVerticalSymbolCreator;
 import de.og.batterycreator.creators.BinaryBarsCreator;
 import de.og.batterycreator.creators.BinarySquaresCreator;
 import de.og.batterycreator.creators.BrickBattCreator;
@@ -138,6 +139,7 @@ public class IconCreatorFrame extends JFrame {
 		creators.add(new BinaryBarsCreator());
 		creators.add(new BinarySquaresCreator());
 		creators.add(new BatterySymbolCreator());
+		creators.add(new BatteryVerticalSymbolCreator());
 
 		initUI();
 		setVisible(true);
@@ -180,7 +182,8 @@ public class IconCreatorFrame extends JFrame {
 		});
 		creatorBox.setSelectedIndex(0);
 		creatorBox.setToolTipText("Choose your IconCreator...then press play-button");
-
+		creatorBox.setRenderer(new CreatorListCellRenderer());
+		creatorBox.setMaximumRowCount(15);
 		// Menü und Buttonbar erzeugen
 		createAktionen();
 		makeMenuAndButtonBar();
@@ -256,8 +259,32 @@ public class IconCreatorFrame extends JFrame {
 				renderer.setText(iconName);
 				renderer.setBackground(Color.black);
 				renderer.setForeground(Color.white);
+				renderer.setBorder(new EmptyBorder(1, 1, 1, 1));
 				if (activCreator != null)
 					renderer.setIcon(activCreator.getIcons().elementAt(index));
+			}
+			return renderer;
+		}
+	}
+
+	/**
+	 * Renderer für IconList
+	 */
+	private class CreatorListCellRenderer implements ListCellRenderer<Object> {
+		protected DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
+
+		public Component getListCellRendererComponent(final JList<?> list, final Object value, final int index, final boolean isSelected,
+				final boolean cellHasFocus) {
+
+			final JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+			if (value instanceof DefaultCreator) {
+				renderer.setBackground(Color.darkGray.darker().darker());
+				renderer.setForeground(Color.white);
+				final DefaultCreator creator = creatorBox.getItemAt(index);
+				if (creator != null && renderer.getIcon() == null) {
+					final ImageIcon icon = creator.createImage(45, false);
+					renderer.setIcon(icon);
+				}
 			}
 			return renderer;
 		}

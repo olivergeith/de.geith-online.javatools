@@ -29,9 +29,10 @@ public class StyleSettings implements Serializable {
 	private Color iconChargeColor = COLOR_CHARGE;
 
 	private boolean showFont = true;
-	private boolean coloredFont = false;
+	private boolean coloredFont = true;
 	private boolean coloredIcon = true;
-	private boolean showChargeSymbol = false;
+	private boolean showChargeSymbol = true;
+	private boolean useGradiantForMediumColor = false;
 
 	private boolean isHDPI = false;
 
@@ -44,6 +45,14 @@ public class StyleSettings implements Serializable {
 	private String filePatternCharge = new String("stat_sys_battery_circle_charge_anim");
 
 	private String folderWithinZip = FOLDER_XHDPI;
+
+	public boolean isUseGradiantForMediumColor() {
+		return useGradiantForMediumColor;
+	}
+
+	public void setUseGradiantForMediumColor(final boolean useGradiantForMediumColor) {
+		this.useGradiantForMediumColor = useGradiantForMediumColor;
+	}
 
 	public String getFolderWithinZip() {
 		return folderWithinZip;
@@ -151,10 +160,14 @@ public class StyleSettings implements Serializable {
 		// soll, dann...
 		if (percentage >= getMedBattTheshold() || isColoredIcon() == false)
 			col = getIconColor();
-		else if (percentage < getMedBattTheshold() && percentage >= getLowBattTheshold())
-			col = getIconColorMedBatt();
-		else
+		else if (percentage < getMedBattTheshold() && percentage >= getLowBattTheshold()) {
+			if (useGradiantForMediumColor)
+				col = getRadiantColor(getIconColorLowBatt(), getIconColorMedBatt(), percentage, getLowBattTheshold(), getMedBattTheshold());
+			else
+				col = getIconColorMedBatt();
+		} else {
 			col = getIconColorLowBatt();
+		}
 		return col;
 	}
 
@@ -171,9 +184,29 @@ public class StyleSettings implements Serializable {
 		if (percentage >= getMedBattTheshold() || isColoredFont() == false)
 			col = getFontColor();
 		else if (percentage < getMedBattTheshold() && percentage >= getLowBattTheshold())
-			col = getFontColorMedBatt();
+			if (useGradiantForMediumColor)
+				col = getRadiantColor(getFontColorLowBatt(), getFontColorMedBatt(), percentage, getLowBattTheshold(), getMedBattTheshold());
+			else
+				col = getFontColorMedBatt();
 		else
 			col = getFontColorLowBatt();
+		return col;
+	}
+
+	private Color getRadiantColor(final Color col1, final Color col2, final int percentage, final int min, final int max) {
+		final int diff = min - max;
+		final int diffpercent = min - percentage;
+		final float factor = Math.abs((float) diffpercent / (float) diff);
+
+		final int diffr = col1.getRed() - col2.getRed();
+		final int diffg = col1.getGreen() - col2.getGreen();
+		final int diffb = col1.getBlue() - col2.getBlue();
+
+		final int r = Math.round(col1.getRed() - diffr * factor);
+		final int g = Math.round(col1.getGreen() - diffg * factor);
+		final int b = Math.round(col1.getBlue() - diffb * factor);
+
+		final Color col = new Color(r, g, b);
 		return col;
 	}
 

@@ -9,9 +9,9 @@ So here it comes....
 [SIZE="6"][B][CENTER]The Battery Icon Creator[/CENTER][/B][/SIZE]
 [SIZE="4"][B]Features:[/B][/SIZE]
 [LIST]
-[*]Seven highly customizable Styles (more to come...ideas welcome !)
+[*]9 highly customizable Styles (more to come...ideas welcome !)
 [*]You can change colors, Style, charge-icon, with or without Text...
-[*]Custom Charge Icons...(place them in folder ./custom/charge/ ...see samples there)
+[*]Additional Custom charge-icons...(place them in folder ./custom/charge/ ...see samples there)
 [*]Easy "all in one frame" Interface (you will find out how it works !)
 [*]Creation of flashable Zips for xhdpi and hdpi ROMs
 [/LIST]
@@ -19,9 +19,9 @@ So here it comes....
 [SIZE="4"][B]Changelog:[/B][/SIZE]
 [B]Oct-05-2012[/B] : Release 2.5
 [LIST]
-[*]Load and save Settings
+[*]Load and save settings for each style
 [*]New Style "BatterySymbol"
-[*]...
+[*]News customization : Gradient colors for medium batterylevels
 [/LIST]
 [B]Oct-04-2012[/B] : Release 2.0
 [LIST]

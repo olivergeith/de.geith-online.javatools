@@ -1,13 +1,4 @@
 bin
-bin
-bin
-/BatteryIcon/pngs/decimalbrick
-/BatteryIcon/pngs/arc
-/BatteryIcon/pngs/binarybars
-/BatteryIcon/pngs/binarysquares
-/BatteryIcon/pngs/brickbatt
-/BatteryIcon/pngs/brickbattnogap
-/BatteryIcon/pngs/decimalarc
-/BatteryIcon/pngs
-/BatteryIcon/flashablezip_out
-/BatteryIcon/settings
+pngs
+settings
+flashablezip_out

@@ -30,7 +30,6 @@ public class ChargeIconSelector extends JComboBox<ImageIcon> {
 	}
 
 	private void initUI() {
-		// setRenderer(new IconListCellRenderer());
 		addItem(charge20);
 		addItem(charge21);
 		addItem(charge22);

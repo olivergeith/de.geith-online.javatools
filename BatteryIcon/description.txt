@@ -13,14 +13,14 @@ So here it comes....
 [*]You can change colors, Style, charge-icon, with or without Text...
 [*]Additional Custom charge-icons...(place them in folder ./custom/charge/ ...see samples there)
 [*]Easy "all in one frame" Interface (you will find out how it works !)
-[*]Creation of flashable Zips for xhdpi and hdpi ROMs
+[*]Creation of flashable Zips for xhdpi and hdpi ROMs (This should work with most AOSP, AOKP Roms.
 [/LIST]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
 [B]Oct-05-2012[/B] : Release 2.5
 [LIST]
 [*]Load and save settings for each style
-[*]New Style "BatterySymbol"
+[*]2 new styles "BatterySymbol"
 [*]News customization : Gradient colors for medium batterylevels
 [/LIST]
 [B]Oct-04-2012[/B] : Release 2.0

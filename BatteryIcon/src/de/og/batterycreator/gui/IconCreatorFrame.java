@@ -32,6 +32,7 @@ import og.basics.gui.tracepanel.DefaultTextFileSaveHandler;
 import og.basics.gui.tracepanel.TracePanel;
 import de.og.batterycreator.creators.ArcCreator;
 import de.og.batterycreator.creators.ArcDecimalCreator;
+import de.og.batterycreator.creators.ArcSunCreator;
 import de.og.batterycreator.creators.BatterySymbolCreator;
 import de.og.batterycreator.creators.BatteryVerticalSymbolCreator;
 import de.og.batterycreator.creators.BinaryBarsCreator;
@@ -132,6 +133,7 @@ public class IconCreatorFrame extends JFrame {
 		setBounds(300, 100, 300, 800);
 
 		creators.add(new ArcCreator());
+		creators.add(new ArcSunCreator());
 		creators.add(new ArcDecimalCreator());
 		creators.add(new BrickBattCreator());
 		creators.add(new BrickBattNoGapCreator());

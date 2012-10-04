@@ -252,7 +252,7 @@ public class ConfigPanel extends JPanel {
 		if (settings.getChargeIcon() != null)
 			chargeIconSeletor.setSelectedItem(settings.getChargeIcon());
 		else
-			chargeIconSeletor.setSelectedIndex(0);
+			chargeIconSeletor.setSelectedIndex(1);
 
 		filepattern.setText(settings.getFilePattern());
 		filepatternCharge.setText(settings.getFilePatternCharge());

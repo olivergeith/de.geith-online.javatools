@@ -29,7 +29,7 @@ public class StyleSettings implements Serializable {
 	private Color iconChargeColor = COLOR_CHARGE;
 
 	private boolean showFont = true;
-	private boolean coloredFont = true;
+	private boolean coloredFont = false;
 	private boolean coloredIcon = true;
 	private boolean showChargeSymbol = true;
 	private boolean useGradiantForMediumColor = false;

@@ -1,15 +1,13 @@
-
 [SIZE="6"][B][CENTER]I proudly present my new Battery Icon Creator[/CENTER][/B][/SIZE]
 
-[B]History:[/B]
+[SIZE="4"][B]History:[/B][/SIZE]
 I was fed up, with designing my battery-icons with a paint-tool. 204 icons per set is a lot work, if you do it manually!
 As I mostly did abstract and simple icons to be in harmony with AOKP, I had the idea, to develop a little Java Tool to do the work for me ;)
 
 So here it comes....
 
 [SIZE="6"][B][CENTER]The Battery Icon Creator[/CENTER][/B][/SIZE]
-
-[B]Features:[/B]
+[SIZE="4"][B]Features:[/B][/SIZE]
 [LIST]
 [*]Seven highly customizable Styles (more to come...ideas welcome !)
 [*]You can change colors, Style, charge-icon, with or without Text...
@@ -18,20 +16,18 @@ So here it comes....
 [*]Creation of flashable Zips for xhdpi and hdpi ROMs
 [/LIST]
 
-
-[B]History/Changelog:[/B]
-Oct-04-2012 : Release 2.0
+[SIZE="4"][B]Changelog:[/B][/SIZE]
+[B]Oct-04-2012[/B] : Release 2.0
 [LIST]
 [*]Implemented a feature to generate flashable Zips
-[*]Support for hdpi Roms (experimental and untested...Testers welcome ;-))
+[*]Support for hdpi Roms (experimental and untested...Testers welcome ;))
 [/LIST]
-
-Oct-03-2012 : Release 1.0
+[B]Oct-03-2012[/B] : Release 1.0
 [LIST]
 [*]Initial Release
 [/LIST]
 
-[B]Todo:[/B]
+[SIZE="4"][B]Todo:[/B][/SIZE]
 [LIST]
 [*]Persist the settings
 [*]Bugfixing
@@ -40,9 +36,8 @@ Oct-03-2012 : Release 1.0
 [*]And finally....A lot of things that you might come up with ;)
 [/LIST]
 
-[B]HowTo:[/B]
+[SIZE="4"][B]HowTo:[/B][/SIZE]
 This tool is written in pure Java. So the only thing you need to have is a Java Runtime 1.6 or 1.7.
-
 [LIST]
 [*]Download the zip attached to this Post
 [*]Unzip the tool to any directory
@@ -56,18 +51,24 @@ This tool is written in pure Java. So the only thing you need to have is a Java 
 [*]Or create a flashable Zip (Button next to Playbutton)
 [*]...find the Zip in the "flashablezip_out"-folder
 [/LIST]
-
 If you want to know how to create your own flashable Zip ...
 ... Tutorial here: [url]http://forum.xda-developers.com/showpost.php?p=27021278&postcount=41597[/url]
 
 Want to see them in use?...see my MOD-Post for Resurrection Remix ROM
 [url]http://forum.xda-developers.com/showpost.php?p=32081287&postcount=1388[/url]
 
+[SIZE="4"][B]Works with the following ROMs[/B][/SIZE]
+[LIST]
+[*]Ressurection Remix 3.x.x
+[*]...should work on many more...let me know!
+[LIST]
 
-[B]Final remarks...and thanks[/B]
+[SIZE="4"][B]Final remarks...and thanks[/B][/SIZE]
 If you use my tool for you MOD or Custom ROM, please give credit and link to this thread! 
 
-Thanks for the "Universal Flasher Tool" http://www.htcmania.com/showthread.php?t=258333
+I am not responsible, if you brick your device...this is just a tool, you need to do the thinking ;)
+
+Thanks for the "Universal Flasher Tool" [url]http://www.htcmania.com/showthread.php?t=258333[/url]
 My flashable Zips are created by using their template-zip!
 ......
 .....

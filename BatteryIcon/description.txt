@@ -6,7 +6,6 @@ As I mostly did abstract and simple icons to be in harmony with AOKP, I had the 
 Now it has grown up !!!
 
 [SIZE="4"][B][CENTER]So here is: ...[/CENTER][/B][/SIZE]
-
 [SIZE="6"][B][CENTER]The Battery Icon Creator[/CENTER][/B][/SIZE]
 [SIZE="4"][B]Features:[/B][/SIZE]
 [LIST]
@@ -18,7 +17,7 @@ Now it has grown up !!!
 [/LIST]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[B]Oct-05-2012[/B] : Release 3.0
+[COLOR="Blue"][B]Oct-05-2012[/B] : Release 3.0[/COLOR]
 [LIST]
 [*]Load and save settings for each style
 [*]5 new styles
@@ -26,12 +25,12 @@ Now it has grown up !!!
 [*]Creating of an overview.png (If you want to show of your creations!)
 [*]Preview of the style in the dropdownbox for styles
 [/LIST]
-[B]Oct-04-2012[/B] : Release 2.0
+[COLOR="blue"][B]Oct-04-2012[/B] : Release 2.0[/COLOR]
 [LIST]
 [*]Implemented a feature to generate flashable Zips
-[*]Support for hdpi Roms (experimental ...Testers welcome ;) Icons may be too big...depends on your liking ;-))
+[*]Support for hdpi Roms (experimental ...Testers welcome ;) Icons may be too big...depends on your liking ;))
 [/LIST]
-[B]Oct-03-2012[/B] : Release 1.0
+[COLOR="blue"][B]Oct-03-2012[/B] : Release 1.0[/COLOR]
 [LIST]
 [*]Initial Release
 [/LIST]

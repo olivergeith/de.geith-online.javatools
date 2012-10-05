@@ -1,7 +1,10 @@
 package de.og.batterycreator.creators;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -23,6 +26,7 @@ public abstract class DefaultCreator {
 
 	private final Vector<ImageIcon> iconMap = new Vector<ImageIcon>();
 	private final Vector<String> filenames = new Vector<String>();;
+	private ImageIcon overview = null;
 
 	@Override
 	public abstract String toString();
@@ -67,6 +71,7 @@ public abstract class DefaultCreator {
 		filenames.removeAllElements();
 		createImages();
 		createChargeImages();
+		overview = createOverview();
 	}
 
 	private void createChargeImages() {
@@ -140,6 +145,15 @@ public abstract class DefaultCreator {
 		final File file = new File(getFilenameAndPathFull(charge));
 		try {
 			ImageIO.write(img, "png", file);
+		} catch (final IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void writeOverviewFile(final BufferedImage overview) {
+		final File file = new File(getPath() + File.separator + "overview.png");
+		try {
+			ImageIO.write(overview, "png", file);
 		} catch (final IOException e) {
 			e.printStackTrace();
 		}
@@ -239,6 +253,48 @@ public abstract class DefaultCreator {
 		} catch (final ClassNotFoundException e) {
 			System.err.println(e);
 		}
+	}
+
+	// ###############################################################################
+	// Creating Overview
+	// ###############################################################################
+	private ImageIcon createOverview() {
+		if (iconMap != null && iconMap.size() > 100) {
+			final ImageIcon img1 = iconMap.get(0);
+			final int iw = img1.getIconWidth();
+			final int ih = img1.getIconHeight();
+			final int w = iw * 10 + 11;
+			final int offsetOben = 50;
+			final int h = ih * 11 + 12 + offsetOben;
+
+			final BufferedImage over = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+			final Graphics2D g2d = over.createGraphics();
+			g2d.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 19));
+			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+			g2d.setColor(Color.black);
+			g2d.fillRect(0, 0, w, h);
+			g2d.setColor(Color.white);
+			g2d.drawString(getName(), 10, 25);
+			g2d.fillRect(0, 40, w, 2);
+
+			for (int z = 0; z < 10; z++) {
+				for (int e = 0; e < 10; e++) {
+					final int index = z * 10 + e;
+					final ImageIcon img = iconMap.elementAt(index);
+					g2d.drawImage(img.getImage(), 1 + e * (iw + 1), 1 + z * (ih + 1) + offsetOben, null);
+				}
+			}
+			final ImageIcon img = iconMap.elementAt(100);
+			g2d.drawImage(img.getImage(), 1 + 0 * iw, 10 * (ih + 1) + offsetOben, null);
+
+			writeOverviewFile(over);
+			return new ImageIcon(over);
+		}
+		return null;
+	}
+
+	public ImageIcon getOverviewIcon() {
+		return overview;
 	}
 
 }

@@ -32,6 +32,7 @@ import og.basics.gui.tracepanel.DefaultTextFileSaveHandler;
 import og.basics.gui.tracepanel.TracePanel;
 import de.og.batterycreator.creators.ArcCreator;
 import de.og.batterycreator.creators.ArcDecimalCreator;
+import de.og.batterycreator.creators.ArcQuaterCreator2;
 import de.og.batterycreator.creators.ArcSunCreator;
 import de.og.batterycreator.creators.BatterySymbolCreator;
 import de.og.batterycreator.creators.BatteryVerticalSymbolCreator;
@@ -47,7 +48,7 @@ import de.og.batterycreator.zipcreator.ZipMaker;
 public class IconCreatorFrame extends JFrame {
 
 	private static final String APP_NAME = "Battery Icon Creator";
-	private static final String VERSION_NR = "2.5";
+	private static final String VERSION_NR = "3.0";
 
 	private static final long serialVersionUID = 1L;
 	private static final ImageIcon logoIcon = new ImageIcon(ConfigPanel.class.getResource("logo.png"));
@@ -71,8 +72,9 @@ public class IconCreatorFrame extends JFrame {
 	private final JList<String> list = new JList<String>();
 	private JComboBox<DefaultCreator> creatorBox;
 	private final ConfigPanel configPane = new ConfigPanel();
-
 	private final JPanel mainPanel = new JPanel();
+
+	private final JLabel overviewLabel = new JLabel();
 
 	private DefaultCreator activCreator = null;
 
@@ -122,6 +124,7 @@ public class IconCreatorFrame extends JFrame {
 		list.removeAll();
 		list.setListData(activCreator.getFilenames());
 		list.repaint();
+		overviewLabel.setIcon(activCreator.getOverviewIcon());
 		pack();
 	}
 
@@ -135,6 +138,7 @@ public class IconCreatorFrame extends JFrame {
 
 		creators.add(new ArcCreator());
 		creators.add(new ArcSunCreator());
+		creators.add(new ArcQuaterCreator2());
 		creators.add(new ArcDecimalCreator());
 		creators.add(new BrickBattCreator());
 		creators.add(new BrickBattNoGapCreator());
@@ -192,6 +196,8 @@ public class IconCreatorFrame extends JFrame {
 		createAktionen();
 		makeMenuAndButtonBar();
 		getContentPane().add(createTabbedPane());
+		overviewLabel.setBackground(Color.black);
+		mainPanel.add(overviewLabel, BorderLayout.EAST);
 	}
 
 	private JTabbedPane createTabbedPane() {
@@ -392,5 +398,4 @@ public class IconCreatorFrame extends JFrame {
 
 		}
 	}
-
 }

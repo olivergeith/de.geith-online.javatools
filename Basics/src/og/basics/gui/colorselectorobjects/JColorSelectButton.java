@@ -4,13 +4,17 @@
 package og.basics.gui.colorselectorobjects;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Action;
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
+import javax.swing.JDialog;
+import javax.swing.colorchooser.AbstractColorChooserPanel;
 
 /**
  * @author geith
@@ -79,17 +83,64 @@ public class JColorSelectButton extends JButton {
 	}
 
 	private void initUI() {
+		// setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
 		addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(final ActionEvent e) {
-				final Color newColor = JColorChooser.showDialog(JColorSelectButton.this, "Choose Color", getBackground());
-				if (newColor != null) {
-					setBackground(newColor);
-				}
+				bringUpColorChooser2();
 			}
 		});
 
+	}
+
+	// private void bringUpColorChooser1() {
+	// final Color newColor = JColorChooser.showDialog(JColorSelectButton.this,
+	// "Choose Color", getBackground());
+	// if (newColor != null) {
+	// setBackground(newColor);
+	// }
+	// }
+
+	private void bringUpColorChooser2() {
+		final JColorChooser colorChooser = new JColorChooser();
+		final JCLabel previewLabel = new JCLabel();
+		previewLabel.setText("xxx");
+		previewLabel.setSize(previewLabel.getPreferredSize());
+		previewLabel.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 48));
+		previewLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 1, 0));
+		colorChooser.setPreviewPanel(previewLabel);
+
+		// Override the chooser panels with our own
+
+		final AbstractColorChooserPanel[] panels = colorChooser.getChooserPanels();
+
+		final AbstractColorChooserPanel[] panelsnew = new AbstractColorChooserPanel[panels.length + 1];
+
+		for (int i = 0; i < panels.length; i++) {
+			panelsnew[i] = panels[i];
+		}
+		panelsnew[panels.length] = new CrayonPanel();
+
+		colorChooser.setChooserPanels(panelsnew);
+
+		final ActionListener okActionListener = new ActionListener() {
+			public void actionPerformed(final ActionEvent actionEvent) {
+				System.out.println("OK Button");
+				System.out.println(colorChooser.getColor());
+				setBackground(colorChooser.getColor());
+			}
+		};
+
+		final ActionListener cancelActionListener = new ActionListener() {
+			public void actionPerformed(final ActionEvent actionEvent) {
+				System.out.println("Cancel Button");
+			}
+		};
+
+		final JDialog dialog = JColorChooser.createDialog(null, "Change Color", true, colorChooser, okActionListener, cancelActionListener);
+
+		dialog.setVisible(true);
 	}
 
 }

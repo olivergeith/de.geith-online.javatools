@@ -10,7 +10,7 @@ Now it has grown up !!!
 [SIZE="6"][B][CENTER]The Battery Icon Creator[/CENTER][/B][/SIZE]
 [SIZE="4"][B]Features:[/B][/SIZE]
 [LIST]
-[*]11 highly customizable Styles (more to come...ideas welcome !)
+[*]12 highly customizable Styles (more to come...ideas welcome !)
 [*]You can change colors, Style, charge-icon, with or without Text...
 [*]Additional Custom charge-icons...(place them in folder ./custom/charge/ ...see samples there)
 [*]Easy "all in one frame" Interface (you will find out how it works !)
@@ -18,16 +18,18 @@ Now it has grown up !!!
 [/LIST]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[B]Oct-05-2012[/B] : Release 2.5
+[B]Oct-05-2012[/B] : Release 3.0
 [LIST]
 [*]Load and save settings for each style
-[*]4 new styles
-[*]News customization : Gradient colors for medium batterylevels
+[*]5 new styles
+[*]New customization : Gradient colors for medium batterylevels
+[*]Creating of an overview.png (If you want to show of your creations!)
+[*]Preview of the style in the dropdownbox for styles
 [/LIST]
 [B]Oct-04-2012[/B] : Release 2.0
 [LIST]
 [*]Implemented a feature to generate flashable Zips
-[*]Support for hdpi Roms (experimental and untested...Testers welcome ;))
+[*]Support for hdpi Roms (experimental ...Testers welcome ;) Icons may be too big...depends on your liking ;-))
 [/LIST]
 [B]Oct-03-2012[/B] : Release 1.0
 [LIST]
@@ -39,6 +41,7 @@ Now it has grown up !!!
 [*]Make the Style-Modules even more customizable
 [*]Bugfixing
 [*]Creating new styles
+[*]Make styles rezizable (Icons are too big for hdpi Roms)
 [*]Supporting other icons from Statusbar (Connection, Wifi...)
 [*]And finally....A lot of things that you might come up with ;)
 [/LIST]
@@ -67,6 +70,7 @@ Want to see them in use?...see my MOD-Post for Resurrection Remix ROM
 [SIZE="4"][B]Works with the following ROMs[/B][/SIZE]
 [LIST]
 [*]Ressurection Remix 3.x.x
+[*]Ressurection Remix 2.7 (but BatteryIcon ist relativ [B]big[/B]!!!!)
 [*]...should work on many more...let me know!
 [/LIST]
 

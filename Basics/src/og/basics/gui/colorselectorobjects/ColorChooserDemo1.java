@@ -1,4 +1,4 @@
-package de.og.batterycreator.demos;
+package og.basics.gui.colorselectorobjects;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -23,10 +23,17 @@ public class ColorChooserDemo1 {
 		previewLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 1, 0));
 		colorChooser.setPreviewPanel(previewLabel);
 
+		// Override the chooser panels with our own
+
 		final AbstractColorChooserPanel[] panels = colorChooser.getChooserPanels();
-		final AbstractColorChooserPanel[] panelsnew = {
-			panels[0]
-		};
+
+		final AbstractColorChooserPanel[] panelsnew = new AbstractColorChooserPanel[panels.length + 1];
+		panelsnew[0] = new CrayonPanel();
+
+		for (int i = 0; i < panels.length; i++) {
+			panelsnew[i + 1] = panels[i];
+		}
+
 		colorChooser.setChooserPanels(panelsnew);
 
 		final ActionListener okActionListener = new ActionListener() {
@@ -46,7 +53,6 @@ public class ColorChooserDemo1 {
 
 		dialog.setVisible(true);
 	}
-
 }
 
 /**

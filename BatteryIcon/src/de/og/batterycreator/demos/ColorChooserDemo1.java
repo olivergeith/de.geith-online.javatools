@@ -11,7 +11,7 @@ import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
 
-public class MainClass {
+public class ColorChooserDemo1 {
 
 	public static void main(final String[] a) {
 

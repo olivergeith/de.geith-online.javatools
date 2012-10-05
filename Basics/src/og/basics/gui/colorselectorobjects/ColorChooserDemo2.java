@@ -1,4 +1,4 @@
-package de.og.batterycreator.demos;
+package og.basics.gui.colorselectorobjects;
 
 /*
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
@@ -45,8 +45,10 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.colorchooser.AbstractColorChooserPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 
 /* 
  * ColorChooserDemo2.java requires these files:
@@ -57,6 +59,7 @@ import javax.swing.event.ChangeListener;
  *   images/blue.gif
  */
 public class ColorChooserDemo2 extends JPanel implements ActionListener, ChangeListener {
+	private static final long serialVersionUID = 4909976448024340454L;
 	public JLabel banner;
 	public JColorChooser tcc;
 
@@ -91,10 +94,10 @@ public class ColorChooserDemo2 extends JPanel implements ActionListener, ChangeL
 		tcc.setPreviewPanel(new JPanel());
 
 		// Override the chooser panels with our own
-		// final AbstractColorChooserPanel panels[] = {
-		// new CrayonPanel()
-		// };
-		// tcc.setChooserPanels(panels);
+		final AbstractColorChooserPanel panels[] = {
+			new CrayonPanel()
+		};
+		tcc.setChooserPanels(panels);
 		tcc.setColor(banner.getForeground());
 
 		add(bannerPanel, BorderLayout.PAGE_START);

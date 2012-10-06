@@ -22,7 +22,7 @@ public class ArcCreator extends DefaultCreator {
 	public ImageIcon createImage(final int percentage, final boolean charge) {
 
 		// Create a graphics contents on the buffered image
-		final BufferedImage img = new BufferedImage(41, 41, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage img = new BufferedImage(41, 41, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = img.createGraphics();
 		g2d.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 19));
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -36,8 +36,14 @@ public class ArcCreator extends DefaultCreator {
 
 		drawPercentage(g2d, percentage, charge, img);
 
+		// resize ?
+		if (settings.getTargetIconSize() != img.getHeight()) {
+			// do the resizing before save
+
+		}
+
 		// Filewriting
-		writeFile(percentage, charge, img);
+		img = writeFile(percentage, charge, img);
 		return new ImageIcon(img);
 	}
 
@@ -47,7 +53,7 @@ public class ArcCreator extends DefaultCreator {
 	 * @see de.og.creators.DefaultCreator#getPath()
 	 */
 	@Override
-	public String getPath() {// TODO Auto-generated method stub
+	public String getPath() {
 		return path;
 	}
 

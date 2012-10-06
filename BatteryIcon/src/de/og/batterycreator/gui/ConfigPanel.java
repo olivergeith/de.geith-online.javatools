@@ -2,21 +2,18 @@ package de.og.batterycreator.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
 import javax.swing.JTextField;
-import javax.swing.border.BevelBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import og.basics.gui.colorselectorobjects.JColorSelectButton;
 
@@ -25,7 +22,8 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
 import de.og.batterycreator.creators.StyleSettings;
-import de.og.batterycreator.widgets.chargeiconselector.ChargeIconSelector;
+import de.og.batterycreator.widgets.ChargeIconSelector;
+import de.og.batterycreator.widgets.SliderLabel;
 
 public class ConfigPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -48,15 +46,21 @@ public class ConfigPanel extends JPanel {
 	JCheckBox cboxShowChargeSymbol = createCheckbox("Charge-Symbol", "Show Charge-Symbol when charging");
 	JCheckBox cboxUseGradient = createCheckbox("Gradient for Medium levels", "Use Gradient Colors between Low and Med Batterylevels");
 
-	JSlider dialLowBatt = new JSlider(0, 30);
-	JLabel dialLowValue = new JLabel();
-	JSlider dialMedBatt = new JSlider(20, 50);
-	JLabel dialMedValue = new JLabel();
+	SliderLabel sliderLowBatt = new SliderLabel(0, 30);
+	SliderLabel sliderMedBatt = new SliderLabel(20, 100);
+
+	SliderLabel sliderResize = new SliderLabel(25, 50);
+	JCheckBox cboxUseAdvResize = createCheckbox("Use advanced ResizeAlgorith",
+			"(Experimental) Advanced Resize-Algorith...might give better results on small imagesizes!?");
 
 	JTextField filepattern = new JTextField();
 	JTextField filepatternCharge = new JTextField();
-	JTextField folderInZip = new JTextField();
-	JCheckBox cboxHDPI = createCheckbox("Set Zip-Output to HDPI", "Set Zip-Output to HDPI...default is XHDPI");
+
+	JComboBox<String> zipResolutionFolderCombo = new JComboBox<String>();
+
+	// JTextField zipResolutionFolderTextBox = new JTextField();
+	// JCheckBox cboxHDPI = createCheckbox("Set Zip-Output to HDPI",
+	// "Set Zip-Output to HDPI...default is XHDPI");
 
 	public ConfigPanel() {
 		initComponents();
@@ -76,39 +80,27 @@ public class ConfigPanel extends JPanel {
 		iconColorLowBatt = createClickabelColorLabel("LowBatt", "Color when low battery");
 		iconColorMedBatt = createClickabelColorLabel("MedBatt", "Color when Med battery");
 		iconColorCharge = createClickabelColorLabel("Charge Color", "Color when charging");
-		dialLowBatt.setPreferredSize(new Dimension(60, 20));
-		dialMedBatt.setPreferredSize(new Dimension(60, 20));
+		// Adding items
+		zipResolutionFolderCombo.addItem(StyleSettings.FOLDER_XHDPI);
+		zipResolutionFolderCombo.addItem(StyleSettings.FOLDER_HDPI);
+		zipResolutionFolderCombo.addItem(StyleSettings.FOLDER_600DP);
+		zipResolutionFolderCombo.addItem(StyleSettings.FOLDER_720DP);
+		zipResolutionFolderCombo.setEditable(false);
+		zipResolutionFolderCombo.addActionListener(new ActionListener() {
 
-		dialLowBatt.addChangeListener(new ChangeListener() {
-
-			@Override
-			public void stateChanged(final ChangeEvent arg0) {
-				dialLowValue.setText("" + dialLowBatt.getValue());
-			}
-		});
-		dialLowValue.setBorder(new BevelBorder(1));
-
-		dialMedBatt.addChangeListener(new ChangeListener() {
-
-			@Override
-			public void stateChanged(final ChangeEvent arg0) {
-				dialMedValue.setText("" + dialMedBatt.getValue());
-			}
-		});
-		dialMedValue.setBorder(new BevelBorder(1));
-
-		cboxHDPI.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
-				if (cboxHDPI.isSelected())
-					settings.setFolderWithinZip2Hdpi();
-				else
-					settings.setFolderWithinZip2Xhdpi();
-				folderInZip.setText(settings.getFolderWithinZip());
+				if (zipResolutionFolderCombo.getSelectedItem().equals(StyleSettings.FOLDER_XHDPI)) {
+					sliderResize.setValue(StyleSettings.ICON_HEIGHT_XHDPI);
+				} else if (zipResolutionFolderCombo.getSelectedItem().equals(StyleSettings.FOLDER_HDPI)) {
+					sliderResize.setValue(StyleSettings.ICON_HEIGHT_HDPI);
+				} else if (zipResolutionFolderCombo.getSelectedItem().equals(StyleSettings.FOLDER_720DP)) {
+					sliderResize.setValue(StyleSettings.ICON_HEIGHT_720DP);
+				} else if (zipResolutionFolderCombo.getSelectedItem().equals(StyleSettings.FOLDER_600DP)) {
+					sliderResize.setValue(StyleSettings.ICON_HEIGHT_600DP);
+				}
 			}
 		});
-
-		folderInZip.setAlignmentX(RIGHT_ALIGNMENT);
 	}
 
 	private void myInit() {
@@ -119,7 +111,7 @@ public class ConfigPanel extends JPanel {
 		final CellConstraints cc = new CellConstraints();
 		final PanelBuilder builder = new PanelBuilder(layout);
 		int row = 1;
-		builder.add(createGroupLabel("FontColors"), cc.xyw(2, ++row, 3));
+		builder.add(createGroupLabel("Percentages..."), cc.xyw(2, ++row, 3));
 		builder.addSeparator("", cc.xyw(2, ++row, 3));
 		builder.add(cboxShowFont, cc.xyw(2, ++row, 3));
 		builder.add(cboxShowChargeSymbol, cc.xyw(2, ++row, 1));
@@ -129,7 +121,7 @@ public class ConfigPanel extends JPanel {
 		builder.add(cboxColoredFont, cc.xyw(2, ++row, 3));
 		builder.add(fontColorLowBatt, cc.xyw(2, ++row, 1));
 		builder.add(fontColorMedBatt, cc.xyw(4, row, 1));
-		builder.add(createGroupLabel("IconColors"), cc.xyw(2, ++row, 3));
+		builder.add(createGroupLabel("Battery Icon..."), cc.xyw(2, ++row, 3));
 		builder.addSeparator("", cc.xyw(2, ++row, 3));
 		builder.add(iconColor, cc.xyw(2, ++row, 1));
 		builder.add(iconColorInactiv, cc.xyw(4, row, 1));
@@ -140,27 +132,26 @@ public class ConfigPanel extends JPanel {
 		builder.add(iconColorMedBatt, cc.xyw(4, row, 1));
 		builder.add(createGroupLabel("Thresholds..."), cc.xyw(2, ++row, 3));
 		builder.addSeparator("", cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("...for Low and Med Battery-Levels"), cc.xyw(2, ++row, 3));
-		builder.add(dialLowBatt, cc.xyw(2, ++row, 1));
-		builder.add(dialLowValue, cc.xyw(4, row, 1));
-		builder.add(dialMedBatt, cc.xyw(2, ++row, 1));
-		builder.add(dialMedValue, cc.xyw(4, row, 1));
+		builder.add(createBlueDeviderLabel("...for Low Battery-Levels"), cc.xyw(2, ++row, 3));
+		builder.add(sliderLowBatt, cc.xyw(2, ++row, 4));
+		builder.add(createBlueDeviderLabel("...for Med Battery-Levels"), cc.xyw(2, ++row, 3));
+		builder.add(sliderMedBatt, cc.xyw(2, ++row, 4));
 		builder.add(cboxUseGradient, cc.xyw(2, ++row, 3));
 		builder.add(createGroupLabel("Misc Stuff..."), cc.xyw(2, ++row, 3));
 		builder.addSeparator("", cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("Choose your ROM's resolution"), cc.xyw(2, ++row, 3));
+		builder.add(zipResolutionFolderCombo, cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("Resize Icon to (hight)"), cc.xyw(2, ++row, 3));
+		builder.add(sliderResize, cc.xyw(2, ++row, 4));
+		builder.add(cboxUseAdvResize, cc.xyw(2, ++row, 3));
 		builder.add(createBlueDeviderLabel("FileName-Pattern"), cc.xyw(2, ++row, 3));
 		builder.add(filepattern, cc.xyw(2, ++row, 3));
 		builder.add(createBlueDeviderLabel("FileName-Pattern(charge)"), cc.xyw(2, ++row, 3));
 		builder.add(filepatternCharge, cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("Folder for Icons within flashable-zip"), cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("for hdpi ROM's edit here !!!"), cc.xyw(2, ++row, 3));
-		builder.add(cboxHDPI, cc.xyw(2, ++row, 3));
-		builder.add(folderInZip, cc.xyw(2, ++row, 3));
 
 		final JPanel cfp = builder.getPanel();
 		// cfp.setBackground(Color.black);
 		this.add(cfp, BorderLayout.CENTER);
-		this.add(createLogo(), BorderLayout.SOUTH);
 	}
 
 	private JButton createClickabelColorLabel(final String text, final String tooltip) {
@@ -171,7 +162,9 @@ public class ConfigPanel extends JPanel {
 	}
 
 	private JLabel createGroupLabel(final String txt) {
-		return createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 20), Color.BLUE.darker());
+		final JLabel lab = createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 20), Color.BLUE.darker());
+		lab.setBorder(BorderFactory.createEmptyBorder(10, 1, 1, 1));
+		return lab;
 	}
 
 	/**
@@ -181,17 +174,9 @@ public class ConfigPanel extends JPanel {
 	 * @return
 	 */
 	private JLabel createBlueDeviderLabel(final String txt) {
-		return createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 10), Color.BLUE.darker());
-	}
-
-	/**
-	 * Erzeugt das Froschlogo mit dem hiddenfeature für Expertmode
-	 * 
-	 * @return
-	 */
-	private JLabel createLogo() {
-		final JLabel logo = new JLabel(IconCreatorFrame.getLogoicon());
-		return logo;
+		final JLabel lab = createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 10), Color.BLUE.darker());
+		lab.setBorder(BorderFactory.createEmptyBorder(2, 1, 1, 1));
+		return lab;
 	}
 
 	/**
@@ -246,9 +231,11 @@ public class ConfigPanel extends JPanel {
 		cboxColoredFont.setSelected(settings.isColoredFont());
 		cboxColoredIcon.setSelected(settings.isColoredIcon());
 
-		dialMedBatt.setValue(settings.getMedBattTheshold());
-		dialLowBatt.setValue(settings.getLowBattTheshold());
+		sliderMedBatt.setValue(settings.getMedBattTheshold());
+		sliderLowBatt.setValue(settings.getLowBattTheshold());
 
+		sliderResize.setValue(settings.getTargetIconSize());
+		cboxUseAdvResize.setSelected(settings.isUseAdvancedResize());
 		if (settings.getChargeIcon() != null)
 			chargeIconSeletor.setSelectedItem(settings.getChargeIcon());
 		else
@@ -256,8 +243,7 @@ public class ConfigPanel extends JPanel {
 
 		filepattern.setText(settings.getFilePattern());
 		filepatternCharge.setText(settings.getFilePatternCharge());
-		folderInZip.setText(settings.getFolderWithinZip());
-		cboxHDPI.setSelected(settings.isHDPI());
+		zipResolutionFolderCombo.setSelectedItem(settings.getZipResolutionFolder());
 		cboxUseGradient.setSelected(settings.isUseGradiantForMediumColor());
 
 		validateControls();
@@ -281,15 +267,15 @@ public class ConfigPanel extends JPanel {
 		settings.setColoredFont(cboxColoredFont.isSelected());
 		settings.setColoredIcon(cboxColoredIcon.isSelected());
 
-		settings.setMedBattTheshold(dialMedBatt.getValue());
-		settings.setLowBattTheshold(dialLowBatt.getValue());
+		settings.setMedBattTheshold(sliderMedBatt.getValue());
+		settings.setLowBattTheshold(sliderLowBatt.getValue());
+
+		settings.setTargetIconSize(sliderResize.getValue());
+		settings.setUseAdvancedResize(cboxUseAdvResize.isSelected());
 		settings.setChargeIcon((ImageIcon) chargeIconSeletor.getSelectedItem());
 		settings.setFilePattern(filepattern.getText());
 		settings.setFilePatternCharge(filepatternCharge.getText());
-		if (cboxHDPI.isSelected())
-			settings.setFolderWithinZip2Hdpi();
-		else
-			settings.setFolderWithinZip2Xhdpi();
+		settings.setZipResolutionFolder((String) zipResolutionFolderCombo.getSelectedItem());
 		settings.setUseGradiantForMediumColor(cboxUseGradient.isSelected());
 		return settings;
 	}
@@ -303,7 +289,5 @@ public class ConfigPanel extends JPanel {
 		iconColorMedBatt.setEnabled(cboxColoredIcon.isSelected());
 		iconColorLowBatt.setEnabled(cboxColoredIcon.isSelected());
 		chargeIconSeletor.setEnabled(cboxShowChargeSymbol.isSelected());
-		folderInZip.setEnabled(false);
-
 	}
 }

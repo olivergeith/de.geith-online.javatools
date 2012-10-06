@@ -1,14 +1,24 @@
 package de.og.batterycreator.creators;
 
 import java.awt.Color;
+import java.io.File;
 import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 
 public class StyleSettings implements Serializable {
 	private static final long serialVersionUID = 4747296256398459127L;
-	public static final String FOLDER_XHDPI = "MORPH/system/app/SystemUI.apk/res/drawable-xhdpi/";
-	public static final String FOLDER_HDPI = "MORPH/system/app/SystemUI.apk/res/drawable-hdpi/";
+
+	public static final String FOLDER_SYSTEMUI = "MORPH/system/app/SystemUI.apk/res/";
+	public static final String FOLDER_XHDPI = "drawable-xhdpi";
+	public static final String FOLDER_HDPI = "drawable-hdpi";
+	public static final String FOLDER_720DP = "drawable-sw720dp-xhdpi";
+	public static final String FOLDER_600DP = "drawable-sw600dp-xhdpi";
+
+	public static final int ICON_HEIGHT_XHDPI = 38;
+	public static final int ICON_HEIGHT_HDPI = 27;
+	public static final int ICON_HEIGHT_720DP = 48;
+	public static final int ICON_HEIGHT_600DP = 43;
 
 	// Konstanten
 	public static final Color COLOR_FONT = Color.white;
@@ -34,8 +44,6 @@ public class StyleSettings implements Serializable {
 	private boolean showChargeSymbol = true;
 	private boolean useGradiantForMediumColor = false;
 
-	private boolean isHDPI = false;
-
 	private int lowBattTheshold = 10;
 	private int MedBattTheshold = 30;
 
@@ -44,7 +52,11 @@ public class StyleSettings implements Serializable {
 	private String filePattern = new String("stat_sys_battery_circle_");
 	private String filePatternCharge = new String("stat_sys_battery_circle_charge_anim");
 
-	private String folderWithinZip = FOLDER_XHDPI;
+	private String zipResolutionFolder = FOLDER_XHDPI;
+	private String folderWithinZip = FOLDER_SYSTEMUI + FOLDER_XHDPI + File.separator;
+
+	private int targetIconSize = ICON_HEIGHT_XHDPI;
+	private boolean useAdvancedResize = false;
 
 	public boolean isUseGradiantForMediumColor() {
 		return useGradiantForMediumColor;
@@ -56,16 +68,6 @@ public class StyleSettings implements Serializable {
 
 	public String getFolderWithinZip() {
 		return folderWithinZip;
-	}
-
-	public void setFolderWithinZip2Xhdpi() {
-		folderWithinZip = FOLDER_XHDPI;
-		isHDPI = false;
-	}
-
-	public void setFolderWithinZip2Hdpi() {
-		folderWithinZip = FOLDER_HDPI;
-		isHDPI = true;
 	}
 
 	public Color getFontColor() {
@@ -363,10 +365,50 @@ public class StyleSettings implements Serializable {
 	}
 
 	/**
-	 * @return the isHDPI
+	 * @return the zipOutFolder
 	 */
-	public boolean isHDPI() {
-		return isHDPI;
+	public String getZipResolutionFolder() {
+		return zipResolutionFolder;
+	}
+
+	/**
+	 * @param zipResolutionFolder
+	 *            the zipOutFolder to set
+	 */
+	public void setZipResolutionFolder(final String zipResolutionFolder) {
+		this.zipResolutionFolder = zipResolutionFolder;
+		folderWithinZip = FOLDER_SYSTEMUI + zipResolutionFolder + File.separator;
+
+	}
+
+	/**
+	 * @return the iconSize
+	 */
+	public int getTargetIconSize() {
+		return targetIconSize;
+	}
+
+	/**
+	 * @param targetIconSize
+	 *            the iconSize to set
+	 */
+	public void setTargetIconSize(final int targetIconSize) {
+		this.targetIconSize = targetIconSize;
+	}
+
+	/**
+	 * @return the useAdvancedResize
+	 */
+	public boolean isUseAdvancedResize() {
+		return useAdvancedResize;
+	}
+
+	/**
+	 * @param useAdvancedResize
+	 *            the useAdvancedResize to set
+	 */
+	public void setUseAdvancedResize(final boolean useAdvancedResize) {
+		this.useAdvancedResize = useAdvancedResize;
 	}
 
 }

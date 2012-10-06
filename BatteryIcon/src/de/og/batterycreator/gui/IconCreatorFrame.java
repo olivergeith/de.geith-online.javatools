@@ -3,6 +3,7 @@ package de.og.batterycreator.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
@@ -48,7 +49,7 @@ import de.og.batterycreator.zipcreator.ZipMaker;
 public class IconCreatorFrame extends JFrame {
 
 	private static final String APP_NAME = "Battery Icon Creator";
-	private static final String VERSION_NR = "3.0";
+	private static final String VERSION_NR = "4.0";
 
 	private static final long serialVersionUID = 1L;
 	private static final ImageIcon logoIcon = new ImageIcon(ConfigPanel.class.getResource("logo.png"));
@@ -172,7 +173,12 @@ public class IconCreatorFrame extends JFrame {
 		final JScrollPane scroller = new JScrollPane();
 		scroller.add(list);
 		scroller.getViewport().setView(list);
-		mainPanel.add(scroller, BorderLayout.CENTER);
+		scroller.setPreferredSize(new Dimension(400, 600));
+
+		final JPanel centerPanel = new JPanel(new BorderLayout());
+		centerPanel.add(scroller, BorderLayout.CENTER);
+		centerPanel.add(new JLabel(logoIcon), BorderLayout.SOUTH);
+		mainPanel.add(centerPanel, BorderLayout.CENTER);
 		mainPanel.add(configPane, BorderLayout.WEST);
 
 		// Comobox mit creatoren anzeigen
@@ -204,8 +210,6 @@ public class IconCreatorFrame extends JFrame {
 		// Tabpane zusammenbasteln
 		tabPane.addTab("Main", cfgIcon, mainPanel, "Create your icons here...");
 		tabPane.addTab("TraceLog", errorIcon, tracer, "TraceLog");
-		// addTabAlbumListing();
-		// addTabWhatsNewListing();
 		return tabPane;
 	}
 
@@ -333,7 +337,11 @@ public class IconCreatorFrame extends JFrame {
 		}
 
 		public void actionPerformed(final ActionEvent arg0) {
-			doZip();
+			final int n = JOptionPane.showConfirmDialog(IconCreatorFrame.this, "Would you like to create a flashable zip now ?", "Create Flashable-Zip...",
+					JOptionPane.YES_NO_OPTION);
+			if (n == JOptionPane.YES_OPTION) {
+				doZip();
+			}
 		}
 	}
 

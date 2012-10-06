@@ -22,7 +22,7 @@ public class BinarySquaresCreator extends DefaultCreator {
 	@Override
 	public ImageIcon createImage(final int percentage, final boolean charge) {
 
-		final BufferedImage img = new BufferedImage(40, 40, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage img = new BufferedImage(40, 40, BufferedImage.TYPE_INT_ARGB);
 		// Create a graphics contents on the buffered image
 		final Graphics2D g2d = img.createGraphics();
 		g2d.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
@@ -62,7 +62,7 @@ public class BinarySquaresCreator extends DefaultCreator {
 		drawPercentage(g2d, percentage, charge, img);
 
 		// Filewriting
-		writeFile(percentage, charge, img);
+		img = writeFile(percentage, charge, img);
 		return new ImageIcon(img);
 
 	}

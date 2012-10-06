@@ -22,7 +22,7 @@ public class BinaryBarsCreator extends DefaultCreator {
 	@Override
 	public ImageIcon createImage(final int percentage, final boolean charge) {
 
-		final BufferedImage img = new BufferedImage(41, 41, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage img = new BufferedImage(41, 41, BufferedImage.TYPE_INT_ARGB);
 		// Create a graphics contents on the buffered image
 		final Graphics2D g2d = img.createGraphics();
 		g2d.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 22));
@@ -65,7 +65,7 @@ public class BinaryBarsCreator extends DefaultCreator {
 		drawPercentage(g2d, percentage, charge, img);
 
 		// Filewriting
-		writeFile(percentage, charge, img);
+		img = writeFile(percentage, charge, img);
 		return new ImageIcon(img);
 
 	}

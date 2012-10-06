@@ -11,6 +11,7 @@ Now it has grown up !!!
 [LIST]
 [*]12 highly customizable Styles (more to come...ideas welcome !)
 [*]You can change colors, Style, charge-icon, with or without Text...
+[*]Creating of an overview.png (If you want to show of your creations!)
 [*]Icons are resized to any supported dpi (can be fine-tuned)
 [*]Additional Custom charge-icons...(place them in folder ./custom/charge/ ...see samples there)
 [*]Easy "all in one frame" Interface (you will find out how it works !)
@@ -53,7 +54,6 @@ Now it has grown up !!!
 [*]Make the Style-Modules even more customizable
 [*]Bugfixing
 [*]Creating new styles
-[*]Make styles rezizable (Icons are too big for hdpi Roms)
 [*]Supporting other icons from Statusbar (Connection, Wifi...)
 [*]And finally....A lot of things that you might come up with ;)
 [/LIST]
@@ -83,8 +83,8 @@ Want to see them in use?...see my MOD-Post for Resurrection Remix ROM
 
 [SIZE="4"][B]Works with the following ROMs[/B][/SIZE]
 [LIST]
-[*]Ressurection Remix 3.x.x
-[*]Ressurection Remix 2.7 (but BatteryIcon ist relativ [B]big[/B]!!!!)
+[*]Resurection Remix 3.x.x
+[*]Resurection Remix 2.7 
 [*]...should work on many more...let me know!
 [/LIST]
 

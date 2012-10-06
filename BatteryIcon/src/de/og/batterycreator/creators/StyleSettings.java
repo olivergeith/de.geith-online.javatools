@@ -43,6 +43,7 @@ public class StyleSettings implements Serializable {
 	private boolean coloredIcon = true;
 	private boolean showChargeSymbol = true;
 	private boolean useGradiantForMediumColor = false;
+	private boolean useGradiantForNormalColor = false;
 
 	private int lowBattTheshold = 10;
 	private int MedBattTheshold = 30;
@@ -57,14 +58,6 @@ public class StyleSettings implements Serializable {
 
 	private int targetIconSize = ICON_HEIGHT_XHDPI;
 	private boolean useAdvancedResize = false;
-
-	public boolean isUseGradiantForMediumColor() {
-		return useGradiantForMediumColor;
-	}
-
-	public void setUseGradiantForMediumColor(final boolean useGradiantForMediumColor) {
-		this.useGradiantForMediumColor = useGradiantForMediumColor;
-	}
 
 	public String getFolderWithinZip() {
 		return folderWithinZip;
@@ -158,17 +151,24 @@ public class StyleSettings implements Serializable {
 	 */
 	protected Color getActivIconColor(final int percentage) {
 		Color col;
-		// Wenn oberhalb der Schwelle oder immer einfarbig gezeichnet werden
-		// soll, dann...
-		if (percentage >= getMedBattTheshold() || isColoredIcon() == false)
+		if (!isColoredIcon()) {
 			col = getIconColor();
-		else if (percentage < getMedBattTheshold() && percentage >= getLowBattTheshold()) {
-			if (useGradiantForMediumColor)
-				col = getRadiantColor(getIconColorLowBatt(), getIconColorMedBatt(), percentage, getLowBattTheshold(), getMedBattTheshold());
-			else
-				col = getIconColorMedBatt();
 		} else {
-			col = getIconColorLowBatt();
+			// Wenn oberhalb der Schwelle oder immer einfarbig gezeichnet werden
+			// soll, dann...
+			if (percentage >= getMedBattTheshold()) {
+				if (useGradiantForNormalColor)
+					col = getRadiantColor(getIconColor(), getIconColorMedBatt(), percentage, 100, getMedBattTheshold());
+				else
+					col = getIconColor();
+			} else if (percentage < getMedBattTheshold() && percentage >= getLowBattTheshold()) {
+				if (useGradiantForMediumColor)
+					col = getRadiantColor(getIconColorLowBatt(), getIconColorMedBatt(), percentage, getLowBattTheshold(), getMedBattTheshold());
+				else
+					col = getIconColorMedBatt();
+			} else {
+				col = getIconColorLowBatt();
+			}
 		}
 		return col;
 	}
@@ -181,17 +181,22 @@ public class StyleSettings implements Serializable {
 	 */
 	protected Color getActivFontColor(final int percentage) {
 		Color col;
-		// Wenn oberhalb der Schwelle oder immer einfarbig gezeichnet werden
-		// soll, dann...
-		if (percentage >= getMedBattTheshold() || isColoredFont() == false)
+		if (!isColoredFont()) {
 			col = getFontColor();
-		else if (percentage < getMedBattTheshold() && percentage >= getLowBattTheshold())
-			if (useGradiantForMediumColor)
-				col = getRadiantColor(getFontColorLowBatt(), getFontColorMedBatt(), percentage, getLowBattTheshold(), getMedBattTheshold());
-			else
-				col = getFontColorMedBatt();
-		else
-			col = getFontColorLowBatt();
+		} else {
+			if (percentage >= getMedBattTheshold()) {
+				if (useGradiantForNormalColor)
+					col = getRadiantColor(getFontColor(), getFontColorMedBatt(), percentage, 100, getMedBattTheshold());
+				else
+					col = getFontColor();
+			} else if (percentage < getMedBattTheshold() && percentage >= getLowBattTheshold()) {
+				if (useGradiantForMediumColor)
+					col = getRadiantColor(getFontColorLowBatt(), getFontColorMedBatt(), percentage, getLowBattTheshold(), getMedBattTheshold());
+				else
+					col = getFontColorMedBatt();
+			} else
+				col = getFontColorLowBatt();
+		}
 		return col;
 	}
 
@@ -409,6 +414,29 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setUseAdvancedResize(final boolean useAdvancedResize) {
 		this.useAdvancedResize = useAdvancedResize;
+	}
+
+	/**
+	 * @return the useGradiantForNormalColor
+	 */
+	public boolean isUseGradiantForNormalColor() {
+		return useGradiantForNormalColor;
+	}
+
+	/**
+	 * @param useGradiantForNormalColor
+	 *            the useGradiantForNormalColor to set
+	 */
+	public void setUseGradiantForNormalColor(final boolean useGradiantForNormalColor) {
+		this.useGradiantForNormalColor = useGradiantForNormalColor;
+	}
+
+	public boolean isUseGradiantForMediumColor() {
+		return useGradiantForMediumColor;
+	}
+
+	public void setUseGradiantForMediumColor(final boolean useGradiantForMediumColor) {
+		this.useGradiantForMediumColor = useGradiantForMediumColor;
 	}
 
 }

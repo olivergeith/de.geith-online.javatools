@@ -40,17 +40,18 @@ public class ConfigPanel extends JPanel {
 	JButton iconColorMedBatt;
 	JButton iconColorInactiv;
 	JButton iconColorCharge;
-	JCheckBox cboxColoredFont = createCheckbox("Different color on low battery", "...");
-	JCheckBox cboxColoredIcon = createCheckbox("Different color on low battery", "...");
+	JCheckBox cboxColoredFont = createCheckbox("Low battery Colors", "...");
+	JCheckBox cboxColoredIcon = createCheckbox("Low battery Colors", "...");
 	JCheckBox cboxShowFont = createCheckbox("Show percentages", "...");
 	JCheckBox cboxShowChargeSymbol = createCheckbox("Charge-Symbol", "Show Charge-Symbol when charging");
-	JCheckBox cboxUseGradient = createCheckbox("Gradient for Medium levels", "Use Gradient Colors between Low and Med Batterylevels");
+	JCheckBox cboxUseGradientMediumLevels = createCheckbox("Gradient for Medium levels", "Use Gradient Colors between Low and Med Batterylevels");
+	JCheckBox cboxUseGradientNormalLevels = createCheckbox("Gradient for Normal levels", "Use Gradient Colors between Med and 100% Batterylevels");
 
 	SliderLabel sliderLowBatt = new SliderLabel(0, 30);
 	SliderLabel sliderMedBatt = new SliderLabel(20, 100);
 
 	SliderLabel sliderResize = new SliderLabel(25, 50);
-	JCheckBox cboxUseAdvResize = createCheckbox("Use advanced ResizeAlgorith",
+	JCheckBox cboxUseAdvResize = createCheckbox("Use advanced Resize-Algorithm",
 			"(Experimental) Advanced Resize-Algorith...might give better results on small imagesizes!?");
 
 	JTextField filepattern = new JTextField();
@@ -106,48 +107,57 @@ public class ConfigPanel extends JPanel {
 	private void myInit() {
 		// setBackground(Color.black);
 		setLayout(new BorderLayout());
-		final FormLayout layout = new FormLayout("2dlu, pref, 2dlu, pref, 2dlu",
+		// -----------------------------------------1-----2------3-----4------5-----6------7-----8-----9------10----11
+		final FormLayout layout = new FormLayout("2dlu, 64dlu, 2dlu, 64dlu, 2dlu, 64dlu, 2dlu, 64dlu, 2dlu",
 				"p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p");
 		final CellConstraints cc = new CellConstraints();
 		final PanelBuilder builder = new PanelBuilder(layout);
 		int row = 1;
-		builder.add(createGroupLabel("Percentages..."), cc.xyw(2, ++row, 3));
-		builder.addSeparator("", cc.xyw(2, ++row, 3));
+		builder.add(createGroupLabel("Percentages..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+
+		builder.add(cboxShowChargeSymbol, cc.xyw(2, ++row, 3));
+		builder.add(chargeIconSeletor, cc.xyw(6, row, 3));
+
 		builder.add(cboxShowFont, cc.xyw(2, ++row, 3));
-		builder.add(cboxShowChargeSymbol, cc.xyw(2, ++row, 1));
-		builder.add(chargeIconSeletor, cc.xyw(4, row, 1));
-		builder.add(fontColor, cc.xyw(2, ++row, 3));
-		builder.add(fontColorCharge, cc.xyw(2, ++row, 3));
-		builder.add(cboxColoredFont, cc.xyw(2, ++row, 3));
-		builder.add(fontColorLowBatt, cc.xyw(2, ++row, 1));
-		builder.add(fontColorMedBatt, cc.xyw(4, row, 1));
-		builder.add(createGroupLabel("Battery Icon..."), cc.xyw(2, ++row, 3));
-		builder.addSeparator("", cc.xyw(2, ++row, 3));
-		builder.add(iconColor, cc.xyw(2, ++row, 1));
-		builder.add(iconColorInactiv, cc.xyw(4, row, 1));
-		builder.add(iconColorCharge, cc.xyw(2, ++row, 3));
-		builder.addSeparator("", cc.xyw(2, ++row, 3));
-		builder.add(cboxColoredIcon, cc.xyw(2, ++row, 3));
-		builder.add(iconColorLowBatt, cc.xyw(2, ++row, 1));
-		builder.add(iconColorMedBatt, cc.xyw(4, row, 1));
-		builder.add(createGroupLabel("Thresholds..."), cc.xyw(2, ++row, 3));
-		builder.addSeparator("", cc.xyw(2, ++row, 3));
+		builder.add(cboxColoredFont, cc.xyw(6, row, 3));
+
+		builder.add(fontColor, cc.xyw(2, ++row, 1));
+		builder.add(fontColorCharge, cc.xyw(4, row, 1));
+		builder.add(fontColorLowBatt, cc.xyw(6, row, 1));
+		builder.add(fontColorMedBatt, cc.xyw(8, row, 1));
+
+		builder.add(createGroupLabel("Battery Icon..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+
+		builder.add(iconColorInactiv, cc.xyw(2, ++row, 1));
+		builder.add(cboxColoredIcon, cc.xyw(6, row, 3));
+		builder.add(iconColorCharge, cc.xyw(2, ++row, 1));
+		builder.add(iconColor, cc.xyw(4, row, 1));
+		builder.add(iconColorLowBatt, cc.xyw(6, row, 1));
+		builder.add(iconColorMedBatt, cc.xyw(8, row, 1));
+
+		builder.add(createGroupLabel("Thresholds..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(createBlueDeviderLabel("...for Low Battery-Levels"), cc.xyw(2, ++row, 3));
-		builder.add(sliderLowBatt, cc.xyw(2, ++row, 4));
-		builder.add(createBlueDeviderLabel("...for Med Battery-Levels"), cc.xyw(2, ++row, 3));
-		builder.add(sliderMedBatt, cc.xyw(2, ++row, 4));
-		builder.add(cboxUseGradient, cc.xyw(2, ++row, 3));
-		builder.add(createGroupLabel("Misc Stuff..."), cc.xyw(2, ++row, 3));
-		builder.addSeparator("", cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("Choose your ROM's resolution"), cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("...for Med Battery-Levels"), cc.xyw(6, row, 3));
+		builder.add(sliderLowBatt, cc.xyw(2, ++row, 3));
+		builder.add(sliderMedBatt, cc.xyw(6, row, 3));
+		builder.add(cboxUseGradientMediumLevels, cc.xyw(2, ++row, 3));
+		builder.add(cboxUseGradientNormalLevels, cc.xyw(6, row, 3));
+		builder.add(createGroupLabel("Resizing, Filenames ..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel("Choose your ROM's resolution"), cc.xyw(2, ++row, 7));
+
 		builder.add(zipResolutionFolderCombo, cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("Resize Icon to (hight)"), cc.xyw(2, ++row, 3));
-		builder.add(sliderResize, cc.xyw(2, ++row, 4));
-		builder.add(cboxUseAdvResize, cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("FileName-Pattern"), cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("Resize Icon to (hight)"), cc.xyw(2, ++row, 7));
+		builder.add(sliderResize, cc.xyw(2, ++row, 3));
+		builder.add(cboxUseAdvResize, cc.xyw(6, row, 3));
+
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel("FileName-Pattern Nomal / Charge"), cc.xyw(2, ++row, 7));
 		builder.add(filepattern, cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("FileName-Pattern(charge)"), cc.xyw(2, ++row, 3));
-		builder.add(filepatternCharge, cc.xyw(2, ++row, 3));
+		builder.add(filepatternCharge, cc.xyw(6, row, 3));
 
 		final JPanel cfp = builder.getPanel();
 		// cfp.setBackground(Color.black);
@@ -244,7 +254,8 @@ public class ConfigPanel extends JPanel {
 		filepattern.setText(settings.getFilePattern());
 		filepatternCharge.setText(settings.getFilePatternCharge());
 		zipResolutionFolderCombo.setSelectedItem(settings.getZipResolutionFolder());
-		cboxUseGradient.setSelected(settings.isUseGradiantForMediumColor());
+		cboxUseGradientMediumLevels.setSelected(settings.isUseGradiantForMediumColor());
+		cboxUseGradientNormalLevels.setSelected(settings.isUseGradiantForNormalColor());
 
 		validateControls();
 		this.repaint();
@@ -276,7 +287,8 @@ public class ConfigPanel extends JPanel {
 		settings.setFilePattern(filepattern.getText());
 		settings.setFilePatternCharge(filepatternCharge.getText());
 		settings.setZipResolutionFolder((String) zipResolutionFolderCombo.getSelectedItem());
-		settings.setUseGradiantForMediumColor(cboxUseGradient.isSelected());
+		settings.setUseGradiantForMediumColor(cboxUseGradientMediumLevels.isSelected());
+		settings.setUseGradiantForNormalColor(cboxUseGradientNormalLevels.isSelected());
 		return settings;
 	}
 

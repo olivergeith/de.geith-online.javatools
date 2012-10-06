@@ -49,7 +49,7 @@ import de.og.batterycreator.zipcreator.ZipMaker;
 public class IconCreatorFrame extends JFrame {
 
 	private static final String APP_NAME = "Battery Icon Creator";
-	private static final String VERSION_NR = "4.1";
+	private static final String VERSION_NR = "5.0";
 
 	private static final long serialVersionUID = 1L;
 	private static final ImageIcon logoIcon = new ImageIcon(ConfigPanel.class.getResource("logo.png"));
@@ -75,6 +75,7 @@ public class IconCreatorFrame extends JFrame {
 	private final ConfigPanel configPane = new ConfigPanel();
 	private final JPanel mainPanel = new JPanel();
 
+	private final JPanel overviewPanel = new JPanel();
 	private final JLabel overviewLabel = new JLabel();
 
 	private DefaultCreator activCreator = null;
@@ -89,7 +90,7 @@ public class IconCreatorFrame extends JFrame {
 	 */
 	private void doZip() {
 		tracer.clear();
-		tabPane.setSelectedIndex(1);
+		tabPane.setSelectedIndex(2);
 		if (activCreator == null) {
 			tracer.appendErrorText("No icons to zip ...please create some (play-button)");
 			return;
@@ -162,6 +163,7 @@ public class IconCreatorFrame extends JFrame {
 	private void initUI() {
 		getContentPane().setLayout(new BorderLayout());
 
+		overviewPanel.setLayout(new BorderLayout());
 		mainPanel.setLayout(new BorderLayout());
 		toolBar.setFloatable(false);
 		setJMenuBar(menuBar);
@@ -177,7 +179,7 @@ public class IconCreatorFrame extends JFrame {
 
 		final JPanel centerPanel = new JPanel(new BorderLayout());
 		centerPanel.add(scroller, BorderLayout.CENTER);
-		centerPanel.add(new JLabel(logoIcon), BorderLayout.SOUTH);
+		// centerPanel.add(new JLabel(logoIcon), BorderLayout.SOUTH);
 		mainPanel.add(centerPanel, BorderLayout.CENTER);
 		mainPanel.add(configPane, BorderLayout.WEST);
 
@@ -202,13 +204,14 @@ public class IconCreatorFrame extends JFrame {
 		createAktionen();
 		makeMenuAndButtonBar();
 		getContentPane().add(createTabbedPane());
-		overviewLabel.setBackground(Color.black);
-		mainPanel.add(overviewLabel, BorderLayout.EAST);
+		overviewPanel.setBackground(Color.black);
+		overviewPanel.add(overviewLabel, BorderLayout.CENTER);
 	}
 
 	private JTabbedPane createTabbedPane() {
 		// Tabpane zusammenbasteln
-		tabPane.addTab("Main", cfgIcon, mainPanel, "Create your icons here...");
+		tabPane.addTab("IconCreating", cfgIcon, mainPanel, "Create your icons here...");
+		tabPane.addTab("Overview-Image", cfgIcon, overviewPanel, "Get an Overview of your icons");
 		tabPane.addTab("TraceLog", errorIcon, tracer, "TraceLog");
 		return tabPane;
 	}
@@ -247,13 +250,6 @@ public class IconCreatorFrame extends JFrame {
 		toolBar.add(zipAktion);
 		toolBar.addSeparator();
 		toolBar.add(aboutAktion);
-	}
-
-	/**
-	 * @return the logoicon
-	 */
-	public static ImageIcon getLogoicon() {
-		return logoIcon;
 	}
 
 	/**

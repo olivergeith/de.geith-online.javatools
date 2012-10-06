@@ -15,10 +15,17 @@ Now it has grown up !!!
 [*]Icons are resized to any supported dpi (can be fine-tuned)
 [*]Additional Custom charge-icons...(place them in folder ./custom/charge/ ...see samples there)
 [*]Easy "all in one frame" Interface (you will find out how it works !)
-[*]Creation of flashable Zips for xhdpi, hdpi, 720dp and 600dp ROMs (This should work with most AOSP, AOKP Roms.)
+[*]Creation of[COLOR="Blue"][B] flashable Zips[/B][/COLOR] for xhdpi, hdpi, 720dp and 600dp ROMs (This should work with most AOSP, AOKP Roms.)
+[*]Creates a backup during flash (Thanks to the "Universal Flasher Tool") 
 [/LIST]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
+[COLOR="Blue"][B]Oct-06-2012[/B] : Release 5.0[/COLOR]
+[LIST]
+[*]Redone GUI... Hopefully better for small Laptop-Screens ;)
+[*]Gradient Colors for Levels above Medium Battery Level
+[*]More custom charge Icons
+[/LIST]
 [COLOR="Blue"][B]Oct-06-2012[/B] : Release 4.1[/COLOR]
 [LIST]
 [*]Bugfix correcting path for icons in flashable zip
@@ -51,11 +58,13 @@ Now it has grown up !!!
 
 [SIZE="4"][B]Todo:[/B][/SIZE]
 [LIST]
-[*]Make the Style-Modules even more customizable
 [*]Bugfixing
+[*]Make the Style-Modules even more customizable
+[*]Making font customizable
 [*]Creating new styles
 [*]Supporting other icons from Statusbar (Connection, Wifi...)
 [*]And finally....A lot of things that you might come up with ;)
+[*]Perhaps: adding more thesholds (votes welcome...personally I think the implemented gradient-function is better)
 [/LIST]
 
 [SIZE="4"][B]HowTo:[/B][/SIZE]

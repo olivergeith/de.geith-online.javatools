@@ -18,6 +18,10 @@ Now it has grown up !!!
 [/LIST]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
+[COLOR="Blue"][B]Oct-06-2012[/B] : Release 4.1[/COLOR]
+[LIST]
+[*]Bugfix correcting path for icons in flashable zip
+[/LIST]
 [COLOR="Blue"][B]Oct-06-2012[/B] : Release 4.0[/COLOR]
 [LIST]
 [*][B]Resize-Option[/B] to make the icons fit better in the Statusbar

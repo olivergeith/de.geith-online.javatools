@@ -377,7 +377,7 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setZipResolutionFolder(final String zipResolutionFolder) {
 		this.zipResolutionFolder = zipResolutionFolder;
-		folderWithinZip = FOLDER_SYSTEMUI + zipResolutionFolder + File.separator;
+		folderWithinZip = FOLDER_SYSTEMUI + zipResolutionFolder + "/";
 
 	}
 

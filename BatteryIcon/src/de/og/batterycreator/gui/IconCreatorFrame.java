@@ -49,7 +49,7 @@ import de.og.batterycreator.zipcreator.ZipMaker;
 public class IconCreatorFrame extends JFrame {
 
 	private static final String APP_NAME = "Battery Icon Creator";
-	private static final String VERSION_NR = "4.0";
+	private static final String VERSION_NR = "4.1";
 
 	private static final long serialVersionUID = 1L;
 	private static final ImageIcon logoIcon = new ImageIcon(ConfigPanel.class.getResource("logo.png"));

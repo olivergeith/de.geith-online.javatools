@@ -54,6 +54,9 @@ public class ConfigPanel extends JPanel {
 	SliderLabel sliderLowBatt = new SliderLabel(0, 30);
 	SliderLabel sliderMedBatt = new SliderLabel(20, 100);
 
+	SliderLabel sliderFontXOffset = new SliderLabel(-3, 3);
+	SliderLabel sliderFontYOffset = new SliderLabel(-3, 3);
+
 	SliderLabel sliderResize = new SliderLabel(25, 50);
 	JCheckBox cboxUseAdvResize = createCheckbox("Use advanced Resize-Algorithm",
 			"(Experimental) Advanced Resize-Algorith...might give better results on small imagesizes!?");
@@ -149,6 +152,9 @@ public class ConfigPanel extends JPanel {
 		builder.add(fontColorMedBatt, cc.xyw(8, row, 1));
 		builder.add(createBlueDeviderLabel("Choose Font"), cc.xyw(2, ++row, 7));
 		builder.add(fontButton, cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("Font Pixel Position Offsets X / Y "), cc.xyw(2, ++row, 7));
+		builder.add(sliderFontXOffset, cc.xyw(2, ++row, 3));
+		builder.add(sliderFontYOffset, cc.xyw(6, row, 3));
 
 		builder.add(createGroupLabel("Battery Icon..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
@@ -281,6 +287,9 @@ public class ConfigPanel extends JPanel {
 		cboxUseGradientNormalLevels.setSelected(settings.isUseGradiantForNormalColor());
 		fontChooser.setSelectedFont(settings.getFont());
 		fontButton.setFont(settings.getFont());
+
+		sliderFontXOffset.setValue(settings.getFontXOffset());
+		sliderFontYOffset.setValue(settings.getFontYOffset());
 		validateControls();
 		this.repaint();
 	}
@@ -315,8 +324,8 @@ public class ConfigPanel extends JPanel {
 		settings.setUseGradiantForNormalColor(cboxUseGradientNormalLevels.isSelected());
 
 		settings.setFont(fontButton.getFont());
-		// actionperformed schon geschenenm
-
+		settings.setFontXOffset(sliderFontXOffset.getValue());
+		settings.setFontYOffset(sliderFontYOffset.getValue());
 		return settings;
 	}
 

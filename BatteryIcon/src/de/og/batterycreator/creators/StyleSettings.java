@@ -64,6 +64,9 @@ public class StyleSettings implements Serializable {
 
 	private Font font = DEFAULT_FONT;
 
+	private int fontXOffset = 0;
+	private int fontYOffset = 0;
+
 	public String getFolderWithinZip() {
 		return folderWithinZip;
 	}
@@ -457,6 +460,36 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setFont(final Font font) {
 		this.font = font;
+	}
+
+	/**
+	 * @return the fontYOffset
+	 */
+	public int getFontYOffset() {
+		return fontYOffset;
+	}
+
+	/**
+	 * @param fontYOffset
+	 *            the fontYOffset to set
+	 */
+	public void setFontYOffset(final int fontYOffset) {
+		this.fontYOffset = fontYOffset;
+	}
+
+	/**
+	 * @return the fontXOffset
+	 */
+	public int getFontXOffset() {
+		return fontXOffset;
+	}
+
+	/**
+	 * @param fontXOffset
+	 *            the fontXOffset to set
+	 */
+	public void setFontXOffset(final int fontXOffset) {
+		this.fontXOffset = fontXOffset;
 	}
 
 }

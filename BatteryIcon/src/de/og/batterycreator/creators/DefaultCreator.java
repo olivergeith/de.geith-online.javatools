@@ -110,8 +110,8 @@ public abstract class DefaultCreator {
 				g2d.setColor(settings.getActivFontColor(percentage, charge));
 				final String str = "" + percentage;
 				final Rectangle2D strRect = metrix.getStringBounds(str, g2d);
-				final int strxpos = 1 + (int) (Math.round(img.getWidth() / 2) - Math.round(strRect.getWidth() / 2));
-				final int strypos = img.getHeight() / 2 + 8;
+				final int strxpos = 1 + settings.getFontXOffset() + (int) (Math.round(img.getWidth() / 2) - Math.round(strRect.getWidth() / 2));
+				final int strypos = img.getHeight() / 2 + 8 + settings.getFontYOffset();
 
 				g2d.drawString(str, strxpos, strypos);
 			}

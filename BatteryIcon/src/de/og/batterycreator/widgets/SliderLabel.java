@@ -18,7 +18,7 @@ public class SliderLabel extends JPanel {
 
 	private static final long serialVersionUID = -5143738798997636241L;
 	private JSlider slider = null;
-	private final JLabel value = new JLabel();
+	private final JLabel valueLabel = new JLabel();
 
 	Dimension prefsize = new Dimension(130, 25);
 
@@ -37,16 +37,16 @@ public class SliderLabel extends JPanel {
 
 			@Override
 			public void stateChanged(final ChangeEvent arg0) {
-				value.setText("" + slider.getValue());
+				valueLabel.setText("" + slider.getValue());
 			}
 		});
-		value.setBorder(new BevelBorder(1));
+		valueLabel.setBorder(new BevelBorder(1));
 		final FormLayout layout = new FormLayout("pref, 2dlu, pref", "2dlu, pref, 2dlu");
 		final CellConstraints cc = new CellConstraints();
 		final PanelBuilder builder = new PanelBuilder(layout);
 		final int row = 2;
 		builder.add(slider, cc.xyw(1, row, 1));
-		builder.add(value, cc.xyw(3, row, 1));
+		builder.add(valueLabel, cc.xyw(3, row, 1));
 		final JPanel cfp = builder.getPanel();
 		// cfp.setBackground(Color.black);
 		this.add(cfp, BorderLayout.CENTER);
@@ -59,6 +59,8 @@ public class SliderLabel extends JPanel {
 
 	public void setValue(final int value) {
 		slider.setValue(value);
+		valueLabel.setText("" + value);
+
 	}
 
 	public JSlider getSlider() {

@@ -141,7 +141,6 @@ public class ConfigPanel extends JPanel {
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 
 		builder.add(cboxShowChargeSymbol, cc.xyw(2, ++row, 3));
-		builder.add(chargeIconSeletor, cc.xyw(6, row, 3));
 
 		builder.add(cboxShowFont, cc.xyw(2, ++row, 3));
 		builder.add(cboxColoredFont, cc.xyw(6, row, 3));
@@ -150,9 +149,13 @@ public class ConfigPanel extends JPanel {
 		builder.add(fontColorCharge, cc.xyw(4, row, 1));
 		builder.add(fontColorLowBatt, cc.xyw(6, row, 1));
 		builder.add(fontColorMedBatt, cc.xyw(8, row, 1));
-		builder.add(createBlueDeviderLabel("Choose Font"), cc.xyw(2, ++row, 7));
+
 		builder.add(fontButton, cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("Font Pixel Position Offsets X / Y "), cc.xyw(2, ++row, 7));
+		builder.add(cboxShowChargeSymbol, cc.xyw(6, row, 1));
+		builder.add(chargeIconSeletor, cc.xyw(8, row, 1));
+
+		builder.add(createBlueDeviderLabel("Font Pixel Position Offsets X"), cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("Font Pixel Position Offsets Y"), cc.xyw(6, row, 3));
 		builder.add(sliderFontXOffset, cc.xyw(2, ++row, 3));
 		builder.add(sliderFontYOffset, cc.xyw(6, row, 3));
 
@@ -174,7 +177,7 @@ public class ConfigPanel extends JPanel {
 		builder.add(sliderMedBatt, cc.xyw(6, row, 3));
 		builder.add(cboxUseGradientMediumLevels, cc.xyw(2, ++row, 3));
 		builder.add(cboxUseGradientNormalLevels, cc.xyw(6, row, 3));
-		builder.add(createGroupLabel("Resizing, Filenames ..."), cc.xyw(2, ++row, 7));
+		builder.add(createGroupLabel("Resizing, Filenames, Output ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(createBlueDeviderLabel("Choose your ROM's resolution"), cc.xyw(2, ++row, 7));
 

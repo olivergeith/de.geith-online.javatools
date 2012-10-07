@@ -1,6 +1,7 @@
 package de.og.batterycreator.creators;
 
 import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -109,7 +110,7 @@ public abstract class DefaultCreator {
 				g2d.setColor(settings.getActivFontColor(percentage, charge));
 				final String str = "" + percentage;
 				final Rectangle2D strRect = metrix.getStringBounds(str, g2d);
-				final int strxpos = img.getWidth() / 2 - (int) strRect.getWidth() / 2;
+				final int strxpos = 1 + (int) (Math.round(img.getWidth() / 2) - Math.round(strRect.getWidth() / 2));
 				final int strypos = img.getHeight() / 2 + 8;
 
 				g2d.drawString(str, strxpos, strypos);
@@ -376,4 +377,16 @@ public abstract class DefaultCreator {
 		g2.dispose();
 		return result;
 	}
+
+	// ###############################################################################
+	// Grafics2D
+	// ###############################################################################
+	protected Graphics2D initGrafics2D(final BufferedImage img) {
+		final Graphics2D g2d = img.createGraphics();
+		g2d.setFont(settings.getFont());
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g2d.setStroke(new BasicStroke(3f));
+		return g2d;
+	}
+
 }

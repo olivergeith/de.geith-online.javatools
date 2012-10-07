@@ -62,6 +62,7 @@ Now it has grown up !!!
 [*]Make the Style-Modules even more customizable
 [*]Making font customizable
 [*]Creating new styles
+[*]Fontchooser
 [*]Supporting other icons from Statusbar (Connection, Wifi...)
 [*]And finally....A lot of things that you might come up with ;)
 [*]Perhaps: adding more thesholds (votes welcome...personally I think the implemented gradient-function is better)

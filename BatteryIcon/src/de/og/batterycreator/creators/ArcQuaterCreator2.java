@@ -1,9 +1,6 @@
 package de.og.batterycreator.creators;
 
-import java.awt.BasicStroke;
-import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
@@ -23,10 +20,7 @@ public class ArcQuaterCreator2 extends DefaultCreator {
 
 		// Create a graphics contents on the buffered image
 		BufferedImage img = new BufferedImage(41, 41, BufferedImage.TYPE_INT_ARGB);
-		final Graphics2D g2d = img.createGraphics();
-		g2d.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 19));
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.setStroke(new BasicStroke(4f));
+		final Graphics2D g2d = initGrafics2D(img);
 
 		g2d.setColor(settings.getIconColorInActiv());
 		g2d.fillArc(-41, 0, 82, 82, 0, 90);

@@ -1,6 +1,7 @@
 package de.og.batterycreator.creators;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.io.File;
 import java.io.Serializable;
 
@@ -19,6 +20,8 @@ public class StyleSettings implements Serializable {
 	public static final int ICON_HEIGHT_HDPI = 27;
 	public static final int ICON_HEIGHT_720DP = 48;
 	public static final int ICON_HEIGHT_600DP = 43;
+
+	public static final Font DEFAULT_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 21);
 
 	// Konstanten
 	public static final Color COLOR_FONT = Color.white;
@@ -58,6 +61,8 @@ public class StyleSettings implements Serializable {
 
 	private int targetIconSize = ICON_HEIGHT_XHDPI;
 	private boolean useAdvancedResize = false;
+
+	private Font font = DEFAULT_FONT;
 
 	public String getFolderWithinZip() {
 		return folderWithinZip;
@@ -437,6 +442,21 @@ public class StyleSettings implements Serializable {
 
 	public void setUseGradiantForMediumColor(final boolean useGradiantForMediumColor) {
 		this.useGradiantForMediumColor = useGradiantForMediumColor;
+	}
+
+	/**
+	 * @return the font
+	 */
+	public Font getFont() {
+		return font;
+	}
+
+	/**
+	 * @param font
+	 *            the font to set
+	 */
+	public void setFont(final Font font) {
+		this.font = font;
 	}
 
 }

@@ -53,7 +53,6 @@ import javax.swing.JLabel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-
 /**
  * A font selection dialog.
  * <p>
@@ -99,7 +98,9 @@ public class SimpleFontChooser extends JDialog {
 	Checkbox bold, italic;
 
 	/** The list of font sizes */
-	protected String fontSizes[] = { "8", "10", "11", "12", "14", "16", "18", "20", "24", "30", "36", "40", "48", "60", "72" };
+	protected String fontSizes[] = {
+			"8", "10", "11", "12", "14", "16", "18", "20", "24", "30", "36", "40", "48", "60", "72"
+	};
 
 	/** The index of the default size (e.g., 14 point == 4) */
 	protected static final int DEFAULT_SIZE = 4;
@@ -114,13 +115,13 @@ public class SimpleFontChooser extends JDialog {
 	 * Construct a FontChooser -- Sets title and gets array of fonts on the
 	 * system. Builds a GUI to let the user choose one font at one size.
 	 */
-	public SimpleFontChooser(Frame f) {
+	public SimpleFontChooser(final Frame f) {
 		super(f, "Font Chooser", true);
 
-		Container cp = getContentPane();
+		final Container cp = getContentPane();
 		cp.setLayout(new BorderLayout());
 
-		Panel top = new Panel();
+		final Panel top = new Panel();
 		top.setLayout(new BorderLayout());
 
 		// Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -136,7 +137,7 @@ public class SimpleFontChooser extends JDialog {
 		fontNameChoice.setSelectedIndex(0);
 		fontNameChoice.addListSelectionListener(new ListSelectionListener() {
 			@Override
-			public void valueChanged(ListSelectionEvent arg0) {
+			public void valueChanged(final ListSelectionEvent arg0) {
 				previewFont();
 			}
 		});
@@ -147,12 +148,12 @@ public class SimpleFontChooser extends JDialog {
 		fontSizeChoice.addListSelectionListener(new ListSelectionListener() {
 
 			@Override
-			public void valueChanged(ListSelectionEvent arg0) {
+			public void valueChanged(final ListSelectionEvent arg0) {
 				previewFont();
 			}
 		});
 
-		Panel attrs = new Panel();
+		final Panel attrs = new Panel();
 		attrs.setLayout(new GridLayout(0, 1));
 		attrs.add(bold = new Checkbox("Bold", false));
 		attrs.add(italic = new Checkbox("Italic", false));
@@ -166,22 +167,22 @@ public class SimpleFontChooser extends JDialog {
 		cp.add(previewArea, BorderLayout.CENTER);
 		cp.add(top, BorderLayout.NORTH);
 
-		Panel bot = new Panel();
+		final Panel bot = new Panel();
 
-		JButton okButton = new JButton("Apply");
+		final JButton okButton = new JButton("Apply");
 		bot.add(okButton);
 		okButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				previewFont();
 				dispose();
 				setVisible(false);
 			}
 		});
 
-		JButton canButton = new JButton("Cancel");
+		final JButton canButton = new JButton("Cancel");
 		bot.add(canButton);
 		canButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				// Set all values to null. Better: restore previous.
 				resultFont = null;
 				resultName = null;
@@ -208,8 +209,8 @@ public class SimpleFontChooser extends JDialog {
 	 */
 	protected void previewFont() {
 		resultName = (String) fontNameChoice.getSelectedValue();
-		String resultSizeName = (String) fontSizeChoice.getSelectedValue();
-		int resultSize = Integer.parseInt(resultSizeName);
+		final String resultSizeName = (String) fontSizeChoice.getSelectedValue();
+		final int resultSize = Integer.parseInt(resultSizeName);
 		isBold = bold.getState();
 		isItalic = italic.getState();
 		int attrs = Font.PLAIN;
@@ -239,14 +240,19 @@ public class SimpleFontChooser extends JDialog {
 		return resultFont;
 	}
 
+	/** Retrieve the selected font, or null */
+	public void setSelectedFont(final Font font) {
+		// TODO
+	}
+
 	/** Simple main program to start it running */
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		final JFrame f = new JFrame("FontChooser Startup");
 		final SimpleFontChooser fc = new SimpleFontChooser(f);
 		final Container cp = f.getContentPane();
 		cp.setLayout(new GridLayout(0, 1)); // one vertical column
 
-		JButton theButton = new JButton("Change font");
+		final JButton theButton = new JButton("Change font");
 		cp.add(theButton);
 
 		final JLabel theLabel = new JLabel("Java is great!", JLabel.CENTER);
@@ -254,9 +260,9 @@ public class SimpleFontChooser extends JDialog {
 
 		// Now that theButton and theLabel are ready, make the action listener
 		theButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				fc.setVisible(true);
-				Font myNewFont = fc.getSelectedFont();
+				final Font myNewFont = fc.getSelectedFont();
 				System.out.println("You chose " + myNewFont);
 				theLabel.setFont(myNewFont);
 				f.pack(); // adjust for new size

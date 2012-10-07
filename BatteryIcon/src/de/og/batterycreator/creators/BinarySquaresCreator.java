@@ -1,10 +1,8 @@
 package de.og.batterycreator.creators;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
@@ -24,9 +22,7 @@ public class BinarySquaresCreator extends DefaultCreator {
 
 		BufferedImage img = new BufferedImage(40, 40, BufferedImage.TYPE_INT_ARGB);
 		// Create a graphics contents on the buffered image
-		final Graphics2D g2d = img.createGraphics();
-		g2d.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		final Graphics2D g2d = initGrafics2D(img);
 
 		final Rectangle rec64 = new Rectangle(0, 0, 40, 20);
 		final Rectangle rec32 = new Rectangle(20, 20, 20, 20);

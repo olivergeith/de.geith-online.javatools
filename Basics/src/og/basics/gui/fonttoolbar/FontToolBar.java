@@ -38,8 +38,8 @@ public class FontToolBar extends JToolBar {
 	private String fontNames[] = DEFAULT_FONT_NAMES;
 	private String fontSizes[] = DEFAULT_FONT_SIZES;
 
-	private final JComboBox fontNamesCombo = new JComboBox(DEFAULT_FONT_NAMES);
-	private final JComboBox fontSizeCombo = new JComboBox(DEFAULT_FONT_SIZES);
+	private final JComboBox<String> fontNamesCombo = new JComboBox<String>(DEFAULT_FONT_NAMES);
+	private final JComboBox<String> fontSizeCombo = new JComboBox<String>(DEFAULT_FONT_SIZES);
 	private final JButton showButton = new JButton();
 	private final JButton hideButton = new JButton();
 
@@ -148,6 +148,12 @@ public class FontToolBar extends JToolBar {
 		return new Font(name, Font.PLAIN, size);
 	}
 
+	public void setSelectedFont(final Font font) {
+		setSelectedFontName(font.getName());
+		setSelectedFontSize(font.getSize());
+
+	}
+
 	/**
 	 * Add-Methode für den Listener
 	 * 
@@ -196,7 +202,7 @@ public class FontToolBar extends JToolBar {
 	public void setFontSizes(final String fontSizes[]) {
 		if (fontSizes != null && fontSizes.length != 0)
 			this.fontSizes = fontSizes;
-		fontSizeCombo.removeAll();
+		fontSizeCombo.removeAllItems();
 		for (final String size : fontSizes)
 			fontSizeCombo.addItem(size);
 	}
@@ -260,16 +266,17 @@ public class FontToolBar extends JToolBar {
 	 * @author geith
 	 * 
 	 */
-	private class FontNameComboCellRenderer implements ListCellRenderer {
+	private class FontNameComboCellRenderer implements ListCellRenderer<String> {
 		protected DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
 
-		public Component getListCellRendererComponent(final JList list, final Object value, final int index, final boolean isSelected,
+		@Override
+		public Component getListCellRendererComponent(final JList<? extends String> list, final String value, final int index, final boolean isSelected,
 				final boolean cellHasFocus) {
 			String fontName = null;
 
 			final JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 			if (value instanceof String) {
-				fontName = (String) value;
+				fontName = value;
 				renderer.setBorder(new EmptyBorder(1, 1, 1, 1));
 				renderer.setText(fontName);
 				renderer.setFont(new Font(fontName, Font.PLAIN, 14));
@@ -277,6 +284,7 @@ public class FontToolBar extends JToolBar {
 			}
 			return renderer;
 		}
+
 	}
 
 	/**
@@ -285,10 +293,11 @@ public class FontToolBar extends JToolBar {
 	 * @author geith
 	 * 
 	 */
-	private class FontSizeComboCellRenderer implements ListCellRenderer {
+	private class FontSizeComboCellRenderer implements ListCellRenderer<String> {
 		protected DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
 
-		public Component getListCellRendererComponent(final JList list, final Object value, final int index, final boolean isSelected,
+		@Override
+		public Component getListCellRendererComponent(final JList<? extends String> list, final String value, final int index, final boolean isSelected,
 				final boolean cellHasFocus) {
 			final JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 			if (value instanceof String) {
@@ -297,6 +306,7 @@ public class FontToolBar extends JToolBar {
 			}
 			return renderer;
 		}
+
 	}
 
 	/**
@@ -308,6 +318,14 @@ public class FontToolBar extends JToolBar {
 		final JFrame f = new JFrame("FontToolBar");
 		final FontToolBar bar = new FontToolBar();
 		final Container cp = f.getContentPane();
+		final String fontSizes[] = {
+				"12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"
+		};
+
+		bar.setFontSizes(fontSizes);
+		final Font font = new Font(Font.SANS_SERIF, Font.BOLD, 19);
+		bar.setSelectedFont(font);
+
 		cp.setLayout(new BorderLayout());
 		cp.add(bar, BorderLayout.NORTH);
 		// Now that theButton and theLabel are ready, make the action listener
@@ -315,5 +333,4 @@ public class FontToolBar extends JToolBar {
 		f.setVisible(true);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
 }

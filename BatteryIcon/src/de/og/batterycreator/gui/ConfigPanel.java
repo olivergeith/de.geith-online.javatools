@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import og.basics.gui.colorselectorobjects.JColorSelectButton;
+import og.basics.gui.jfontchooser.JFontChooser;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
@@ -28,6 +29,9 @@ import de.og.batterycreator.widgets.SliderLabel;
 public class ConfigPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private StyleSettings settings;
+	final String fontSizes[] = {
+			"12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"
+	};
 
 	JButton fontColor;
 	JButton fontColorLowBatt;
@@ -56,6 +60,9 @@ public class ConfigPanel extends JPanel {
 
 	JTextField filepattern = new JTextField();
 	JTextField filepatternCharge = new JTextField();
+
+	JButton fontButton = new JButton("Choose Font");
+	final JFontChooser fontChooser = new JFontChooser(fontSizes);
 
 	JComboBox<String> zipResolutionFolderCombo = new JComboBox<String>();
 
@@ -102,6 +109,20 @@ public class ConfigPanel extends JPanel {
 				}
 			}
 		});
+
+		fontButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(final ActionEvent e) {
+				final int result = fontChooser.showDialog(ConfigPanel.this);
+				if (result == JFontChooser.OK_OPTION) {
+					final Font font = fontChooser.getSelectedFont();
+					fontButton.setFont(font);
+					System.out.println("Selected Font : " + font);
+				}
+			}
+		});
+
 	}
 
 	private void myInit() {
@@ -126,6 +147,8 @@ public class ConfigPanel extends JPanel {
 		builder.add(fontColorCharge, cc.xyw(4, row, 1));
 		builder.add(fontColorLowBatt, cc.xyw(6, row, 1));
 		builder.add(fontColorMedBatt, cc.xyw(8, row, 1));
+		builder.add(createBlueDeviderLabel("Choose Font"), cc.xyw(2, ++row, 7));
+		builder.add(fontButton, cc.xyw(2, ++row, 3));
 
 		builder.add(createGroupLabel("Battery Icon..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
@@ -256,7 +279,8 @@ public class ConfigPanel extends JPanel {
 		zipResolutionFolderCombo.setSelectedItem(settings.getZipResolutionFolder());
 		cboxUseGradientMediumLevels.setSelected(settings.isUseGradiantForMediumColor());
 		cboxUseGradientNormalLevels.setSelected(settings.isUseGradiantForNormalColor());
-
+		fontChooser.setSelectedFont(settings.getFont());
+		fontButton.setFont(settings.getFont());
 		validateControls();
 		this.repaint();
 	}
@@ -289,6 +313,10 @@ public class ConfigPanel extends JPanel {
 		settings.setZipResolutionFolder((String) zipResolutionFolderCombo.getSelectedItem());
 		settings.setUseGradiantForMediumColor(cboxUseGradientMediumLevels.isSelected());
 		settings.setUseGradiantForNormalColor(cboxUseGradientNormalLevels.isSelected());
+
+		settings.setFont(fontButton.getFont());
+		// actionperformed schon geschenenm
+
 		return settings;
 	}
 
@@ -301,5 +329,6 @@ public class ConfigPanel extends JPanel {
 		iconColorMedBatt.setEnabled(cboxColoredIcon.isSelected());
 		iconColorLowBatt.setEnabled(cboxColoredIcon.isSelected());
 		chargeIconSeletor.setEnabled(cboxShowChargeSymbol.isSelected());
+		fontButton.setEnabled(cboxShowFont.isSelected());
 	}
 }

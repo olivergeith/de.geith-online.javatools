@@ -1,14 +1,15 @@
 package de.og.batterycreator.creators;
 
+import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-public class ArcCreator extends DefaultCreator {
+public class Arc2Creator extends DefaultCreator {
 
-	protected static String path = "./pngs/arc";
-	protected static String name = "ArcBattery";
+	protected static String path = "./pngs/arc2";
+	protected static String name = "Arc2Battery";
 
 	/*
 	 * (non-Javadoc)
@@ -23,10 +24,12 @@ public class ArcCreator extends DefaultCreator {
 		final Graphics2D g2d = initGrafics2D(img);
 
 		g2d.setColor(settings.getIconColorInActiv());
+		g2d.setStroke(new BasicStroke(2f));
 		g2d.drawArc(2, 2, 37, 37, 0, 360);
 
+		g2d.setStroke(new BasicStroke(4f));
 		g2d.setColor(settings.getActivIconColor(percentage, charge));
-		g2d.drawArc(2, 2, 37, 37, 87, -Math.round(percentage * (360f / 103.5f)));
+		g2d.drawArc(2, 2, 37, 37, 90, +Math.round(percentage * (360f / 103.5f)));
 
 		drawPercentage(g2d, percentage, charge, img);
 

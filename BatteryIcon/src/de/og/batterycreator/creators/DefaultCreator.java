@@ -28,6 +28,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import sun.awt.image.BufferedImageGraphicsConfig;
+import de.og.batterycreator.gui.IconCreatorFrame;
 
 /**
  * @author Oliver
@@ -125,7 +126,7 @@ public abstract class DefaultCreator {
 		if (chargeIcon != null) {
 			final int w = chargeIcon.getIconWidth();
 			final int h = chargeIcon.getIconHeight();
-			final int x = img.getWidth() / 2 - w / 2;
+			final int x = 1 + img.getWidth() / 2 - w / 2;
 			final int y = img.getHeight() / 2 - h / 2;
 			g2d.drawImage(chargeIcon.getImage(), x, y, null);
 		}
@@ -285,9 +286,10 @@ public abstract class DefaultCreator {
 			final ImageIcon img1 = iconMap.get(0);
 			final int iw = img1.getIconWidth();
 			final int ih = img1.getIconHeight();
-			final int w = iw * 10 + 11;
+			final int w = iw * 20 + 21;
 			final int offsetOben = 50;
-			final int h = ih * 11 + 12 + offsetOben;
+			final int offsetUnten = 35;
+			final int h = ih * 11 + 12 + offsetOben + offsetUnten;
 
 			final BufferedImage over = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 			final Graphics2D g2d = over.createGraphics();
@@ -296,8 +298,15 @@ public abstract class DefaultCreator {
 			g2d.setColor(Color.black);
 			g2d.fillRect(0, 0, w, h);
 			g2d.setColor(Color.white);
-			g2d.drawString(getName(), 10, 25);
+			g2d.drawString(getName(), 2, 20);
+			g2d.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 12));
+			g2d.setColor(Color.gray);
+			g2d.drawString("Created with ''The Battery Icon Creator'' V" + IconCreatorFrame.VERSION_NR + " by OlliG", 2, 32);
+			g2d.drawString("http://forum.xda-developers.com/showthread.php?t=1918500", 2, h - offsetUnten + 20);
+			g2d.setColor(Color.white);
 			g2d.fillRect(0, 40, w, 2);
+			g2d.fillRect(0, h - offsetUnten, w, 2);
+			g2d.fillRect(0, h - 2, w, 2);
 
 			for (int z = 0; z < 10; z++) {
 				for (int e = 0; e < 10; e++) {
@@ -308,6 +317,17 @@ public abstract class DefaultCreator {
 			}
 			final ImageIcon img = iconMap.elementAt(100);
 			g2d.drawImage(img.getImage(), 1 + 0 * iw, 10 * (ih + 1) + offsetOben, null);
+
+			// // Charge Icons
+			for (int z = 0; z < 10; z++) {
+				for (int e = 0; e < 10; e++) {
+					final int index = 101 + z * 10 + e;
+					final ImageIcon imgc = iconMap.elementAt(index);
+					g2d.drawImage(imgc.getImage(), 1 + 10 * (iw + 1) + e * (iw + 1), 1 + z * (ih + 1) + offsetOben, null);
+				}
+			}
+			final ImageIcon img100c = iconMap.elementAt(201);
+			g2d.drawImage(img100c.getImage(), 1 + 10 * (iw + 1) + 0 * iw, 10 * (ih + 1) + offsetOben, null);
 
 			writeOverviewFile(over);
 			return new ImageIcon(over);

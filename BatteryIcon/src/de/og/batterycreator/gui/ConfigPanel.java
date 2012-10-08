@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import og.basics.gui.colorselectorobjects.JColorSelectButton;
-import og.basics.gui.jfontchooser.JFontChooser;
+import og.basics.gui.jfontchooser.JFontChooserButton;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
@@ -64,8 +64,7 @@ public class ConfigPanel extends JPanel {
 	JTextField filepattern = new JTextField();
 	JTextField filepatternCharge = new JTextField();
 
-	JButton fontButton = new JButton("Choose Font");
-	final JFontChooser fontChooser = new JFontChooser(fontSizes);
+	JFontChooserButton fontButton = new JFontChooserButton("Choose Font", fontSizes);
 
 	JComboBox<String> zipResolutionFolderCombo = new JComboBox<String>();
 
@@ -112,20 +111,6 @@ public class ConfigPanel extends JPanel {
 				}
 			}
 		});
-
-		fontButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(final ActionEvent e) {
-				final int result = fontChooser.showDialog(ConfigPanel.this);
-				if (result == JFontChooser.OK_OPTION) {
-					final Font font = fontChooser.getSelectedFont();
-					fontButton.setFont(font);
-					System.out.println("Selected Font : " + font);
-				}
-			}
-		});
-
 	}
 
 	private void myInit() {
@@ -288,7 +273,6 @@ public class ConfigPanel extends JPanel {
 		zipResolutionFolderCombo.setSelectedItem(settings.getZipResolutionFolder());
 		cboxUseGradientMediumLevels.setSelected(settings.isUseGradiantForMediumColor());
 		cboxUseGradientNormalLevels.setSelected(settings.isUseGradiantForNormalColor());
-		fontChooser.setSelectedFont(settings.getFont());
 		fontButton.setFont(settings.getFont());
 
 		sliderFontXOffset.setValue(settings.getFontXOffset());

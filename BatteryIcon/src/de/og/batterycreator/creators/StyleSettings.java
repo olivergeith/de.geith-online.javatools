@@ -8,6 +8,13 @@ import java.io.Serializable;
 import javax.swing.ImageIcon;
 
 public class StyleSettings implements Serializable {
+
+	public static final String ICON_CHARGE_NAME_AOKP = "stat_sys_battery_circle_charge_anim";
+	public static final String ICON_NAME_AOKP = "stat_sys_battery_circle_";
+
+	public static final String ICON_CHARGE_NAME_STOCK_ICS_JKAY = "stat_sys_battery_charge_anim";
+	public static final String ICON_NAME_STOCK_ICS_JKAY = "stat_sys_battery_";
+
 	private static final long serialVersionUID = 4747296256398459127L;
 
 	public static final String FOLDER_SYSTEMUI = "MORPH/system/app/SystemUI.apk/res/";
@@ -53,8 +60,8 @@ public class StyleSettings implements Serializable {
 
 	private ImageIcon chargeIcon = null;
 
-	private String filePattern = new String("stat_sys_battery_circle_");
-	private String filePatternCharge = new String("stat_sys_battery_circle_charge_anim");
+	private String filePattern = new String(ICON_NAME_AOKP);
+	private String filePatternCharge = new String(ICON_CHARGE_NAME_AOKP);
 
 	private String zipResolutionFolder = FOLDER_XHDPI;
 	private String folderWithinZip = FOLDER_SYSTEMUI + FOLDER_XHDPI + File.separator;

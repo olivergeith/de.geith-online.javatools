@@ -31,6 +31,7 @@ import og.basics.gui.about.VersionDetails;
 import og.basics.gui.icon.CommonIconProvider;
 import og.basics.gui.tracepanel.DefaultTextFileSaveHandler;
 import og.basics.gui.tracepanel.TracePanel;
+import de.og.batterycreator.creators.Arc2Creator;
 import de.og.batterycreator.creators.ArcCreator;
 import de.og.batterycreator.creators.ArcDecimalCreator;
 import de.og.batterycreator.creators.ArcQuaterCreator2;
@@ -49,7 +50,7 @@ import de.og.batterycreator.zipcreator.ZipMaker;
 public class IconCreatorFrame extends JFrame {
 
 	private static final String APP_NAME = "Battery Icon Creator";
-	private static final String VERSION_NR = "5.0";
+	public static final String VERSION_NR = "6.0";
 
 	private static final long serialVersionUID = 1L;
 	private static final ImageIcon logoIcon = new ImageIcon(ConfigPanel.class.getResource("logo.png"));
@@ -62,6 +63,7 @@ public class IconCreatorFrame extends JFrame {
 	private final JTabbedPane tabPane = new JTabbedPane();
 
 	private final Vector<DefaultCreator> creators = new Vector<DefaultCreator>();
+
 	private final JMenuBar menuBar = new JMenuBar();
 	private final JToolBar toolBar = new JToolBar();
 	private BeendenAktion beendenAktion;
@@ -139,6 +141,7 @@ public class IconCreatorFrame extends JFrame {
 		setBounds(300, 100, 300, 800);
 
 		creators.add(new ArcCreator());
+		creators.add(new Arc2Creator());
 		creators.add(new ArcSunCreator());
 		creators.add(new ArcQuaterCreator2());
 		creators.add(new ArcDecimalCreator());

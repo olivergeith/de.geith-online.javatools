@@ -9,7 +9,7 @@ Now it has grown up !!!
 [SIZE="6"][B][CENTER]The Battery Icon Creator[/CENTER][/B][/SIZE]
 [SIZE="4"][B]Features:[/B][/SIZE]
 [LIST]
-[*]12 highly customizable Styles (more to come...ideas welcome !)
+[*]14 highly customizable Styles (more to come...ideas welcome !)
 [*]You can change colors, Style, charge-icon, with or without Text...
 [*]Creating of an overview.png (If you want to show of your creations!)
 [*]Icons are resized to any supported dpi (can be fine-tuned)
@@ -20,6 +20,15 @@ Now it has grown up !!!
 [/LIST]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
+[COLOR="Blue"][B]Oct-08-2012[/B] : Release 6.0[/COLOR]
+[LIST]
+[*]Overview now shows charging icons too
+[*]2 new Styles
+[*]FontChooser for percentage-numbers
+[*]finetuning position of percentage-numbers
+[*]little GUI changes
+[*]a few fixes
+[/LIST]
 [COLOR="Blue"][B]Oct-06-2012[/B] : Release 5.0[/COLOR]
 [LIST]
 [*]Redone GUI... Hopefully better for small Laptop-Screens ;)
@@ -58,11 +67,10 @@ Now it has grown up !!!
 
 [SIZE="4"][B]Todo:[/B][/SIZE]
 [LIST]
+[*]presets for diffeent ROM's (icon-names and dpi settings)
 [*]Bugfixing
 [*]Make the Style-Modules even more customizable
-[*]Making font customizable
 [*]Creating new styles
-[*]Fontchooser
 [*]Supporting other icons from Statusbar (Connection, Wifi...)
 [*]And finally....A lot of things that you might come up with ;)
 [*]Perhaps: adding more thesholds (votes welcome...personally I think the implemented gradient-function is better)

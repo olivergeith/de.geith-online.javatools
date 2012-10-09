@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JTabbedPane;
-import javax.swing.JToolBar;
 
 import og.basics.gui.about.UniversalAboutDialog;
 import og.basics.gui.about.VersionDetails;
@@ -23,7 +22,7 @@ import de.og.batterycreator.gui.IconOverviewPanel;
 public class IconCreatorFrame extends JFrame {
 
 	private static final String APP_NAME = "Battery Icon Creator";
-	public static final String VERSION_NR = "6.0";
+	public static final String VERSION_NR = "7.0";
 
 	private static final long serialVersionUID = 1L;
 	private static final ImageIcon logoIcon = new ImageIcon(IconCreatorFrame.class.getResource("logo.png"));
@@ -35,7 +34,7 @@ public class IconCreatorFrame extends JFrame {
 	private static IconCreatorFrame frame;
 	private final TracePanel tracer = new TracePanel(new DefaultTextFileSaveHandler(".", "Logging", ".txt", "Tracefile"));
 	private final JTabbedPane tabPane = new JTabbedPane();
-	private final JToolBar toolBar = new JToolBar();
+	// private final JToolBar toolBar = new JToolBar();
 
 	private BeendenAktion beendenAktion;
 	private AboutAktion aboutAktion;
@@ -66,8 +65,8 @@ public class IconCreatorFrame extends JFrame {
 	private void initUI() {
 		getContentPane().setLayout(new BorderLayout());
 		setJMenuBar(menuBar);
-		toolBar.setFloatable(false);
-		getContentPane().add(toolBar, BorderLayout.NORTH);
+		// toolBar.setFloatable(false);
+		// getContentPane().add(toolBar, BorderLayout.NORTH);
 
 		// Menü und Buttonbar erzeugen
 		createAktionen();
@@ -80,8 +79,8 @@ public class IconCreatorFrame extends JFrame {
 		menuBar.add(dateiMenu);
 		dateiMenu.add(beendenAktion);
 		dateiMenu.add(aboutAktion);
-		toolBar.add(beendenAktion);
-		toolBar.add(aboutAktion);
+		// toolBar.add(beendenAktion);
+		// toolBar.add(aboutAktion);
 	}
 
 	private JTabbedPane createTabbedPane() {

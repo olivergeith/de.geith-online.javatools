@@ -11,6 +11,11 @@ public class BatteryVerticalSymbolCreator extends DefaultCreator {
 	protected static String path = "./pngs/batteryverticalsymbol";
 	protected static String name = "BatteryVerticalSymbol";
 
+	@Override
+	public boolean supportsFlip() {
+		return true;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

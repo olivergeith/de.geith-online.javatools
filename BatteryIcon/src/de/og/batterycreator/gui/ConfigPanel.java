@@ -45,7 +45,10 @@ public class ConfigPanel extends JPanel {
 	JButton iconColorMedBatt;
 	JButton iconColorInactiv;
 	JButton iconColorCharge;
+
+	SliderLabel sliderStroke = new SliderLabel(1, 10);
 	JCheckBox cboxFlip = createCheckbox("Flip Icon", "Mirror's the Icon...ony has effect on a few styls!");
+
 	JCheckBox cboxColoredFont = createCheckbox("Low battery Colors", "...");
 	JCheckBox cboxColoredIcon = createCheckbox("Low battery Colors", "...");
 	JCheckBox cboxShowFont = createCheckbox("Show percentages", "...");
@@ -184,7 +187,9 @@ public class ConfigPanel extends JPanel {
 
 		builder.add(createGroupLabel("Misc Options ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel("These settings only work on some styls"), cc.xyw(2, ++row, 7));
 		builder.add(cboxFlip, cc.xyw(2, ++row, 3));
+		builder.add(sliderStroke, cc.xyw(6, row, 3));
 
 		builder.add(createGroupLabel("Resizing, Filenames, Output ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
@@ -277,6 +282,7 @@ public class ConfigPanel extends JPanel {
 		iconColorCharge.setBackground(settings.getIconChargeColor());
 
 		cboxFlip.setSelected(settings.isFlip());
+		sliderStroke.setValue(settings.getStrokewidth());
 
 		cboxShowFont.setSelected(settings.isShowFont());
 		cboxShowChargeSymbol.setSelected(settings.isShowChargeSymbol());
@@ -319,6 +325,7 @@ public class ConfigPanel extends JPanel {
 		settings.setIconChargeColor(iconColorCharge.getBackground());
 
 		settings.setFlip(cboxFlip.isSelected());
+		settings.setStrokewidth(sliderStroke.getValue());
 
 		settings.setShowFont(cboxShowFont.isSelected());
 		settings.setShowChargeSymbol(cboxShowChargeSymbol.isSelected());
@@ -354,5 +361,10 @@ public class ConfigPanel extends JPanel {
 		chargeIconSeletor.setEnabled(cboxShowChargeSymbol.isSelected());
 		fontButton.setEnabled(cboxShowFont.isSelected());
 		romPresetCombo.setSelectedIndex(0);
+	}
+
+	public void enableSupportedFeatures(final boolean supportsFlip, final boolean suppoertsStrokewidth) {
+		cboxFlip.setEnabled(supportsFlip);
+		sliderStroke.setVisible(suppoertsStrokewidth);
 	}
 }

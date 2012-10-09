@@ -11,6 +11,11 @@ public class ClockPointerCreator extends DefaultCreator {
 	protected static String path = "./pngs/clockpointerbattery";
 	protected static String name = "ClockPointerBattery";
 
+	public ClockPointerCreator() {
+		super();
+		settings.setShowFont(false);
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

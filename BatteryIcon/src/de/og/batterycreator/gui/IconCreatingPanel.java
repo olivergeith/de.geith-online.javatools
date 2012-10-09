@@ -108,6 +108,7 @@ public class IconCreatingPanel extends JPanel {
 
 				if (cre != null) {
 					configPane.setSettings(cre.getSettings());
+					configPane.enableSupportedFeatures(cre.supportsFlip(), cre.supportsStrokeWidth());
 				}
 			}
 		});

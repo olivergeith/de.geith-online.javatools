@@ -10,6 +10,11 @@ public class ArcSunCreator extends DefaultCreator {
 	protected static String path = "./pngs/arcsun";
 	protected static String name = "ArcSunBattery";
 
+	@Override
+	public boolean supportsFlip() {
+		return true;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -26,7 +31,10 @@ public class ArcSunCreator extends DefaultCreator {
 		g2d.fillArc(2, 2, 37, 37, 0, 360);
 
 		g2d.setColor(settings.getActivIconColor(percentage, charge));
-		g2d.fillArc(2, 2, 37, 37, 90, -Math.round(percentage * (360f / 100f)));
+		if (settings.isFlip())
+			g2d.fillArc(2, 2, 37, 37, 90, -Math.round(percentage * (360f / 100f)));
+		else
+			g2d.fillArc(2, 2, 37, 37, 90, +Math.round(percentage * (360f / 100f)));
 
 		// for later customisation...
 		// g2d.setColor(settings.getIconColorInActiv());

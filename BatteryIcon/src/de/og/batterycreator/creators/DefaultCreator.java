@@ -50,6 +50,14 @@ public abstract class DefaultCreator {
 		return toString();
 	}
 
+	public boolean supportsFlip() {
+		return false;
+	}
+
+	public boolean supportsStrokeWidth() {
+		return false;
+	}
+
 	protected StyleSettings settings = new StyleSettings();
 
 	// ###############################################################################

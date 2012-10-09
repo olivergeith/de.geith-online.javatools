@@ -10,6 +10,16 @@ public class ArcCreator extends DefaultCreator {
 	protected static String path = "./pngs/arc";
 	protected static String name = "ArcBattery";
 
+	@Override
+	public boolean supportsFlip() {
+		return true;
+	}
+
+	@Override
+	public boolean supportsStrokeWidth() {
+		return true;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

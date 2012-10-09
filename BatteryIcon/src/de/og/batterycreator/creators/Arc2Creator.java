@@ -11,6 +11,11 @@ public class Arc2Creator extends DefaultCreator {
 	protected static String path = "./pngs/arc2";
 	protected static String name = "Arc2Battery";
 
+	@Override
+	public boolean supportsFlip() {
+		return true;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

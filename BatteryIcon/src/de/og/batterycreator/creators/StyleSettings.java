@@ -54,6 +54,8 @@ public class StyleSettings implements Serializable {
 	private boolean showChargeSymbol = true;
 	private boolean useGradiantForMediumColor = false;
 	private boolean useGradiantForNormalColor = false;
+	private boolean flip = false;
+	private int strokewidth = 3;
 
 	private int lowBattTheshold = 10;
 	private int MedBattTheshold = 30;
@@ -497,6 +499,36 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setFontXOffset(final int fontXOffset) {
 		this.fontXOffset = fontXOffset;
+	}
+
+	/**
+	 * @return the strokewidth
+	 */
+	public int getStrokewidth() {
+		return strokewidth;
+	}
+
+	/**
+	 * @param strokewidth
+	 *            the strokewidth to set
+	 */
+	public void setStrokewidth(final int strokewidth) {
+		this.strokewidth = strokewidth;
+	}
+
+	/**
+	 * @return the flip
+	 */
+	public boolean isFlip() {
+		return flip;
+	}
+
+	/**
+	 * @param flip
+	 *            the flip to set
+	 */
+	public void setFlip(final boolean flip) {
+		this.flip = flip;
 	}
 
 }

@@ -22,6 +22,7 @@ import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
+import de.og.batterycreator.creators.RomPreset;
 import de.og.batterycreator.creators.StyleSettings;
 import de.og.batterycreator.widgets.ChargeIconSelector;
 import de.og.batterycreator.widgets.SliderLabel;
@@ -30,7 +31,7 @@ public class ConfigPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private StyleSettings settings;
 	final String fontSizes[] = {
-			"12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"
+			"12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32"
 	};
 
 	JButton fontColor;
@@ -44,6 +45,7 @@ public class ConfigPanel extends JPanel {
 	JButton iconColorMedBatt;
 	JButton iconColorInactiv;
 	JButton iconColorCharge;
+	JCheckBox cboxFlip = createCheckbox("Flip Icon", "Mirror's the Icon...ony has effect on a few styls!");
 	JCheckBox cboxColoredFont = createCheckbox("Low battery Colors", "...");
 	JCheckBox cboxColoredIcon = createCheckbox("Low battery Colors", "...");
 	JCheckBox cboxShowFont = createCheckbox("Show percentages", "...");
@@ -54,8 +56,8 @@ public class ConfigPanel extends JPanel {
 	SliderLabel sliderLowBatt = new SliderLabel(0, 30);
 	SliderLabel sliderMedBatt = new SliderLabel(20, 100);
 
-	SliderLabel sliderFontXOffset = new SliderLabel(-3, 3);
-	SliderLabel sliderFontYOffset = new SliderLabel(-3, 3);
+	SliderLabel sliderFontXOffset = new SliderLabel(-4, 4);
+	SliderLabel sliderFontYOffset = new SliderLabel(-4, 4);
 
 	SliderLabel sliderResize = new SliderLabel(25, 50);
 	JCheckBox cboxUseAdvResize = createCheckbox("Use advanced Resize-Algorithm",
@@ -67,6 +69,8 @@ public class ConfigPanel extends JPanel {
 	JFontChooserButton fontButton = new JFontChooserButton("Choose Font", fontSizes);
 
 	JComboBox<String> zipResolutionFolderCombo = new JComboBox<String>();
+
+	JComboBox<RomPreset> romPresetCombo = new JComboBox<RomPreset>(RomPreset.getPresets());
 
 	// JTextField zipResolutionFolderTextBox = new JTextField();
 	// JCheckBox cboxHDPI = createCheckbox("Set Zip-Output to HDPI",
@@ -111,6 +115,21 @@ public class ConfigPanel extends JPanel {
 				}
 			}
 		});
+
+		romPresetCombo.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(final ActionEvent e) {
+				final RomPreset pre = (RomPreset) romPresetCombo.getSelectedItem();
+				if (!pre.getRomName().equals(RomPreset.APPLY)) {
+					zipResolutionFolderCombo.setSelectedItem(pre.getZipResolutionFolder());
+					filepattern.setText(pre.getFilePattern());
+					filepatternCharge.setText(pre.getFilePatternCharge());
+					romPresetCombo.setSelectedIndex(0);
+				}
+			}
+		});
+		romPresetCombo.setSelectedIndex(0);
 	}
 
 	private void myInit() {
@@ -162,19 +181,23 @@ public class ConfigPanel extends JPanel {
 		builder.add(sliderMedBatt, cc.xyw(6, row, 3));
 		builder.add(cboxUseGradientMediumLevels, cc.xyw(2, ++row, 3));
 		builder.add(cboxUseGradientNormalLevels, cc.xyw(6, row, 3));
+
+		builder.add(createGroupLabel("Misc Options ..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(cboxFlip, cc.xyw(2, ++row, 3));
+
 		builder.add(createGroupLabel("Resizing, Filenames, Output ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(createBlueDeviderLabel("Choose your ROM's resolution"), cc.xyw(2, ++row, 7));
-
 		builder.add(zipResolutionFolderCombo, cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("Resize Icon to (hight)"), cc.xyw(2, ++row, 7));
-		builder.add(sliderResize, cc.xyw(2, ++row, 3));
-		builder.add(cboxUseAdvResize, cc.xyw(6, row, 3));
-
-		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(romPresetCombo, cc.xyw(6, row, 3));
 		builder.add(createBlueDeviderLabel("FileName-Pattern Nomal / Charge"), cc.xyw(2, ++row, 7));
 		builder.add(filepattern, cc.xyw(2, ++row, 3));
 		builder.add(filepatternCharge, cc.xyw(6, row, 3));
+
+		builder.add(createBlueDeviderLabel("Resize Icon to (hight)"), cc.xyw(2, ++row, 7));
+		builder.add(sliderResize, cc.xyw(2, ++row, 3));
+		builder.add(cboxUseAdvResize, cc.xyw(6, row, 3));
 
 		final JPanel cfp = builder.getPanel();
 		// cfp.setBackground(Color.black);
@@ -189,8 +212,8 @@ public class ConfigPanel extends JPanel {
 	}
 
 	private JLabel createGroupLabel(final String txt) {
-		final JLabel lab = createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 20), Color.BLUE.darker());
-		lab.setBorder(BorderFactory.createEmptyBorder(10, 1, 1, 1));
+		final JLabel lab = createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 18), Color.BLUE.darker().darker());
+		lab.setBorder(BorderFactory.createEmptyBorder(6, 1, 1, 1));
 		return lab;
 	}
 
@@ -253,6 +276,8 @@ public class ConfigPanel extends JPanel {
 		iconColorInactiv.setBackground(settings.getIconColorInActiv());
 		iconColorCharge.setBackground(settings.getIconChargeColor());
 
+		cboxFlip.setSelected(settings.isFlip());
+
 		cboxShowFont.setSelected(settings.isShowFont());
 		cboxShowChargeSymbol.setSelected(settings.isShowChargeSymbol());
 		cboxColoredFont.setSelected(settings.isColoredFont());
@@ -293,6 +318,8 @@ public class ConfigPanel extends JPanel {
 		settings.setIconColorInActiv(iconColorInactiv.getBackground());
 		settings.setIconChargeColor(iconColorCharge.getBackground());
 
+		settings.setFlip(cboxFlip.isSelected());
+
 		settings.setShowFont(cboxShowFont.isSelected());
 		settings.setShowChargeSymbol(cboxShowChargeSymbol.isSelected());
 		settings.setColoredFont(cboxColoredFont.isSelected());
@@ -326,5 +353,6 @@ public class ConfigPanel extends JPanel {
 		iconColorLowBatt.setEnabled(cboxColoredIcon.isSelected());
 		chargeIconSeletor.setEnabled(cboxShowChargeSymbol.isSelected());
 		fontButton.setEnabled(cboxShowFont.isSelected());
+		romPresetCombo.setSelectedIndex(0);
 	}
 }

@@ -27,8 +27,9 @@ import java.util.Vector;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+import og.basics.gui.file.FileDialogs;
 import sun.awt.image.BufferedImageGraphicsConfig;
-import de.og.batterycreator.gui.IconCreatorFrame;
+import de.og.batterycreator.main.IconCreatorFrame;
 
 /**
  * @author Oliver
@@ -43,11 +44,6 @@ public abstract class DefaultCreator {
 	@Override
 	public abstract String toString();
 
-	/**
-	 * Wo soll gepseichert werden?
-	 * 
-	 * @return
-	 */
 	public abstract String getPath();
 
 	public String getName() {
@@ -246,13 +242,14 @@ public abstract class DefaultCreator {
 			final File pa = new File("./settings/");
 			if (!pa.exists())
 				pa.mkdirs();
-
-			final String filename = "./settings/" + getName() + ".cfg";
-
-			final FileOutputStream file = new FileOutputStream(filename);
-			final ObjectOutputStream o = new ObjectOutputStream(file);
-			o.writeObject(settings);
-			o.close();
+			final String filename = "./settings/" + getName() + ".icfg";
+			final File saveFile = FileDialogs.saveFile(pa, new File(filename), ".icfg", "IconSettings");
+			if (saveFile != null) {
+				final FileOutputStream file = new FileOutputStream(saveFile);
+				final ObjectOutputStream o = new ObjectOutputStream(file);
+				o.writeObject(settings);
+				o.close();
+			}
 		} catch (final IOException e) {
 			System.err.println(e);
 		}
@@ -265,12 +262,14 @@ public abstract class DefaultCreator {
 			if (!pa.exists())
 				pa.mkdirs();
 
-			final String filename = "./settings/" + getName() + ".cfg";
-
-			final FileInputStream file = new FileInputStream(filename);
-			final ObjectInputStream o = new ObjectInputStream(file);
-			settings = (StyleSettings) o.readObject();
-			o.close();
+			// final String filename = "./settings/" + getName() + ".cfg";
+			final File loadFile = FileDialogs.chooseFile(pa, ".icfg", "IconSettings");
+			if (loadFile != null) {
+				final FileInputStream file = new FileInputStream(loadFile);
+				final ObjectInputStream o = new ObjectInputStream(file);
+				settings = (StyleSettings) o.readObject();
+				o.close();
+			}
 		} catch (final IOException e) {
 			System.err.println(e);
 		} catch (final ClassNotFoundException e) {
@@ -405,7 +404,7 @@ public abstract class DefaultCreator {
 		final Graphics2D g2d = img.createGraphics();
 		g2d.setFont(settings.getFont());
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.setStroke(new BasicStroke(3f));
+		g2d.setStroke(new BasicStroke(settings.getStrokewidth()));
 		return g2d;
 	}
 

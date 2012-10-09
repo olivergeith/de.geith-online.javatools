@@ -24,17 +24,25 @@ public class BatteryVerticalSymbolCreator extends DefaultCreator {
 		final Graphics2D g2d = initGrafics2D(img);
 
 		g2d.setColor(Color.gray);
-		g2d.fillRect(1, 5, 37, 31); // Battery Border
-		g2d.fillRect(38, 10, 3, 21); // Battery Knob
-
-		g2d.setColor(settings.getIconColorInActiv());
-		g2d.fillRect(3, 7, 33, 27); // Inner Battery
-
 		final int w = Math.round(31f / 100f * percentage);
 
-		g2d.setColor(settings.getActivIconColor(percentage, charge));
-		g2d.fillRect(4, 8, w, 25); // Battery Border
+		if (!settings.isFlip()) {
+			g2d.fillRect(1, 5, 37, 31); // Battery Border
+			g2d.fillRect(38, 10, 3, 21); // Battery Knob
 
+			g2d.setColor(settings.getIconColorInActiv());
+			g2d.fillRect(3, 7, 33, 27); // Inner Battery
+			g2d.setColor(settings.getActivIconColor(percentage, charge));
+			g2d.fillRect(4, 8, w, 25); // Battery Level
+		} else {
+			g2d.fillRect(3, 5, 37, 31); // Battery Border
+			g2d.fillRect(1, 10, 3, 21); // Battery Knob
+
+			g2d.setColor(settings.getIconColorInActiv());
+			g2d.fillRect(5, 7, 33, 27); // Inner Battery
+			g2d.setColor(settings.getActivIconColor(percentage, charge));
+			g2d.fillRect(37 - w, 8, w, 25); // Battery Level
+		}
 		// Schrift
 		drawPercentage(g2d, percentage, charge, img);
 		// Filewriting

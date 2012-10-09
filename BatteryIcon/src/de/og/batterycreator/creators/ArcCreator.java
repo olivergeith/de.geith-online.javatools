@@ -26,7 +26,10 @@ public class ArcCreator extends DefaultCreator {
 		g2d.drawArc(2, 2, 37, 37, 0, 360);
 
 		g2d.setColor(settings.getActivIconColor(percentage, charge));
-		g2d.drawArc(2, 2, 37, 37, 87, -Math.round(percentage * (360f / 103.5f)));
+		if (settings.isFlip())
+			g2d.drawArc(2, 2, 37, 37, 87, +Math.round(percentage * (360f / 102f)));
+		else
+			g2d.drawArc(2, 2, 37, 37, 87, -Math.round(percentage * (360f / 102f)));
 
 		drawPercentage(g2d, percentage, charge, img);
 
@@ -49,4 +52,5 @@ public class ArcCreator extends DefaultCreator {
 	public String toString() {
 		return name;
 	}
+
 }

@@ -15,9 +15,9 @@ public class FileDialogs {
 	 * @param title
 	 * @return
 	 */
-	public static String chooseDir(String startPath) {
+	public static String chooseDir(final String startPath) {
 		final File home = new File(startPath);
-		File selected = chooseDir(home);
+		final File selected = chooseDir(home);
 		if (selected != null)
 			return selected.getPath();
 		else
@@ -31,7 +31,7 @@ public class FileDialogs {
 	 * @param title
 	 * @return
 	 */
-	public static File chooseDir(File startDir) {
+	public static File chooseDir(final File startDir) {
 		final JFileChooser chooser = new JFileChooser(startDir);
 		chooser.setPreferredSize(new Dimension(800, 600));
 		chooser.setDialogType(JFileChooser.OPEN_DIALOG);
@@ -54,12 +54,26 @@ public class FileDialogs {
 	 * @param title
 	 * @return
 	 */
-	public static File chooseFile(File startDir) {
+	public static File chooseFile(final File startDir, final String filter, final String description) {
 		final JFileChooser chooser = new JFileChooser(startDir);
 		chooser.setPreferredSize(new Dimension(800, 600));
 		chooser.setDialogType(JFileChooser.OPEN_DIALOG);
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		chooser.setAcceptAllFileFilterUsed(false);
+		chooser.setFileFilter(new FileFilter() {
+
+			@Override
+			public String getDescription() {
+				return description;
+			}
+
+			@Override
+			public boolean accept(final File f) {
+				return f.getName().endsWith(filter);
+			}
+		});
 		chooser.setVisible(true);
+
 		final int result = chooser.showOpenDialog(null);
 		if (result == JFileChooser.APPROVE_OPTION) {
 			final File selected = chooser.getSelectedFile();
@@ -77,7 +91,7 @@ public class FileDialogs {
 	 * @param title
 	 * @return
 	 */
-	public static File saveFile(File startDir, File file, final String filter, final String description) {
+	public static File saveFile(final File startDir, final File file, final String filter, final String description) {
 		final JFileChooser chooser = new JFileChooser(startDir);
 		chooser.setSelectedFile(file);
 		chooser.setAcceptAllFileFilterUsed(false);
@@ -89,7 +103,7 @@ public class FileDialogs {
 			}
 
 			@Override
-			public boolean accept(File f) {
+			public boolean accept(final File f) {
 				return f.getName().endsWith(filter);
 			}
 		});

@@ -165,16 +165,15 @@ public class ConfigPanel extends JPanel {
 		builder.add(createGroupLabel("Resizing, Filenames, Output ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(createBlueDeviderLabel("Choose your ROM's resolution"), cc.xyw(2, ++row, 7));
-
 		builder.add(zipResolutionFolderCombo, cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("Resize Icon to (hight)"), cc.xyw(2, ++row, 7));
-		builder.add(sliderResize, cc.xyw(2, ++row, 3));
-		builder.add(cboxUseAdvResize, cc.xyw(6, row, 3));
-
-		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(createBlueDeviderLabel("FileName-Pattern Nomal / Charge"), cc.xyw(2, ++row, 7));
 		builder.add(filepattern, cc.xyw(2, ++row, 3));
 		builder.add(filepatternCharge, cc.xyw(6, row, 3));
+
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel("Resize Icon to (hight)"), cc.xyw(2, ++row, 7));
+		builder.add(sliderResize, cc.xyw(2, ++row, 3));
+		builder.add(cboxUseAdvResize, cc.xyw(6, row, 3));
 
 		final JPanel cfp = builder.getPanel();
 		// cfp.setBackground(Color.black);

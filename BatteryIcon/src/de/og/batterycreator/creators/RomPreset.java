@@ -2,19 +2,22 @@ package de.og.batterycreator.creators;
 
 import java.util.Vector;
 
+import de.og.batterycreator.widgets.DrawableComboBox;
+
 public class RomPreset {
 
 	public static final String APPLY = "Apply Settings for Rom...";
 	private static Vector<RomPreset> presets = new Vector<RomPreset>();
 
 	static {
-		presets.add(new RomPreset(APPLY, StyleSettings.FOLDER_XHDPI, StyleSettings.ICON_NAME_AOKP, StyleSettings.ICON_CHARGE_NAME_AOKP));
-		presets.add(new RomPreset("Default", StyleSettings.FOLDER_XHDPI, StyleSettings.ICON_NAME_AOKP, StyleSettings.ICON_CHARGE_NAME_AOKP));
-		presets.add(new RomPreset("Resurrection Remix JB 3.x.x", StyleSettings.FOLDER_XHDPI, StyleSettings.ICON_NAME_AOKP, StyleSettings.ICON_CHARGE_NAME_AOKP));
-		presets.add(new RomPreset("Resurrection Remix ICS 2.6-2.7", StyleSettings.FOLDER_HDPI, StyleSettings.ICON_NAME_AOKP,
+		presets.add(new RomPreset(APPLY, DrawableComboBox.FOLDER_XHDPI, StyleSettings.ICON_NAME_AOKP, StyleSettings.ICON_CHARGE_NAME_AOKP));
+		presets.add(new RomPreset("Default", DrawableComboBox.FOLDER_XHDPI, StyleSettings.ICON_NAME_AOKP, StyleSettings.ICON_CHARGE_NAME_AOKP));
+		presets.add(new RomPreset("Resurrection Remix JB 3.x.x", DrawableComboBox.FOLDER_XHDPI, StyleSettings.ICON_NAME_AOKP,
 				StyleSettings.ICON_CHARGE_NAME_AOKP));
-		presets.add(new RomPreset("HydraH2O 1.x", StyleSettings.FOLDER_HDPI, StyleSettings.ICON_NAME_AOKP, StyleSettings.ICON_CHARGE_NAME_AOKP));
-		presets.add(new RomPreset("Stock ROM ICS incl. JKay", StyleSettings.FOLDER_HDPI, StyleSettings.ICON_NAME_STOCK_ICS_JKAY,
+		presets.add(new RomPreset("Resurrection Remix ICS 2.6-2.7", DrawableComboBox.FOLDER_HDPI, StyleSettings.ICON_NAME_AOKP,
+				StyleSettings.ICON_CHARGE_NAME_AOKP));
+		presets.add(new RomPreset("HydraH2O 1.x", DrawableComboBox.FOLDER_HDPI, StyleSettings.ICON_NAME_AOKP, StyleSettings.ICON_CHARGE_NAME_AOKP));
+		presets.add(new RomPreset("Stock ROM ICS incl. JKay", DrawableComboBox.FOLDER_HDPI, StyleSettings.ICON_NAME_STOCK_ICS_JKAY,
 				StyleSettings.ICON_CHARGE_NAME_STOCK_ICS_JKAY));
 	}
 

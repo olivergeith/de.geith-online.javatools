@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import og.basics.gui.colorselectorobjects.JColorSelectButton;
+import og.basics.gui.Jcolorselectbutton.JColorSelectButton;
 import og.basics.gui.jfontchooser.JFontChooserButton;
 
 import com.jgoodies.forms.builder.PanelBuilder;
@@ -25,7 +25,8 @@ import com.jgoodies.forms.layout.FormLayout;
 import de.og.batterycreator.creators.RomPreset;
 import de.og.batterycreator.creators.StyleSettings;
 import de.og.batterycreator.widgets.ChargeIconSelector;
-import de.og.batterycreator.widgets.SliderLabel;
+import de.og.batterycreator.widgets.DrawableComboBox;
+import de.og.batterycreator.widgets.SliderAndLabel;
 
 public class ConfigPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -46,7 +47,7 @@ public class ConfigPanel extends JPanel {
 	JButton iconColorInactiv;
 	JButton iconColorCharge;
 
-	SliderLabel sliderStroke = new SliderLabel(1, 10);
+	SliderAndLabel sliderStroke = new SliderAndLabel(1, 10);
 	JCheckBox cboxFlip = createCheckbox("Flip Icon", "Mirror's the Icon...ony has effect on a few styls!");
 
 	JCheckBox cboxColoredFont = createCheckbox("Low battery Colors", "...");
@@ -56,15 +57,16 @@ public class ConfigPanel extends JPanel {
 	JCheckBox cboxUseGradientMediumLevels = createCheckbox("Gradient for Medium levels", "Use Gradient Colors between Low and Med Batterylevels");
 	JCheckBox cboxUseGradientNormalLevels = createCheckbox("Gradient for Normal levels", "Use Gradient Colors between Med and 100% Batterylevels");
 
-	SliderLabel sliderLowBatt = new SliderLabel(0, 30);
-	SliderLabel sliderMedBatt = new SliderLabel(20, 100);
+	SliderAndLabel sliderLowBatt = new SliderAndLabel(0, 30);
+	SliderAndLabel sliderMedBatt = new SliderAndLabel(20, 100);
 
-	SliderLabel sliderFontXOffset = new SliderLabel(-4, 4);
-	SliderLabel sliderFontYOffset = new SliderLabel(-4, 4);
+	SliderAndLabel sliderFontXOffset = new SliderAndLabel(-4, 4);
+	SliderAndLabel sliderFontYOffset = new SliderAndLabel(-4, 4);
+	SliderAndLabel slidericonXOffset = new SliderAndLabel(-4, 4);
+	SliderAndLabel slidericonYOffset = new SliderAndLabel(-4, 4);
 
-	SliderLabel sliderReduceOn100 = new SliderLabel(-5, 0);
+	SliderAndLabel sliderReduceOn100 = new SliderAndLabel(-5, 0);
 
-	SliderLabel sliderResize = new SliderLabel(25, 50);
 	JCheckBox cboxUseAdvResize = createCheckbox("Use advanced Resize-Algorithm",
 			"(Experimental) Advanced Resize-Algorith...might give better results on small imagesizes!?");
 
@@ -73,7 +75,8 @@ public class ConfigPanel extends JPanel {
 
 	JFontChooserButton fontButton = new JFontChooserButton("Choose Font", fontSizes);
 
-	JComboBox<String> zipResolutionFolderCombo = new JComboBox<String>();
+	DrawableComboBox zipResolutionFolderCombo = new DrawableComboBox();
+	SliderAndLabel sliderResize = zipResolutionFolderCombo.getSizeSlider();
 
 	JComboBox<RomPreset> romPresetCombo = new JComboBox<RomPreset>(RomPreset.getPresets());
 
@@ -99,27 +102,6 @@ public class ConfigPanel extends JPanel {
 		iconColorLowBatt = createClickabelColorLabel("LowBatt", "Color when low battery");
 		iconColorMedBatt = createClickabelColorLabel("MedBatt", "Color when Med battery");
 		iconColorCharge = createClickabelColorLabel("Charge Color", "Color when charging");
-		// Adding items
-		zipResolutionFolderCombo.addItem(StyleSettings.FOLDER_XHDPI);
-		zipResolutionFolderCombo.addItem(StyleSettings.FOLDER_HDPI);
-		zipResolutionFolderCombo.addItem(StyleSettings.FOLDER_600DP);
-		zipResolutionFolderCombo.addItem(StyleSettings.FOLDER_720DP);
-		zipResolutionFolderCombo.setEditable(false);
-		zipResolutionFolderCombo.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(final ActionEvent e) {
-				if (zipResolutionFolderCombo.getSelectedItem().equals(StyleSettings.FOLDER_XHDPI)) {
-					sliderResize.setValue(StyleSettings.ICON_HEIGHT_XHDPI);
-				} else if (zipResolutionFolderCombo.getSelectedItem().equals(StyleSettings.FOLDER_HDPI)) {
-					sliderResize.setValue(StyleSettings.ICON_HEIGHT_HDPI);
-				} else if (zipResolutionFolderCombo.getSelectedItem().equals(StyleSettings.FOLDER_720DP)) {
-					sliderResize.setValue(StyleSettings.ICON_HEIGHT_720DP);
-				} else if (zipResolutionFolderCombo.getSelectedItem().equals(StyleSettings.FOLDER_600DP)) {
-					sliderResize.setValue(StyleSettings.ICON_HEIGHT_600DP);
-				}
-			}
-		});
 
 		romPresetCombo.addActionListener(new ActionListener() {
 
@@ -159,25 +141,38 @@ public class ConfigPanel extends JPanel {
 		builder.add(fontColorLowBatt, cc.xyw(6, row, 1));
 		builder.add(fontColorMedBatt, cc.xyw(8, row, 1));
 
+		builder.add(createBlueDeviderLabel("Reduce font on 100% by <x> pixel"), cc.xyw(6, ++row, 3));
 		builder.add(fontButton, cc.xyw(2, ++row, 3));
-		builder.add(cboxShowChargeSymbol, cc.xyw(6, row, 1));
-		builder.add(chargeIconSeletor, cc.xyw(8, row, 1));
+		builder.add(sliderReduceOn100, cc.xyw(6, row, 1));
+		builder.add(sliderReduceOn100.getValueLabel(), cc.xyw(8, row, 1));
 
 		builder.add(createBlueDeviderLabel("Font Pixel Position Offsets X"), cc.xyw(2, ++row, 3));
 		builder.add(createBlueDeviderLabel("Font Pixel Position Offsets Y"), cc.xyw(6, row, 3));
-		builder.add(sliderFontXOffset, cc.xyw(2, ++row, 3));
-		builder.add(sliderFontYOffset, cc.xyw(6, row, 3));
+		builder.add(sliderFontXOffset, cc.xyw(2, ++row, 1));
+		builder.add(sliderFontXOffset.getValueLabel(), cc.xyw(4, row, 1));
+		builder.add(sliderFontYOffset, cc.xyw(6, row, 1));
+		builder.add(sliderFontYOffset.getValueLabel(), cc.xyw(8, row, 1));
 
-		builder.add(createBlueDeviderLabel("Reduce font on 100% by <x> pixel"), cc.xyw(2, ++row, 7));
-		builder.add(sliderReduceOn100, cc.xyw(2, ++row, 3));
+		builder.add(createGroupLabel("Charge Icon..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+
+		builder.add(cboxShowChargeSymbol, cc.xyw(2, ++row, 1));
+		builder.add(chargeIconSeletor, cc.xyw(4, row, 1));
+
+		builder.add(createBlueDeviderLabel("ChargeIcon Pixel Position Offsets X"), cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("ChargeIcon Pixel Position Offsets Y"), cc.xyw(6, row, 3));
+		builder.add(slidericonXOffset, cc.xyw(2, ++row, 1));
+		builder.add(slidericonXOffset.getValueLabel(), cc.xyw(4, row, 1));
+		builder.add(slidericonYOffset, cc.xyw(6, row, 1));
+		builder.add(slidericonYOffset.getValueLabel(), cc.xyw(8, row, 1));
 
 		builder.add(createGroupLabel("Battery Icon..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 
 		builder.add(iconColorInactiv, cc.xyw(2, ++row, 1));
 		builder.add(cboxColoredIcon, cc.xyw(6, row, 3));
-		builder.add(iconColorCharge, cc.xyw(2, ++row, 1));
-		builder.add(iconColor, cc.xyw(4, row, 1));
+		builder.add(iconColor, cc.xyw(2, ++row, 1));
+		builder.add(iconColorCharge, cc.xyw(4, row, 1));
 		builder.add(iconColorLowBatt, cc.xyw(6, row, 1));
 		builder.add(iconColorMedBatt, cc.xyw(8, row, 1));
 
@@ -185,8 +180,10 @@ public class ConfigPanel extends JPanel {
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(createBlueDeviderLabel("...for Low Battery-Levels"), cc.xyw(2, ++row, 3));
 		builder.add(createBlueDeviderLabel("...for Med Battery-Levels"), cc.xyw(6, row, 3));
-		builder.add(sliderLowBatt, cc.xyw(2, ++row, 3));
-		builder.add(sliderMedBatt, cc.xyw(6, row, 3));
+		builder.add(sliderLowBatt, cc.xyw(2, ++row, 1));
+		builder.add(sliderLowBatt.getValueLabel(), cc.xyw(4, row, 1));
+		builder.add(sliderMedBatt, cc.xyw(6, row, 1));
+		builder.add(sliderMedBatt.getValueLabel(), cc.xyw(8, row, 1));
 		builder.add(cboxUseGradientMediumLevels, cc.xyw(2, ++row, 3));
 		builder.add(cboxUseGradientNormalLevels, cc.xyw(6, row, 3));
 
@@ -195,7 +192,8 @@ public class ConfigPanel extends JPanel {
 		builder.add(createBlueDeviderLabel("These settings only work on some styls"), cc.xyw(2, ++row, 3));
 		builder.add(createBlueDeviderLabel("Stroke Width"), cc.xyw(6, row, 3));
 		builder.add(cboxFlip, cc.xyw(2, ++row, 3));
-		builder.add(sliderStroke, cc.xyw(6, row, 3));
+		builder.add(sliderStroke, cc.xyw(6, row, 1));
+		builder.add(sliderStroke.getValueLabel(), cc.xyw(8, row, 1));
 
 		builder.add(createGroupLabel("Resizing, Filenames, Output ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
@@ -207,7 +205,8 @@ public class ConfigPanel extends JPanel {
 		builder.add(filepatternCharge, cc.xyw(6, row, 3));
 
 		builder.add(createBlueDeviderLabel("Resize Icon to (hight)"), cc.xyw(2, ++row, 7));
-		builder.add(sliderResize, cc.xyw(2, ++row, 3));
+		builder.add(sliderResize, cc.xyw(2, ++row, 1));
+		builder.add(sliderResize.getValueLabel(), cc.xyw(4, row, 1));
 		builder.add(cboxUseAdvResize, cc.xyw(6, row, 3));
 
 		final JPanel cfp = builder.getPanel();
@@ -224,7 +223,7 @@ public class ConfigPanel extends JPanel {
 
 	private JLabel createGroupLabel(final String txt) {
 		final JLabel lab = createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 18), Color.BLUE.darker().darker());
-		lab.setBorder(BorderFactory.createEmptyBorder(6, 1, 1, 1));
+		lab.setBorder(BorderFactory.createEmptyBorder(4, 0, 0, 0));
 		return lab;
 	}
 
@@ -235,8 +234,8 @@ public class ConfigPanel extends JPanel {
 	 * @return
 	 */
 	private JLabel createBlueDeviderLabel(final String txt) {
-		final JLabel lab = createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 10), Color.BLUE.darker());
-		lab.setBorder(BorderFactory.createEmptyBorder(2, 1, 1, 1));
+		final JLabel lab = createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 10), Color.black);
+		lab.setBorder(BorderFactory.createEmptyBorder(1, 0, 0, 0));
 		return lab;
 	}
 
@@ -312,6 +311,9 @@ public class ConfigPanel extends JPanel {
 		cboxUseGradientNormalLevels.setSelected(settings.isUseGradiantForNormalColor());
 		fontButton.setFont(settings.getFont());
 
+		slidericonXOffset.setValue(settings.getIconXOffset());
+		slidericonYOffset.setValue(settings.getIconYOffset());
+
 		sliderFontXOffset.setValue(settings.getFontXOffset());
 		sliderFontYOffset.setValue(settings.getFontYOffset());
 		sliderReduceOn100.setValue(settings.getReduceFontOn100());
@@ -355,6 +357,8 @@ public class ConfigPanel extends JPanel {
 		settings.setFontXOffset(sliderFontXOffset.getValue());
 		settings.setFontYOffset(sliderFontYOffset.getValue());
 		settings.setReduceFontOn100(sliderReduceOn100.getValue());
+		settings.setIconXOffset(slidericonXOffset.getValue());
+		settings.setIconYOffset(slidericonYOffset.getValue());
 		return settings;
 	}
 
@@ -368,6 +372,8 @@ public class ConfigPanel extends JPanel {
 		iconColorLowBatt.setEnabled(cboxColoredIcon.isSelected());
 		chargeIconSeletor.setEnabled(cboxShowChargeSymbol.isSelected());
 		fontButton.setEnabled(cboxShowFont.isSelected());
+		slidericonXOffset.setEnabled(cboxShowChargeSymbol.isSelected());
+		slidericonYOffset.setEnabled(cboxShowChargeSymbol.isSelected());
 		sliderFontXOffset.setEnabled(cboxShowFont.isSelected());
 		sliderFontYOffset.setEnabled(cboxShowFont.isSelected());
 		sliderReduceOn100.setEnabled(cboxShowFont.isSelected());

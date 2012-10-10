@@ -53,7 +53,7 @@ public class IconCreatorFrame extends JFrame {
 		setTitle(APP_NAME + " ----- Version " + VERSION_NR);
 		setIconImage(logoIcon.getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(300, 100, 300, 800);
+		setBounds(300, 100, 300, 850);
 		initUI();
 		setVisible(true);
 		pack();

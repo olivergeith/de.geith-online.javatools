@@ -1,4 +1,4 @@
-package og.basics.gui.colorselectorobjects;
+package og.basics.gui.Jcolorselectbutton;
 
 /*
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
@@ -95,7 +95,7 @@ public class CrayonPanel extends AbstractColorChooserPanel implements ActionList
 		boxOfCrayons.add(yellowCrayon);
 		add(yellowCrayon);
 
-		orangeCrayon = createCrayon("red", border, Color.orange);
+		orangeCrayon = createCrayon("orange", border, Color.orange);
 		boxOfCrayons.add(orangeCrayon);
 		add(orangeCrayon);
 

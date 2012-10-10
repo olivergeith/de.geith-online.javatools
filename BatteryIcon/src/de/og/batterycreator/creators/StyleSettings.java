@@ -7,6 +7,8 @@ import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.widgets.DrawableComboBox;
+
 public class StyleSettings implements Serializable {
 
 	public static final String ICON_CHARGE_NAME_AOKP = "stat_sys_battery_circle_charge_anim";
@@ -18,15 +20,6 @@ public class StyleSettings implements Serializable {
 	private static final long serialVersionUID = 4747296256398459127L;
 
 	public static final String FOLDER_SYSTEMUI = "MORPH/system/app/SystemUI.apk/res/";
-	public static final String FOLDER_XHDPI = "drawable-xhdpi";
-	public static final String FOLDER_HDPI = "drawable-hdpi";
-	public static final String FOLDER_720DP = "drawable-sw720dp-xhdpi";
-	public static final String FOLDER_600DP = "drawable-sw600dp-xhdpi";
-
-	public static final int ICON_HEIGHT_XHDPI = 38;
-	public static final int ICON_HEIGHT_HDPI = 27;
-	public static final int ICON_HEIGHT_720DP = 48;
-	public static final int ICON_HEIGHT_600DP = 43;
 
 	public static final Font DEFAULT_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 21);
 
@@ -65,14 +58,16 @@ public class StyleSettings implements Serializable {
 	private String filePattern = new String(ICON_NAME_AOKP);
 	private String filePatternCharge = new String(ICON_CHARGE_NAME_AOKP);
 
-	private String zipResolutionFolder = FOLDER_XHDPI;
-	private String folderWithinZip = FOLDER_SYSTEMUI + FOLDER_XHDPI + File.separator;
+	private String zipResolutionFolder = DrawableComboBox.FOLDER_XHDPI;
+	private String folderWithinZip = FOLDER_SYSTEMUI + DrawableComboBox.FOLDER_XHDPI + File.separator;
 
-	private int targetIconSize = ICON_HEIGHT_XHDPI;
+	private int targetIconSize = DrawableComboBox.ICON_HEIGHT_XHDPI;
 	private boolean useAdvancedResize = false;
 
 	private Font font = DEFAULT_FONT;
 
+	private int iconXOffset = 0;
+	private int iconYOffset = 0;
 	private int fontXOffset = 0;
 	private int fontYOffset = 0;
 	private int reduceFontOn100 = -3;
@@ -545,6 +540,36 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setReduceFontOn100(final int reduceFontOn100) {
 		this.reduceFontOn100 = reduceFontOn100;
+	}
+
+	/**
+	 * @return the iconXOffset
+	 */
+	public int getIconXOffset() {
+		return iconXOffset;
+	}
+
+	/**
+	 * @param iconXOffset
+	 *            the iconXOffset to set
+	 */
+	public void setIconXOffset(final int iconXOffset) {
+		this.iconXOffset = iconXOffset;
+	}
+
+	/**
+	 * @return the iconYOffset
+	 */
+	public int getIconYOffset() {
+		return iconYOffset;
+	}
+
+	/**
+	 * @param iconYOffset
+	 *            the iconYOffset to set
+	 */
+	public void setIconYOffset(final int iconYOffset) {
+		this.iconYOffset = iconYOffset;
 	}
 
 }

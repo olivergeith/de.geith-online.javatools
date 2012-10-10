@@ -137,8 +137,8 @@ public abstract class DefaultCreator {
 		if (chargeIcon != null) {
 			final int w = chargeIcon.getIconWidth();
 			final int h = chargeIcon.getIconHeight();
-			final int x = 1 + img.getWidth() / 2 - w / 2;
-			final int y = img.getHeight() / 2 - h / 2;
+			final int x = 1 + settings.getIconXOffset() + img.getWidth() / 2 - w / 2;
+			final int y = img.getHeight() / 2 - h / 2 + settings.getIconYOffset();
 			g2d.drawImage(chargeIcon.getImage(), x, y, null);
 		}
 	}

@@ -13,6 +13,9 @@ import javax.swing.JFrame;
 public class ChargeIconSelector extends JComboBox<ImageIcon> {
 	private static final long serialVersionUID = -7712530632645291404L;
 
+	private static final ImageIcon charge01 = new ImageIcon(ChargeIconSelector.class.getResource("charge01.png"));
+	private static final ImageIcon charge02 = new ImageIcon(ChargeIconSelector.class.getResource("charge02.png"));
+	private static final ImageIcon charge03 = new ImageIcon(ChargeIconSelector.class.getResource("charge03.png"));
 	private static final ImageIcon charge10 = new ImageIcon(ChargeIconSelector.class.getResource("charge10.png"));
 	private static final ImageIcon charge11 = new ImageIcon(ChargeIconSelector.class.getResource("charge11.png"));
 	private static final ImageIcon charge12 = new ImageIcon(ChargeIconSelector.class.getResource("charge12.png"));
@@ -30,6 +33,9 @@ public class ChargeIconSelector extends JComboBox<ImageIcon> {
 	}
 
 	private void initUI() {
+		addItem(charge01);
+		addItem(charge02);
+		addItem(charge03);
 		addItem(charge20);
 		addItem(charge21);
 		addItem(charge22);

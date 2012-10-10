@@ -20,6 +20,10 @@ Now it has grown up !!!
 [/LIST]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
+[COLOR="Blue"][B]Oct-10-2012[/B] : Release 8.0[/COLOR]
+[LIST]
+[*]Finetuning Charge-Icon Position
+[/LIST]
 [COLOR="Blue"][B]Oct-10-2012[/B] : Release 7.0[/COLOR]
 [LIST]
 [*]4 new Styles

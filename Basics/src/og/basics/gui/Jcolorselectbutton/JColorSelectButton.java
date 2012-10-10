@@ -1,7 +1,7 @@
 /**
  * 
  */
-package og.basics.gui.colorselectorobjects;
+package og.basics.gui.Jcolorselectbutton;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -14,6 +14,7 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
 
 /**
@@ -104,7 +105,7 @@ public class JColorSelectButton extends JButton {
 
 	private void bringUpColorChooser2() {
 		final JColorChooser colorChooser = new JColorChooser();
-		final JCLabel previewLabel = new JCLabel();
+		final JLabel previewLabel = new JLabel();
 		previewLabel.setText("xxx");
 		previewLabel.setSize(previewLabel.getPreferredSize());
 		previewLabel.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 48));

@@ -185,7 +185,7 @@ public abstract class DefaultCreator {
 	}
 
 	private void writeOverviewFile(final BufferedImage overview) {
-		final File file = new File(getPath() + File.separator + "overview.png");
+		final File file = new File(getPath() + File.separator + "overview_" + getName() + ".png");
 		try {
 			ImageIO.write(overview, "png", file);
 		} catch (final IOException e) {

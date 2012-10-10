@@ -9,7 +9,7 @@ Now it has grown up !!!
 [SIZE="6"][B][CENTER]The Battery Icon Creator[/CENTER][/B][/SIZE]
 [SIZE="4"][B]Features:[/B][/SIZE]
 [LIST]
-[*]16 highly customizable Styles (more to come...ideas welcome !)
+[*]18 highly customizable Styles (more to come...ideas welcome !)
 [*]You can change colors, Style, charge-icon, with or without Text...
 [*]Creating of an overview.png (If you want to show of your creations!)
 [*]Icons are resized to any supported dpi (can be fine-tuned)
@@ -20,14 +20,17 @@ Now it has grown up !!!
 [/LIST]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Oct-0x-2012[/B] : Release 7.0[/COLOR]
+[COLOR="Blue"][B]Oct-10-2012[/B] : Release 7.0[/COLOR]
 [LIST]
-[*]2 new Styles
+[*]4 new Styles
+[*]New "AOKP Circle Mod" style, but customizable like all the other styles ;-)
+[*]original cool "ScalaBattery" style....extrawide icon ...check it out ! 
 [*]ROM Presets (please report ROM's and settings you used...so I can add them!) 
 [*]flipping/mirroring (only some styles support this)
 [*]Stokewidth adjustable (only some styles support this)
 [*]refactoring of internal stuff in preparation for adding Signal-/Wifi-/Lockhandle-Icons
 [*]full file save- and load- chooser-dialogs for settings!
+[*]customizable reduction of fontsize for 100%
 [/LIST]
 [COLOR="Blue"][B]Oct-08-2012[/B] : Release 6.0[/COLOR]
 [LIST]

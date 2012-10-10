@@ -8,8 +8,8 @@ import javax.swing.ImageIcon;
 
 public class AppleBatteryCreator extends DefaultCreator {
 
-	protected static String path = "./pngs/applebattery";
-	protected static String name = "AppleBattery";
+	protected static String path = "./pngs/apfelbattery";
+	protected static String name = "ApfelBattery";
 
 	public AppleBatteryCreator() {
 		super();

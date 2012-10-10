@@ -66,4 +66,11 @@ public class SliderLabel extends JPanel {
 	public JSlider getSlider() {
 		return slider;
 	}
+
+	@Override
+	public void setEnabled(final boolean enabled) {
+		super.setEnabled(enabled);
+		slider.setEnabled(enabled);
+	}
+
 }

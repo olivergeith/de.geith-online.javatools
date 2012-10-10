@@ -62,6 +62,8 @@ public class ConfigPanel extends JPanel {
 	SliderLabel sliderFontXOffset = new SliderLabel(-4, 4);
 	SliderLabel sliderFontYOffset = new SliderLabel(-4, 4);
 
+	SliderLabel sliderReduceOn100 = new SliderLabel(-5, 0);
+
 	SliderLabel sliderResize = new SliderLabel(25, 50);
 	JCheckBox cboxUseAdvResize = createCheckbox("Use advanced Resize-Algorithm",
 			"(Experimental) Advanced Resize-Algorith...might give better results on small imagesizes!?");
@@ -166,6 +168,9 @@ public class ConfigPanel extends JPanel {
 		builder.add(sliderFontXOffset, cc.xyw(2, ++row, 3));
 		builder.add(sliderFontYOffset, cc.xyw(6, row, 3));
 
+		builder.add(createBlueDeviderLabel("Reduce font on 100% by <x> pixel"), cc.xyw(2, ++row, 7));
+		builder.add(sliderReduceOn100, cc.xyw(2, ++row, 3));
+
 		builder.add(createGroupLabel("Battery Icon..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 
@@ -187,7 +192,8 @@ public class ConfigPanel extends JPanel {
 
 		builder.add(createGroupLabel("Misc Options ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel("These settings only work on some styls"), cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel("These settings only work on some styls"), cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("Stroke Width"), cc.xyw(6, row, 3));
 		builder.add(cboxFlip, cc.xyw(2, ++row, 3));
 		builder.add(sliderStroke, cc.xyw(6, row, 3));
 
@@ -308,6 +314,7 @@ public class ConfigPanel extends JPanel {
 
 		sliderFontXOffset.setValue(settings.getFontXOffset());
 		sliderFontYOffset.setValue(settings.getFontYOffset());
+		sliderReduceOn100.setValue(settings.getReduceFontOn100());
 		validateControls();
 		this.repaint();
 	}
@@ -347,6 +354,7 @@ public class ConfigPanel extends JPanel {
 		settings.setFont(fontButton.getFont());
 		settings.setFontXOffset(sliderFontXOffset.getValue());
 		settings.setFontYOffset(sliderFontYOffset.getValue());
+		settings.setReduceFontOn100(sliderReduceOn100.getValue());
 		return settings;
 	}
 
@@ -360,11 +368,14 @@ public class ConfigPanel extends JPanel {
 		iconColorLowBatt.setEnabled(cboxColoredIcon.isSelected());
 		chargeIconSeletor.setEnabled(cboxShowChargeSymbol.isSelected());
 		fontButton.setEnabled(cboxShowFont.isSelected());
+		sliderFontXOffset.setEnabled(cboxShowFont.isSelected());
+		sliderFontYOffset.setEnabled(cboxShowFont.isSelected());
+		sliderReduceOn100.setEnabled(cboxShowFont.isSelected());
 		romPresetCombo.setSelectedIndex(0);
 	}
 
 	public void enableSupportedFeatures(final boolean supportsFlip, final boolean suppoertsStrokewidth) {
 		cboxFlip.setEnabled(supportsFlip);
-		sliderStroke.setVisible(suppoertsStrokewidth);
+		sliderStroke.setEnabled(suppoertsStrokewidth);
 	}
 }

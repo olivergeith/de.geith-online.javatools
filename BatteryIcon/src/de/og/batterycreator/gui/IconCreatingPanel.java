@@ -24,6 +24,7 @@ import javax.swing.border.EmptyBorder;
 
 import og.basics.gui.icon.CommonIconProvider;
 import og.basics.gui.tracepanel.ITracer;
+import de.og.batterycreator.creators.AOKPCircleModCreator;
 import de.og.batterycreator.creators.AppleBatteryCreator;
 import de.og.batterycreator.creators.Arc2Creator;
 import de.og.batterycreator.creators.ArcCreator;
@@ -41,6 +42,7 @@ import de.og.batterycreator.creators.BrickDecimalCreator;
 import de.og.batterycreator.creators.ClockCreator;
 import de.og.batterycreator.creators.ClockPointerCreator;
 import de.og.batterycreator.creators.DefaultCreator;
+import de.og.batterycreator.creators.ScalaBatteryCreator;
 import de.og.batterycreator.zipcreator.ZipMaker;
 
 public class IconCreatingPanel extends JPanel {
@@ -67,6 +69,7 @@ public class IconCreatingPanel extends JPanel {
 		creators.add(new ArcSunCreator());
 		creators.add(new ArcQuaterCreator2());
 		creators.add(new ArcDecimalCreator());
+		creators.add(new AOKPCircleModCreator());
 		creators.add(new BrickBattCreator());
 		creators.add(new BrickBattNoGapCreator());
 		creators.add(new BrickDecimalCreator());
@@ -78,6 +81,7 @@ public class IconCreatingPanel extends JPanel {
 		creators.add(new AppleBatteryCreator());
 		creators.add(new ClockCreator());
 		creators.add(new ClockPointerCreator());
+		creators.add(new ScalaBatteryCreator());
 	}
 
 	private void initUI() {
@@ -115,7 +119,7 @@ public class IconCreatingPanel extends JPanel {
 		creatorBox.setSelectedIndex(0);
 		creatorBox.setToolTipText("Choose your IconCreator...then press play-button");
 		creatorBox.setRenderer(new CreatorListCellRenderer());
-		creatorBox.setMaximumRowCount(15);
+		creatorBox.setMaximumRowCount(10);
 		activCreator = (DefaultCreator) creatorBox.getSelectedItem();
 		makeMenuAndButtonBar();
 	}

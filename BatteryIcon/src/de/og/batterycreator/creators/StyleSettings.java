@@ -75,6 +75,7 @@ public class StyleSettings implements Serializable {
 
 	private int fontXOffset = 0;
 	private int fontYOffset = 0;
+	private int reduceFontOn100 = -3;
 
 	public String getFolderWithinZip() {
 		return folderWithinZip;
@@ -529,6 +530,21 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setFlip(final boolean flip) {
 		this.flip = flip;
+	}
+
+	/**
+	 * @return the reduceFontOn100
+	 */
+	public int getReduceFontOn100() {
+		return reduceFontOn100;
+	}
+
+	/**
+	 * @param reduceFontOn100
+	 *            the reduceFontOn100 to set
+	 */
+	public void setReduceFontOn100(final int reduceFontOn100) {
+		this.reduceFontOn100 = reduceFontOn100;
 	}
 
 }

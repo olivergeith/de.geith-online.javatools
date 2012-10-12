@@ -1,33 +1,29 @@
 [SIZE="6"][B][CENTER]I proudly present my new Battery Icon Creator[/CENTER][/B][/SIZE]
 
-[SIZE="4"][B]History:[/B][/SIZE]
-I was fed up, with designing my battery-icons with a paint-tool. 204 icons per set is a lot work, if you do it manually!
-As I mostly did abstract and simple icons to be in harmony with AOKP, I had the idea, to develop a little Java Tool to do the work for me ;)
+[SIZE="4"][B]History or Why this Tool?:[/B][/SIZE]
+I was fed up, with designing my battery icons with a painttool. 204 icons per set is a lot work, if you do it manually!
+As I mostly did abstract and simple icons to be in harmony with AOKP, I had the idea, to develop a little Java tool to do the work for me ;)
 Now it has grown up !!!
 
 [SIZE="4"][B][CENTER]So here is: ...[/CENTER][/B][/SIZE]
 [SIZE="6"][B][CENTER]The Battery Icon Creator[/CENTER][/B][/SIZE]
 [SIZE="4"][B]Features:[/B][/SIZE]
 [LIST]
-[*]18 highly customizable Styles (more to come...ideas welcome !)
-[*]You can change colors, Style, charge-icon, with or without Text...
+[*]15+ highly customizable Styles (more to come...ideas welcome !)
+[*]You can change colors, style, charge-icon, with or without percentage text, fonts, thesholds, gradient...
 [*]Creating of an overview.png (If you want to show of your creations!)
 [*]Icons are resized to any supported dpi (can be fine-tuned)
-[*]Additional Custom charge-icons...(place them in folder ./custom/charge/ ...see samples there)
+[*]Additional custom charge-icons...(place your own charge icons in folder ./custom/charge/ ...see samples there)
 [*]Easy "all in one frame" Interface (you will find out how it works !)
-[*]Creation of[COLOR="Blue"][B] flashable Zips[/B][/COLOR] for xhdpi, hdpi, 720dp and 600dp ROMs (This should work with most AOSP, AOKP Roms.)
+[*]Creation of[COLOR="Blue"][B] flashable Zips[/B][/COLOR] for xhdpi, hdpi, 720dp and 600dp ROMs
 [*]Creates a backup during flash (Thanks to the "Universal Flasher Tool") 
 [/LIST]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Oct-10-2012[/B] : Release 8.0[/COLOR]
-[LIST]
-[*]Finetuning Charge-Icon Position
-[/LIST]
 [COLOR="Blue"][B]Oct-10-2012[/B] : Release 7.0[/COLOR]
 [LIST]
 [*]4 new Styles
-[*]New "AOKP Circle Mod" style, but customizable like all the other styles ;-)
+[*]New "AOKP Circle Mod" style, but customizable like all the other styles ;)
 [*]original cool "ScalaBattery" style....extrawide icon ...check it out ! 
 [*]ROM Presets (please report ROM's and settings you used...so I can add them!) 
 [*]flipping/mirroring (only some styles support this)
@@ -36,6 +32,9 @@ Now it has grown up !!!
 [*]full file save- and load- chooser-dialogs for settings!
 [*]customizable reduction of fontsize for 100%
 [/LIST]
+
+[COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]
+[HIDE]
 [COLOR="Blue"][B]Oct-08-2012[/B] : Release 6.0[/COLOR]
 [LIST]
 [*]Overview now shows charging icons too
@@ -80,10 +79,10 @@ Now it has grown up !!!
 [LIST]
 [*]Initial Release
 [/LIST]
+[/HIDE]
 
 [SIZE="4"][B]Todo:[/B][/SIZE]
 [LIST]
-[*]presets for diffeent ROM's (icon-names and dpi settings)
 [*]Bugfixing
 [*]Make the Style-Modules even more customizable
 [*]Creating new styles
@@ -109,21 +108,50 @@ This tool is written in pure Java. So the only thing you need to have is a Java 
 [*]Or (when you are satisfied with your settings) create a flashable Zip (Button next to Playbutton)
 [*]...find the Zip in the "flashablezip_out"-folder
 [/LIST]
+
 If you want to know how to create your own flashable Zip ...
 ... Tutorial here: [url]http://forum.xda-developers.com/showpost.php?p=27021278&postcount=41597[/url]
 
-Want to see them in use?...see my MOD-Post for Resurrection Remix ROM
+Want to see my icons in use?...see my MOD-Post for Resurrection Remix ROM
 [url]http://forum.xda-developers.com/showpost.php?p=32081287&postcount=1388[/url]
+
+[SIZE="4"][B]HowTo find out, if your ROM is supported?[/B][/SIZE]
+For a Rom to be supported, it needs to have a 1% battery mod!
+Samsung Stock Roms don't have this until a Mod like JKay is applied.
+CM10 Roms like the official nightlies or Paranoidandroid don't have this either. 
+I am sure there are some Mod's out there that will do the trick with these Roms...
+
+If your ROM has a 1% Mod, there are only a few things you need to investigate, to find the correct Settings for my tool.
+You need to...
+[LIST]
+[*]extract the SysteUI.apk from your Rom (look in the flashabel zip of your Rom, 
+[*}or use your phone and navigate with EsExplorer or Root-Explorer to /system/app and find SystemUI.apk there and 
+[*]...copy it to your internal or external SD card, so you can access the file from your Computer
+[*]Open SystemUI.apk with 7Zip and navigate to ...
+[*]...res\drawable-<xxxx> and find the rom's original 1% battery icons in there
+[*]remember the folder you found your png's in. (normally drawable-hdpi or drawable-xhdpi)
+[*]see how the Files are named. (something like stat_sys_battery_circle_charge_anim<percentage>.png)
+[*]check the hight of the original png's
+[*]now you got everything to choose the correct settings in the Battery Icon Creator
+[*]...drawable-Folder
+[*]...naming convention/pattern of png's
+[*]...icon height
+[/LIST]
+
+If you found your settings, please let me know, what settings, what ROM you used. 
+So I can add the ROM to my compatibility list and add predefined Settings to the tool itself.
 
 [SIZE="4"][B]Works with the following ROMs[/B][/SIZE]
 [LIST]
 [*]Resurection Remix 3.x.x
 [*]Resurection Remix 2.7 
+[*]HydraH2O 1.4.1 
+[*]Stock XWLPG with JKay 
 [*]...should work on many more...let me know!
 [/LIST]
 
 [SIZE="4"][B]Final remarks...and thanks[/B][/SIZE]
-If you use my tool for you MOD or Custom ROM, please give credit and link to this thread! 
+If you used my tool for you MOD or custom ROM, please give credit and link to this thread! 
 
 I am not responsible, if you brick your device...this is just a tool, you need to do the thinking ;)
 

@@ -45,6 +45,8 @@ public class StyleSettings implements Serializable {
 	private boolean coloredFont = false;
 	private boolean coloredIcon = true;
 	private boolean showChargeSymbol = true;
+	private boolean resizeChargeSymbol = false;
+	private int resizeChargeSymbolHeight = 24;
 	private boolean useGradiantForMediumColor = false;
 	private boolean useGradiantForNormalColor = false;
 	private boolean flip = false;
@@ -62,7 +64,7 @@ public class StyleSettings implements Serializable {
 	private String folderWithinZip = FOLDER_SYSTEMUI + DrawableComboBox.FOLDER_XHDPI + File.separator;
 
 	private int targetIconSize = DrawableComboBox.ICON_HEIGHT_XHDPI;
-	private boolean useAdvancedResize = false;
+	private boolean useAdvancedResize = true;
 
 	private Font font = DEFAULT_FONT;
 
@@ -570,6 +572,36 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setIconYOffset(final int iconYOffset) {
 		this.iconYOffset = iconYOffset;
+	}
+
+	/**
+	 * @return the resizeChargeSymbol
+	 */
+	public boolean isResizeChargeSymbol() {
+		return resizeChargeSymbol;
+	}
+
+	/**
+	 * @param resizeChargeSymbol
+	 *            the resizeChargeSymbol to set
+	 */
+	public void setResizeChargeSymbol(final boolean resizeChargeSymbol) {
+		this.resizeChargeSymbol = resizeChargeSymbol;
+	}
+
+	/**
+	 * @return the resizeChargeSymbolHeight
+	 */
+	public int getResizeChargeSymbolHeight() {
+		return resizeChargeSymbolHeight;
+	}
+
+	/**
+	 * @param resizeChargeSymbolHeight
+	 *            the resizeChargeSymbolHeight to set
+	 */
+	public void setResizeChargeSymbolHeight(final int resizeChargeSymbolHeight) {
+		this.resizeChargeSymbolHeight = resizeChargeSymbolHeight;
 	}
 
 }

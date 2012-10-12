@@ -20,6 +20,21 @@ Now it has grown up !!!
 [/LIST]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
+[COLOR="Blue"][B]Oct-10-2012[/B] : Release 8.0[/COLOR]
+[LIST]
+[*]Save as Dialog when creating a flashable zip
+[*]finetuning of charge icon position
+[*]resizing of charge icon within battery symbol
+[*]tuned AOKP-Style
+[*]tuned ArcBattery-Style
+[*]little gui layout changes
+[*]removed the wipe dalvic from template ...no more long delays after flashing any more !
+[*]Rootbox added to RomPresets
+[/LIST]
+
+[COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]
+[HIDE]
+[SIZE="4"][B]Changelog:[/B][/SIZE]
 [COLOR="Blue"][B]Oct-10-2012[/B] : Release 7.0[/COLOR]
 [LIST]
 [*]4 new Styles
@@ -32,9 +47,6 @@ Now it has grown up !!!
 [*]full file save- and load- chooser-dialogs for settings!
 [*]customizable reduction of fontsize for 100%
 [/LIST]
-
-[COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]
-[HIDE]
 [COLOR="Blue"][B]Oct-08-2012[/B] : Release 6.0[/COLOR]
 [LIST]
 [*]Overview now shows charging icons too
@@ -124,13 +136,13 @@ I am sure there are some Mod's out there that will do the trick with these Roms.
 If your ROM has a 1% Mod, there are only a few things you need to investigate, to find the correct Settings for my tool.
 You need to...
 [LIST]
-[*]extract the SysteUI.apk from your Rom (look in the flashabel zip of your Rom, 
+[*]extract the SystemUI.apk from your Rom (look in the flashabel zip of your Rom, 
 [*}or use your phone and navigate with EsExplorer or Root-Explorer to /system/app and find SystemUI.apk there and 
 [*]...copy it to your internal or external SD card, so you can access the file from your Computer
 [*]Open SystemUI.apk with 7Zip and navigate to ...
 [*]...res\drawable-<xxxx> and find the rom's original 1% battery icons in there
-[*]remember the folder you found your png's in. (normally drawable-hdpi or drawable-xhdpi)
-[*]see how the Files are named. (something like stat_sys_battery_circle_charge_anim<percentage>.png)
+[*]remember the folder you found your png's in. (normally [B]drawable-hdpi or drawable-xhdpi[/B])
+[*]see how the Files are named. (something like [B]stat_sys_battery_circle_charge_anim<percentage>.png[/B])
 [*]check the hight of the original png's
 [*]now you got everything to choose the correct settings in the Battery Icon Creator
 [*]...drawable-Folder
@@ -146,6 +158,7 @@ So I can add the ROM to my compatibility list and add predefined Settings to the
 [*]Resurection Remix 3.x.x
 [*]Resurection Remix 2.7 
 [*]HydraH2O 1.4.1 
+[*]Rootbox 2.x
 [*]Stock XWLPG with JKay 
 [*]...should work on many more...let me know!
 [/LIST]

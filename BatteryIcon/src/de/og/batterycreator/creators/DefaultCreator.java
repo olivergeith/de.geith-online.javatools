@@ -135,11 +135,18 @@ public abstract class DefaultCreator {
 	private void drawChargeIcon(final Graphics2D g2d, final BufferedImage img) {
 		final ImageIcon chargeIcon = settings.getChargeIcon();
 		if (chargeIcon != null) {
-			final int w = chargeIcon.getIconWidth();
-			final int h = chargeIcon.getIconHeight();
+			// Resize Charge Icon
+			BufferedImage resizedChargeIcon = new BufferedImage(chargeIcon.getIconWidth(), chargeIcon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+			final Graphics2D g = resizedChargeIcon.createGraphics();
+			g.drawImage(chargeIcon.getImage(), 1, 1, null);
+			if (settings.isResizeChargeSymbol())
+				resizedChargeIcon = ImageResizer.resizeAdvanced(resizedChargeIcon, settings.getResizeChargeSymbolHeight());
+
+			final int w = resizedChargeIcon.getWidth();
+			final int h = resizedChargeIcon.getHeight();
 			final int x = 1 + settings.getIconXOffset() + img.getWidth() / 2 - w / 2;
 			final int y = img.getHeight() / 2 - h / 2 + settings.getIconYOffset();
-			g2d.drawImage(chargeIcon.getImage(), x, y, null);
+			g2d.drawImage(resizedChargeIcon, x, y, null);
 		}
 	}
 

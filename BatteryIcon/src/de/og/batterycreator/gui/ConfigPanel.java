@@ -67,6 +67,9 @@ public class ConfigPanel extends JPanel {
 
 	SliderAndLabel sliderReduceOn100 = new SliderAndLabel(-5, 0);
 
+	SliderAndLabel sliderResizeChargeSymbol = new SliderAndLabel(15, 30);
+	JCheckBox cboxResizeChargeSymbol = createCheckbox("resize Charge Symbol to: (pixel)", " Resize the Charge Symbol to make it fit better");
+
 	JCheckBox cboxUseAdvResize = createCheckbox("Use advanced Resize-Algorithm",
 			"(Experimental) Advanced Resize-Algorith...might give better results on small imagesizes!?");
 
@@ -166,6 +169,10 @@ public class ConfigPanel extends JPanel {
 		builder.add(slidericonYOffset, cc.xyw(6, row, 1));
 		builder.add(slidericonYOffset.getValueLabel(), cc.xyw(8, row, 1));
 
+		builder.add(cboxResizeChargeSymbol, cc.xyw(2, ++row, 3));
+		builder.add(sliderResizeChargeSymbol, cc.xyw(6, row, 1));
+		builder.add(sliderResizeChargeSymbol.getValueLabel(), cc.xyw(8, row, 1));
+
 		builder.add(createGroupLabel("Battery Icon..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 
@@ -197,7 +204,8 @@ public class ConfigPanel extends JPanel {
 
 		builder.add(createGroupLabel("Resizing, Filenames, Output ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel("Choose your ROM's resolution"), cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel("Choose your ROM's resolution"), cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("Rom Presets"), cc.xyw(6, row, 3));
 		builder.add(zipResolutionFolderCombo, cc.xyw(2, ++row, 3));
 		builder.add(romPresetCombo, cc.xyw(6, row, 3));
 		builder.add(createBlueDeviderLabel("FileName-Pattern Nomal / Charge"), cc.xyw(2, ++row, 7));
@@ -317,6 +325,9 @@ public class ConfigPanel extends JPanel {
 		sliderFontXOffset.setValue(settings.getFontXOffset());
 		sliderFontYOffset.setValue(settings.getFontYOffset());
 		sliderReduceOn100.setValue(settings.getReduceFontOn100());
+
+		sliderResizeChargeSymbol.setValue(settings.getResizeChargeSymbolHeight());
+		cboxResizeChargeSymbol.setSelected(settings.isResizeChargeSymbol());
 		validateControls();
 		this.repaint();
 	}
@@ -359,6 +370,9 @@ public class ConfigPanel extends JPanel {
 		settings.setReduceFontOn100(sliderReduceOn100.getValue());
 		settings.setIconXOffset(slidericonXOffset.getValue());
 		settings.setIconYOffset(slidericonYOffset.getValue());
+
+		settings.setResizeChargeSymbol(cboxResizeChargeSymbol.isSelected());
+		settings.setResizeChargeSymbolHeight(sliderResizeChargeSymbol.getValue());
 		return settings;
 	}
 
@@ -378,6 +392,8 @@ public class ConfigPanel extends JPanel {
 		sliderFontYOffset.setEnabled(cboxShowFont.isSelected());
 		sliderReduceOn100.setEnabled(cboxShowFont.isSelected());
 		romPresetCombo.setSelectedIndex(0);
+		sliderResizeChargeSymbol.setEnabled(cboxShowChargeSymbol.isSelected() && cboxResizeChargeSymbol.isSelected());
+		cboxResizeChargeSymbol.setEnabled(cboxShowChargeSymbol.isSelected());
 	}
 
 	public void enableSupportedFeatures(final boolean supportsFlip, final boolean suppoertsStrokewidth) {

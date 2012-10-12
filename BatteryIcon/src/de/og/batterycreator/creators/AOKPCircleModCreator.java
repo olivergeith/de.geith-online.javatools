@@ -37,7 +37,7 @@ public class AOKPCircleModCreator extends DefaultCreator {
 		final Graphics2D g2d = initGrafics2D(img);
 
 		g2d.setColor(settings.getIconColorInActiv());
-		final int gap = 4;
+		final int gap = 8;
 		final int arcs = 8;
 		final int onearc = 360 / arcs;
 

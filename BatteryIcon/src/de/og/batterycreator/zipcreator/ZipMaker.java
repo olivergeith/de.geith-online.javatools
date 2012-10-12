@@ -13,6 +13,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
+import og.basics.gui.file.FileDialogs;
 import og.basics.gui.tracepanel.ITracer;
 
 public class ZipMaker {
@@ -66,8 +67,19 @@ public class ZipMaker {
 
 	public void addFilesToArchive(final Vector<String> files2add, final String pathWithinArchive, final String outzipName) throws Exception {
 		// defining output zip
-		final File outzipFile = new File(OUT_DIR + outzipName + "_" + getTimestamp() + ".zip");
 		final ZipFile zipSrc = new ZipFile(template);
+
+		// Verzeichnis anlegen
+		final File pa = new File(OUT_DIR);
+		if (!pa.exists())
+			pa.mkdirs();
+		// ausgabezipname vorbelegen
+		File outzipFile = new File(OUT_DIR + outzipName + "_" + getTimestamp() + ".zip");
+		outzipFile = FileDialogs.saveFile(pa, outzipFile, ".zip", "Save flashable Zip");
+		if (outzipFile == null) {
+			zipSrc.close();
+			return;
+		}
 
 		traceInfo("ZipCreator: Opening Output-Zip " + outzipFile.getPath());
 		final ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(outzipFile));

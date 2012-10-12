@@ -26,7 +26,6 @@ import og.basics.gui.icon.CommonIconProvider;
 import og.basics.gui.tracepanel.ITracer;
 import de.og.batterycreator.creators.AOKPCircleModCreator;
 import de.og.batterycreator.creators.AppleBatteryCreator;
-import de.og.batterycreator.creators.Arc2Creator;
 import de.og.batterycreator.creators.ArcCreator;
 import de.og.batterycreator.creators.ArcDecimalCreator;
 import de.og.batterycreator.creators.ArcQuaterCreator2;
@@ -64,8 +63,9 @@ public class IconCreatingPanel extends JPanel {
 	}
 
 	public void fillCreatorList() {
+		// creators.add(new ArcCreator());
+		// creators.add(new Arc2Creator());
 		creators.add(new ArcCreator());
-		creators.add(new Arc2Creator());
 		creators.add(new ArcSunCreator());
 		creators.add(new ArcQuaterCreator2());
 		creators.add(new ArcDecimalCreator());
@@ -205,11 +205,7 @@ public class IconCreatingPanel extends JPanel {
 		}
 
 		public void actionPerformed(final ActionEvent arg0) {
-			final int n = JOptionPane.showConfirmDialog(IconCreatingPanel.this, "Would you like to create a flashable zip now ?", "Create Flashable-Zip...",
-					JOptionPane.YES_NO_OPTION);
-			if (n == JOptionPane.YES_OPTION) {
-				doZip();
-			}
+			doZip();
 		}
 	}
 
@@ -279,7 +275,7 @@ public class IconCreatingPanel extends JPanel {
 
 			final JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 			if (value instanceof DefaultCreator) {
-				renderer.setBackground(Color.darkGray.darker().darker());
+				renderer.setBackground(Color.black);
 				renderer.setForeground(Color.white);
 				final DefaultCreator creator = creatorBox.getItemAt(index);
 				if (creator != null && renderer.getIcon() == null) {

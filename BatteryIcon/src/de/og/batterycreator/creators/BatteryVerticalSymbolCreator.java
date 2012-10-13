@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 
 public class BatteryVerticalSymbolCreator extends DefaultCreator {
 
-	protected static String path = "./pngs/batteryverticalsymbol";
 	protected static String name = "BatteryVerticalSymbol";
 
 	@Override
@@ -53,16 +52,6 @@ public class BatteryVerticalSymbolCreator extends DefaultCreator {
 		// Filewriting
 		img = writeFile(percentage, charge, img);
 		return new ImageIcon(img);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.og.creators.DefaultCreator#getPath()
-	 */
-	@Override
-	public String getPath() {
-		return path;
 	}
 
 	@Override

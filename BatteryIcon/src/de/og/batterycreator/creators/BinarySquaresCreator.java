@@ -9,13 +9,7 @@ import javax.swing.ImageIcon;
 
 public class BinarySquaresCreator extends DefaultCreator {
 
-	protected static String path = "./pngs/binarysquares";
 	protected static String name = "BinarySquaresBattery";
-
-	@Override
-	public String getPath() {
-		return path;
-	}
 
 	@Override
 	public ImageIcon createImage(final int percentage, final boolean charge) {

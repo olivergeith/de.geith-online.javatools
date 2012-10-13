@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 
 public class DecimalBarCreator extends DefaultCreator {
 
-	protected static String path = "./pngs/decimalbar";
 	protected static String name = "DecimalBarBattery";
 
 	public DecimalBarCreator() {
@@ -49,16 +48,6 @@ public class DecimalBarCreator extends DefaultCreator {
 		// Filewriting
 		img = writeFile(percentage, charge, img);
 		return new ImageIcon(img);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.og.creators.DefaultCreator#getPath()
-	 */
-	@Override
-	public String getPath() {
-		return path;
 	}
 
 	@Override

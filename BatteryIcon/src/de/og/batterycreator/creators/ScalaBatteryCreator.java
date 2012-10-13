@@ -11,7 +11,6 @@ import javax.swing.ImageIcon;
 
 public class ScalaBatteryCreator extends DefaultCreator {
 
-	protected static String path = "./pngs/scalabattery";
 	protected static String name = "ScalaBattery";
 
 	private BufferedImage scala;
@@ -102,16 +101,6 @@ public class ScalaBatteryCreator extends DefaultCreator {
 		}
 
 		return scala;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.og.creators.DefaultCreator#getPath()
-	 */
-	@Override
-	public String getPath() {
-		return path;
 	}
 
 	@Override

@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 
 public class AppleBatteryCreator extends DefaultCreator {
 
-	protected static String path = "./pngs/apfelbattery";
 	protected static String name = "ApfelBattery";
 
 	public AppleBatteryCreator() {
@@ -50,16 +49,6 @@ public class AppleBatteryCreator extends DefaultCreator {
 		// Filewriting
 		img = writeFile(percentage, charge, img);
 		return new ImageIcon(img);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.og.creators.DefaultCreator#getPath()
-	 */
-	@Override
-	public String getPath() {
-		return path;
 	}
 
 	@Override

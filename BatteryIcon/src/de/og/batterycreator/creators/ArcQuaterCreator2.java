@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 
 public class ArcQuaterCreator2 extends DefaultCreator {
 
-	protected static String path = "./pngs/arcquater";
 	protected static String name = "ArcQuaterBattery";
 
 	/*
@@ -37,16 +36,6 @@ public class ArcQuaterCreator2 extends DefaultCreator {
 		// Filewriting
 		img = writeFile(percentage, charge, img);
 		return new ImageIcon(img);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.og.creators.DefaultCreator#getPath()
-	 */
-	@Override
-	public String getPath() {// TODO Auto-generated method stub
-		return path;
 	}
 
 	@Override

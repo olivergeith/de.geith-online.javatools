@@ -9,7 +9,6 @@ import javax.swing.ImageIcon;
 
 public class BrickBattCreator extends DefaultCreator {
 
-	protected static String path = "./pngs/brickbatt";
 	protected static String name = "BrickBattery";
 
 	/*
@@ -51,16 +50,6 @@ public class BrickBattCreator extends DefaultCreator {
 		}
 		g2d.setColor(col);
 		g2d.fillRect(rect.x, rect.y, rect.width, rect.height);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.og.creators.DefaultCreator#getPath()
-	 */
-	@Override
-	public String getPath() {// TODO Auto-generated method stub
-		return path;
 	}
 
 	@Override

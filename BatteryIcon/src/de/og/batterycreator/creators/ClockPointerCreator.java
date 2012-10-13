@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 
 public class ClockPointerCreator extends DefaultCreator {
 
-	protected static String path = "./pngs/clockpointerbattery";
 	protected static String name = "ClockPointerBattery";
 
 	public ClockPointerCreator() {
@@ -68,16 +67,6 @@ public class ClockPointerCreator extends DefaultCreator {
 
 		if (winkel == percentage)
 			g2d.drawLine(21, 21, 21 + x, 21 + y);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.og.creators.DefaultCreator#getPath()
-	 */
-	@Override
-	public String getPath() {// TODO Auto-generated method stub
-		return path;
 	}
 
 	@Override

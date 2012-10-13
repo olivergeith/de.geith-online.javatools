@@ -9,7 +9,6 @@ import javax.swing.ImageIcon;
 
 public class AOKPCircleModCreator extends DefaultCreator {
 
-	protected static String path = "./pngs/aokpcirclemod";
 	protected static String name = "AOKPCircleModBattery";
 
 	public AOKPCircleModCreator() {
@@ -70,16 +69,6 @@ public class AOKPCircleModCreator extends DefaultCreator {
 		// Filewriting
 		img = writeFile(percentage, charge, img);
 		return new ImageIcon(img);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.og.creators.DefaultCreator#getPath()
-	 */
-	@Override
-	public String getPath() {// TODO Auto-generated method stub
-		return path;
 	}
 
 	@Override

@@ -18,6 +18,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
@@ -44,48 +45,53 @@ import de.og.batterycreator.creators.DecimalBar2Creator;
 import de.og.batterycreator.creators.DecimalBarCreator;
 import de.og.batterycreator.creators.DefaultCreator;
 import de.og.batterycreator.creators.ScalaBatteryCreator;
+import de.og.batterycreator.guiwifi.WifiCreatingPanel;
 import de.og.batterycreator.zipcreator.ZipMaker;
 
 public class IconCreatingPanel extends JPanel {
 	private static final long serialVersionUID = -2956273745014471932L;
-	private final JList<String> iconList = new JList<String>();
-	private JComboBox<DefaultCreator> creatorBox;
-	private final ConfigPanel configPane = new ConfigPanel();
-	private DefaultCreator activCreator = null;
-
-	private final Vector<DefaultCreator> creators = new Vector<DefaultCreator>();
 	private final ImageIcon zipIcon = new ImageIcon(this.getClass().getResource("zip.png"));
-	private final ITracer tracer;
-	private final IconOverviewPanel overviewPanel;
+	private final ImageIcon overIcon = new ImageIcon(this.getClass().getResource("over.png"));
+	private final ImageIcon listIcon = new ImageIcon(this.getClass().getResource("list.png"));
 
-	public IconCreatingPanel(final ITracer tracer, final IconOverviewPanel overviewPanel) {
+	private final JList<String> iconList = new JList<String>();
+	private JComboBox<DefaultCreator> iconCreatorBox;
+	private final ConfigPanel configPane = new ConfigPanel();
+	private DefaultCreator activIconCreator = null;
+	// private final WifiCreatingPanel wifiPanel = new WifiCreatingPanel();
+	private final IconOverviewPanel iconOverviewPanel = new IconOverviewPanel();
+	private final Vector<DefaultCreator> iconCreators = new Vector<DefaultCreator>();
+	private final ITracer tracer;
+
+	private final WifiCreatingPanel wifiCreatingPanel = new WifiCreatingPanel();
+
+	public IconCreatingPanel(final ITracer tracer) {
 		this.tracer = tracer;
-		this.overviewPanel = overviewPanel;
 		initUI();
 	}
 
 	public void fillCreatorList() {
 		// creators.add(new ArcCreator());
 		// creators.add(new Arc2Creator());
-		creators.add(new ArcCreator());
-		creators.add(new ArcSunCreator());
-		creators.add(new ArcQuaterCreator2());
-		creators.add(new ArcDecimalCreator());
-		creators.add(new AOKPCircleModCreator());
-		creators.add(new BrickBattCreator());
-		creators.add(new BrickBattNoGapCreator());
-		creators.add(new BrickDecimalCreator());
-		creators.add(new BrickDecimal2Creator());
-		creators.add(new DecimalBarCreator());
-		creators.add(new DecimalBar2Creator());
-		creators.add(new BinaryBarsCreator());
-		creators.add(new BinarySquaresCreator());
-		creators.add(new BatterySymbolCreator());
-		creators.add(new BatteryVerticalSymbolCreator());
-		creators.add(new AppleBatteryCreator());
-		creators.add(new ClockCreator());
-		creators.add(new ClockPointerCreator());
-		creators.add(new ScalaBatteryCreator());
+		iconCreators.add(new ArcCreator());
+		iconCreators.add(new ArcSunCreator());
+		iconCreators.add(new ArcQuaterCreator2());
+		iconCreators.add(new ArcDecimalCreator());
+		iconCreators.add(new AOKPCircleModCreator());
+		iconCreators.add(new BrickBattCreator());
+		iconCreators.add(new BrickBattNoGapCreator());
+		iconCreators.add(new BrickDecimalCreator());
+		iconCreators.add(new BrickDecimal2Creator());
+		iconCreators.add(new DecimalBarCreator());
+		iconCreators.add(new DecimalBar2Creator());
+		iconCreators.add(new BinaryBarsCreator());
+		iconCreators.add(new BinarySquaresCreator());
+		iconCreators.add(new BatterySymbolCreator());
+		iconCreators.add(new BatteryVerticalSymbolCreator());
+		iconCreators.add(new AppleBatteryCreator());
+		iconCreators.add(new ClockCreator());
+		iconCreators.add(new ClockPointerCreator());
+		iconCreators.add(new ScalaBatteryCreator());
 	}
 
 	private void initUI() {
@@ -98,21 +104,25 @@ public class IconCreatingPanel extends JPanel {
 		final JScrollPane scroller = new JScrollPane();
 		scroller.add(iconList);
 		scroller.getViewport().setView(iconList);
-		scroller.setPreferredSize(new Dimension(400, 600));
+		scroller.setPreferredSize(new Dimension(800, 600));
 
-		// final JPanel centerPanel = new JPanel(new BorderLayout());
-		// centerPanel.add(scroller, BorderLayout.CENTER);
-		// centerPanel.add(new JLabel(logoIcon), BorderLayout.SOUTH);
-		add(scroller, BorderLayout.CENTER);
+		final JTabbedPane tabPane = new JTabbedPane();
+		tabPane.addTab("Battery Icon Overview", overIcon, iconOverviewPanel, "Get an Overview of your icons");
+		tabPane.addTab("Battery Icon List", listIcon, scroller, "Get an Overview of your icons");
+		tabPane.addTab("Wifi Icon Overview", listIcon, wifiCreatingPanel, "Get an Overview of your icons");
+
+		add(tabPane, BorderLayout.CENTER);
 		add(configPane, BorderLayout.WEST);
+		// hier kommen die Wifif Icons ins Spiel
+		// add(wifiPanel, BorderLayout.EAST);
 
 		// Comobox mit creatoren anzeigen
-		creatorBox = new JComboBox<DefaultCreator>(creators);
-		creatorBox.addActionListener(new ActionListener() {
+		iconCreatorBox = new JComboBox<DefaultCreator>(iconCreators);
+		iconCreatorBox.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(final ActionEvent arg0) {
-				final DefaultCreator cre = (DefaultCreator) creatorBox.getSelectedItem();
+				final DefaultCreator cre = (DefaultCreator) iconCreatorBox.getSelectedItem();
 
 				if (cre != null) {
 					configPane.setSettings(cre.getSettings());
@@ -120,11 +130,11 @@ public class IconCreatingPanel extends JPanel {
 				}
 			}
 		});
-		creatorBox.setSelectedIndex(0);
-		creatorBox.setToolTipText("Choose your IconCreator...then press play-button");
-		creatorBox.setRenderer(new CreatorListCellRenderer());
-		creatorBox.setMaximumRowCount(10);
-		activCreator = (DefaultCreator) creatorBox.getSelectedItem();
+		iconCreatorBox.setSelectedIndex(0);
+		iconCreatorBox.setToolTipText("Choose your IconCreator...then press play-button");
+		iconCreatorBox.setRenderer(new CreatorListCellRenderer());
+		iconCreatorBox.setMaximumRowCount(10);
+		activIconCreator = (DefaultCreator) iconCreatorBox.getSelectedItem();
 		makeMenuAndButtonBar();
 	}
 
@@ -141,7 +151,7 @@ public class IconCreatingPanel extends JPanel {
 		toolBar.add(loadAktion);
 		toolBar.add(saveAktion);
 		toolBar.addSeparator();
-		toolBar.add(creatorBox);
+		toolBar.add(iconCreatorBox);
 		toolBar.add(createAktion);
 		toolBar.add(zipAktion);
 		add(toolBar, BorderLayout.NORTH);
@@ -155,16 +165,20 @@ public class IconCreatingPanel extends JPanel {
 		final Vector<String> files2add = new Vector<String>();
 
 		for (int i = 0; i <= 100; i++) {
-			files2add.add(activCreator.getFilenameAndPath(i, false));
-			files2add.add(activCreator.getFilenameAndPath(i, true));
+			files2add.add(activIconCreator.getFilenameAndPath(i, false));
+			files2add.add(activIconCreator.getFilenameAndPath(i, true));
 		}
-		files2add.add(activCreator.getFilenameAndPathFull(false));
-		files2add.add(activCreator.getFilenameAndPathFull(true));
+		files2add.add(activIconCreator.getFilenameAndPathFull(false));
+		files2add.add(activIconCreator.getFilenameAndPathFull(true));
 
 		try {
-			zipper.addFilesToArchive(files2add, activCreator.getSettings().getFolderWithinZip(), activCreator.getName());
+			final boolean saved = zipper.addFilesToArchive(files2add, activIconCreator.getSettings().getFolderWithinZip(), activIconCreator.getName());
 			tracer.appendSuccessText("Everything seems ok....:-)");
-			JOptionPane.showMessageDialog(IconCreatingPanel.this, "Zip was created successfully", "Zip creating", JOptionPane.INFORMATION_MESSAGE);
+			if (saved == true) {
+				tracer.appendSuccessText("Everything seems ok....:-)");
+				JOptionPane.showMessageDialog(IconCreatingPanel.this, "Zip was created successfully", "Zip creating", JOptionPane.INFORMATION_MESSAGE);
+			} else
+				tracer.appendSuccessText("Zipping was aborted");
 		} catch (final Exception e) {
 			tracer.appendErrorText("There was a Problem creating the Zip: " + e.getMessage());
 			tracer.appendErrorText("There was a Problem creating the Zip: " + e.getStackTrace());
@@ -178,14 +192,14 @@ public class IconCreatingPanel extends JPanel {
 	 * Creates the desired Icons ;-)
 	 */
 	private void create() {
-		activCreator = (DefaultCreator) creatorBox.getSelectedItem();
-		activCreator.setSettings(configPane.getSettings());
-		activCreator.createAllImages();
+		activIconCreator = (DefaultCreator) iconCreatorBox.getSelectedItem();
+		activIconCreator.setSettings(configPane.getSettings());
+		activIconCreator.createAllImages();
 
 		iconList.removeAll();
-		iconList.setListData(activCreator.getFilenames());
+		iconList.setListData(activIconCreator.getFilenames());
 		iconList.repaint();
-		overviewPanel.setOverview(activCreator.getOverviewIcon());
+		iconOverviewPanel.setOverview(activIconCreator.getOverviewIcon());
 		// pack();
 	}
 
@@ -221,9 +235,9 @@ public class IconCreatingPanel extends JPanel {
 		}
 
 		public void actionPerformed(final ActionEvent arg0) {
-			if (activCreator != null) {
-				activCreator.loadSettings();
-				configPane.setSettings(activCreator.getSettings());
+			if (activIconCreator != null) {
+				activIconCreator.loadSettings();
+				configPane.setSettings(activIconCreator.getSettings());
 			}
 		}
 	}
@@ -236,9 +250,9 @@ public class IconCreatingPanel extends JPanel {
 		}
 
 		public void actionPerformed(final ActionEvent arg0) {
-			if (activCreator != null) {
-				activCreator.setSettings(configPane.getSettings());
-				activCreator.persistSettings();
+			if (activIconCreator != null) {
+				activIconCreator.setSettings(configPane.getSettings());
+				activIconCreator.persistSettings();
 			}
 		}
 	}
@@ -261,15 +275,15 @@ public class IconCreatingPanel extends JPanel {
 				renderer.setBackground(Color.black);
 				renderer.setForeground(Color.white);
 				renderer.setBorder(new EmptyBorder(1, 1, 1, 1));
-				if (activCreator != null)
-					renderer.setIcon(activCreator.getIcons().elementAt(index));
+				if (activIconCreator != null)
+					renderer.setIcon(activIconCreator.getIcons().elementAt(index));
 			}
 			return renderer;
 		}
 	}
 
 	/**
-	 * Renderer für IconList
+	 * Renderer für Creator Combobox
 	 */
 	private class CreatorListCellRenderer implements ListCellRenderer<Object> {
 		protected DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
@@ -281,7 +295,7 @@ public class IconCreatingPanel extends JPanel {
 			if (value instanceof DefaultCreator) {
 				renderer.setBackground(Color.black);
 				renderer.setForeground(Color.white);
-				final DefaultCreator creator = creatorBox.getItemAt(index);
+				final DefaultCreator creator = iconCreatorBox.getItemAt(index);
 				if (creator != null && renderer.getIcon() == null) {
 					final ImageIcon icon = creator.createImage(45, false);
 					renderer.setIcon(icon);
@@ -292,7 +306,7 @@ public class IconCreatingPanel extends JPanel {
 	}
 
 	public DefaultCreator getActivCreator() {
-		return activCreator;
+		return activIconCreator;
 	}
 
 }

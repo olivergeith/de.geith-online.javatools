@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 
 public class ClockCreator extends DefaultCreator {
 
-	protected static String path = "./pngs/clockbattery";
 	protected static String name = "ClockBattery";
 
 	/*
@@ -51,16 +50,6 @@ public class ClockCreator extends DefaultCreator {
 		final int y = (int) Math.round(r * Math.cos(w * Math.PI / 180));
 
 		g2d.fillArc(19 + x, 19 + y, 4, 4, 0, 360);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.og.creators.DefaultCreator#getPath()
-	 */
-	@Override
-	public String getPath() {// TODO Auto-generated method stub
-		return path;
 	}
 
 	@Override

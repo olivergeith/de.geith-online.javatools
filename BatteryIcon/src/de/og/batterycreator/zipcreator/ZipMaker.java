@@ -65,7 +65,7 @@ public class ZipMaker {
 		this.template = template;
 	}
 
-	public void addFilesToArchive(final Vector<String> files2add, final String pathWithinArchive, final String outzipName) throws Exception {
+	public boolean addFilesToArchive(final Vector<String> files2add, final String pathWithinArchive, final String outzipName) throws Exception {
 		// defining output zip
 		final ZipFile zipSrc = new ZipFile(template);
 
@@ -78,7 +78,7 @@ public class ZipMaker {
 		outzipFile = FileDialogs.saveFile(pa, outzipFile, ".zip", "Save flashable Zip");
 		if (outzipFile == null) {
 			zipSrc.close();
-			return;
+			return false;
 		}
 
 		traceInfo("ZipCreator: Opening Output-Zip " + outzipFile.getPath());
@@ -119,9 +119,7 @@ public class ZipMaker {
 		zos.close();
 		traceInfo("ZipCreator: Closing Template-Zip " + template.getPath());
 		zipSrc.close();
-		// zipFile.delete();
-		// outzipFile.renameTo(zipFile);
-
+		return true;
 	}
 
 	private final static String getTimestamp() {

@@ -1,0 +1,18 @@
+New Version of [B][SIZE="4"][URL="http://forum.xda-developers.com/showthread.php?t=1918500"]The Battery Icon Creator[/URL][/SIZE][/B] out !!!
+
+[SIZE="4"][B]Changelog:[/B][/SIZE]
+[COLOR="Blue"][B]Oct-10-2012[/B] : Release 8.0[/COLOR]
+[LIST]
+[*]Save as Dialog when creating a flashable zip
+[*]finetuning of charge icon position
+[*]resizing of charge icon within battery symbol
+[*]tuned AOKP-Style
+[*]tuned ArcBattery-Style
+[*]little gui layout changes
+[*]removed the wipe dalvic from template ...no more long delays after flashing any more !
+[*]Rootbox and Original AOKP added to RomPresets
+[*]Lots of things I forgot
+[*]New DecimalBarBattery style(s)
+[/LIST]
+
+Check it out !

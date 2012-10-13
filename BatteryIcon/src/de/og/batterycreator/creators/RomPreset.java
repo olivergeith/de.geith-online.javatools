@@ -18,6 +18,7 @@ public class RomPreset {
 				StyleSettings.ICON_CHARGE_NAME_AOKP));
 		presets.add(new RomPreset("HydraH2O ICS 1.x", DrawableComboBox.FOLDER_HDPI, StyleSettings.ICON_NAME_AOKP, StyleSettings.ICON_CHARGE_NAME_AOKP));
 		presets.add(new RomPreset("RootBox JB 2.x", DrawableComboBox.FOLDER_HDPI, StyleSettings.ICON_NAME_AOKP, StyleSettings.ICON_CHARGE_NAME_AOKP));
+		presets.add(new RomPreset("Original AOKP JB", DrawableComboBox.FOLDER_HDPI, StyleSettings.ICON_NAME_AOKP, StyleSettings.ICON_CHARGE_NAME_AOKP));
 		presets.add(new RomPreset("Stock ROM ICS incl. JKay", DrawableComboBox.FOLDER_HDPI, StyleSettings.ICON_NAME_STOCK_ICS_JKAY,
 				StyleSettings.ICON_CHARGE_NAME_STOCK_ICS_JKAY));
 	}

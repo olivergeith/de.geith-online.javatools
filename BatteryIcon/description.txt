@@ -29,7 +29,9 @@ Now it has grown up !!!
 [*]tuned ArcBattery-Style
 [*]little gui layout changes
 [*]removed the wipe dalvic from template ...no more long delays after flashing any more !
-[*]Rootbox added to RomPresets
+[*]Rootbox and Original AOKP added to RomPresets
+[*]Lots of things I forgot
+[*]New DecimalBarBattery style
 [/LIST]
 
 [COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]

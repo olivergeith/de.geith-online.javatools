@@ -40,6 +40,8 @@ import de.og.batterycreator.creators.BrickDecimal2Creator;
 import de.og.batterycreator.creators.BrickDecimalCreator;
 import de.og.batterycreator.creators.ClockCreator;
 import de.og.batterycreator.creators.ClockPointerCreator;
+import de.og.batterycreator.creators.DecimalBar2Creator;
+import de.og.batterycreator.creators.DecimalBarCreator;
 import de.og.batterycreator.creators.DefaultCreator;
 import de.og.batterycreator.creators.ScalaBatteryCreator;
 import de.og.batterycreator.zipcreator.ZipMaker;
@@ -74,6 +76,8 @@ public class IconCreatingPanel extends JPanel {
 		creators.add(new BrickBattNoGapCreator());
 		creators.add(new BrickDecimalCreator());
 		creators.add(new BrickDecimal2Creator());
+		creators.add(new DecimalBarCreator());
+		creators.add(new DecimalBar2Creator());
 		creators.add(new BinaryBarsCreator());
 		creators.add(new BinarySquaresCreator());
 		creators.add(new BatterySymbolCreator());

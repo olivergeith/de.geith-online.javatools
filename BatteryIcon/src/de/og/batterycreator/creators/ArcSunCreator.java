@@ -28,13 +28,13 @@ public class ArcSunCreator extends DefaultCreator {
 		final Graphics2D g2d = initGrafics2D(img);
 
 		g2d.setColor(settings.getIconColorInActiv());
-		g2d.fillArc(2, 2, 37, 37, 0, 360);
+		g2d.fillArc(1, 1, 39, 39, 0, 360);
 
 		g2d.setColor(settings.getActivIconColor(percentage, charge));
 		if (settings.isFlip())
-			g2d.fillArc(2, 2, 37, 37, 90, -Math.round(percentage * (360f / 100f)));
+			g2d.fillArc(0, 0, 41, 41, 90, -Math.round(percentage * (360f / 100f)));
 		else
-			g2d.fillArc(2, 2, 37, 37, 90, +Math.round(percentage * (360f / 100f)));
+			g2d.fillArc(0, 0, 41, 41, 90, +Math.round(percentage * (360f / 100f)));
 
 		// for later customisation...
 		// g2d.setColor(settings.getIconColorInActiv());

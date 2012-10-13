@@ -337,7 +337,7 @@ public abstract class DefaultCreator {
 				}
 			}
 			final ImageIcon img = iconMap.elementAt(100);
-			g2d.drawImage(img.getImage(), 1 + 0 * iw, 10 * (ih + 1) + offsetOben, null);
+			g2d.drawImage(img.getImage(), 1 + 0 * iw, 1 + 10 * (ih + 1) + offsetOben, null);
 
 			// // Charge Icons
 			for (int z = 0; z < 10; z++) {
@@ -348,7 +348,7 @@ public abstract class DefaultCreator {
 				}
 			}
 			final ImageIcon img100c = iconMap.elementAt(201);
-			g2d.drawImage(img100c.getImage(), 1 + 10 * (iw + 1) + 0 * iw, 10 * (ih + 1) + offsetOben, null);
+			g2d.drawImage(img100c.getImage(), 1 + 10 * (iw + 1) + 0 * iw, 1 + 10 * (ih + 1) + offsetOben, null);
 
 			writeOverviewFile(over);
 			return new ImageIcon(over);

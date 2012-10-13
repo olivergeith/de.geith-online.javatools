@@ -17,7 +17,6 @@ import og.basics.gui.icon.CommonIconProvider;
 import og.basics.gui.tracepanel.DefaultTextFileSaveHandler;
 import og.basics.gui.tracepanel.TracePanel;
 import de.og.batterycreator.gui.IconCreatingPanel;
-import de.og.batterycreator.gui.IconOverviewPanel;
 
 public class IconCreatorFrame extends JFrame {
 
@@ -25,7 +24,7 @@ public class IconCreatorFrame extends JFrame {
 	public static final String VERSION_NR = "8.0";
 
 	private static final long serialVersionUID = 1L;
-	private static final ImageIcon logoIcon = new ImageIcon(IconCreatorFrame.class.getResource("logo.png"));
+	private final ImageIcon logoIcon = new ImageIcon(this.getClass().getResource("logo.png"));
 	private final ImageIcon errorIcon = new ImageIcon(this.getClass().getResource("error.png"));
 	private final ImageIcon cfgIcon = new ImageIcon(this.getClass().getResource("cfg.png"));
 	// private final ImageIcon zipIcon = new
@@ -38,8 +37,7 @@ public class IconCreatorFrame extends JFrame {
 
 	private BeendenAktion beendenAktion;
 	private AboutAktion aboutAktion;
-	private final IconOverviewPanel overviewPanel = new IconOverviewPanel();
-	private final IconCreatingPanel iconCreatingPanel = new IconCreatingPanel(tracer, overviewPanel);
+	private final IconCreatingPanel iconCreatingPanel = new IconCreatingPanel(tracer);
 	private final JMenuBar menuBar = new JMenuBar();
 
 	public static void main(final String[] args) {
@@ -53,7 +51,7 @@ public class IconCreatorFrame extends JFrame {
 		setTitle(APP_NAME + " ----- Version " + VERSION_NR);
 		setIconImage(logoIcon.getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(300, 100, 300, 850);
+		setBounds(300, 100, 300, 1280);
 		initUI();
 		setVisible(true);
 		pack();
@@ -86,7 +84,6 @@ public class IconCreatorFrame extends JFrame {
 	private JTabbedPane createTabbedPane() {
 		// Tabpane zusammenbasteln
 		tabPane.addTab("IconCreating", cfgIcon, iconCreatingPanel, "Create your icons here...");
-		tabPane.addTab("Overview-Image", cfgIcon, overviewPanel, "Get an Overview of your icons");
 		tabPane.addTab("TraceLog", errorIcon, tracer, "TraceLog");
 		return tabPane;
 	}

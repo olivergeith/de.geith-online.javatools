@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 
 public class ArcSunCreator extends DefaultCreator {
 
-	protected static String path = "./pngs/arcsun";
 	protected static String name = "ArcSunBattery";
 
 	@Override
@@ -45,16 +44,6 @@ public class ArcSunCreator extends DefaultCreator {
 		// Filewriting
 		img = writeFile(percentage, charge, img);
 		return new ImageIcon(img);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.og.creators.DefaultCreator#getPath()
-	 */
-	@Override
-	public String getPath() {// TODO Auto-generated method stub
-		return path;
 	}
 
 	@Override

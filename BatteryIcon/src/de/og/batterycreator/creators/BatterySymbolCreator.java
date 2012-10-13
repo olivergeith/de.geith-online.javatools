@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 
 public class BatterySymbolCreator extends DefaultCreator {
 
-	protected static String path = "./pngs/batterysymbol";
 	protected static String name = "BatterySymbol";
 
 	/*
@@ -42,19 +41,8 @@ public class BatterySymbolCreator extends DefaultCreator {
 		return new ImageIcon(img);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.og.creators.DefaultCreator#getPath()
-	 */
-	@Override
-	public String getPath() {
-		return path;
-	}
-
 	@Override
 	public String toString() {
 		return name;
 	}
-
 }

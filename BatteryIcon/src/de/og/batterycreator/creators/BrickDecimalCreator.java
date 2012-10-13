@@ -9,7 +9,6 @@ import javax.swing.ImageIcon;
 
 public class BrickDecimalCreator extends DefaultCreator {
 
-	protected static String path = "./pngs/decimalbrick";
 	protected static String name = "DecimalBrickBattery";
 
 	/*
@@ -67,16 +66,6 @@ public class BrickDecimalCreator extends DefaultCreator {
 		}
 		g2d.setColor(col);
 		g2d.fillRect(rect.x, rect.y, rect.width, rect.height);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.og.creators.DefaultCreator#getPath()
-	 */
-	@Override
-	public String getPath() {
-		return path;
 	}
 
 	@Override

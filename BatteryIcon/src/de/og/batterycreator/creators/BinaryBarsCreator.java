@@ -9,13 +9,7 @@ import javax.swing.ImageIcon;
 
 public class BinaryBarsCreator extends DefaultCreator {
 
-	protected static String path = "./pngs/binarybars";
 	protected static String name = "BinaryBarBattery";
-
-	@Override
-	public String getPath() {
-		return path;
-	}
 
 	@Override
 	public ImageIcon createImage(final int percentage, final boolean charge) {

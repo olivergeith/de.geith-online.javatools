@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 
 public class ArcDecimalCreator extends DefaultCreator {
 
-	protected static String path = "./pngs/decimalarc";
 	protected static String name = "DecimalArcBattery";
 
 	/*
@@ -41,16 +40,6 @@ public class ArcDecimalCreator extends DefaultCreator {
 		img = writeFile(percentage, charge, img);
 		return new ImageIcon(img);
 
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.og.creators.DefaultCreator#getPath()
-	 */
-	@Override
-	public String getPath() {
-		return path;
 	}
 
 	@Override

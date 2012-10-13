@@ -18,6 +18,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
@@ -52,15 +53,16 @@ public class IconCreatingPanel extends JPanel {
 	private JComboBox<DefaultCreator> creatorBox;
 	private final ConfigPanel configPane = new ConfigPanel();
 	private DefaultCreator activCreator = null;
-
+	// private final WifiCreatingPanel wifiPanel = new WifiCreatingPanel();
+	private final IconOverviewPanel overviewPanel = new IconOverviewPanel();
 	private final Vector<DefaultCreator> creators = new Vector<DefaultCreator>();
 	private final ImageIcon zipIcon = new ImageIcon(this.getClass().getResource("zip.png"));
+	private final ImageIcon overIcon = new ImageIcon(this.getClass().getResource("over.png"));
+	private final ImageIcon listIcon = new ImageIcon(this.getClass().getResource("list.png"));
 	private final ITracer tracer;
-	private final IconOverviewPanel overviewPanel;
 
-	public IconCreatingPanel(final ITracer tracer, final IconOverviewPanel overviewPanel) {
+	public IconCreatingPanel(final ITracer tracer) {
 		this.tracer = tracer;
-		this.overviewPanel = overviewPanel;
 		initUI();
 	}
 
@@ -98,13 +100,16 @@ public class IconCreatingPanel extends JPanel {
 		final JScrollPane scroller = new JScrollPane();
 		scroller.add(iconList);
 		scroller.getViewport().setView(iconList);
-		scroller.setPreferredSize(new Dimension(400, 600));
+		scroller.setPreferredSize(new Dimension(800, 600));
 
-		// final JPanel centerPanel = new JPanel(new BorderLayout());
-		// centerPanel.add(scroller, BorderLayout.CENTER);
-		// centerPanel.add(new JLabel(logoIcon), BorderLayout.SOUTH);
-		add(scroller, BorderLayout.CENTER);
+		final JTabbedPane tabPane = new JTabbedPane();
+		tabPane.addTab("Overview-Image", overIcon, overviewPanel, "Get an Overview of your icons");
+		tabPane.addTab("IconList", listIcon, scroller, "Get an Overview of your icons");
+
+		add(tabPane, BorderLayout.CENTER);
 		add(configPane, BorderLayout.WEST);
+		// hier kommen die Wifif Icons ins Spiel
+		// add(wifiPanel, BorderLayout.EAST);
 
 		// Comobox mit creatoren anzeigen
 		creatorBox = new JComboBox<DefaultCreator>(creators);
@@ -269,7 +274,7 @@ public class IconCreatingPanel extends JPanel {
 	}
 
 	/**
-	 * Renderer für IconList
+	 * Renderer für Creator Combobox
 	 */
 	private class CreatorListCellRenderer implements ListCellRenderer<Object> {
 		protected DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();

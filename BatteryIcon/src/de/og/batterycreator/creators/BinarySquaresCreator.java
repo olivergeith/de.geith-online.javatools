@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-public class BinarySquaresCreator extends DefaultCreator {
+public class BinarySquaresCreator extends AbstractIconCreator {
 
 	protected static String name = "BinarySquaresBattery";
 

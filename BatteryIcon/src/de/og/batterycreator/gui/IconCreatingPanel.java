@@ -26,6 +26,7 @@ import javax.swing.border.EmptyBorder;
 import og.basics.gui.icon.CommonIconProvider;
 import og.basics.gui.tracepanel.ITracer;
 import de.og.batterycreator.creators.AOKPCircleModCreator;
+import de.og.batterycreator.creators.AbstractIconCreator;
 import de.og.batterycreator.creators.AppleBatteryCreator;
 import de.og.batterycreator.creators.ArcCreator;
 import de.og.batterycreator.creators.ArcDecimalCreator;
@@ -43,7 +44,6 @@ import de.og.batterycreator.creators.ClockCreator;
 import de.og.batterycreator.creators.ClockPointerCreator;
 import de.og.batterycreator.creators.DecimalBar2Creator;
 import de.og.batterycreator.creators.DecimalBarCreator;
-import de.og.batterycreator.creators.DefaultCreator;
 import de.og.batterycreator.creators.ScalaBatteryCreator;
 import de.og.batterycreator.guiwifi.WifiCreatingPanel;
 import de.og.batterycreator.zipcreator.ZipMaker;
@@ -55,12 +55,12 @@ public class IconCreatingPanel extends JPanel {
 	private final ImageIcon listIcon = new ImageIcon(this.getClass().getResource("list.png"));
 
 	private final JList<String> iconList = new JList<String>();
-	private JComboBox<DefaultCreator> iconCreatorBox;
+	private JComboBox<AbstractIconCreator> iconCreatorBox;
 	private final ConfigPanel configPane = new ConfigPanel();
-	private DefaultCreator activIconCreator = null;
+	private AbstractIconCreator activIconCreator = null;
 	// private final WifiCreatingPanel wifiPanel = new WifiCreatingPanel();
 	private final IconOverviewPanel iconOverviewPanel = new IconOverviewPanel();
-	private final Vector<DefaultCreator> iconCreators = new Vector<DefaultCreator>();
+	private final Vector<AbstractIconCreator> iconCreators = new Vector<AbstractIconCreator>();
 	private final ITracer tracer;
 
 	private final WifiCreatingPanel wifiCreatingPanel = new WifiCreatingPanel();
@@ -117,12 +117,12 @@ public class IconCreatingPanel extends JPanel {
 		// add(wifiPanel, BorderLayout.EAST);
 
 		// Comobox mit creatoren anzeigen
-		iconCreatorBox = new JComboBox<DefaultCreator>(iconCreators);
+		iconCreatorBox = new JComboBox<AbstractIconCreator>(iconCreators);
 		iconCreatorBox.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(final ActionEvent arg0) {
-				final DefaultCreator cre = (DefaultCreator) iconCreatorBox.getSelectedItem();
+				final AbstractIconCreator cre = (AbstractIconCreator) iconCreatorBox.getSelectedItem();
 
 				if (cre != null) {
 					configPane.setSettings(cre.getSettings());
@@ -134,7 +134,7 @@ public class IconCreatingPanel extends JPanel {
 		iconCreatorBox.setToolTipText("Choose your IconCreator...then press play-button");
 		iconCreatorBox.setRenderer(new CreatorListCellRenderer());
 		iconCreatorBox.setMaximumRowCount(10);
-		activIconCreator = (DefaultCreator) iconCreatorBox.getSelectedItem();
+		activIconCreator = (AbstractIconCreator) iconCreatorBox.getSelectedItem();
 		makeMenuAndButtonBar();
 	}
 
@@ -152,6 +152,7 @@ public class IconCreatingPanel extends JPanel {
 		toolBar.add(saveAktion);
 		toolBar.addSeparator();
 		toolBar.add(iconCreatorBox);
+		toolBar.add(wifiCreatingPanel.getCreatorBox());
 		toolBar.add(createAktion);
 		toolBar.add(zipAktion);
 		add(toolBar, BorderLayout.NORTH);
@@ -192,7 +193,7 @@ public class IconCreatingPanel extends JPanel {
 	 * Creates the desired Icons ;-)
 	 */
 	private void create() {
-		activIconCreator = (DefaultCreator) iconCreatorBox.getSelectedItem();
+		activIconCreator = (AbstractIconCreator) iconCreatorBox.getSelectedItem();
 		activIconCreator.setSettings(configPane.getSettings());
 		activIconCreator.createAllImages();
 
@@ -200,7 +201,10 @@ public class IconCreatingPanel extends JPanel {
 		iconList.setListData(activIconCreator.getFilenames());
 		iconList.repaint();
 		iconOverviewPanel.setOverview(activIconCreator.getOverviewIcon());
-		// pack();
+
+		// building Wifi Icons
+		wifiCreatingPanel.create(configPane.getSettings());
+
 	}
 
 	private class CreateAktion extends AbstractAction {
@@ -292,10 +296,10 @@ public class IconCreatingPanel extends JPanel {
 				final boolean cellHasFocus) {
 
 			final JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-			if (value instanceof DefaultCreator) {
+			if (value instanceof AbstractIconCreator) {
 				renderer.setBackground(Color.black);
 				renderer.setForeground(Color.white);
-				final DefaultCreator creator = iconCreatorBox.getItemAt(index);
+				final AbstractIconCreator creator = iconCreatorBox.getItemAt(index);
 				if (creator != null && renderer.getIcon() == null) {
 					final ImageIcon icon = creator.createImage(45, false);
 					renderer.setIcon(icon);
@@ -305,7 +309,7 @@ public class IconCreatingPanel extends JPanel {
 		}
 	}
 
-	public DefaultCreator getActivCreator() {
+	public AbstractIconCreator getActivCreator() {
 		return activIconCreator;
 	}
 

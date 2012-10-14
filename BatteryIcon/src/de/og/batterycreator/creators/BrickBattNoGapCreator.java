@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-public class BrickBattNoGapCreator extends DefaultCreator {
+public class BrickBattNoGapCreator extends AbstractIconCreator {
 
 	protected static String name = "BrickNoGapBattery";
 

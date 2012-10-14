@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-public class ArcQuaterCreator2 extends DefaultCreator {
+public class ArcQuaterCreator2 extends AbstractIconCreator {
 
 	protected static String name = "ArcQuaterBattery";
 

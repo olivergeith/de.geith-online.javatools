@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-public class AppleBatteryCreator extends DefaultCreator {
+public class AppleBatteryCreator extends AbstractIconCreator {
 
 	protected static String name = "ApfelBattery";
 

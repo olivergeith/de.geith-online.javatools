@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-public class BrickDecimalCreator extends DefaultCreator {
+public class BrickDecimalCreator extends AbstractIconCreator {
 
 	protected static String name = "DecimalBrickBattery";
 

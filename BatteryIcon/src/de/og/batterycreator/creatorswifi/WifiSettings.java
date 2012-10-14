@@ -1,5 +1,6 @@
 package de.og.batterycreator.creatorswifi;
 
+import java.awt.Color;
 import java.io.Serializable;
 
 public class WifiSettings implements Serializable {
@@ -17,6 +18,9 @@ public class WifiSettings implements Serializable {
 	private String fileIn = new String(ICON_NAME_IN);
 	private String fileOut = new String(ICON_NAME_OUT);
 	private String fileInOut = new String(ICON_NAME_INOUT);
+
+	private Color inColor = Color.red;
+	private Color outColor = Color.green.darker();
 
 	/**
 	 * @return the filePattern
@@ -91,6 +95,36 @@ public class WifiSettings implements Serializable {
 	 */
 	public void setFileInOut(final String fileInOut) {
 		this.fileInOut = fileInOut;
+	}
+
+	/**
+	 * @return the inColor
+	 */
+	public Color getInColor() {
+		return inColor;
+	}
+
+	/**
+	 * @param inColor
+	 *            the inColor to set
+	 */
+	public void setInColor(final Color inColor) {
+		this.inColor = inColor;
+	}
+
+	/**
+	 * @return the outColor
+	 */
+	public Color getOutColor() {
+		return outColor;
+	}
+
+	/**
+	 * @param outColor
+	 *            the outColor to set
+	 */
+	public void setOutColor(final Color outColor) {
+		this.outColor = outColor;
 	}
 
 }

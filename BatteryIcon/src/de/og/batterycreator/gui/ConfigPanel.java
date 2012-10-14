@@ -83,10 +83,6 @@ public class ConfigPanel extends JPanel {
 
 	JComboBox<RomPreset> romPresetCombo = new JComboBox<RomPreset>(RomPreset.getPresets());
 
-	// JTextField zipResolutionFolderTextBox = new JTextField();
-	// JCheckBox cboxHDPI = createCheckbox("Set Zip-Output to HDPI",
-	// "Set Zip-Output to HDPI...default is XHDPI");
-
 	public ConfigPanel() {
 		initComponents();
 

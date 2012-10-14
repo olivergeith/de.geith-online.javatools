@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-public class ArcSunCreator extends DefaultCreator {
+public class ArcSunCreator extends AbstractIconCreator {
 
 	protected static String name = "ArcSunBattery";
 

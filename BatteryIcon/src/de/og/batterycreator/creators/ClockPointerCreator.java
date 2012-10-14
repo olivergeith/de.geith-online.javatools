@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-public class ClockPointerCreator extends DefaultCreator {
+public class ClockPointerCreator extends AbstractIconCreator {
 
 	protected static String name = "ClockPointerBattery";
 

@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-public class ScalaBatteryCreator extends DefaultCreator {
+public class ScalaBatteryCreator extends AbstractIconCreator {
 
 	protected static String name = "ScalaBattery";
 

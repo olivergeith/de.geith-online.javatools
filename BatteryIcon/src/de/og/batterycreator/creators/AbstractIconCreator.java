@@ -1,10 +1,12 @@
-package de.og.batterycreator.creatorswifi;
+package de.og.batterycreator.creators;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,17 +21,15 @@ import javax.swing.ImageIcon;
 
 import og.basics.gui.file.FileDialogs;
 import og.basics.gui.image.ImageResizer;
-import de.og.batterycreator.creators.StyleSettings;
 import de.og.batterycreator.main.IconCreatorFrame;
 
 /**
  * @author Oliver
  * 
  */
-public abstract class DefaultWifiCreator {
+public abstract class AbstractIconCreator {
 
-	private static final String TITLE_WIFI_SETTINGS = "WifiSettings";
-	private static final String SETTINGS_EXTENSION = ".wcfg";
+	private static final String SETTINGS_EXTENSION = ".icfg";
 	private static final String SETTINGS_DIR = "./settings/";
 
 	private final Vector<ImageIcon> iconMap = new Vector<ImageIcon>();
@@ -47,26 +47,25 @@ public abstract class DefaultWifiCreator {
 		return toString();
 	}
 
-	protected WifiSettings wifiSettings = new WifiSettings();
-	protected StyleSettings stylSettings = new StyleSettings();
+	public boolean supportsFlip() {
+		return false;
+	}
+
+	public boolean supportsStrokeWidth() {
+		return false;
+	}
+
+	protected StyleSettings settings = new StyleSettings();
 
 	// ###############################################################################
 	// Settings
 	// ###############################################################################
-	public WifiSettings getWifiSettings() {
-		return wifiSettings;
+	public StyleSettings getSettings() {
+		return settings;
 	}
 
-	public void setWifiSettings(final WifiSettings settings) {
-		wifiSettings = settings;
-	}
-
-	public StyleSettings getStylSettings() {
-		return stylSettings;
-	}
-
-	public void setStylSettings(final StyleSettings stylSettings) {
-		this.stylSettings = stylSettings;
+	public void setSettings(final StyleSettings settings) {
+		this.settings = settings;
 	}
 
 	// ###############################################################################
@@ -78,60 +77,98 @@ public abstract class DefaultWifiCreator {
 	 * @param percentage
 	 * @param charge
 	 */
+	public abstract ImageIcon createImage(final int percentage, final boolean charge);
 
 	public void createAllImages() {
 		iconMap.removeAllElements();
 		filenames.removeAllElements();
 		createImages();
-		createFullyImages();
-		createInOutImages();
+		createChargeImages();
 		overview = createOverview();
 	}
 
-	private void createFullyImages() {
-		for (int i = 0; i < 5; i++) {
+	private void createChargeImages() {
+		for (int i = 0; i <= 100; i++) {
 			filenames.add(getFileName(i, true));
 			iconMap.add(createImage(i, true));
 		}
 	}
 
 	private void createImages() {
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i <= 100; i++) {
 			filenames.add(getFileName(i, false));
 			iconMap.add(createImage(i, false));
 		}
 
 	}
 
-	private void createInOutImages() {
-		filenames.add(wifiSettings.getFileIn());
-		iconMap.add(createInOutImage(true, false));
-		filenames.add(wifiSettings.getFileOut());
-		iconMap.add(createInOutImage(false, true));
-		filenames.add(wifiSettings.getFileInOut());
-		iconMap.add(createInOutImage(true, true));
+	protected void drawPercentage(final Graphics2D g2d, final int percentage, final boolean charge, final BufferedImage img) {
+		if (settings.isShowFont()) {
+			int yoff = 8;
+			if (charge && settings.isShowChargeSymbol()) {
+				drawChargeIcon(g2d, img);
+			} else {
+				// Sonderbehandlung bei 100% --> Schrift kleiner machen
+				if (percentage == 100 && settings.getReduceFontOn100() < 0) {
+					final Font font = settings.getFont();
+					final Font newfont = new Font(font.getName(), font.getStyle(), font.getSize() + settings.getReduceFontOn100());
+					g2d.setFont(newfont);
+					// offset extra berechnen proportional zur verkleinerten
+					// Font
+					yoff = 8 + Math.round(settings.getReduceFontOn100() / 2f);
+				}
+				final FontMetrics metrix = g2d.getFontMetrics();
+				// Farbe für Schrift
+				g2d.setColor(settings.getActivFontColor(percentage, charge));
+				final String str = "" + percentage;
+				final Rectangle2D strRect = metrix.getStringBounds(str, g2d);
+				final int strxpos = 1 + settings.getFontXOffset() + (int) (Math.round(img.getWidth() / 2) - Math.round(strRect.getWidth() / 2));
+				final int strypos = img.getHeight() / 2 + yoff + settings.getFontYOffset();
+
+				g2d.drawString(str, strxpos, strypos);
+				// Schrift wieder normal machen!!!
+				g2d.setFont(settings.getFont());
+			}
+		} else if (charge && settings.isShowChargeSymbol()) {
+			drawChargeIcon(g2d, img);
+		}
 	}
 
-	public abstract ImageIcon createImage(int level, boolean fully);
+	private void drawChargeIcon(final Graphics2D g2d, final BufferedImage img) {
+		final ImageIcon chargeIcon = settings.getChargeIcon();
+		if (chargeIcon != null) {
+			// Resize Charge Icon
+			BufferedImage resizedChargeIcon = new BufferedImage(chargeIcon.getIconWidth(), chargeIcon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+			final Graphics2D g = resizedChargeIcon.createGraphics();
+			g.drawImage(chargeIcon.getImage(), 1, 1, null);
+			if (settings.isResizeChargeSymbol())
+				resizedChargeIcon = ImageResizer.resizeAdvanced(resizedChargeIcon, settings.getResizeChargeSymbolHeight());
 
-	public abstract ImageIcon createInOutImage(boolean in, boolean out);
+			final int w = resizedChargeIcon.getWidth();
+			final int h = resizedChargeIcon.getHeight();
+			final int x = 1 + settings.getIconXOffset() + img.getWidth() / 2 - w / 2;
+			final int y = img.getHeight() / 2 - h / 2 + settings.getIconYOffset();
+			g2d.drawImage(resizedChargeIcon, x, y, null);
+		}
+	}
 
 	// ###############################################################################
 	// Writing Stuff to Filesystem
 	// ###############################################################################
-	protected BufferedImage writeFile(final String filename, BufferedImage img) {
+	protected BufferedImage writeFile(final int percentage, final boolean charge, BufferedImage img) {
 		// Pfad anlegen falls nicht vorhanden
 		final File pa = new File(getPath() + File.separator);
 		pa.mkdirs();
 		// resize ?
-		if (stylSettings.getTargetIconSize() != img.getHeight()) {
+		if (settings.getTargetIconSize() != img.getHeight()) {
 			// do the resizing before save
-			if (stylSettings.isUseAdvancedResize())
-				img = ImageResizer.resizeAdvanced(img, stylSettings.getTargetIconSize());
+			if (settings.isUseAdvancedResize())
+				img = ImageResizer.resizeAdvanced(img, settings.getTargetIconSize());
 			else
-				img = ImageResizer.resize(img, stylSettings.getTargetIconSize());
+				img = ImageResizer.resize(img, settings.getTargetIconSize());
 		}
 		// getting filename
+		final String filename = getFileName(percentage, charge);
 		final File file = new File(getPath() + File.separator + filename);
 		// the writing
 		try {
@@ -139,7 +176,21 @@ public abstract class DefaultWifiCreator {
 		} catch (final IOException e) {
 			e.printStackTrace();
 		}
+
+		// Sonderbehandlung um das Full Image zu schreiben
+		if (percentage == 100) {
+			writeFileFull(charge, img);
+		}
 		return img;
+	}
+
+	private void writeFileFull(final boolean charge, final BufferedImage img) {
+		final File file = new File(getFilenameAndPathFull(charge));
+		try {
+			ImageIO.write(img, "png", file);
+		} catch (final IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void writeOverviewFile(final BufferedImage overview) {
@@ -152,24 +203,35 @@ public abstract class DefaultWifiCreator {
 	}
 
 	// ###############################################################################
-	// Filename for percentage Images
+	// Filename for Full Image
 	// ###############################################################################
-	public String getFileName(final int level, final boolean fully) {
+	public String getFilenameAndPathFull(final boolean charge) {
+		return getPath() + File.separator + getFileNameFull(charge);
+	}
+
+	private String getFileNameFull(final boolean charge) {
 		String filename;
-		if (!fully)
-			filename = wifiSettings.getFilePattern() + level + ".png";
+		if (charge == false)
+			filename = settings.getFilePattern() + "_full.png";
 		else
-			filename = wifiSettings.getFilePattern() + level + wifiSettings.getFileEXtensionFully() + ".png";
-
-		// Sonderbehandlung für null image
-		if (fully == true && level == 0)
-			filename = wifiSettings.getFilePattern() + "null.png";
-
+			filename = settings.getFilePatternCharge() + "full.png";
 		return filename;
 	}
 
-	public ImageIcon getIcon(final int percentage, final boolean fully) {
-		final String filename = getFilenameAndPath(percentage, fully);
+	// ###############################################################################
+	// Filename for percentage Images
+	// ###############################################################################
+	public String getFileName(final int percentage, final boolean charge) {
+		String filename;
+		if (charge == false)
+			filename = settings.getFilePattern() + percentage + ".png";
+		else
+			filename = settings.getFilePatternCharge() + percentage + ".png";
+		return filename;
+	}
+
+	public ImageIcon getIcon(final int percentage, final boolean charge) {
+		final String filename = getFilenameAndPath(percentage, charge);
 		try {
 			final ImageIcon icon = new ImageIcon(filename);
 			return icon;
@@ -179,8 +241,8 @@ public abstract class DefaultWifiCreator {
 		return null;
 	}
 
-	public String getFilenameAndPath(final int level, final boolean fully) {
-		final String filename = getPath() + File.separator + getFileName(level, fully);
+	public String getFilenameAndPath(final int percentage, final boolean charge) {
+		final String filename = getPath() + File.separator + getFileName(percentage, charge);
 		return filename;
 	}
 
@@ -205,11 +267,11 @@ public abstract class DefaultWifiCreator {
 			if (!pa.exists())
 				pa.mkdirs();
 			final String filename = SETTINGS_DIR + getName() + SETTINGS_EXTENSION;
-			final File saveFile = FileDialogs.saveFile(pa, new File(filename), SETTINGS_EXTENSION, TITLE_WIFI_SETTINGS);
+			final File saveFile = FileDialogs.saveFile(pa, new File(filename), SETTINGS_EXTENSION, "IconSettings");
 			if (saveFile != null) {
 				final FileOutputStream file = new FileOutputStream(saveFile);
 				final ObjectOutputStream o = new ObjectOutputStream(file);
-				o.writeObject(wifiSettings);
+				o.writeObject(settings);
 				o.close();
 			}
 		} catch (final IOException e) {
@@ -225,11 +287,11 @@ public abstract class DefaultWifiCreator {
 				pa.mkdirs();
 
 			// final String filename = "./settings/" + getName() + ".cfg";
-			final File loadFile = FileDialogs.chooseFile(pa, SETTINGS_EXTENSION, TITLE_WIFI_SETTINGS);
+			final File loadFile = FileDialogs.chooseFile(pa, SETTINGS_EXTENSION, "IconSettings");
 			if (loadFile != null) {
 				final FileInputStream file = new FileInputStream(loadFile);
 				final ObjectInputStream o = new ObjectInputStream(file);
-				wifiSettings = (WifiSettings) o.readObject();
+				settings = (StyleSettings) o.readObject();
 				o.close();
 			}
 		} catch (final IOException e) {
@@ -305,9 +367,9 @@ public abstract class DefaultWifiCreator {
 	// ###############################################################################
 	protected Graphics2D initGrafics2D(final BufferedImage img) {
 		final Graphics2D g2d = img.createGraphics();
-		g2d.setFont(stylSettings.getFont());
+		g2d.setFont(settings.getFont());
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.setStroke(new BasicStroke(stylSettings.getStrokewidth()));
+		g2d.setStroke(new BasicStroke(settings.getStrokewidth()));
 		return g2d;
 	}
 

@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-public class BatteryVerticalSymbolCreator extends DefaultCreator {
+public class BatteryVerticalSymbolCreator extends AbstractIconCreator {
 
 	protected static String name = "BatteryVerticalSymbol";
 

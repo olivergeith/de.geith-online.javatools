@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-public class ArcDecimalCreator extends DefaultCreator {
+public class ArcDecimalCreator extends AbstractIconCreator {
 
 	protected static String name = "DecimalArcBattery";
 

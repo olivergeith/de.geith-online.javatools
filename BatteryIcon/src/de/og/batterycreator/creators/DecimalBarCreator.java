@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-public class DecimalBarCreator extends DefaultCreator {
+public class DecimalBarCreator extends AbstractIconCreator {
 
 	protected static String name = "DecimalBarBattery";
 

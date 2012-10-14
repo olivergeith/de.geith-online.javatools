@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import og.basics.gui.Jcolorselectbutton.JColorSelectButton;
 
@@ -23,6 +24,15 @@ import de.og.batterycreator.creatorswifi.WifiSettings;
 public class ConfigWifiPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private WifiSettings settings;
+
+	private final JTextField fileNameIn = new JTextField();
+	private final JTextField fileNameOut = new JTextField();
+	private final JTextField fileNameInOut = new JTextField();
+	private final JTextField filePattern = new JTextField();
+	private final JTextField filePatternFully = new JTextField();
+
+	private final JButton inColor = createClickabelColorLabel("Color for Data-In", "Color when Data comes in ;-)");
+	private final JButton outColor = createClickabelColorLabel("Color for Data-Out", "Color when Data comes in ;-)");
 
 	public ConfigWifiPanel() {
 		initComponents();
@@ -45,6 +55,24 @@ public class ConfigWifiPanel extends JPanel {
 		builder.add(createGroupLabel("Filename Pattern..."), cc.xyw(2, ++row, 1));
 		builder.addSeparator("", cc.xyw(2, ++row, 1));
 		builder.add(createBlueDeviderLabel("Colors are used from Battery Icon"), cc.xyw(2, ++row, 1));
+
+		builder.add(createBlueDeviderLabel("Filename Data In"), cc.xyw(2, ++row, 1));
+		builder.add(fileNameIn, cc.xyw(2, ++row, 1));
+		builder.add(createBlueDeviderLabel("Filename Data Out"), cc.xyw(2, ++row, 1));
+		builder.add(fileNameOut, cc.xyw(2, ++row, 1));
+		builder.add(createBlueDeviderLabel("Filename Data InOut"), cc.xyw(2, ++row, 1));
+		builder.add(fileNameInOut, cc.xyw(2, ++row, 1));
+
+		builder.addSeparator("", cc.xyw(2, ++row, 1));
+		builder.add(createBlueDeviderLabel("Filename Pattern"), cc.xyw(2, ++row, 1));
+		builder.add(filePattern, cc.xyw(2, ++row, 1));
+		builder.add(createBlueDeviderLabel("Fileextens. 'fully'"), cc.xyw(2, ++row, 1));
+		builder.add(filePatternFully, cc.xyw(2, ++row, 1));
+
+		builder.add(createGroupLabel("Colors"), cc.xyw(2, ++row, 1));
+		builder.addSeparator("", cc.xyw(2, ++row, 1));
+		builder.add(inColor, cc.xyw(2, ++row, 1));
+		builder.add(outColor, cc.xyw(2, ++row, 1));
 
 		final JPanel cfp = builder.getPanel();
 		// cfp.setBackground(Color.black);
@@ -112,11 +140,26 @@ public class ConfigWifiPanel extends JPanel {
 
 	public void setSettings(final WifiSettings settings) {
 		this.settings = settings;
+		inColor.setBackground(settings.getInColor());
+		outColor.setBackground(settings.getOutColor());
+		fileNameIn.setText(settings.getFileIn());
+		fileNameOut.setText(settings.getFileOut());
+		fileNameInOut.setText(settings.getFileInOut());
+
+		filePattern.setText(settings.getFilePattern());
+		filePatternFully.setText(settings.getFileEXtensionFully());
 		validateControls();
 		this.repaint();
 	}
 
 	public WifiSettings getSettings() {
+		settings.setInColor(inColor.getBackground());
+		settings.setOutColor(outColor.getBackground());
+		settings.setFileIn(fileNameIn.getText());
+		settings.setFileOut(fileNameOut.getText());
+		settings.setFileInOut(fileNameInOut.getText());
+		settings.setFilePattern(filePattern.getText());
+		settings.setFileEXtensionFully(filePatternFully.getText());
 		return settings;
 	}
 

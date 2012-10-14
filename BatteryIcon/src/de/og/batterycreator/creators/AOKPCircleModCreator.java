@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-public class AOKPCircleModCreator extends DefaultCreator {
+public class AOKPCircleModCreator extends AbstractIconCreator {
 
 	protected static String name = "AOKPCircleModBattery";
 

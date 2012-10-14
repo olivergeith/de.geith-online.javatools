@@ -34,6 +34,7 @@ public abstract class AbstractWifiCreator {
 
 	private final Vector<ImageIcon> iconMap = new Vector<ImageIcon>();
 	private final Vector<String> filenames = new Vector<String>();;
+	private final Vector<String> filenamesAndPath = new Vector<String>();;
 	private ImageIcon overview = null;
 
 	@Override
@@ -75,6 +76,7 @@ public abstract class AbstractWifiCreator {
 	public void createAllImages() {
 		iconMap.removeAllElements();
 		filenames.removeAllElements();
+		filenamesAndPath.removeAllElements();
 		createImages();
 		createFullyImages();
 		createInOutImages();
@@ -84,12 +86,14 @@ public abstract class AbstractWifiCreator {
 	private void createFullyImages() {
 		for (int i = 0; i < 5; i++) {
 			filenames.add(getFileName(i, true));
+			filenamesAndPath.add(getFilenameAndPath(i, true));
 			iconMap.add(createImage(i, true));
 		}
 	}
 
 	private void createImages() {
 		for (int i = 0; i < 5; i++) {
+			filenamesAndPath.add(getFilenameAndPath(i, false));
 			filenames.add(getFileName(i, false));
 			iconMap.add(createImage(i, false));
 		}
@@ -103,6 +107,11 @@ public abstract class AbstractWifiCreator {
 		iconMap.add(createInOutImage(false, true));
 		filenames.add(wifiSettings.getFileInOut());
 		iconMap.add(createInOutImage(true, true));
+
+		filenamesAndPath.add(getPath() + File.separator + wifiSettings.getFileIn());
+		filenamesAndPath.add(getPath() + File.separator + wifiSettings.getFileOut());
+		filenamesAndPath.add(getPath() + File.separator + wifiSettings.getFileInOut());
+
 	}
 
 	public abstract ImageIcon createImage(int level, boolean fully);
@@ -190,6 +199,10 @@ public abstract class AbstractWifiCreator {
 	// ###############################################################################
 	// All filenames and Icons
 	// ###############################################################################
+	public Vector<String> getAllFilenamesAndPath() {
+		return filenamesAndPath;
+	}
+
 	public Vector<String> getFilenames() {
 		return filenames;
 	}

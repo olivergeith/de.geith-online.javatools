@@ -101,6 +101,14 @@ public class WifiCreatingPanel extends JPanel {
 		}
 	}
 
+	public Vector<String> getIconNamesWithPath() {
+		if (activCreator != null && !activCreator.toString().equals(NoWifiIcons.name)) {
+			return activCreator.getAllFilenamesAndPath();
+		} else {
+			return new Vector<String>();
+		}
+	}
+
 	public Vector<ImageIcon> getImageIcons() {
 		if (activCreator != null && !activCreator.toString().equals(NoWifiIcons.name)) {
 			return activCreator.getIcons();

@@ -172,6 +172,8 @@ public class IconCreatingPanel extends JPanel {
 		}
 		files2add.add(activIconCreator.getFilenameAndPathFull(false));
 		files2add.add(activIconCreator.getFilenameAndPathFull(true));
+		// Add Wifi Icons
+		files2add.addAll(wifiCreatingPanel.getIconNamesWithPath());
 
 		try {
 			final boolean saved = zipper.addFilesToArchive(files2add, activIconCreator.getSettings().getFolderWithinZip(), activIconCreator.getName());

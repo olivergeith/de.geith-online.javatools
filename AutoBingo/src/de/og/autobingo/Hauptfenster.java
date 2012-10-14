@@ -104,7 +104,7 @@ public class Hauptfenster extends JFrame {
 	}
 
 	private final static String getTimestamp() {
-		final DateFormat df = new SimpleDateFormat("yyyyMMdd_hhmmss");
+		final DateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss");
 		return (df.format(new Date()));
 	}
 

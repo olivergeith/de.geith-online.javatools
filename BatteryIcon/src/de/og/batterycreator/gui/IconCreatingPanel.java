@@ -53,6 +53,7 @@ public class IconCreatingPanel extends JPanel {
 	private final ImageIcon zipIcon = new ImageIcon(this.getClass().getResource("zip.png"));
 	private final ImageIcon overIcon = new ImageIcon(this.getClass().getResource("over.png"));
 	private final ImageIcon listIcon = new ImageIcon(this.getClass().getResource("list.png"));
+	private final ImageIcon wifiIcon = new ImageIcon(this.getClass().getResource("wifi.png"));
 
 	private final JList<String> iconList = new JList<String>();
 	private JComboBox<AbstractIconCreator> iconCreatorBox;
@@ -109,7 +110,7 @@ public class IconCreatingPanel extends JPanel {
 		final JTabbedPane tabPane = new JTabbedPane();
 		tabPane.addTab("Battery Icon Overview", overIcon, iconOverviewPanel, "Get an Overview of your icons");
 		tabPane.addTab("Battery Icon List", listIcon, scroller, "Get an Overview of your icons");
-		tabPane.addTab("Wifi Icon Overview", listIcon, wifiCreatingPanel, "Get an Overview of your icons");
+		tabPane.addTab("Wifi Icon Overview", wifiIcon, wifiCreatingPanel, "Get an Overview of your icons");
 
 		add(tabPane, BorderLayout.CENTER);
 		add(configPane, BorderLayout.WEST);

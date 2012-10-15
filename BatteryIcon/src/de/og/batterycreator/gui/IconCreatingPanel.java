@@ -110,7 +110,7 @@ public class IconCreatingPanel extends JPanel {
 		final JTabbedPane tabPane = new JTabbedPane();
 		tabPane.addTab("Battery Icon Overview", overIcon, iconOverviewPanel, "Get an Overview of your icons");
 		tabPane.addTab("Battery Icon List", listIcon, scroller, "Get an Overview of your icons");
-		tabPane.addTab("Wifi Icon Overview", wifiIcon, wifiCreatingPanel, "Get an Overview of your icons");
+		tabPane.addTab("Optional Wifi Icons", wifiIcon, wifiCreatingPanel, "Get an Overview of your icons");
 
 		add(tabPane, BorderLayout.CENTER);
 		add(configPane, BorderLayout.WEST);
@@ -153,7 +153,7 @@ public class IconCreatingPanel extends JPanel {
 		toolBar.add(saveAktion);
 		toolBar.addSeparator();
 		toolBar.add(iconCreatorBox);
-		toolBar.add(wifiCreatingPanel.getCreatorBox());
+		// toolBar.add(wifiCreatingPanel.getCreatorBox());
 		toolBar.add(createAktion);
 		toolBar.add(zipAktion);
 		add(toolBar, BorderLayout.NORTH);
@@ -292,16 +292,21 @@ public class IconCreatingPanel extends JPanel {
 	/**
 	 * Renderer für Creator Combobox
 	 */
-	private class CreatorListCellRenderer implements ListCellRenderer<Object> {
+	private class CreatorListCellRenderer implements ListCellRenderer<AbstractIconCreator> {
 		protected DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
 
-		public Component getListCellRendererComponent(final JList<?> list, final Object value, final int index, final boolean isSelected,
-				final boolean cellHasFocus) {
-
+		@Override
+		public Component getListCellRendererComponent(final JList<? extends AbstractIconCreator> list, final AbstractIconCreator value, final int index,
+				final boolean isSelected, final boolean cellHasFocus) {
 			final JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 			if (value instanceof AbstractIconCreator) {
-				renderer.setBackground(Color.black);
+				if (isSelected)
+					renderer.setBackground(Color.darkGray.darker());
+				else
+					renderer.setBackground(Color.black);
 				renderer.setForeground(Color.white);
+				// wenn auch in der Combo selbst ein Icon sein soll:
+				// final AbstractIconCreator creator = value;
 				final AbstractIconCreator creator = iconCreatorBox.getItemAt(index);
 				if (creator != null && renderer.getIcon() == null) {
 					final ImageIcon icon = creator.createImage(45, false);

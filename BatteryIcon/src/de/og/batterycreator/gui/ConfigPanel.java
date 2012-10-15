@@ -13,6 +13,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import og.basics.gui.Jcolorselectbutton.JColorSelectButton;
@@ -30,8 +31,12 @@ import de.og.batterycreator.widgets.SliderAndLabel;
 
 public class ConfigPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
+
+	private final ImageIcon colorIcon = new ImageIcon(this.getClass().getResource("color.png"));
+	private final ImageIcon cfgIcon = new ImageIcon(this.getClass().getResource("cfg.png"));
+
 	private StyleSettings settings;
-	final String fontSizes[] = {
+	private final String fontSizes[] = {
 			"12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32"
 	};
 
@@ -121,6 +126,20 @@ public class ConfigPanel extends JPanel {
 	private void myInit() {
 		// setBackground(Color.black);
 		setLayout(new BorderLayout());
+
+		final JTabbedPane tabPane = new JTabbedPane();
+		final JPanel cfgP = new JPanel(new BorderLayout());
+		final JPanel colP = new JPanel(new BorderLayout());
+		cfgP.add(createTabPaneMoreSettings(), BorderLayout.CENTER);
+		colP.add(createTabPaneColors(), BorderLayout.CENTER);
+
+		tabPane.addTab("Battery Color Settings", colorIcon, colP, "Color Settings for Fonts and Icon");
+		tabPane.addTab("More Battery Settings", cfgIcon, cfgP, "More Settings like Flip, Resize...");
+
+		this.add(tabPane, BorderLayout.CENTER);
+	}
+
+	public JPanel createTabPaneColors() {
 		// -----------------------------------------1-----2------3-----4------5-----6------7-----8-----9------10----11
 		final FormLayout layout = new FormLayout("2dlu, 64dlu, 2dlu, 64dlu, 2dlu, 64dlu, 2dlu, 64dlu, 2dlu",
 				"p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p");
@@ -190,6 +209,18 @@ public class ConfigPanel extends JPanel {
 		builder.add(cboxUseGradientMediumLevels, cc.xyw(2, ++row, 3));
 		builder.add(cboxUseGradientNormalLevels, cc.xyw(6, row, 3));
 
+		final JPanel cfp = builder.getPanel();
+		return cfp;
+	}
+
+	public JPanel createTabPaneMoreSettings() {
+		// -----------------------------------------1-----2------3-----4------5-----6------7-----8-----9------10----11
+		final FormLayout layout = new FormLayout("2dlu, 64dlu, 2dlu, 64dlu, 2dlu, 64dlu, 2dlu, 64dlu, 2dlu",
+				"p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p");
+		final CellConstraints cc = new CellConstraints();
+		final PanelBuilder builder = new PanelBuilder(layout);
+		int row = 1;
+
 		builder.add(createGroupLabel("Misc Options ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(createBlueDeviderLabel("These settings only work on some styls"), cc.xyw(2, ++row, 3));
@@ -214,8 +245,7 @@ public class ConfigPanel extends JPanel {
 		builder.add(cboxUseAdvResize, cc.xyw(6, row, 3));
 
 		final JPanel cfp = builder.getPanel();
-		// cfp.setBackground(Color.black);
-		this.add(cfp, BorderLayout.CENTER);
+		return cfp;
 	}
 
 	private JButton createClickabelColorLabel(final String text, final String tooltip) {

@@ -54,7 +54,6 @@ public class ConfigWifiPanel extends JPanel {
 		int row = 1;
 		builder.add(createGroupLabel("Filename Pattern..."), cc.xyw(2, ++row, 1));
 		builder.addSeparator("", cc.xyw(2, ++row, 1));
-		builder.add(createBlueDeviderLabel("Colors are used from Battery Icon"), cc.xyw(2, ++row, 1));
 
 		builder.add(createBlueDeviderLabel("Filename Data In"), cc.xyw(2, ++row, 1));
 		builder.add(fileNameIn, cc.xyw(2, ++row, 1));
@@ -71,6 +70,10 @@ public class ConfigWifiPanel extends JPanel {
 
 		builder.add(createGroupLabel("Colors"), cc.xyw(2, ++row, 1));
 		builder.addSeparator("", cc.xyw(2, ++row, 1));
+		builder.add(createBlueDeviderLabel("Colors are used from Battery Icon"), cc.xyw(2, ++row, 1));
+		builder.add(createBlueDeviderLabel("(Backgr- Font- & Icon-Color)"), cc.xyw(2, ++row, 1));
+		builder.add(createBlueDeviderLabel("..."), cc.xyw(2, ++row, 1));
+		builder.add(createBlueDeviderLabel("Colors for Data Activity"), cc.xyw(2, ++row, 1));
 		builder.add(inColor, cc.xyw(2, ++row, 1));
 		builder.add(outColor, cc.xyw(2, ++row, 1));
 

@@ -76,8 +76,10 @@ public class WifiCreatingPanel extends JPanel {
 			creatorBox.setSelectedIndex(0);
 		creatorBox.setToolTipText("Choose your WifiCreator...then press play-button");
 		creatorBox.setMaximumRowCount(10);
+		// creatorBox.setForeground(Color.white);
+		// creatorBox.setBackground(Color.black);
 		activCreator = (AbstractWifiCreator) creatorBox.getSelectedItem();
-		// add(creatorBox, BorderLayout.NORTH);
+		add(creatorBox, BorderLayout.NORTH);
 		add(configPane, BorderLayout.WEST);
 
 		final JPanel overP = new JPanel(new BorderLayout());
@@ -128,24 +130,28 @@ public class WifiCreatingPanel extends JPanel {
 		}
 	}
 
-	public JComboBox<AbstractWifiCreator> getCreatorBox() {
-		return creatorBox;
-	}
+	// public JComboBox<AbstractWifiCreator> getCreatorBox() {
+	// return creatorBox;
+	// }
 
-	/**
-	 * Renderer für Creator Combobox
-	 */
-	private class CreatorListCellRenderer implements ListCellRenderer<Object> {
+	private class CreatorListCellRenderer implements ListCellRenderer<AbstractWifiCreator> {
 		protected DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
 
-		public Component getListCellRendererComponent(final JList<?> list, final Object value, final int index, final boolean isSelected,
-				final boolean cellHasFocus) {
+		@Override
+		public Component getListCellRendererComponent(final JList<? extends AbstractWifiCreator> list, final AbstractWifiCreator value, final int index,
+				final boolean isSelected, final boolean cellHasFocus) {
 
 			final JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 			if (value instanceof AbstractWifiCreator) {
-				renderer.setBackground(Color.black);
+				if (isSelected)
+					renderer.setBackground(Color.darkGray.darker());
+				else
+					renderer.setBackground(Color.black);
 				renderer.setForeground(Color.white);
+				// wenn auch in der Combo selbst ein Icon sein soll:
+				// final AbstractWifiCreator creator = value;
 				final AbstractWifiCreator creator = creatorBox.getItemAt(index);
+				// renderer.setBorder(new EmptyBorder(1, 1, 1, 1));
 				if (creator != null && renderer.getIcon() == null) {
 					final ImageIcon icon = creator.createImage(3, true);
 					renderer.setIcon(icon);
@@ -153,6 +159,7 @@ public class WifiCreatingPanel extends JPanel {
 			}
 			return renderer;
 		}
+
 	}
 
 }

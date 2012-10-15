@@ -21,7 +21,7 @@ import de.og.batterycreator.gui.IconCreatingPanel;
 public class IconCreatorFrame extends JFrame {
 
 	private static final String APP_NAME = "Battery Icon Creator";
-	public static final String VERSION_NR = "8.0";
+	public static final String VERSION_NR = "9.0";
 
 	private static final long serialVersionUID = 1L;
 	private final ImageIcon logoIcon = new ImageIcon(this.getClass().getResource("logo.png"));

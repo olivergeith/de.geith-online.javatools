@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 
 public class BrickWifi2Creator extends AbstractWifiCreator {
-	public static String name = "BrickWifiIconsV2";
+	public static String name = "BrickWifi.V2";
 
 	private static final int imgMitte = 20;
 	private static final int imgWidth = 46;

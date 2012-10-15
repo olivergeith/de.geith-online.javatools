@@ -21,6 +21,8 @@ import de.og.batterycreator.creatorswifi.AbstractWifiCreator;
 import de.og.batterycreator.creatorswifi.BrickWifi2Creator;
 import de.og.batterycreator.creatorswifi.BrickWifiCreator;
 import de.og.batterycreator.creatorswifi.NoWifiIcons;
+import de.og.batterycreator.creatorswifi.TopCornerWifiCreator;
+import de.og.batterycreator.creatorswifi.TowerWifiCreator;
 
 public class WifiCreatingPanel extends JPanel {
 	private static final long serialVersionUID = -2956273745014471932L;
@@ -36,10 +38,12 @@ public class WifiCreatingPanel extends JPanel {
 		initUI();
 	}
 
-	public void fillCreatorList() {
+	private void fillCreatorList() {
 		creators.add(new NoWifiIcons());
 		creators.add(new BrickWifiCreator());
 		creators.add(new BrickWifi2Creator());
+		creators.add(new TowerWifiCreator());
+		creators.add(new TopCornerWifiCreator());
 	}
 
 	private void initUI() {

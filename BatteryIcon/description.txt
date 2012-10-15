@@ -20,6 +20,14 @@ Now it has grown up !!!
 [/LIST]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
+[COLOR="Blue"][B]Oct-10-2012[/B] : Release 9.0[/COLOR]
+[LIST]
+[*]Adding ability to create Wifi Icons and add them to flashable zip
+[/LIST]
+
+[COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]
+[HIDE]
+[SIZE="4"][B]Changelog:[/B][/SIZE]
 [COLOR="Blue"][B]Oct-10-2012[/B] : Release 8.0[/COLOR]
 [LIST]
 [*]Save as Dialog when creating a flashable zip
@@ -33,10 +41,6 @@ Now it has grown up !!!
 [*]Lots of things I forgot
 [*]New DecimalBarBattery style(s)
 [/LIST]
-
-[COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]
-[HIDE]
-[SIZE="4"][B]Changelog:[/B][/SIZE]
 [COLOR="Blue"][B]Oct-10-2012[/B] : Release 7.0[/COLOR]
 [LIST]
 [*]4 new Styles

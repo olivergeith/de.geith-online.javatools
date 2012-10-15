@@ -2,18 +2,23 @@ package de.og.batterycreator.guiwifi;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.ListCellRenderer;
 
 import de.og.batterycreator.creators.StyleSettings;
 import de.og.batterycreator.creatorswifi.AbstractWifiCreator;
+import de.og.batterycreator.creatorswifi.BrickWifi2Creator;
 import de.og.batterycreator.creatorswifi.BrickWifiCreator;
 import de.og.batterycreator.creatorswifi.NoWifiIcons;
 
@@ -34,6 +39,7 @@ public class WifiCreatingPanel extends JPanel {
 	public void fillCreatorList() {
 		creators.add(new NoWifiIcons());
 		creators.add(new BrickWifiCreator());
+		creators.add(new BrickWifi2Creator());
 	}
 
 	private void initUI() {
@@ -61,6 +67,7 @@ public class WifiCreatingPanel extends JPanel {
 				}
 			}
 		});
+		creatorBox.setRenderer(new CreatorListCellRenderer());
 		if (creatorBox.getItemCount() > 0)
 			creatorBox.setSelectedIndex(0);
 		creatorBox.setToolTipText("Choose your WifiCreator...then press play-button");
@@ -120,4 +127,28 @@ public class WifiCreatingPanel extends JPanel {
 	public JComboBox<AbstractWifiCreator> getCreatorBox() {
 		return creatorBox;
 	}
+
+	/**
+	 * Renderer für Creator Combobox
+	 */
+	private class CreatorListCellRenderer implements ListCellRenderer<Object> {
+		protected DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
+
+		public Component getListCellRendererComponent(final JList<?> list, final Object value, final int index, final boolean isSelected,
+				final boolean cellHasFocus) {
+
+			final JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+			if (value instanceof AbstractWifiCreator) {
+				renderer.setBackground(Color.black);
+				renderer.setForeground(Color.white);
+				final AbstractWifiCreator creator = creatorBox.getItemAt(index);
+				if (creator != null && renderer.getIcon() == null) {
+					final ImageIcon icon = creator.createImage(3, true);
+					renderer.setIcon(icon);
+				}
+			}
+			return renderer;
+		}
+	}
+
 }

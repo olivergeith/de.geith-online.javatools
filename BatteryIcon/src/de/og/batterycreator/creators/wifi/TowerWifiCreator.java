@@ -12,10 +12,10 @@ public class TowerWifiCreator extends AbstractWifiCreator {
 	public static String name = "TowerWifi";
 
 	private static final int imgMitte = 18;
-	private static final int imgWidth = 41;
+	private static final int imgWidth = 46;
 	private static final int imgHeight = 41;
 	private static final int height = 6;
-	private static final int width = 6;
+	private static final int width = 7;
 	private static final int stroke = 4;
 
 	public TowerWifiCreator() {
@@ -32,7 +32,7 @@ public class TowerWifiCreator extends AbstractWifiCreator {
 		BufferedImage img = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img);
 		g2d.setStroke(new BasicStroke(stroke));
-		final int offsetunten = 3;
+		final int offsetunten = 5;
 		if (level == 0 && fully == true) {
 			for (int i = 4; i >= 0; i--) {
 				final Rectangle rect = new Rectangle(imgMitte - (i * width), imgHeight - offsetunten - ((1 + i) * height), width * (2 * i + 1), height

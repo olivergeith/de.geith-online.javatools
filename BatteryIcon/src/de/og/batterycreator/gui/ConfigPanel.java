@@ -94,6 +94,8 @@ public class ConfigPanel extends JPanel {
 	private final JTextField fileWifiPatternFully = new JTextField();
 	private final JButton inWifiColor = createClickabelColorLabel("ColorDataIn", "Color when Data comes in ;-)");
 	private final JButton outWifiColor = createClickabelColorLabel("ColorDataOut", "Color when Data comes in ;-)");
+	private final JButton wifiColor = createClickabelColorLabel("Connected", "Color when connected");
+	private final JButton wifiColorFully = createClickabelColorLabel("Fully Connected", "Color when fully connected");
 
 	// Construktor
 	public ConfigPanel() {
@@ -163,13 +165,14 @@ public class ConfigPanel extends JPanel {
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(createBlueDeviderLabel("For having Battery and Wifi Icons in 'harmony', some Colors are used from Battery Icon:"), cc.xyw(2, ++row, 7));
 		builder.add(createBlueDeviderLabel(" - Icon BackgroundColor == Background"), cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel(" - Icon MainColor == Fully Connected Color"), cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel(" - Font MainColor == Connected Color"), cc.xyw(2, ++row, 7));
 		builder.add(createGroupLabel("Wifi specific Colors"), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel("Colors for Data Activity"), cc.xyw(2, ++row, 7));
-		builder.add(inWifiColor, cc.xyw(2, ++row, 1));
-		builder.add(outWifiColor, cc.xyw(4, row, 1));
+		builder.add(createBlueDeviderLabel("Colors for Connection"), cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("Colors for Data Activity"), cc.xyw(6, row, 3));
+		builder.add(wifiColor, cc.xyw(2, ++row, 1));
+		builder.add(wifiColorFully, cc.xyw(4, row, 1));
+		builder.add(inWifiColor, cc.xyw(6, row, 1));
+		builder.add(outWifiColor, cc.xyw(8, row, 1));
 
 		final JPanel cfp = builder.getPanel();
 		return cfp;
@@ -415,6 +418,8 @@ public class ConfigPanel extends JPanel {
 		fileWifiPatternFully.setText(settings.getFileWifiEXtensionFully());
 		inWifiColor.setBackground(settings.getInWifiColor());
 		outWifiColor.setBackground(settings.getOutWifiColor());
+		wifiColor.setBackground(settings.getWifiColor());
+		wifiColorFully.setBackground(settings.getWifiColorFully());
 
 		validateControls();
 		this.repaint();
@@ -470,6 +475,8 @@ public class ConfigPanel extends JPanel {
 		settings.setFileWifiEXtensionFully(fileWifiPatternFully.getText());
 		settings.setInWifiColor(inWifiColor.getBackground());
 		settings.setOutWifiColor(outWifiColor.getBackground());
+		settings.setWifiColor(wifiColor.getBackground());
+		settings.setWifiColorFully(wifiColorFully.getBackground());
 
 		return settings;
 	}

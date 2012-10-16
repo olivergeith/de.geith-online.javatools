@@ -53,9 +53,7 @@ public class TowerWifiCreator extends AbstractWifiCreator {
 			}
 		} else {
 			for (int i = 4; i >= 0; i--) {
-				Color col = stylSettings.getFontColor();
-				if (fully == true)
-					col = stylSettings.getIconColor();
+				Color col = getConnectColor(fully);
 
 				final Rectangle rect = new Rectangle(imgMitte - (i * width), imgHeight - offsetunten - ((1 + i) * height), width * (2 * i + 1), height
 						* (2 * i + 1));

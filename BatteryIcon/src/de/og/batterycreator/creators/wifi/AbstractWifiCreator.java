@@ -25,6 +25,13 @@ public abstract class AbstractWifiCreator extends AbstractCreator {
 
 	public abstract ImageIcon createInOutImage(boolean in, boolean out);
 
+	protected Color getConnectColor(final boolean fully) {
+		Color col = stylSettings.getWifiColor();
+		if (fully == true)
+			col = stylSettings.getWifiColorFully();
+		return col;
+	}
+
 	// ###############################################################################
 	// Creating Images
 	// ###############################################################################

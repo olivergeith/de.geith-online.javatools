@@ -81,13 +81,13 @@ public class StyleSettings implements Serializable {
 	// Wifi Stuff
 	private String fileWifiPattern = new String(WIFI_ICON_NAME);
 	private String fileWifiEXtensionFully = new String(WIFI_ICON_EXTENSION_FULLY);
-
 	private String fileWifiIn = new String(WIFI_ICON_NAME_IN);
 	private String fileWifiOut = new String(WIFI_ICON_NAME_OUT);
 	private String fileWifiInOut = new String(WIFI_ICON_NAME_INOUT);
-
 	private Color inWifiColor = Color.red;
 	private Color outWifiColor = Color.green.darker();
+	private Color wifiColor = Color.white;
+	private Color wifiColorFully = AOKP_BLUE;
 
 	public String getFolderWithinZip() {
 		return folderWithinZip;
@@ -722,6 +722,36 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setOutWifiColor(final Color outColor) {
 		outWifiColor = outColor;
+	}
+
+	/**
+	 * @return the wifiColor
+	 */
+	public Color getWifiColor() {
+		return wifiColor;
+	}
+
+	/**
+	 * @param wifiColor
+	 *            the wifiColor to set
+	 */
+	public void setWifiColor(final Color wifiColor) {
+		this.wifiColor = wifiColor;
+	}
+
+	/**
+	 * @return the wifiColorFully
+	 */
+	public Color getWifiColorFully() {
+		return wifiColorFully;
+	}
+
+	/**
+	 * @param wifiColorFully
+	 *            the wifiColorFully to set
+	 */
+	public void setWifiColorFully(final Color wifiColorFully) {
+		this.wifiColorFully = wifiColorFully;
 	}
 
 }

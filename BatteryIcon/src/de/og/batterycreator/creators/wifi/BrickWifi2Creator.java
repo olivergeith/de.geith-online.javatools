@@ -40,10 +40,7 @@ public class BrickWifi2Creator extends AbstractWifiCreator {
 			}
 		} else {
 			for (int i = 0; i < 5; i++) {
-				if (fully == true)
-					g2d.setColor(stylSettings.getIconColor());
-				else
-					g2d.setColor(stylSettings.getFontColor());
+				g2d.setColor(getConnectColor(fully));
 
 				final Rectangle rect = new Rectangle(imgMitte - i * width, imgHeight - (i + 1) * (height + gap), (1 + 2 * i) * width, height);
 				if (i <= level)

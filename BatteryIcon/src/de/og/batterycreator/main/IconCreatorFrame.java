@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -14,6 +13,7 @@ import og.basics.gui.about.UniversalAboutDialog;
 import og.basics.gui.about.VersionDetails;
 import og.basics.gui.icon.CommonIconProvider;
 import de.og.batterycreator.gui.IconCreatingPanel;
+import de.og.batterycreator.iconstore.IconStore;
 
 public class IconCreatorFrame extends JFrame {
 
@@ -22,7 +22,6 @@ public class IconCreatorFrame extends JFrame {
 	private static final String VERSION_DATE = "16.10.2012";
 
 	private static final long serialVersionUID = 1L;
-	private final ImageIcon logoIcon = new ImageIcon(this.getClass().getResource("logo.png"));
 	// private final ImageIcon errorIcon = new
 	// ImageIcon(this.getClass().getResource("error.png"));
 	// private final ImageIcon cfgIcon = new
@@ -49,7 +48,7 @@ public class IconCreatorFrame extends JFrame {
 	public IconCreatorFrame() {
 		super();
 		setTitle(APP_NAME + " ----- Version " + VERSION_NR);
-		setIconImage(logoIcon.getImage());
+		setIconImage(IconStore.logoIcon.getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 100, 300, 1280);
 		initUI();
@@ -124,7 +123,7 @@ public class IconCreatorFrame extends JFrame {
 			details.setCompany("www.geith-online.de");
 			details.setVersion(VERSION_NR);
 			details.setDate(VERSION_DATE);
-			details.setLogo(logoIcon);
+			details.setLogo(IconStore.logoIcon);
 			details.setCopyright("by Oliver Geith");
 			details.setDescription("This application can create icons for batteries...and much more !");
 			final UniversalAboutDialog aboutDialog = new UniversalAboutDialog(frame, details);

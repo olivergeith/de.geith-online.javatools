@@ -23,6 +23,7 @@ import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
+import de.og.batterycreator.iconstore.IconStore;
 import de.og.batterycreator.settings.RomPreset;
 import de.og.batterycreator.settings.StyleSettings;
 import de.og.batterycreator.widgets.ChargeIconSelector;
@@ -31,10 +32,6 @@ import de.og.batterycreator.widgets.SliderAndLabel;
 
 public class ConfigPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
-
-	private final ImageIcon colorIcon = new ImageIcon(this.getClass().getResource("color.png"));
-	private final ImageIcon colorwifiIcon = new ImageIcon(this.getClass().getResource("colorwifi.png"));
-	private final ImageIcon cfgIcon = new ImageIcon(this.getClass().getResource("cfg.png"));
 
 	private StyleSettings settings;
 	private final String fontSizes[] = {
@@ -147,9 +144,9 @@ public class ConfigPanel extends JPanel {
 		tab2.add(createTabPaneWifiColors(), BorderLayout.CENTER);
 		tab9.add(createTabPaneMoreSettings(), BorderLayout.CENTER);
 
-		tabPane.addTab("Battery Settings", colorIcon, tab1, "Color & Font Settings for Icons");
-		tabPane.addTab("Wifi Settings", colorwifiIcon, tab2, "Special Colors for Wifi Icon");
-		tabPane.addTab("Output Settings", cfgIcon, tab9, "Output Settings like Filenames, Resize...");
+		tabPane.addTab("Battery Settings", IconStore.colorIcon, tab1, "Color & Font Settings for Icons");
+		tabPane.addTab("Wifi Settings", IconStore.colorwifiIcon, tab2, "Special Colors for Wifi Icon");
+		tabPane.addTab("Output Settings", IconStore.cfgIcon, tab9, "Output Settings like Filenames, Resize...");
 
 		this.add(tabPane, BorderLayout.CENTER);
 	}

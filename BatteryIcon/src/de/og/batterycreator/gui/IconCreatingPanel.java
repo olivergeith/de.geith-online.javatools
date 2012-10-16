@@ -50,15 +50,12 @@ import de.og.batterycreator.creatorswifi.BrickWifiCreator;
 import de.og.batterycreator.creatorswifi.NoWifiIcons;
 import de.og.batterycreator.creatorswifi.TopCornerWifiCreator;
 import de.og.batterycreator.creatorswifi.TowerWifiCreator;
+import de.og.batterycreator.iconstore.IconStore;
 import de.og.batterycreator.widgets.OverviewPanel;
 import de.og.batterycreator.zipcreator.ZipMaker;
 
 public class IconCreatingPanel extends JPanel {
 	private static final long serialVersionUID = -2956273745014471932L;
-	private final ImageIcon zipIcon = new ImageIcon(this.getClass().getResource("zip.png"));
-	private final ImageIcon overIcon = new ImageIcon(this.getClass().getResource("over.png"));
-	private final ImageIcon listIcon = new ImageIcon(this.getClass().getResource("list.png"));
-	private final ImageIcon wifiIcon = new ImageIcon(this.getClass().getResource("wifi.png"));
 
 	private final JTabbedPane tabPane = new JTabbedPane();
 	private final ConfigPanel configPane = new ConfigPanel();
@@ -123,9 +120,9 @@ public class IconCreatingPanel extends JPanel {
 
 		// Tabbed Pane
 		tabPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-		tabPane.addTab("Battery Icon Overview", overIcon, battOverviewPanel, "Get an Overview of your icons");
-		tabPane.addTab("Battery Icon List", listIcon, scroller, "Get an Overview of your icons");
-		tabPane.addTab("Optional Wifi Icons", wifiIcon, wifiOverviewPanel, "Get an Overview of your icons");
+		tabPane.addTab("Battery Icon Overview", IconStore.overIcon, battOverviewPanel, "Get an Overview of your icons");
+		tabPane.addTab("Battery Icon List", IconStore.listIcon, scroller, "Get an Overview of your icons");
+		tabPane.addTab("Optional Wifi Icons", IconStore.wifiIcon, wifiOverviewPanel, "Get an Overview of your icons");
 
 		// Panel zusammensetzen
 		add(tabPane, BorderLayout.CENTER);
@@ -185,7 +182,7 @@ public class IconCreatingPanel extends JPanel {
 		final LoadSettingsAktion loadAktion = new LoadSettingsAktion("Load Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_OPEN);
 		final SaveSettingsAktion saveAktion = new SaveSettingsAktion("Save Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_SAVE);
 		final CreateAktion createAktion = new CreateAktion("Create Icons", CommonIconProvider.getInstance().BUTTON_ICON_START);
-		final ZipAktion zipAktion = new ZipAktion("Create flashable Zip", zipIcon);
+		final ZipAktion zipAktion = new ZipAktion("Create flashable Zip", IconStore.zipIcon);
 		final JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		toolBar.add(loadAktion);

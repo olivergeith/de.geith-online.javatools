@@ -89,11 +89,11 @@ public class TopCornerWifiCreator extends AbstractWifiCreator {
 		final Rectangle rectin = new Rectangle(width, 0, width * 4, 3);
 		final Rectangle rectout = new Rectangle(0, height, 3, height * 4);
 		if (in) {
-			g2d.setColor(wifiSettings.getInColor());
+			g2d.setColor(stylSettings.getInWifiColor());
 			g2d.fillRect(rectin.x, rectin.y, rectin.width, rectin.height);
 		}
 		if (out) {
-			g2d.setColor(wifiSettings.getOutColor());
+			g2d.setColor(stylSettings.getOutWifiColor());
 			g2d.fillRect(rectout.x, rectout.y, rectout.width, rectout.height);
 		}
 

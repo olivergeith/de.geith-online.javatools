@@ -92,11 +92,11 @@ public class TowerWifiCreator extends AbstractWifiCreator {
 		final Rectangle rectin = new Rectangle(imgMitte - width + 1, height * 3 + 2, width * 3, height * 3);
 		final Rectangle rectout = new Rectangle(imgMitte - width + 1, 1, width * 3, height * 3);
 		if (in) {
-			g2d.setColor(wifiSettings.getInColor());
+			g2d.setColor(stylSettings.getInWifiColor());
 			g2d.fillArc(rectin.x, rectin.y, rectin.width, rectin.height, 65, 50);
 		}
 		if (out) {
-			g2d.setColor(wifiSettings.getOutColor());
+			g2d.setColor(stylSettings.getOutWifiColor());
 			g2d.fillArc(rectout.x, rectout.y, rectout.width, rectout.height, -65, -50);
 		}
 

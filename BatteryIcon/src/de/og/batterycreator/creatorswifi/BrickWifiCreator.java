@@ -66,11 +66,11 @@ public class BrickWifiCreator extends AbstractWifiCreator {
 		final Graphics2D g2d = initGrafics2D(img);
 
 		if (in) {
-			g2d.setColor(wifiSettings.getInColor());
+			g2d.setColor(stylSettings.getInWifiColor());
 			g2d.drawLine(imgMitte - 1, imgHeight, 2, 10);
 		}
 		if (out) {
-			g2d.setColor(wifiSettings.getOutColor());
+			g2d.setColor(stylSettings.getOutWifiColor());
 			g2d.drawLine(imgMitte + width, imgHeight, imgWidth - 2, 10);
 		}
 

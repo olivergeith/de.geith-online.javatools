@@ -16,19 +16,18 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
-import de.og.batterycreator.creators.StyleSettings;
 import de.og.batterycreator.creatorswifi.AbstractWifiCreator;
 import de.og.batterycreator.creatorswifi.BrickWifi2Creator;
 import de.og.batterycreator.creatorswifi.BrickWifiCreator;
 import de.og.batterycreator.creatorswifi.NoWifiIcons;
 import de.og.batterycreator.creatorswifi.TopCornerWifiCreator;
 import de.og.batterycreator.creatorswifi.TowerWifiCreator;
+import de.og.batterycreator.settings.StyleSettings;
 
 public class WifiCreatingPanel extends JPanel {
 	private static final long serialVersionUID = -2956273745014471932L;
 	private JComboBox<AbstractWifiCreator> creatorBox;
 
-	private final ConfigWifiPanel configPane = new ConfigWifiPanel();
 	private AbstractWifiCreator activCreator = null;
 	private final Vector<AbstractWifiCreator> creators = new Vector<AbstractWifiCreator>();
 
@@ -61,11 +60,8 @@ public class WifiCreatingPanel extends JPanel {
 				final AbstractWifiCreator cre = (AbstractWifiCreator) creatorBox.getSelectedItem();
 
 				if (cre != null && !cre.toString().equals(NoWifiIcons.name)) {
-					configPane.setSettings(cre.getWifiSettings());
-					configPane.setVisible(true);
 					overviewLabel.setText("");
 				} else {
-					configPane.setVisible(false);
 					overviewLabel.setIcon(null);
 					overviewLabel.setText("    No Wifi Icons selected...choose Wifi icon style in Toolbar");
 				}
@@ -80,7 +76,6 @@ public class WifiCreatingPanel extends JPanel {
 		// creatorBox.setBackground(Color.black);
 		activCreator = (AbstractWifiCreator) creatorBox.getSelectedItem();
 		add(creatorBox, BorderLayout.NORTH);
-		add(configPane, BorderLayout.WEST);
 
 		final JPanel overP = new JPanel(new BorderLayout());
 		overP.setBackground(Color.black);
@@ -95,7 +90,6 @@ public class WifiCreatingPanel extends JPanel {
 	public void create(final StyleSettings styleSettings) {
 		activCreator = (AbstractWifiCreator) creatorBox.getSelectedItem();
 		if (activCreator != null && !activCreator.toString().equals(NoWifiIcons.name)) {
-			activCreator.setWifiSettings(configPane.getSettings());
 			activCreator.setStylSettings(styleSettings);
 			activCreator.createAllImages();
 			overviewLabel.setIcon(activCreator.getOverviewIcon());

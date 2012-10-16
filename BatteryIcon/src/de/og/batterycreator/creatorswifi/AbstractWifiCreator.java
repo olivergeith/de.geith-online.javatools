@@ -7,30 +7,21 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-import og.basics.gui.file.FileDialogs;
 import og.basics.gui.image.ImageResizer;
-import de.og.batterycreator.creators.StyleSettings;
 import de.og.batterycreator.main.IconCreatorFrame;
+import de.og.batterycreator.settings.StyleSettings;
 
 /**
  * @author Oliver
  * 
  */
 public abstract class AbstractWifiCreator {
-
-	private static final String TITLE_WIFI_SETTINGS = "WifiSettings";
-	private static final String SETTINGS_EXTENSION = ".wcfg";
-	private static final String SETTINGS_DIR = "./settings/";
 
 	private final Vector<ImageIcon> iconMap = new Vector<ImageIcon>();
 	private final Vector<String> filenames = new Vector<String>();;
@@ -48,19 +39,11 @@ public abstract class AbstractWifiCreator {
 		return toString();
 	}
 
-	protected WifiSettings wifiSettings = new WifiSettings();
 	protected StyleSettings stylSettings = new StyleSettings();
 
 	// ###############################################################################
 	// Settings
 	// ###############################################################################
-	public WifiSettings getWifiSettings() {
-		return wifiSettings;
-	}
-
-	public void setWifiSettings(final WifiSettings settings) {
-		wifiSettings = settings;
-	}
 
 	public StyleSettings getStylSettings() {
 		return stylSettings;
@@ -101,16 +84,16 @@ public abstract class AbstractWifiCreator {
 	}
 
 	private void createInOutImages() {
-		filenames.add(wifiSettings.getFileIn());
+		filenames.add(stylSettings.getFileWifiIn());
 		iconMap.add(createInOutImage(true, false));
-		filenames.add(wifiSettings.getFileOut());
+		filenames.add(stylSettings.getFileWifiOut());
 		iconMap.add(createInOutImage(false, true));
-		filenames.add(wifiSettings.getFileInOut());
+		filenames.add(stylSettings.getFileWifiInOut());
 		iconMap.add(createInOutImage(true, true));
 
-		filenamesAndPath.add(getPath() + File.separator + wifiSettings.getFileIn());
-		filenamesAndPath.add(getPath() + File.separator + wifiSettings.getFileOut());
-		filenamesAndPath.add(getPath() + File.separator + wifiSettings.getFileInOut());
+		filenamesAndPath.add(getPath() + File.separator + stylSettings.getFileWifiIn());
+		filenamesAndPath.add(getPath() + File.separator + stylSettings.getFileWifiOut());
+		filenamesAndPath.add(getPath() + File.separator + stylSettings.getFileWifiInOut());
 
 	}
 
@@ -158,24 +141,24 @@ public abstract class AbstractWifiCreator {
 	// ###############################################################################
 	public String getFileNameInOut(final boolean in, final boolean out) {
 		if (in && out)
-			return wifiSettings.getFileInOut();
+			return stylSettings.getFileWifiInOut();
 		if (in && !out)
-			return wifiSettings.getFileIn();
+			return stylSettings.getFileWifiIn();
 		if (!in && out)
-			return wifiSettings.getFileOut();
+			return stylSettings.getFileWifiOut();
 		return "";
 	}
 
 	public String getFileName(final int level, final boolean fully) {
 		String filename;
 		if (!fully)
-			filename = wifiSettings.getFilePattern() + level + ".png";
+			filename = stylSettings.getFileWifiPattern() + level + ".png";
 		else
-			filename = wifiSettings.getFilePattern() + level + wifiSettings.getFileEXtensionFully() + ".png";
+			filename = stylSettings.getFileWifiPattern() + level + stylSettings.getFileWifiEXtensionFully() + ".png";
 
 		// Sonderbehandlung für null image
 		if (fully == true && level == 0)
-			filename = wifiSettings.getFilePattern() + "null.png";
+			filename = stylSettings.getFileWifiPattern() + "null.png";
 
 		return filename;
 	}
@@ -209,50 +192,6 @@ public abstract class AbstractWifiCreator {
 
 	public Vector<ImageIcon> getIcons() {
 		return iconMap;
-	}
-
-	// ###############################################################################
-	// Persisting Settings
-	// ###############################################################################
-	public void persistSettings() {
-		try {
-			// Pfad anlegen falls nicht vorhanden
-			final File pa = new File(SETTINGS_DIR);
-			if (!pa.exists())
-				pa.mkdirs();
-			final String filename = SETTINGS_DIR + getName() + SETTINGS_EXTENSION;
-			final File saveFile = FileDialogs.saveFile(pa, new File(filename), SETTINGS_EXTENSION, TITLE_WIFI_SETTINGS);
-			if (saveFile != null) {
-				final FileOutputStream file = new FileOutputStream(saveFile);
-				final ObjectOutputStream o = new ObjectOutputStream(file);
-				o.writeObject(wifiSettings);
-				o.close();
-			}
-		} catch (final IOException e) {
-			System.err.println(e);
-		}
-	}
-
-	public void loadSettings() {
-		try {
-			// Pfad anlegen falls nicht vorhanden
-			final File pa = new File(SETTINGS_DIR);
-			if (!pa.exists())
-				pa.mkdirs();
-
-			// final String filename = "./settings/" + getName() + ".cfg";
-			final File loadFile = FileDialogs.chooseFile(pa, SETTINGS_EXTENSION, TITLE_WIFI_SETTINGS);
-			if (loadFile != null) {
-				final FileInputStream file = new FileInputStream(loadFile);
-				final ObjectInputStream o = new ObjectInputStream(file);
-				wifiSettings = (WifiSettings) o.readObject();
-				o.close();
-			}
-		} catch (final IOException e) {
-			System.err.println(e);
-		} catch (final ClassNotFoundException e) {
-			System.err.println(e);
-		}
 	}
 
 	// ###############################################################################

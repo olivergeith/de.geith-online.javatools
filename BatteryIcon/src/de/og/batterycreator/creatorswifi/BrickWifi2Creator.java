@@ -68,11 +68,11 @@ public class BrickWifi2Creator extends AbstractWifiCreator {
 		final Rectangle rectin = new Rectangle(imgMitte - width - 1, imgHeight - (height + 1), width, height);
 		final Rectangle rectout = new Rectangle(imgMitte + width + 1, imgHeight - (height + 1), width, height);
 		if (in) {
-			g2d.setColor(wifiSettings.getInColor());
+			g2d.setColor(stylSettings.getInWifiColor());
 			g2d.fillRect(rectin.x, rectin.y, rectin.width, rectin.height);
 		}
 		if (out) {
-			g2d.setColor(wifiSettings.getOutColor());
+			g2d.setColor(stylSettings.getOutWifiColor());
 			g2d.fillRect(rectout.x, rectout.y, rectout.width, rectout.height);
 		}
 

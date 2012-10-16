@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 import og.basics.gui.file.FileDialogs;
 import og.basics.gui.image.ImageResizer;
 import de.og.batterycreator.main.IconCreatorFrame;
+import de.og.batterycreator.settings.StyleSettings;
 
 /**
  * @author Oliver

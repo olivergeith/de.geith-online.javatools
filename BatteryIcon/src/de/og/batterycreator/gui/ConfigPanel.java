@@ -24,7 +24,7 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
 import de.og.batterycreator.creators.RomPreset;
-import de.og.batterycreator.creators.StyleSettings;
+import de.og.batterycreator.settings.StyleSettings;
 import de.og.batterycreator.widgets.ChargeIconSelector;
 import de.og.batterycreator.widgets.DrawableComboBox;
 import de.og.batterycreator.widgets.SliderAndLabel;
@@ -88,6 +88,16 @@ public class ConfigPanel extends JPanel {
 
 	JComboBox<RomPreset> romPresetCombo = new JComboBox<RomPreset>(RomPreset.getPresets());
 
+	// Wifi stuff
+	private final JTextField fileNameWifiIn = new JTextField();
+	private final JTextField fileNameWifiOut = new JTextField();
+	private final JTextField fileNameWifiInOut = new JTextField();
+	private final JTextField fileWifiPattern = new JTextField();
+	private final JTextField fileWifiPatternFully = new JTextField();
+	private final JButton inWifiColor = createClickabelColorLabel("Color for Data-In", "Color when Data comes in ;-)");
+	private final JButton outWifiColor = createClickabelColorLabel("Color for Data-Out", "Color when Data comes in ;-)");
+
+	// Construktor
 	public ConfigPanel() {
 		initComponents();
 
@@ -128,18 +138,42 @@ public class ConfigPanel extends JPanel {
 		setLayout(new BorderLayout());
 
 		final JTabbedPane tabPane = new JTabbedPane();
-		final JPanel cfgP = new JPanel(new BorderLayout());
-		final JPanel colP = new JPanel(new BorderLayout());
-		cfgP.add(createTabPaneMoreSettings(), BorderLayout.CENTER);
-		colP.add(createTabPaneColors(), BorderLayout.CENTER);
+		final JPanel tab1 = new JPanel(new BorderLayout());
+		final JPanel tab2 = new JPanel(new BorderLayout());
+		final JPanel tab9 = new JPanel(new BorderLayout());
+		tab1.add(createTabPaneBattSettings(), BorderLayout.CENTER);
+		tab2.add(createTabPaneWifiColors(), BorderLayout.CENTER);
+		tab9.add(createTabPaneMoreSettings(), BorderLayout.CENTER);
 
-		tabPane.addTab("Battery Color Settings", colorIcon, colP, "Color Settings for Fonts and Icon");
-		tabPane.addTab("More Battery Settings", cfgIcon, cfgP, "More Settings like Flip, Resize...");
+		tabPane.addTab("Battery Settings", colorIcon, tab1, "Color Settings for Fonts and Icon");
+		tabPane.addTab("Wifi Settings", colorIcon, tab2, "Color Settings for Fonts and Icon");
+		tabPane.addTab("Output Settings", cfgIcon, tab9, "More Settings like Flip, Resize...");
 
 		this.add(tabPane, BorderLayout.CENTER);
 	}
 
-	public JPanel createTabPaneColors() {
+	public JPanel createTabPaneWifiColors() {
+		// -----------------------------------------1-----2------3-----4------5-----6------7-----8-----9------10----11
+		final FormLayout layout = new FormLayout("2dlu, 64dlu, 2dlu, 64dlu, 2dlu, 64dlu, 2dlu, 64dlu, 2dlu",
+				"p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p");
+		final CellConstraints cc = new CellConstraints();
+		final PanelBuilder builder = new PanelBuilder(layout);
+		int row = 1;
+
+		builder.add(createGroupLabel("Colors"), cc.xyw(2, ++row, 1));
+		builder.addSeparator("", cc.xyw(2, ++row, 1));
+		builder.add(createBlueDeviderLabel("Colors are used from Battery Icon"), cc.xyw(2, ++row, 1));
+		builder.add(createBlueDeviderLabel("(Backgr- Font- & Icon-Color)"), cc.xyw(2, ++row, 1));
+		builder.add(createBlueDeviderLabel("..."), cc.xyw(2, ++row, 1));
+		builder.add(createBlueDeviderLabel("Colors for Data Activity"), cc.xyw(2, ++row, 1));
+		builder.add(inWifiColor, cc.xyw(2, ++row, 1));
+		builder.add(outWifiColor, cc.xyw(2, ++row, 1));
+
+		final JPanel cfp = builder.getPanel();
+		return cfp;
+	}
+
+	public JPanel createTabPaneBattSettings() {
 		// -----------------------------------------1-----2------3-----4------5-----6------7-----8-----9------10----11
 		final FormLayout layout = new FormLayout("2dlu, 64dlu, 2dlu, 64dlu, 2dlu, 64dlu, 2dlu, 64dlu, 2dlu",
 				"p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p");
@@ -209,6 +243,14 @@ public class ConfigPanel extends JPanel {
 		builder.add(cboxUseGradientMediumLevels, cc.xyw(2, ++row, 3));
 		builder.add(cboxUseGradientNormalLevels, cc.xyw(6, row, 3));
 
+		builder.add(createGroupLabel("Misc Options ..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel("These settings only work on some styls"), cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("Stroke Width"), cc.xyw(6, row, 3));
+		builder.add(cboxFlip, cc.xyw(2, ++row, 3));
+		builder.add(sliderStroke, cc.xyw(6, row, 1));
+		builder.add(sliderStroke.getValueLabel(), cc.xyw(8, row, 1));
+
 		final JPanel cfp = builder.getPanel();
 		return cfp;
 	}
@@ -221,15 +263,7 @@ public class ConfigPanel extends JPanel {
 		final PanelBuilder builder = new PanelBuilder(layout);
 		int row = 1;
 
-		builder.add(createGroupLabel("Misc Options ..."), cc.xyw(2, ++row, 7));
-		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel("These settings only work on some styls"), cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("Stroke Width"), cc.xyw(6, row, 3));
-		builder.add(cboxFlip, cc.xyw(2, ++row, 3));
-		builder.add(sliderStroke, cc.xyw(6, row, 1));
-		builder.add(sliderStroke.getValueLabel(), cc.xyw(8, row, 1));
-
-		builder.add(createGroupLabel("Resizing, Filenames, Output ..."), cc.xyw(2, ++row, 7));
+		builder.add(createGroupLabel("Battery Filenames & Output ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(createBlueDeviderLabel("Choose your ROM's resolution"), cc.xyw(2, ++row, 3));
 		builder.add(createBlueDeviderLabel("Rom Presets"), cc.xyw(6, row, 3));
@@ -239,6 +273,22 @@ public class ConfigPanel extends JPanel {
 		builder.add(filepattern, cc.xyw(2, ++row, 3));
 		builder.add(filepatternCharge, cc.xyw(6, row, 3));
 
+		builder.add(createGroupLabel("Wifi Filenames & Output ..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel("Filename Data In"), cc.xyw(2, ++row, 1));
+		builder.add(fileNameWifiIn, cc.xyw(2, ++row, 1));
+		builder.add(createBlueDeviderLabel("Filename Data Out"), cc.xyw(2, ++row, 1));
+		builder.add(fileNameWifiOut, cc.xyw(2, ++row, 1));
+		builder.add(createBlueDeviderLabel("Filename Data InOut"), cc.xyw(2, ++row, 1));
+		builder.add(fileNameWifiInOut, cc.xyw(2, ++row, 1));
+		builder.addSeparator("", cc.xyw(2, ++row, 1));
+		builder.add(createBlueDeviderLabel("Filename Pattern"), cc.xyw(2, ++row, 1));
+		builder.add(fileWifiPattern, cc.xyw(2, ++row, 1));
+		builder.add(createBlueDeviderLabel("Fileextens. 'fully'"), cc.xyw(2, ++row, 1));
+		builder.add(fileWifiPatternFully, cc.xyw(2, ++row, 1));
+
+		builder.add(createGroupLabel("Resizing..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(createBlueDeviderLabel("Resize Icon to (hight)"), cc.xyw(2, ++row, 7));
 		builder.add(sliderResize, cc.xyw(2, ++row, 1));
 		builder.add(sliderResize.getValueLabel(), cc.xyw(4, row, 1));
@@ -354,6 +404,16 @@ public class ConfigPanel extends JPanel {
 
 		sliderResizeChargeSymbol.setValue(settings.getResizeChargeSymbolHeight());
 		cboxResizeChargeSymbol.setSelected(settings.isResizeChargeSymbol());
+
+		// Wifi stuff
+		fileNameWifiIn.setText(settings.getFileWifiIn());
+		fileNameWifiOut.setText(settings.getFileWifiOut());
+		fileNameWifiInOut.setText(settings.getFileWifiInOut());
+		fileWifiPattern.setText(settings.getFileWifiPattern());
+		fileWifiPatternFully.setText(settings.getFileWifiEXtensionFully());
+		inWifiColor.setBackground(settings.getInWifiColor());
+		outWifiColor.setBackground(settings.getOutWifiColor());
+
 		validateControls();
 		this.repaint();
 	}
@@ -399,6 +459,16 @@ public class ConfigPanel extends JPanel {
 
 		settings.setResizeChargeSymbol(cboxResizeChargeSymbol.isSelected());
 		settings.setResizeChargeSymbolHeight(sliderResizeChargeSymbol.getValue());
+
+		// Wifi stuff
+		settings.setFileWifiIn(fileNameWifiIn.getText());
+		settings.setFileWifiOut(fileNameWifiOut.getText());
+		settings.setFileWifiInOut(fileNameWifiInOut.getText());
+		settings.setFileWifiPattern(fileWifiPattern.getText());
+		settings.setFileWifiEXtensionFully(fileWifiPatternFully.getText());
+		settings.setInWifiColor(inWifiColor.getBackground());
+		settings.setOutWifiColor(outWifiColor.getBackground());
+
 		return settings;
 	}
 

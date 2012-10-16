@@ -9,35 +9,36 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JTabbedPane;
 
 import og.basics.gui.about.UniversalAboutDialog;
 import og.basics.gui.about.VersionDetails;
 import og.basics.gui.icon.CommonIconProvider;
-import og.basics.gui.tracepanel.DefaultTextFileSaveHandler;
-import og.basics.gui.tracepanel.TracePanel;
 import de.og.batterycreator.gui.IconCreatingPanel;
 
 public class IconCreatorFrame extends JFrame {
 
 	private static final String APP_NAME = "Battery Icon Creator";
 	public static final String VERSION_NR = "9.0";
+	private static final String VERSION_DATE = "16.10.2012";
 
 	private static final long serialVersionUID = 1L;
 	private final ImageIcon logoIcon = new ImageIcon(this.getClass().getResource("logo.png"));
-	private final ImageIcon errorIcon = new ImageIcon(this.getClass().getResource("error.png"));
-	private final ImageIcon cfgIcon = new ImageIcon(this.getClass().getResource("cfg.png"));
+	// private final ImageIcon errorIcon = new
+	// ImageIcon(this.getClass().getResource("error.png"));
+	// private final ImageIcon cfgIcon = new
+	// ImageIcon(this.getClass().getResource("cfg.png"));
 	// private final ImageIcon zipIcon = new
 	// ImageIcon(this.getClass().getResource("zip.png"));
 
 	private static IconCreatorFrame frame;
-	private final TracePanel tracer = new TracePanel(new DefaultTextFileSaveHandler(".", "Logging", ".txt", "Tracefile"));
-	private final JTabbedPane tabPane = new JTabbedPane();
+	// private final TracePanel tracer = new TracePanel(new
+	// DefaultTextFileSaveHandler(".", "Logging", ".txt", "Tracefile"));
+	// private final JTabbedPane tabPane = new JTabbedPane();
 	// private final JToolBar toolBar = new JToolBar();
 
 	private BeendenAktion beendenAktion;
 	private AboutAktion aboutAktion;
-	private final IconCreatingPanel iconCreatingPanel = new IconCreatingPanel(tracer);
+	private final IconCreatingPanel iconCreatingPanel = new IconCreatingPanel();
 	private final JMenuBar menuBar = new JMenuBar();
 
 	public static void main(final String[] args) {
@@ -47,7 +48,6 @@ public class IconCreatorFrame extends JFrame {
 
 	public IconCreatorFrame() {
 		super();
-		tracer.appendInfoText("Starting " + APP_NAME + " ----- Version " + VERSION_NR);
 		setTitle(APP_NAME + " ----- Version " + VERSION_NR);
 		setIconImage(logoIcon.getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,7 +69,7 @@ public class IconCreatorFrame extends JFrame {
 		// Menü und Buttonbar erzeugen
 		createAktionen();
 		makeMenuAndButtonBar();
-		getContentPane().add(createTabbedPane());
+		getContentPane().add(iconCreatingPanel);
 	}
 
 	private void makeMenuAndButtonBar() {
@@ -81,14 +81,14 @@ public class IconCreatorFrame extends JFrame {
 		// toolBar.add(aboutAktion);
 	}
 
-	private JTabbedPane createTabbedPane() {
-		// Tabpane zusammenbasteln
-		tabPane.addTab("Icon Creating", cfgIcon, iconCreatingPanel, "Create your icons here...");
-		// tabPane.addTab("Wifi Creating", cfgIcon, wifiCreatingPanel,
-		// "Create your icons here...");
-		tabPane.addTab("TraceLog", errorIcon, tracer, "TraceLog");
-		return tabPane;
-	}
+	// private JTabbedPane createTabbedPane() {
+	// // Tabpane zusammenbasteln
+	// tabPane.addTab("Icon Creating", cfgIcon, iconCreatingPanel,
+	// "Create your icons here...");
+	// // tabPane.addTab("Wifi Creating", cfgIcon, wifiCreatingPanel,
+	// // "Create your icons here...");
+	// return tabPane;
+	// }
 
 	/**
 	 * Aktionen erzeugen und in einem Vector mit Aktionen ablegen
@@ -121,12 +121,12 @@ public class IconCreatorFrame extends JFrame {
 		public void actionPerformed(final ActionEvent arg0) {
 			final VersionDetails details = new VersionDetails();
 			details.setApplicationname(APP_NAME);
-			details.setCompany("Geith-Online.de");
+			details.setCompany("www.geith-online.de");
 			details.setVersion(VERSION_NR);
-			details.setDate("30.09.2012");
+			details.setDate(VERSION_DATE);
 			details.setLogo(logoIcon);
 			details.setCopyright("by Oliver Geith");
-			details.setDescription("This application can create icons for batteries...");
+			details.setDescription("This application can create icons for batteries...and much more !");
 			final UniversalAboutDialog aboutDialog = new UniversalAboutDialog(frame, details);
 			aboutDialog.setVisible(true);
 

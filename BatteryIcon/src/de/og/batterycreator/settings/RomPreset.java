@@ -1,8 +1,7 @@
-package de.og.batterycreator.creators;
+package de.og.batterycreator.settings;
 
 import java.util.Vector;
 
-import de.og.batterycreator.settings.StyleSettings;
 import de.og.batterycreator.widgets.DrawableComboBox;
 
 public class RomPreset {

@@ -14,7 +14,6 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
 import og.basics.gui.file.FileDialogs;
-import og.basics.gui.tracepanel.ITracer;
 
 public class ZipMaker {
 
@@ -23,7 +22,7 @@ public class ZipMaker {
 		files2add.add("./tmp/stat_sys_battery_circle_0.png");
 		files2add.add("./tmp/stat_sys_battery_circle_1.png");
 		files2add.add("./tmp/stat_sys_battery_circle_2.png");
-		final ZipMaker zipper = new ZipMaker(null);
+		final ZipMaker zipper = new ZipMaker();
 		try {
 			zipper.addFilesToArchive(files2add, "MORPH/system/app/SystemUI.apk/res/drawable-xhdpi/", "ArcBattery");
 		} catch (final Exception e) {
@@ -36,20 +35,15 @@ public class ZipMaker {
 	private File template = new File("./template/template.zip");
 	private final static String OUT_DIR = "./flashablezip_out/";
 
-	private ITracer tracer = null;
-
-	public ZipMaker(final ITracer tracer) {
+	public ZipMaker() {
 		// creating outdirs
 		final File pa = new File(OUT_DIR);
 		if (!pa.exists())
 			pa.mkdirs();
-		// getting tracer
-		this.tracer = tracer;
 	}
 
 	private void traceInfo(final String txt) {
-		if (tracer != null)
-			tracer.appendInfoText(txt);
+		System.out.println(txt);
 	}
 
 	// private void traceError(final String txt) {

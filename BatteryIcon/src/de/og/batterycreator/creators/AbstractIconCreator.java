@@ -247,6 +247,18 @@ public abstract class AbstractIconCreator {
 		return filename;
 	}
 
+	public Vector<String> getAllFilenamesAndPath() {
+		final Vector<String> files2add = new Vector<String>();
+
+		for (int i = 0; i <= 100; i++) {
+			files2add.add(getFilenameAndPath(i, false));
+			files2add.add(getFilenameAndPath(i, true));
+		}
+		files2add.add(getFilenameAndPathFull(false));
+		files2add.add(getFilenameAndPathFull(true));
+		return files2add;
+	}
+
 	// ###############################################################################
 	// All filenames and Icons
 	// ###############################################################################

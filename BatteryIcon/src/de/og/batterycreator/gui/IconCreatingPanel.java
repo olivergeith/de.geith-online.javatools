@@ -24,7 +24,6 @@ import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
 
 import og.basics.gui.icon.CommonIconProvider;
-import og.basics.gui.tracepanel.ITracer;
 import de.og.batterycreator.creators.AOKPCircleModCreator;
 import de.og.batterycreator.creators.AbstractIconCreator;
 import de.og.batterycreator.creators.AppleBatteryCreator;
@@ -45,7 +44,13 @@ import de.og.batterycreator.creators.ClockPointerCreator;
 import de.og.batterycreator.creators.DecimalBar2Creator;
 import de.og.batterycreator.creators.DecimalBarCreator;
 import de.og.batterycreator.creators.ScalaBatteryCreator;
-import de.og.batterycreator.guiwifi.WifiCreatingPanel;
+import de.og.batterycreator.creatorswifi.AbstractWifiCreator;
+import de.og.batterycreator.creatorswifi.BrickWifi2Creator;
+import de.og.batterycreator.creatorswifi.BrickWifiCreator;
+import de.og.batterycreator.creatorswifi.NoWifiIcons;
+import de.og.batterycreator.creatorswifi.TopCornerWifiCreator;
+import de.og.batterycreator.creatorswifi.TowerWifiCreator;
+import de.og.batterycreator.widgets.OverviewPanel;
 import de.og.batterycreator.zipcreator.ZipMaker;
 
 public class IconCreatingPanel extends JPanel {
@@ -55,75 +60,84 @@ public class IconCreatingPanel extends JPanel {
 	private final ImageIcon listIcon = new ImageIcon(this.getClass().getResource("list.png"));
 	private final ImageIcon wifiIcon = new ImageIcon(this.getClass().getResource("wifi.png"));
 
-	private final JList<String> iconList = new JList<String>();
-	private JComboBox<AbstractIconCreator> iconCreatorBox;
+	private final JTabbedPane tabPane = new JTabbedPane();
 	private final ConfigPanel configPane = new ConfigPanel();
-	private AbstractIconCreator activIconCreator = null;
-	// private final WifiCreatingPanel wifiPanel = new WifiCreatingPanel();
-	private final IconOverviewPanel iconOverviewPanel = new IconOverviewPanel();
-	private final Vector<AbstractIconCreator> iconCreators = new Vector<AbstractIconCreator>();
-	private final ITracer tracer;
+	private final OverviewPanel battOverviewPanel = new OverviewPanel();
+	private final OverviewPanel wifiOverviewPanel = new OverviewPanel();
 
-	private final WifiCreatingPanel wifiCreatingPanel = new WifiCreatingPanel();
+	private final JList<String> battIconList = new JList<String>();
+	private JComboBox<AbstractIconCreator> battCreatorBox;
+	private AbstractIconCreator activBattCreator = null;
+	private final Vector<AbstractIconCreator> battCreators = new Vector<AbstractIconCreator>();
 
-	public IconCreatingPanel(final ITracer tracer) {
-		this.tracer = tracer;
+	private AbstractWifiCreator activWifiCreator = null;
+	private JComboBox<AbstractWifiCreator> wifiCreatorBox;
+	private final Vector<AbstractWifiCreator> wifiCreators = new Vector<AbstractWifiCreator>();
+
+	public IconCreatingPanel() {
 		initUI();
 	}
 
+	private void fillFillCreatorList() {
+		wifiCreators.add(new NoWifiIcons());
+		wifiCreators.add(new BrickWifiCreator());
+		wifiCreators.add(new BrickWifi2Creator());
+		wifiCreators.add(new TowerWifiCreator());
+		wifiCreators.add(new TopCornerWifiCreator());
+	}
+
 	public void fillCreatorList() {
-		// creators.add(new ArcCreator());
-		// creators.add(new Arc2Creator());
-		iconCreators.add(new ArcCreator());
-		iconCreators.add(new ArcSunCreator());
-		iconCreators.add(new ArcQuaterCreator2());
-		iconCreators.add(new ArcDecimalCreator());
-		iconCreators.add(new AOKPCircleModCreator());
-		iconCreators.add(new BrickBattCreator());
-		iconCreators.add(new BrickBattNoGapCreator());
-		iconCreators.add(new BrickDecimalCreator());
-		iconCreators.add(new BrickDecimal2Creator());
-		iconCreators.add(new DecimalBarCreator());
-		iconCreators.add(new DecimalBar2Creator());
-		iconCreators.add(new BinaryBarsCreator());
-		iconCreators.add(new BinarySquaresCreator());
-		iconCreators.add(new BatterySymbolCreator());
-		iconCreators.add(new BatteryVerticalSymbolCreator());
-		iconCreators.add(new AppleBatteryCreator());
-		iconCreators.add(new ClockCreator());
-		iconCreators.add(new ClockPointerCreator());
-		iconCreators.add(new ScalaBatteryCreator());
+		battCreators.add(new ArcCreator());
+		battCreators.add(new ArcSunCreator());
+		battCreators.add(new ArcQuaterCreator2());
+		battCreators.add(new ArcDecimalCreator());
+		battCreators.add(new AOKPCircleModCreator());
+		battCreators.add(new BrickBattCreator());
+		battCreators.add(new BrickBattNoGapCreator());
+		battCreators.add(new BrickDecimalCreator());
+		battCreators.add(new BrickDecimal2Creator());
+		battCreators.add(new DecimalBarCreator());
+		battCreators.add(new DecimalBar2Creator());
+		battCreators.add(new BinaryBarsCreator());
+		battCreators.add(new BinarySquaresCreator());
+		battCreators.add(new BatterySymbolCreator());
+		battCreators.add(new BatteryVerticalSymbolCreator());
+		battCreators.add(new AppleBatteryCreator());
+		battCreators.add(new ClockCreator());
+		battCreators.add(new ClockPointerCreator());
+		battCreators.add(new ScalaBatteryCreator());
 	}
 
 	private void initUI() {
 		setLayout(new BorderLayout());
 		fillCreatorList();
+		fillFillCreatorList();
 
 		// Icon Liste
-		iconList.setCellRenderer(new IconListCellRenderer());
-		iconList.setBackground(Color.black);
+		battIconList.setCellRenderer(new IconListCellRenderer());
+		battIconList.setBackground(Color.black);
 		final JScrollPane scroller = new JScrollPane();
-		scroller.add(iconList);
-		scroller.getViewport().setView(iconList);
+		scroller.add(battIconList);
+		scroller.getViewport().setView(battIconList);
 		scroller.setPreferredSize(new Dimension(800, 600));
 
-		final JTabbedPane tabPane = new JTabbedPane();
-		tabPane.addTab("Battery Icon Overview", overIcon, iconOverviewPanel, "Get an Overview of your icons");
+		// Tabbed Pane
+		tabPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		tabPane.addTab("Battery Icon Overview", overIcon, battOverviewPanel, "Get an Overview of your icons");
 		tabPane.addTab("Battery Icon List", listIcon, scroller, "Get an Overview of your icons");
-		tabPane.addTab("Optional Wifi Icons", wifiIcon, wifiCreatingPanel, "Get an Overview of your icons");
+		tabPane.addTab("Optional Wifi Icons", wifiIcon, wifiOverviewPanel, "Get an Overview of your icons");
 
+		// Panel zusammensetzen
 		add(tabPane, BorderLayout.CENTER);
 		add(configPane, BorderLayout.WEST);
-		// hier kommen die Wifif Icons ins Spiel
-		// add(wifiPanel, BorderLayout.EAST);
 
 		// Comobox mit creatoren anzeigen
-		iconCreatorBox = new JComboBox<AbstractIconCreator>(iconCreators);
-		iconCreatorBox.addActionListener(new ActionListener() {
+		battCreatorBox = new JComboBox<AbstractIconCreator>(battCreators);
+		battCreatorBox.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(final ActionEvent arg0) {
-				final AbstractIconCreator cre = (AbstractIconCreator) iconCreatorBox.getSelectedItem();
+				final AbstractIconCreator cre = (AbstractIconCreator) battCreatorBox.getSelectedItem();
 
 				if (cre != null) {
 					configPane.setSettings(cre.getSettings());
@@ -131,20 +145,45 @@ public class IconCreatingPanel extends JPanel {
 				}
 			}
 		});
-		iconCreatorBox.setSelectedIndex(0);
-		iconCreatorBox.setToolTipText("Choose your IconCreator...then press play-button");
-		iconCreatorBox.setRenderer(new CreatorListCellRenderer());
-		iconCreatorBox.setMaximumRowCount(10);
-		activIconCreator = (AbstractIconCreator) iconCreatorBox.getSelectedItem();
-		makeMenuAndButtonBar();
+		battCreatorBox.setSelectedIndex(0);
+		battCreatorBox.setToolTipText("Choose your IconCreator...then press play-button");
+		battCreatorBox.setRenderer(new BattCreatorListCellRenderer());
+		battCreatorBox.setMaximumRowCount(10);
+		activBattCreator = (AbstractIconCreator) battCreatorBox.getSelectedItem();
+
+		// Wifi Comobox mit creatoren anzeigen
+		wifiCreatorBox = new JComboBox<AbstractWifiCreator>(wifiCreators);
+		wifiCreatorBox.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(final ActionEvent arg0) {
+				final AbstractWifiCreator cre = (AbstractWifiCreator) wifiCreatorBox.getSelectedItem();
+
+				if (cre != null && !cre.toString().equals(NoWifiIcons.name)) {
+					wifiOverviewPanel.setOverview(null);
+					wifiOverviewPanel.setText("");
+				} else {
+					wifiOverviewPanel.setOverview(null);
+					wifiOverviewPanel.setText("    No Wifi Icons selected...choose Wifi icon style in Toolbar");
+				}
+			}
+		});
+		wifiCreatorBox.setRenderer(new WifiCreatorListCellRenderer());
+		if (wifiCreatorBox.getItemCount() > 0)
+			wifiCreatorBox.setSelectedIndex(0);
+		wifiCreatorBox.setToolTipText("Choose your WifiCreator...then press play-button");
+		wifiCreatorBox.setMaximumRowCount(10);
+		activWifiCreator = (AbstractWifiCreator) wifiCreatorBox.getSelectedItem();
+
+		makeButtonBar();
 	}
 
 	/**
-	 * Menüleiste Zusammensetzen
+	 * Creating buttonbar
 	 */
-	private void makeMenuAndButtonBar() {
-		final LoadAktion loadAktion = new LoadAktion("Load Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_OPEN);
-		final SaveAktion saveAktion = new SaveAktion("Save Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_SAVE);
+	private void makeButtonBar() {
+		final LoadSettingsAktion loadAktion = new LoadSettingsAktion("Load Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_OPEN);
+		final SaveSettingsAktion saveAktion = new SaveSettingsAktion("Save Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_SAVE);
 		final CreateAktion createAktion = new CreateAktion("Create Icons", CommonIconProvider.getInstance().BUTTON_ICON_START);
 		final ZipAktion zipAktion = new ZipAktion("Create flashable Zip", zipIcon);
 		final JToolBar toolBar = new JToolBar();
@@ -152,8 +191,10 @@ public class IconCreatingPanel extends JPanel {
 		toolBar.add(loadAktion);
 		toolBar.add(saveAktion);
 		toolBar.addSeparator();
-		toolBar.add(iconCreatorBox);
-		// toolBar.add(wifiCreatingPanel.getCreatorBox());
+		toolBar.add(battCreatorBox);
+		toolBar.addSeparator();
+		toolBar.add(wifiCreatorBox);
+		toolBar.addSeparator();
 		toolBar.add(createAktion);
 		toolBar.add(zipAktion);
 		add(toolBar, BorderLayout.NORTH);
@@ -163,29 +204,25 @@ public class IconCreatingPanel extends JPanel {
 	 * Zip the flashable Zip!
 	 */
 	private void doZip() {
-		final ZipMaker zipper = new ZipMaker(tracer);
+		final ZipMaker zipper = new ZipMaker();
 		final Vector<String> files2add = new Vector<String>();
-
-		for (int i = 0; i <= 100; i++) {
-			files2add.add(activIconCreator.getFilenameAndPath(i, false));
-			files2add.add(activIconCreator.getFilenameAndPath(i, true));
+		// adding Battery Icons
+		if (activWifiCreator != null) {
+			files2add.addAll(activBattCreator.getAllFilenamesAndPath());
 		}
-		files2add.add(activIconCreator.getFilenameAndPathFull(false));
-		files2add.add(activIconCreator.getFilenameAndPathFull(true));
 		// Add Wifi Icons
-		files2add.addAll(wifiCreatingPanel.getIconNamesWithPath());
-
+		if (activWifiCreator != null && !activWifiCreator.toString().equals(NoWifiIcons.name)) {
+			files2add.addAll(activWifiCreator.getAllFilenamesAndPath());
+		}
+		// now thew actual zipping...
 		try {
-			final boolean saved = zipper.addFilesToArchive(files2add, activIconCreator.getSettings().getFolderWithinZip(), activIconCreator.getName());
-			tracer.appendSuccessText("Everything seems ok....:-)");
+			final boolean saved = zipper.addFilesToArchive(files2add, activBattCreator.getSettings().getFolderWithinZip(), activBattCreator.getName());
+			// all ok ? Then Messagebox
 			if (saved == true) {
-				tracer.appendSuccessText("Everything seems ok....:-)");
 				JOptionPane.showMessageDialog(IconCreatingPanel.this, "Zip was created successfully", "Zip creating", JOptionPane.INFORMATION_MESSAGE);
-			} else
-				tracer.appendSuccessText("Zipping was aborted");
+			}
 		} catch (final Exception e) {
-			tracer.appendErrorText("There was a Problem creating the Zip: " + e.getMessage());
-			tracer.appendErrorText("There was a Problem creating the Zip: " + e.getStackTrace());
+			// Error during zip...
 			JOptionPane.showMessageDialog(IconCreatingPanel.this, "ERROR: Zip was not created successfully!!!\nDid you create icons already ? (Play-Button?!)",
 					"Zip creating ERROR", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
@@ -196,20 +233,29 @@ public class IconCreatingPanel extends JPanel {
 	 * Creates the desired Icons ;-)
 	 */
 	private void create() {
-		activIconCreator = (AbstractIconCreator) iconCreatorBox.getSelectedItem();
-		activIconCreator.setSettings(configPane.getSettings());
-		activIconCreator.createAllImages();
+		// Creating Battery Icons
+		activBattCreator = (AbstractIconCreator) battCreatorBox.getSelectedItem();
+		activBattCreator.setSettings(configPane.getSettings());
+		activBattCreator.createAllImages();
+		battIconList.removeAll();
+		battIconList.setListData(activBattCreator.getFilenames());
+		battIconList.repaint();
+		battOverviewPanel.setOverview(activBattCreator.getOverviewIcon());
 
-		iconList.removeAll();
-		iconList.setListData(activIconCreator.getFilenames());
-		iconList.repaint();
-		iconOverviewPanel.setOverview(activIconCreator.getOverviewIcon());
-
-		// building Wifi Icons
-		wifiCreatingPanel.create(configPane.getSettings());
+		// Creating Wifi Icons
+		activWifiCreator = (AbstractWifiCreator) wifiCreatorBox.getSelectedItem();
+		if (activWifiCreator != null && !activWifiCreator.toString().equals(NoWifiIcons.name)) {
+			activWifiCreator.setStylSettings(configPane.getSettings());
+			activWifiCreator.createAllImages();
+			wifiOverviewPanel.setOverview(activWifiCreator.getOverviewIcon());
+		}
 
 	}
 
+	/**
+	 * Create Action for creating off all icons
+	 * 
+	 */
 	private class CreateAktion extends AbstractAction {
 		private static final long serialVersionUID = 1L;
 
@@ -222,6 +268,10 @@ public class IconCreatingPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Zipping Action
+	 * 
+	 */
 	private class ZipAktion extends AbstractAction {
 		private static final long serialVersionUID = 1L;
 
@@ -234,32 +284,40 @@ public class IconCreatingPanel extends JPanel {
 		}
 	}
 
-	private class LoadAktion extends AbstractAction {
+	/**
+	 * Load Settings Action
+	 * 
+	 */
+	private class LoadSettingsAktion extends AbstractAction {
 		private static final long serialVersionUID = 1L;
 
-		public LoadAktion(final String arg0, final Icon arg1) {
+		public LoadSettingsAktion(final String arg0, final Icon arg1) {
 			super(arg0, arg1);
 		}
 
 		public void actionPerformed(final ActionEvent arg0) {
-			if (activIconCreator != null) {
-				activIconCreator.loadSettings();
-				configPane.setSettings(activIconCreator.getSettings());
+			if (activBattCreator != null) {
+				activBattCreator.loadSettings();
+				configPane.setSettings(activBattCreator.getSettings());
 			}
 		}
 	}
 
-	private class SaveAktion extends AbstractAction {
+	/**
+	 * Save Settings Action
+	 * 
+	 */
+	private class SaveSettingsAktion extends AbstractAction {
 		private static final long serialVersionUID = 1L;
 
-		public SaveAktion(final String arg0, final Icon arg1) {
+		public SaveSettingsAktion(final String arg0, final Icon arg1) {
 			super(arg0, arg1);
 		}
 
 		public void actionPerformed(final ActionEvent arg0) {
-			if (activIconCreator != null) {
-				activIconCreator.setSettings(configPane.getSettings());
-				activIconCreator.persistSettings();
+			if (activBattCreator != null) {
+				activBattCreator.setSettings(configPane.getSettings());
+				activBattCreator.persistSettings();
 			}
 		}
 	}
@@ -282,17 +340,17 @@ public class IconCreatingPanel extends JPanel {
 				renderer.setBackground(Color.black);
 				renderer.setForeground(Color.white);
 				renderer.setBorder(new EmptyBorder(1, 1, 1, 1));
-				if (activIconCreator != null)
-					renderer.setIcon(activIconCreator.getIcons().elementAt(index));
+				if (activBattCreator != null)
+					renderer.setIcon(activBattCreator.getIcons().elementAt(index));
 			}
 			return renderer;
 		}
 	}
 
 	/**
-	 * Renderer für Creator Combobox
+	 * Renderer for BattCreator-Combo
 	 */
-	private class CreatorListCellRenderer implements ListCellRenderer<AbstractIconCreator> {
+	private class BattCreatorListCellRenderer implements ListCellRenderer<AbstractIconCreator> {
 		protected DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
 
 		@Override
@@ -307,7 +365,7 @@ public class IconCreatingPanel extends JPanel {
 				renderer.setForeground(Color.white);
 				// wenn auch in der Combo selbst ein Icon sein soll:
 				// final AbstractIconCreator creator = value;
-				final AbstractIconCreator creator = iconCreatorBox.getItemAt(index);
+				final AbstractIconCreator creator = battCreatorBox.getItemAt(index);
 				if (creator != null && renderer.getIcon() == null) {
 					final ImageIcon icon = creator.createImage(45, false);
 					renderer.setIcon(icon);
@@ -317,8 +375,34 @@ public class IconCreatingPanel extends JPanel {
 		}
 	}
 
-	public AbstractIconCreator getActivCreator() {
-		return activIconCreator;
-	}
+	/**
+	 * Renderer for WifiCreator-Combo
+	 */
+	private class WifiCreatorListCellRenderer implements ListCellRenderer<AbstractWifiCreator> {
+		protected DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
 
+		@Override
+		public Component getListCellRendererComponent(final JList<? extends AbstractWifiCreator> list, final AbstractWifiCreator value, final int index,
+				final boolean isSelected, final boolean cellHasFocus) {
+
+			final JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+			if (value instanceof AbstractWifiCreator) {
+				if (isSelected)
+					renderer.setBackground(Color.darkGray.darker());
+				else
+					renderer.setBackground(Color.black);
+				renderer.setForeground(Color.white);
+				// wenn auch in der Combo selbst ein Icon sein soll:
+				// final AbstractWifiCreator creator = value;
+				final AbstractWifiCreator creator = wifiCreatorBox.getItemAt(index);
+				// renderer.setBorder(new EmptyBorder(1, 1, 1, 1));
+				if (creator != null && renderer.getIcon() == null) {
+					final ImageIcon icon = creator.createImage(3, true);
+					renderer.setIcon(icon);
+				}
+			}
+			return renderer;
+		}
+
+	}
 }

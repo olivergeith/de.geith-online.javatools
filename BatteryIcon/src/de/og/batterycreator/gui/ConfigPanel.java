@@ -23,7 +23,7 @@ import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-import de.og.batterycreator.creators.RomPreset;
+import de.og.batterycreator.settings.RomPreset;
 import de.og.batterycreator.settings.StyleSettings;
 import de.og.batterycreator.widgets.ChargeIconSelector;
 import de.og.batterycreator.widgets.DrawableComboBox;
@@ -33,6 +33,7 @@ public class ConfigPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private final ImageIcon colorIcon = new ImageIcon(this.getClass().getResource("color.png"));
+	private final ImageIcon colorwifiIcon = new ImageIcon(this.getClass().getResource("colorwifi.png"));
 	private final ImageIcon cfgIcon = new ImageIcon(this.getClass().getResource("cfg.png"));
 
 	private StyleSettings settings;
@@ -94,8 +95,8 @@ public class ConfigPanel extends JPanel {
 	private final JTextField fileNameWifiInOut = new JTextField();
 	private final JTextField fileWifiPattern = new JTextField();
 	private final JTextField fileWifiPatternFully = new JTextField();
-	private final JButton inWifiColor = createClickabelColorLabel("Color for Data-In", "Color when Data comes in ;-)");
-	private final JButton outWifiColor = createClickabelColorLabel("Color for Data-Out", "Color when Data comes in ;-)");
+	private final JButton inWifiColor = createClickabelColorLabel("ColorDataIn", "Color when Data comes in ;-)");
+	private final JButton outWifiColor = createClickabelColorLabel("ColorDataOut", "Color when Data comes in ;-)");
 
 	// Construktor
 	public ConfigPanel() {
@@ -138,6 +139,7 @@ public class ConfigPanel extends JPanel {
 		setLayout(new BorderLayout());
 
 		final JTabbedPane tabPane = new JTabbedPane();
+		tabPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		final JPanel tab1 = new JPanel(new BorderLayout());
 		final JPanel tab2 = new JPanel(new BorderLayout());
 		final JPanel tab9 = new JPanel(new BorderLayout());
@@ -145,9 +147,9 @@ public class ConfigPanel extends JPanel {
 		tab2.add(createTabPaneWifiColors(), BorderLayout.CENTER);
 		tab9.add(createTabPaneMoreSettings(), BorderLayout.CENTER);
 
-		tabPane.addTab("Battery Settings", colorIcon, tab1, "Color Settings for Fonts and Icon");
-		tabPane.addTab("Wifi Settings", colorIcon, tab2, "Color Settings for Fonts and Icon");
-		tabPane.addTab("Output Settings", cfgIcon, tab9, "More Settings like Flip, Resize...");
+		tabPane.addTab("Battery Settings", colorIcon, tab1, "Color & Font Settings for Icons");
+		tabPane.addTab("Wifi Settings", colorwifiIcon, tab2, "Special Colors for Wifi Icon");
+		tabPane.addTab("Output Settings", cfgIcon, tab9, "Output Settings like Filenames, Resize...");
 
 		this.add(tabPane, BorderLayout.CENTER);
 	}
@@ -160,14 +162,17 @@ public class ConfigPanel extends JPanel {
 		final PanelBuilder builder = new PanelBuilder(layout);
 		int row = 1;
 
-		builder.add(createGroupLabel("Colors"), cc.xyw(2, ++row, 1));
-		builder.addSeparator("", cc.xyw(2, ++row, 1));
-		builder.add(createBlueDeviderLabel("Colors are used from Battery Icon"), cc.xyw(2, ++row, 1));
-		builder.add(createBlueDeviderLabel("(Backgr- Font- & Icon-Color)"), cc.xyw(2, ++row, 1));
-		builder.add(createBlueDeviderLabel("..."), cc.xyw(2, ++row, 1));
-		builder.add(createBlueDeviderLabel("Colors for Data Activity"), cc.xyw(2, ++row, 1));
+		builder.add(createGroupLabel("Colors"), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel("For having Battery and Wifi Icons in 'harmony', some Colors are used from Battery Icon:"), cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel(" - Icon BackgroundColor == Background"), cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel(" - Icon MainColor == Fully Connected Color"), cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel(" - Font MainColor == Connected Color"), cc.xyw(2, ++row, 7));
+		builder.add(createGroupLabel("Wifi specific Colors"), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel("Colors for Data Activity"), cc.xyw(2, ++row, 7));
 		builder.add(inWifiColor, cc.xyw(2, ++row, 1));
-		builder.add(outWifiColor, cc.xyw(2, ++row, 1));
+		builder.add(outWifiColor, cc.xyw(4, row, 1));
 
 		final JPanel cfp = builder.getPanel();
 		return cfp;
@@ -275,17 +280,17 @@ public class ConfigPanel extends JPanel {
 
 		builder.add(createGroupLabel("Wifi Filenames & Output ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel("Filename Data In"), cc.xyw(2, ++row, 1));
-		builder.add(fileNameWifiIn, cc.xyw(2, ++row, 1));
-		builder.add(createBlueDeviderLabel("Filename Data Out"), cc.xyw(2, ++row, 1));
-		builder.add(fileNameWifiOut, cc.xyw(2, ++row, 1));
-		builder.add(createBlueDeviderLabel("Filename Data InOut"), cc.xyw(2, ++row, 1));
-		builder.add(fileNameWifiInOut, cc.xyw(2, ++row, 1));
-		builder.addSeparator("", cc.xyw(2, ++row, 1));
-		builder.add(createBlueDeviderLabel("Filename Pattern"), cc.xyw(2, ++row, 1));
-		builder.add(fileWifiPattern, cc.xyw(2, ++row, 1));
-		builder.add(createBlueDeviderLabel("Fileextens. 'fully'"), cc.xyw(2, ++row, 1));
-		builder.add(fileWifiPatternFully, cc.xyw(2, ++row, 1));
+		builder.add(createBlueDeviderLabel("Filename Data In"), cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("Filename Data Out"), cc.xyw(6, row, 3));
+		builder.add(fileNameWifiIn, cc.xyw(2, ++row, 3));
+		builder.add(fileNameWifiOut, cc.xyw(6, row, 3));
+		builder.add(createBlueDeviderLabel("Filename Data InOut"), cc.xyw(2, ++row, 3));
+		builder.add(fileNameWifiInOut, cc.xyw(2, ++row, 3));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel("Filename Pattern"), cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("Fileextens. 'fully'"), cc.xyw(6, row, 3));
+		builder.add(fileWifiPattern, cc.xyw(2, ++row, 3));
+		builder.add(fileWifiPatternFully, cc.xyw(6, row, 3));
 
 		builder.add(createGroupLabel("Resizing..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));

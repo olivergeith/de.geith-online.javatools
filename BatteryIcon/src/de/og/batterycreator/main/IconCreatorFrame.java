@@ -13,7 +13,7 @@ import og.basics.gui.about.UniversalAboutDialog;
 import og.basics.gui.about.VersionDetails;
 import og.basics.gui.icon.CommonIconProvider;
 import de.og.batterycreator.gui.IconCreatingPanel;
-import de.og.batterycreator.iconstore.IconStore;
+import de.og.batterycreator.gui.iconstore.IconStore;
 
 public class IconCreatorFrame extends JFrame {
 

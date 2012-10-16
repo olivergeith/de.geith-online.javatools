@@ -24,34 +24,34 @@ import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
 
 import og.basics.gui.icon.CommonIconProvider;
-import de.og.batterycreator.creators.AOKPCircleModCreator;
-import de.og.batterycreator.creators.AbstractIconCreator;
-import de.og.batterycreator.creators.AppleBatteryCreator;
-import de.og.batterycreator.creators.ArcCreator;
-import de.og.batterycreator.creators.ArcDecimalCreator;
-import de.og.batterycreator.creators.ArcQuaterCreator2;
-import de.og.batterycreator.creators.ArcSunCreator;
-import de.og.batterycreator.creators.BatterySymbolCreator;
-import de.og.batterycreator.creators.BatteryVerticalSymbolCreator;
-import de.og.batterycreator.creators.BinaryBarsCreator;
-import de.og.batterycreator.creators.BinarySquaresCreator;
-import de.og.batterycreator.creators.BrickBattCreator;
-import de.og.batterycreator.creators.BrickBattNoGapCreator;
-import de.og.batterycreator.creators.BrickDecimal2Creator;
-import de.og.batterycreator.creators.BrickDecimalCreator;
-import de.og.batterycreator.creators.ClockCreator;
-import de.og.batterycreator.creators.ClockPointerCreator;
-import de.og.batterycreator.creators.DecimalBar2Creator;
-import de.og.batterycreator.creators.DecimalBarCreator;
-import de.og.batterycreator.creators.ScalaBatteryCreator;
-import de.og.batterycreator.creatorswifi.AbstractWifiCreator;
-import de.og.batterycreator.creatorswifi.BrickWifi2Creator;
-import de.og.batterycreator.creatorswifi.BrickWifiCreator;
-import de.og.batterycreator.creatorswifi.NoWifiIcons;
-import de.og.batterycreator.creatorswifi.TopCornerWifiCreator;
-import de.og.batterycreator.creatorswifi.TowerWifiCreator;
-import de.og.batterycreator.iconstore.IconStore;
-import de.og.batterycreator.widgets.OverviewPanel;
+import de.og.batterycreator.creators.batt.AOKPCircleModCreator;
+import de.og.batterycreator.creators.batt.AbstractIconCreator;
+import de.og.batterycreator.creators.batt.AppleBatteryCreator;
+import de.og.batterycreator.creators.batt.ArcCreator;
+import de.og.batterycreator.creators.batt.ArcDecimalCreator;
+import de.og.batterycreator.creators.batt.ArcQuaterCreator2;
+import de.og.batterycreator.creators.batt.ArcSunCreator;
+import de.og.batterycreator.creators.batt.BatterySymbolCreator;
+import de.og.batterycreator.creators.batt.BatteryVerticalSymbolCreator;
+import de.og.batterycreator.creators.batt.BinaryBarsCreator;
+import de.og.batterycreator.creators.batt.BinarySquaresCreator;
+import de.og.batterycreator.creators.batt.BrickBattCreator;
+import de.og.batterycreator.creators.batt.BrickBattNoGapCreator;
+import de.og.batterycreator.creators.batt.BrickDecimal2Creator;
+import de.og.batterycreator.creators.batt.BrickDecimalCreator;
+import de.og.batterycreator.creators.batt.ClockCreator;
+import de.og.batterycreator.creators.batt.ClockPointerCreator;
+import de.og.batterycreator.creators.batt.DecimalBar2Creator;
+import de.og.batterycreator.creators.batt.DecimalBarCreator;
+import de.og.batterycreator.creators.batt.ScalaBatteryCreator;
+import de.og.batterycreator.creators.wifi.AbstractWifiCreator;
+import de.og.batterycreator.creators.wifi.BrickWifi2Creator;
+import de.og.batterycreator.creators.wifi.BrickWifiCreator;
+import de.og.batterycreator.creators.wifi.NoWifiIcons;
+import de.og.batterycreator.creators.wifi.TopCornerWifiCreator;
+import de.og.batterycreator.creators.wifi.TowerWifiCreator;
+import de.og.batterycreator.gui.iconstore.IconStore;
+import de.og.batterycreator.gui.widgets.OverviewPanel;
 import de.og.batterycreator.zipcreator.ZipMaker;
 
 public class IconCreatingPanel extends JPanel {
@@ -137,7 +137,7 @@ public class IconCreatingPanel extends JPanel {
 				final AbstractIconCreator cre = (AbstractIconCreator) battCreatorBox.getSelectedItem();
 
 				if (cre != null) {
-					configPane.setSettings(cre.getSettings());
+					configPane.setSettings(cre.getStylSettings());
 					configPane.enableSupportedFeatures(cre.supportsFlip(), cre.supportsStrokeWidth());
 				}
 			}
@@ -213,7 +213,7 @@ public class IconCreatingPanel extends JPanel {
 		}
 		// now thew actual zipping...
 		try {
-			final boolean saved = zipper.addFilesToArchive(files2add, activBattCreator.getSettings().getFolderWithinZip(), activBattCreator.getName());
+			final boolean saved = zipper.addFilesToArchive(files2add, activBattCreator.getStylSettings().getFolderWithinZip(), activBattCreator.getName());
 			// all ok ? Then Messagebox
 			if (saved == true) {
 				JOptionPane.showMessageDialog(IconCreatingPanel.this, "Zip was created successfully", "Zip creating", JOptionPane.INFORMATION_MESSAGE);
@@ -232,7 +232,7 @@ public class IconCreatingPanel extends JPanel {
 	private void create() {
 		// Creating Battery Icons
 		activBattCreator = (AbstractIconCreator) battCreatorBox.getSelectedItem();
-		activBattCreator.setSettings(configPane.getSettings());
+		activBattCreator.setStylSettings(configPane.getSettings());
 		activBattCreator.createAllImages();
 		battIconList.removeAll();
 		battIconList.setListData(activBattCreator.getFilenames());
@@ -295,7 +295,7 @@ public class IconCreatingPanel extends JPanel {
 		public void actionPerformed(final ActionEvent arg0) {
 			if (activBattCreator != null) {
 				activBattCreator.loadSettings();
-				configPane.setSettings(activBattCreator.getSettings());
+				configPane.setSettings(activBattCreator.getStylSettings());
 			}
 		}
 	}
@@ -313,7 +313,7 @@ public class IconCreatingPanel extends JPanel {
 
 		public void actionPerformed(final ActionEvent arg0) {
 			if (activBattCreator != null) {
-				activBattCreator.setSettings(configPane.getSettings());
+				activBattCreator.setStylSettings(configPane.getSettings());
 				activBattCreator.persistSettings();
 			}
 		}

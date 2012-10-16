@@ -23,12 +23,12 @@ import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-import de.og.batterycreator.iconstore.IconStore;
-import de.og.batterycreator.settings.RomPreset;
-import de.og.batterycreator.settings.StyleSettings;
-import de.og.batterycreator.widgets.ChargeIconSelector;
-import de.og.batterycreator.widgets.DrawableComboBox;
-import de.og.batterycreator.widgets.SliderAndLabel;
+import de.og.batterycreator.creators.settings.RomPreset;
+import de.og.batterycreator.creators.settings.StyleSettings;
+import de.og.batterycreator.gui.iconstore.IconStore;
+import de.og.batterycreator.gui.widgets.ChargeIconSelector;
+import de.og.batterycreator.gui.widgets.DrawableComboBox;
+import de.og.batterycreator.gui.widgets.SliderAndLabel;
 
 public class ConfigPanel extends JPanel {
 	private static final long serialVersionUID = 1L;

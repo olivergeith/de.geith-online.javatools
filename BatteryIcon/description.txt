@@ -22,8 +22,9 @@ Now it has grown up !!!
 [SIZE="4"][B]Changelog:[/B][/SIZE]
 [COLOR="Blue"][B]Oct-10-2012[/B] : Release 9.0[/COLOR]
 [LIST]
-[*]Adding ability to create Wifi Icons and add them to flashable zip
-[*]4 new Wifi styls
+[*]Now with custom Wifi Icons (and adding them to flashable zip)
+[*]4 new Wifi styles
+[*]Gui reworked for better workflow
 [*]Battery Settings in two tabs for better fitting to small Laptop screens
 [/LIST]
 
@@ -106,9 +107,11 @@ Now it has grown up !!!
 [*]Bugfixing
 [*]Make the Style-Modules even more customizable
 [*]Creating new styles
-[*]Supporting other icons from Statusbar (Connection, Wifi...)
+[*]Supporting Connection icons
+[*]adding Toggles (togglesets) to flashable zip
+[*]adding transparent Notification to flashable zip
+[*]adding default loghandle to flashable zip 
 [*]And finally....A lot of things that you might come up with ;)
-[*]Perhaps: adding more thesholds (votes welcome...personally I think the implemented gradient-function is better)
 [/LIST]
 
 [SIZE="4"][B]HowTo:[/B][/SIZE]

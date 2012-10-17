@@ -394,7 +394,9 @@ public class IconCreatingPanel extends JPanel {
 				final AbstractWifiCreator creator = wifiCreatorBox.getItemAt(index);
 				// renderer.setBorder(new EmptyBorder(1, 1, 1, 1));
 				if (creator != null && renderer.getIcon() == null) {
-					final ImageIcon icon = creator.createImage(3, true);
+					ImageIcon icon = creator.createImage(3, true);
+					if (icon == null)
+						icon = IconStore.nothingIcon;
 					renderer.setIcon(icon);
 				}
 			}

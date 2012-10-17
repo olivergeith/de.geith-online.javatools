@@ -122,9 +122,13 @@ public class IconCreatingPanel extends JPanel {
 		scroller.setPreferredSize(new Dimension(800, 600));
 
 		// Tabbed Pane
+		final JTabbedPane battTabPane = new JTabbedPane();
+		battTabPane.setTabPlacement(JTabbedPane.LEFT);
+		battTabPane.addTab("", IconStore.overIcon, battOverviewPanel, "Get an Overview of your icons");
+		battTabPane.addTab("", IconStore.listIcon, scroller, "Get an Overview of your icons");
+		// Tabbed Pane
 		tabPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-		tabPane.addTab("Battery Icon Overview", IconStore.overIcon, battOverviewPanel, "Get an Overview of your icons");
-		tabPane.addTab("Battery Icon List", IconStore.listIcon, scroller, "Get an Overview of your icons");
+		tabPane.addTab("Battery Icon", IconStore.batteryIcon, battTabPane, "Get an Overview of your icons");
 		tabPane.addTab("Optional Wifi Icons", IconStore.wifiIcon, wifiOverviewPanel, "Get an Overview of your icons");
 		tabPane.addTab("Optional Toggle Icons", IconStore.toggleIcon, toggleBox.getOverviewPanel(), "Get an Overview of your toggles");
 

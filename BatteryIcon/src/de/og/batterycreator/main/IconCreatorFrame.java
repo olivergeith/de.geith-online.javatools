@@ -12,7 +12,7 @@ import javax.swing.JMenuBar;
 import og.basics.gui.about.UniversalAboutDialog;
 import og.basics.gui.about.VersionDetails;
 import og.basics.gui.icon.CommonIconProvider;
-import de.og.batterycreator.gui.IconCreatingPanel;
+import de.og.batterycreator.gui.IconCreatingPanelNew;
 import de.og.batterycreator.gui.iconstore.IconStore;
 
 public class IconCreatorFrame extends JFrame {
@@ -24,7 +24,7 @@ public class IconCreatorFrame extends JFrame {
 	private static IconCreatorFrame frame;
 	private BeendenAktion beendenAktion;
 	private AboutAktion aboutAktion;
-	private final IconCreatingPanel iconCreatingPanel = new IconCreatingPanel();
+	private final IconCreatingPanelNew iconCreatingPanel = new IconCreatingPanelNew();
 	private final JMenuBar menuBar = new JMenuBar();
 
 	public static void main(final String[] args) {

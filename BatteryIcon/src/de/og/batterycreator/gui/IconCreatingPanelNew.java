@@ -108,10 +108,12 @@ public class IconCreatingPanelNew extends JPanel {
 		final ZipMaker zipper = new ZipMaker();
 		final Vector<String> files2add = new Vector<String>();
 		// adding Battery Icons
-		if (activWifiCreator != null) {
+		activBattCreator = (AbstractIconCreator) battCreatorBox.getSelectedItem();
+		if (activBattCreator != null) {
 			files2add.addAll(activBattCreator.getAllFilenamesAndPath());
 		}
 		// Add Wifi Icons
+		activWifiCreator = (AbstractWifiCreator) wifiCreatorBox.getSelectedItem();
 		if (activWifiCreator != null && !activWifiCreator.toString().equals(NoWifiIcons.name)) {
 			files2add.addAll(activWifiCreator.getAllFilenamesAndPath());
 		}

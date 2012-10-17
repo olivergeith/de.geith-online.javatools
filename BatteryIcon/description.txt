@@ -24,14 +24,25 @@ You can mod many aspects of the statusbar and notification Area now!
 [*]Creates a backup during flash (Thanks to the "Universal Flasher Tool") 
 [/LIST]
 
+[SIZE="4"][B]Confirmed to work with the following ROMs:[/B][/SIZE]
+[LIST]
+[*]Resurection Remix 3.x.x
+[*]Resurection Remix 2.7 
+[*]HydraH2O 1.4.1 
+[*]Rootbox 2.x
+[*]Stock XWLPG with JKay 
+[*]...should work on many more...let me know!
+[/LIST]
+
+
 [SIZE="4"][B]Changelog:[/B][/SIZE]
 [COLOR="Blue"][B]Oct-10-2012[/B] : Release 9.0[/COLOR]
 [LIST]
 [*]Now with custom Wifi Icons (and adding them to flashable zip)
 [*]Add Toggles to your flashable Zip (Attention the predefined toggles only work with AOKP roms)
 [*]4 new Wifi styles
-[*]Gui reworked for better workflow
-[*]Battery Settings in two tabs for better fitting to small Laptop screens
+[*]Gui heavily reworked for better workflow
+[*]Settings now in 3 tabs for better fitting to small Laptop screens
 [/LIST]
 
 [COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]
@@ -173,20 +184,11 @@ So I can add the ROM to my compatibility list and add predefined Settings to the
 [*]......eg ./custom/toggles/MyOriginalToggles
 [*]...for AOKP Roms there are normally 36 icons named like toggle_*.png
 [*]...edit the toggles with some Paint-Tool ore replace them with some completely new toggles(maybe you downloaded some from the internet)
-[*]...make sure you dont change the filenames of your toggles (filenames need to be exactly like in your SystemUI.apk)
+[*]...make sure you have the correct filenames of your toggles (filenames need to be exactly like in your SystemUI.apk)
 [*]Start The Battery Icon Creator and find your Toggleset in the Dropdownbox there...
 [*]choose your Toggleset and create your flaschable zip 
 [/LIST]
 
-[SIZE="4"][B]Confirmed to work with the following ROMs:[/B][/SIZE]
-[LIST]
-[*]Resurection Remix 3.x.x
-[*]Resurection Remix 2.7 
-[*]HydraH2O 1.4.1 
-[*]Rootbox 2.x
-[*]Stock XWLPG with JKay 
-[*]...should work on many more...let me know!
-[/LIST]
 
 [SIZE="4"][B]Final remarks...and thanks[/B][/SIZE]
 If you used my tool for you MOD or custom ROM, please give credit and link to this thread! 

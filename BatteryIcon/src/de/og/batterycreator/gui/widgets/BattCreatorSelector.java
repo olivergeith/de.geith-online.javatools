@@ -92,12 +92,20 @@ public class BattCreatorSelector extends JComboBox<AbstractIconCreator> {
 					activBattCreator = cre;
 					configPane.setSettings(cre.getStylSettings());
 					configPane.enableSupportedFeatures(cre.supportsFlip(), cre.supportsStrokeWidth());
-					// remove next 3 lines, if you dont want to generate images
+					// remove next line, if you dont want to generate images
 					// on startup!
-					cre.setStylSettings(configPane.getSettings());
-					cre.createAllImages();
-					battOverviewPanel.setOverview(cre.getOverviewIcon());
+					updateOverviews(cre);
+
 				}
+			}
+
+			public void updateOverviews(final AbstractIconCreator cre) {
+				cre.setStylSettings(configPane.getSettings());
+				cre.createAllImages();
+				battOverviewPanel.setOverview(cre.getOverviewIcon());
+				battIconList.removeAll();
+				battIconList.setListData(cre.getFilenames());
+				battIconList.repaint();
 			}
 		});
 		if (getItemCount() > 0)

@@ -84,6 +84,10 @@ public abstract class AbstractCreator {
 
 	public void writePNG(final BufferedImage img, final File file) {
 		try {
+			file.createNewFile();
+			while (!file.canWrite()) {
+				// do nothing until it can write...
+			}
 			ImageIO.write(img, "png", file);
 		} catch (final IOException e) {
 			System.out.println("Oh, Icon could not be written!!...Trying again!");

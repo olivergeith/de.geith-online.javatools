@@ -2,6 +2,7 @@ package de.og.batterycreator.gui.widgets;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -15,17 +16,21 @@ import java.io.IOException;
 import java.util.Vector;
 
 import javax.imageio.ImageIO;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.ListCellRenderer;
 
+import og.basics.gui.image.ImageResizer;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.main.IconCreatorFrame;
 
 public class ToggleSelector extends JComboBox<ImageIcon> {
-	private static final String CUSTOM_TOGGLES_DIR = "./custom/toggles";
+	private static final String CUSTOM_TOGGLES_DIR = "./custom/toggles/";
 
 	private static final long serialVersionUID = -7712530632645291404L;
 
@@ -44,6 +49,8 @@ public class ToggleSelector extends JComboBox<ImageIcon> {
 
 	private void initUI() {
 		addItem(nada);
+
+		setRenderer(new MyCellRenderer());
 
 		overviewPanel.add(overviewLabel, BorderLayout.CENTER);
 		overviewPanel.setBackground(Color.black);
@@ -83,12 +90,18 @@ public class ToggleSelector extends JComboBox<ImageIcon> {
 	 */
 	private void addToggleSetsFromFilesystem() {
 		final File dir = new File(CUSTOM_TOGGLES_DIR);
+		if (!dir.exists())
+			dir.mkdirs();
 		// find subdirs with toggles
 		toggledirs = findToggleDirs(dir);
-		for (final File toggledir : toggledirs) {
-			final File[] pngs = findPNGs(toggledir);
-			if (pngs.length > 0) {
-				addItem(new ImageIcon(pngs[0].getPath()));
+		if (toggledirs != null) {
+			for (final File toggledir : toggledirs) {
+				final File[] pngs = findPNGs(toggledir);
+				if (pngs.length > 0) {
+					final ImageIcon icon = new ImageIcon(pngs[0].getPath());
+					final BufferedImage bimg = ImageResizer.resize(ImageResizer.convertImageIcon(icon), 32);
+					addItem(new ImageIcon(bimg));
+				}
 			}
 		}
 	}
@@ -169,7 +182,7 @@ public class ToggleSelector extends JComboBox<ImageIcon> {
 				final ImageIcon img = iconMap.elementAt(index);
 				g2d.drawImage(img.getImage(), 1 + e * (iw + 1), 1 + z * (ih + 1) + offsetOben, null);
 			}
-			final String filename = CUSTOM_TOGGLES_DIR + File.separator + name + File.separator + "overview_" + name + ".png";
+			final String filename = CUSTOM_TOGGLES_DIR + name + File.separator + "overview_" + name + ".png";
 			final File overFile = new File(filename);
 			if (!overFile.exists()) {
 				System.out.println("Toggle Overview does not exist...creating one!");
@@ -214,4 +227,33 @@ public class ToggleSelector extends JComboBox<ImageIcon> {
 
 		f.setVisible(true);
 	}
+
+	/**
+	 * Renderer for WifiCreator-Combo
+	 */
+	private class MyCellRenderer implements ListCellRenderer<ImageIcon> {
+		protected DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
+
+		@Override
+		public Component getListCellRendererComponent(final JList<? extends ImageIcon> list, final ImageIcon value, final int index, final boolean isSelected,
+				final boolean cellHasFocus) {
+
+			final JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+			if (value instanceof ImageIcon) {
+				if (isSelected)
+					renderer.setBackground(Color.darkGray.darker());
+				else
+					renderer.setBackground(Color.black);
+				renderer.setForeground(Color.white);
+				final ImageIcon icon = value;
+				renderer.setIcon(icon);
+				if (icon.equals(nada)) {
+					renderer.setText("Don't include Toggles");
+				}
+			}
+			return renderer;
+		}
+
+	}
+
 }

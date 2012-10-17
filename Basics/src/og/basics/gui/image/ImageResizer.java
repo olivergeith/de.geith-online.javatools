@@ -12,12 +12,20 @@ import java.awt.image.Kernel;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.ImageIcon;
+
 import sun.awt.image.BufferedImageGraphicsConfig;
 
 public class ImageResizer {
 
 	public ImageResizer() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public static BufferedImage convertImageIcon(final ImageIcon img) {
+		final BufferedImage buImg = new BufferedImage(img.getIconWidth(), img.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+		buImg.getGraphics().drawImage(img.getImage(), 0, 0, null);
+		return buImg;
 	}
 
 	/**

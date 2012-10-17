@@ -9,20 +9,24 @@ Now it has grown up !!!
 [SIZE="6"][B][CENTER]The Battery Icon Creator[/CENTER][/B][/SIZE]
 [SIZE="4"][B]Features:[/B][/SIZE]
 [LIST]
-[*]15+ highly customizable Styles (more to come...ideas welcome !)
+[*]15+ highly customizable Battery Icon Styles (more to come...ideas welcome !)
+[*]4+ highly customizable Wifi Icon Styles (more to come...ideas welcome !)
 [*]You can change colors, style, charge-icon, with or without percentage text, fonts, thesholds, gradient...
-[*]Creating of an overview.png (If you want to show of your creations!)
+[*]Creating of an overview.png's (If you want to show of your creations!)
 [*]Icons are resized to any supported dpi (can be fine-tuned)
 [*]Additional custom charge-icons...(place your own charge icons in folder ./custom/charge/ ...see samples there)
 [*]Easy "all in one frame" Interface (you will find out how it works !)
 [*]Creation of[COLOR="Blue"][B] flashable Zips[/B][/COLOR] for xhdpi, hdpi, 720dp and 600dp ROMs
 [*]Creates a backup during flash (Thanks to the "Universal Flasher Tool") 
+[*]Add Toggles to your flashable Zip (Attention the predefined toggles only work with AOKP roms)
+[*]Add your own toggle-icon-sets to folder ./custom/toggles/<setname> (Howto is somewere down below...)
 [/LIST]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
 [COLOR="Blue"][B]Oct-10-2012[/B] : Release 9.0[/COLOR]
 [LIST]
 [*]Now with custom Wifi Icons (and adding them to flashable zip)
+[*]Add Toggles to your flashable Zip (Attention the predefined toggles only work with AOKP roms)
 [*]4 new Wifi styles
 [*]Gui reworked for better workflow
 [*]Battery Settings in two tabs for better fitting to small Laptop screens
@@ -114,7 +118,7 @@ Now it has grown up !!!
 [*]And finally....A lot of things that you might come up with ;)
 [/LIST]
 
-[SIZE="4"][B]HowTo:[/B][/SIZE]
+[SIZE="4"][B]HowTo - General[/B][/SIZE]
 This tool is written in pure Java. So the only thing you need to have is a Java Runtime 1.6 or 1.7.
 [LIST]
 [*]Download the zip attached to this Post
@@ -132,13 +136,7 @@ This tool is written in pure Java. So the only thing you need to have is a Java 
 [*]...find the Zip in the "flashablezip_out"-folder
 [/LIST]
 
-If you want to know how to create your own flashable Zip ...
-... Tutorial here: [url]http://forum.xda-developers.com/showpost.php?p=27021278&postcount=41597[/url]
-
-Want to see my icons in use?...see my MOD-Post for Resurrection Remix ROM
-[url]http://forum.xda-developers.com/showpost.php?p=32081287&postcount=1388[/url]
-
-[SIZE="4"][B]HowTo find out, if your ROM is supported?[/B][/SIZE]
+[SIZE="4"][B]HowTo - Is my ROM supported?[/B][/SIZE]
 For a Rom to be supported, it needs to have a 1% battery mod!
 Samsung Stock Roms don't have this until a Mod like JKay is applied.
 CM10 Roms like the official nightlies or Paranoidandroid don't have this either. 
@@ -160,11 +158,26 @@ You need to...
 [*]...naming convention/pattern of png's
 [*]...icon height
 [/LIST]
-
 If you found your settings, please let me know, what settings, what ROM you used. 
 So I can add the ROM to my compatibility list and add predefined Settings to the tool itself.
 
-[SIZE="4"][B]Works with the following ROMs[/B][/SIZE]
+[SIZE="4"][B]HowTo - Toggles...your own, custom toggles[/B][/SIZE]
+[LIST]
+[*]Same procedure as above to analyse SystemUI.apk 
+[*}...find the toggle icons in there 
+[*]...copy toggles into a new folder under ./custom/toggles/<setname> 
+[*]......eg ./custom/toggles/MySuperDuperToggles
+[*]......next to my predifined Togglesets!
+[*]Hint: it might be a good idea to create another folder in there with the untouched original toggle icons from your Rom's SystemUI.apk
+[*]......eg ./custom/toggles/MyOriginalToggles
+[*]...for AOKP Roms there are normally 36 icons named like toggle_*.png
+[*]...edit the toggles with some Paint-Tool ore replace them with some completely new toggles(maybe you downloaded some from the internet)
+[*]...make sure you dont change the filenames of your toggles (filenames need to be exactly like in your SystemUI.apk)
+[*]Start The Battery Icon Creator and find your Toggleset in the Dropdownbox there...
+[*]choose your Toggleset and create your flaschable zip 
+[/LIST]
+
+[SIZE="4"][B]Confirmed to work with the following ROMs:[/B][/SIZE]
 [LIST]
 [*]Resurection Remix 3.x.x
 [*]Resurection Remix 2.7 
@@ -181,6 +194,13 @@ I am not responsible, if you brick your device...this is just a tool, you need t
 
 Thanks for the "Universal Flasher Tool" [url]http://www.htcmania.com/showthread.php?t=258333[/url]
 My flashable Zips are created by using their template-zip!
+
+If you want to know how to create your own flashable Zip ...
+... Tutorial here: [url]http://forum.xda-developers.com/showpost.php?p=27021278&postcount=41597[/url]
+
+Want to see my icons in use?...see my MOD-Post for Resurrection Remix ROM
+[url]http://forum.xda-developers.com/showpost.php?p=32081287&postcount=1388[/url]
+
 ......
 .....
 ....

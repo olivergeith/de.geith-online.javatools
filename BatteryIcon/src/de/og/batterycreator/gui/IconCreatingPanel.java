@@ -52,6 +52,7 @@ import de.og.batterycreator.creators.wifi.TopCornerWifiCreator;
 import de.og.batterycreator.creators.wifi.TowerWifiCreator;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
+import de.og.batterycreator.gui.widgets.ToggleSelector;
 import de.og.batterycreator.zipcreator.ZipMaker;
 
 public class IconCreatingPanel extends JPanel {
@@ -70,6 +71,8 @@ public class IconCreatingPanel extends JPanel {
 	private AbstractWifiCreator activWifiCreator = null;
 	private JComboBox<AbstractWifiCreator> wifiCreatorBox;
 	private final Vector<AbstractWifiCreator> wifiCreators = new Vector<AbstractWifiCreator>();
+
+	private final ToggleSelector toggleBox = new ToggleSelector();
 
 	public IconCreatingPanel() {
 		initUI();
@@ -123,6 +126,7 @@ public class IconCreatingPanel extends JPanel {
 		tabPane.addTab("Battery Icon Overview", IconStore.overIcon, battOverviewPanel, "Get an Overview of your icons");
 		tabPane.addTab("Battery Icon List", IconStore.listIcon, scroller, "Get an Overview of your icons");
 		tabPane.addTab("Optional Wifi Icons", IconStore.wifiIcon, wifiOverviewPanel, "Get an Overview of your icons");
+		tabPane.addTab("Optional Toggle Icons", IconStore.toggleIcon, toggleBox.getOverviewPanel(), "Get an Overview of your toggles");
 
 		// Panel zusammensetzen
 		add(tabPane, BorderLayout.CENTER);
@@ -192,6 +196,8 @@ public class IconCreatingPanel extends JPanel {
 		toolBar.addSeparator();
 		toolBar.add(wifiCreatorBox);
 		toolBar.addSeparator();
+		toolBar.add(toggleBox);
+		toolBar.addSeparator();
 		toolBar.add(createAktion);
 		toolBar.add(zipAktion);
 		add(toolBar, BorderLayout.NORTH);
@@ -211,6 +217,9 @@ public class IconCreatingPanel extends JPanel {
 		if (activWifiCreator != null && !activWifiCreator.toString().equals(NoWifiIcons.name)) {
 			files2add.addAll(activWifiCreator.getAllFilenamesAndPath());
 		}
+		// Add Toggles
+		files2add.addAll(toggleBox.getFilenamesAndPath());
+
 		// now thew actual zipping...
 		try {
 			final boolean saved = zipper.addFilesToArchive(files2add, activBattCreator.getStylSettings().getFolderWithinZip(), activBattCreator.getName());

@@ -25,7 +25,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
-import og.basics.gui.image.ImageResizer;
+import og.basics.gui.image.StaticImageHelper;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.main.IconCreatorFrame;
 
@@ -99,7 +99,7 @@ public class ToggleSelector extends JComboBox<ImageIcon> {
 				final File[] pngs = findPNGs(toggledir);
 				if (pngs.length > 0) {
 					final ImageIcon icon = new ImageIcon(pngs[0].getPath());
-					final BufferedImage bimg = ImageResizer.resize(ImageResizer.convertImageIcon(icon), 32);
+					final BufferedImage bimg = StaticImageHelper.resize(StaticImageHelper.convertImageIcon(icon), 32);
 					addItem(new ImageIcon(bimg));
 				}
 			}

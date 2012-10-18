@@ -14,7 +14,7 @@ import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
 
-import og.basics.gui.image.ImageResizer;
+import og.basics.gui.image.StaticImageHelper;
 import de.og.batterycreator.creators.batt.AOKPCircleModCreator;
 import de.og.batterycreator.creators.batt.AbstractIconCreator;
 import de.og.batterycreator.creators.batt.AppleBatteryCreator;
@@ -143,7 +143,7 @@ public class BattCreatorSelector extends JComboBox<AbstractIconCreator> {
 				final AbstractIconCreator creator = value;
 				if (creator != null && renderer.getIcon() == null) {
 					final ImageIcon icon = creator.createImage(45, false);
-					final BufferedImage bimg = ImageResizer.resize(ImageResizer.convertImageIcon(icon), 32);
+					final BufferedImage bimg = StaticImageHelper.resize(StaticImageHelper.convertImageIcon(icon), 32);
 					renderer.setIcon(new ImageIcon(bimg));
 				}
 			}

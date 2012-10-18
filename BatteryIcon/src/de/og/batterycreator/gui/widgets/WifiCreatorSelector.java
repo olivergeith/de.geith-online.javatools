@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
-import og.basics.gui.image.ImageResizer;
+import og.basics.gui.image.StaticImageHelper;
 import de.og.batterycreator.creators.wifi.AbstractWifiCreator;
 import de.og.batterycreator.creators.wifi.BrickWifi2Creator;
 import de.og.batterycreator.creators.wifi.BrickWifiCreator;
@@ -96,7 +96,7 @@ public class WifiCreatorSelector extends JComboBox<AbstractWifiCreator> {
 						icon = IconStore.nothingIcon;
 						renderer.setIcon(icon);
 					} else {
-						final BufferedImage bimg = ImageResizer.resize(ImageResizer.convertImageIcon(icon), 32);
+						final BufferedImage bimg = StaticImageHelper.resize(StaticImageHelper.convertImageIcon(icon), 32);
 						renderer.setIcon(new ImageIcon(bimg));
 					}
 				}

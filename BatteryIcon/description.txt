@@ -36,6 +36,14 @@ You can mod many aspects of the statusbar and notification Area now!
 
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
+[COLOR="Blue"][B]Oct-10-2012[/B] : Release 10.0[/COLOR]
+[LIST]
+[*]Support for Lockhandles/Lockrings on Lockscreen
+[*]Add your own custom Lockhandles to ./custom/lockhandles
+[/LIST]
+
+[COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]
+[HIDE]
 [COLOR="Blue"][B]Oct-10-2012[/B] : Release 9.0[/COLOR]
 [LIST]
 [*]Now with custom Wifi Icons (and adding them to flashable zip)
@@ -44,10 +52,6 @@ You can mod many aspects of the statusbar and notification Area now!
 [*]Gui heavily reworked for better workflow
 [*]Settings now in 3 tabs for better fitting to small Laptop screens
 [/LIST]
-
-[COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]
-[HIDE]
-[SIZE="4"][B]Changelog:[/B][/SIZE]
 [COLOR="Blue"][B]Oct-10-2012[/B] : Release 8.0[/COLOR]
 [LIST]
 [*]Save as Dialog when creating a flashable zip

@@ -11,7 +11,7 @@ import java.io.File;
 
 import javax.swing.ImageIcon;
 
-import og.basics.gui.image.ImageResizer;
+import og.basics.gui.image.StaticImageHelper;
 import de.og.batterycreator.creators.AbstractCreator;
 import de.og.batterycreator.main.IconCreatorFrame;
 
@@ -109,7 +109,7 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 			final Graphics2D g = resizedChargeIcon.createGraphics();
 			g.drawImage(chargeIcon.getImage(), 1, 1, null);
 			if (stylSettings.isResizeChargeSymbol())
-				resizedChargeIcon = ImageResizer.resizeAdvanced(resizedChargeIcon, stylSettings.getResizeChargeSymbolHeight());
+				resizedChargeIcon = StaticImageHelper.resizeAdvanced(resizedChargeIcon, stylSettings.getResizeChargeSymbolHeight());
 
 			final int w = resizedChargeIcon.getWidth();
 			final int h = resizedChargeIcon.getHeight();

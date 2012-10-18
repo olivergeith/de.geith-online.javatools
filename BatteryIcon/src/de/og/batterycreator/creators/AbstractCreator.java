@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import og.basics.gui.file.FileDialogs;
-import og.basics.gui.image.ImageResizer;
+import og.basics.gui.image.StaticImageHelper;
 import de.og.batterycreator.creators.settings.StyleSettings;
 
 public abstract class AbstractCreator {
@@ -68,9 +68,9 @@ public abstract class AbstractCreator {
 		if (stylSettings.getTargetIconSize() != img.getHeight()) {
 			// do the resizing before save
 			if (stylSettings.isUseAdvancedResize())
-				img = ImageResizer.resizeAdvanced(img, stylSettings.getTargetIconSize());
+				img = StaticImageHelper.resizeAdvanced(img, stylSettings.getTargetIconSize());
 			else
-				img = ImageResizer.resize(img, stylSettings.getTargetIconSize());
+				img = StaticImageHelper.resize(img, stylSettings.getTargetIconSize());
 		}
 		// the writing
 		writePNG(img, file);

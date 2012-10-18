@@ -79,6 +79,8 @@ public class ConfigPanel extends JPanel {
 	JTextField filepattern = new JTextField();
 	JTextField filepatternCharge = new JTextField();
 
+	JTextField lockHandleFileName = new JTextField();
+	JLabel lockHandleSize = new JLabel();
 	JFontChooserButton fontButton = new JFontChooserButton("Choose Font", fontSizes);
 
 	DrawableComboBox zipResolutionFolderCombo = new DrawableComboBox();
@@ -127,6 +129,7 @@ public class ConfigPanel extends JPanel {
 					filepattern.setText(pre.getFilePattern());
 					filepatternCharge.setText(pre.getFilePatternCharge());
 					romPresetCombo.setSelectedIndex(0);
+					lockHandleSize.setText("" + pre.getLockHandleSize());
 				}
 			}
 		});
@@ -292,6 +295,13 @@ public class ConfigPanel extends JPanel {
 		builder.add(fileWifiPattern, cc.xyw(2, ++row, 3));
 		builder.add(fileWifiPatternFully, cc.xyw(6, row, 3));
 
+		builder.add(createGroupLabel("Lockhandle Filename & Size ..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel("Lockhandle Filename"), cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("Lockhandle Filename"), cc.xyw(6, row, 3));
+		builder.add(lockHandleFileName, cc.xyw(2, ++row, 3));
+		builder.add(lockHandleSize, cc.xyw(6, row, 3));
+
 		builder.add(createGroupLabel("Resizing..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(createBlueDeviderLabel("Resize Icon to (hight)"), cc.xyw(2, ++row, 7));
@@ -421,6 +431,10 @@ public class ConfigPanel extends JPanel {
 		wifiColor.setBackground(settings.getWifiColor());
 		wifiColorFully.setBackground(settings.getWifiColorFully());
 
+		// Lockhandle
+		lockHandleFileName.setText(settings.getLockHandleFileName());
+		lockHandleSize.setText("" + settings.getLockHandleSize());
+
 		validateControls();
 		this.repaint();
 	}
@@ -477,7 +491,9 @@ public class ConfigPanel extends JPanel {
 		settings.setOutWifiColor(outWifiColor.getBackground());
 		settings.setWifiColor(wifiColor.getBackground());
 		settings.setWifiColorFully(wifiColorFully.getBackground());
-
+		// Lockhandle
+		settings.setLockHandleFileName(lockHandleFileName.getText());
+		settings.setLockHandleSize(Integer.parseInt(lockHandleSize.getText()));
 		return settings;
 	}
 

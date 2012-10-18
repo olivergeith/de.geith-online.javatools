@@ -20,6 +20,7 @@ import de.og.batterycreator.creators.wifi.AbstractWifiCreator;
 import de.og.batterycreator.creators.wifi.NoWifiIcons;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.BattCreatorSelector;
+import de.og.batterycreator.gui.widgets.LockHandleSelector;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
 import de.og.batterycreator.gui.widgets.ToggleSelector;
 import de.og.batterycreator.gui.widgets.WifiCreatorSelector;
@@ -40,6 +41,7 @@ public class IconCreatingPanelNew extends JPanel {
 	private final OverviewPanel wifiOverviewPanel = wifiCreatorBox.getWifiOverviewPanel();
 	private AbstractWifiCreator activWifiCreator = null;
 
+	private final LockHandleSelector lockHandleSelector = new LockHandleSelector(configPane);
 	private final ToggleSelector toggleBox = new ToggleSelector();
 
 	public IconCreatingPanelNew() {
@@ -48,6 +50,9 @@ public class IconCreatingPanelNew extends JPanel {
 
 	private void initUI() {
 		setLayout(new BorderLayout());
+
+		//
+		lockHandleSelector.setPreferredSize(new Dimension(200, 30));
 
 		// Icon Liste
 		final JScrollPane scroller = new JScrollPane();
@@ -96,6 +101,8 @@ public class IconCreatingPanelNew extends JPanel {
 		toolBar.addSeparator();
 		toolBar.add(toggleBox);
 		toolBar.addSeparator();
+		toolBar.add(lockHandleSelector);
+		toolBar.addSeparator();
 		toolBar.add(createAktion);
 		toolBar.add(zipAktion);
 		add(toolBar, BorderLayout.NORTH);
@@ -106,23 +113,31 @@ public class IconCreatingPanelNew extends JPanel {
 	 */
 	private void doZip() {
 		final ZipMaker zipper = new ZipMaker();
-		final Vector<String> files2add = new Vector<String>();
+		final Vector<String> files2add2SystemUI = new Vector<String>();
+		final Vector<String> files2add2Framework = new Vector<String>();
 		// adding Battery Icons
 		activBattCreator = (AbstractIconCreator) battCreatorBox.getSelectedItem();
 		if (activBattCreator != null) {
-			files2add.addAll(activBattCreator.getAllFilenamesAndPath());
+			files2add2SystemUI.addAll(activBattCreator.getAllFilenamesAndPath());
 		}
 		// Add Wifi Icons
 		activWifiCreator = (AbstractWifiCreator) wifiCreatorBox.getSelectedItem();
 		if (activWifiCreator != null && !activWifiCreator.toString().equals(NoWifiIcons.name)) {
-			files2add.addAll(activWifiCreator.getAllFilenamesAndPath());
+			files2add2SystemUI.addAll(activWifiCreator.getAllFilenamesAndPath());
 		}
 		// Add Toggles
-		files2add.addAll(toggleBox.getFilenamesAndPath());
+		files2add2SystemUI.addAll(toggleBox.getFilenamesAndPath());
+
+		// Lockhandle
+		files2add2Framework.addAll(lockHandleSelector.getFilenamesAndPath());
+
+		// TODO Hier fehlt noch was im Zipper!!! um auch framework ins zip zu
+		// bekommen
 
 		// now thew actual zipping...
 		try {
-			final boolean saved = zipper.addFilesToArchive(files2add, activBattCreator.getStylSettings().getFolderWithinZip(), activBattCreator.getName());
+			final boolean saved = zipper.addFilesToArchive(files2add2SystemUI, activBattCreator.getStylSettings().getFolderSystemUIInZip(),
+					activBattCreator.getName());
 			// all ok ? Then Messagebox
 			if (saved == true) {
 				JOptionPane.showMessageDialog(IconCreatingPanelNew.this, "Zip was created successfully", "Zip creating", JOptionPane.INFORMATION_MESSAGE);

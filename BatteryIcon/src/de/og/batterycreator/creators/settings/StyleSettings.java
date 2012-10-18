@@ -2,7 +2,6 @@ package de.og.batterycreator.creators.settings;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.io.File;
 import java.io.Serializable;
 
 import javax.swing.ImageIcon;
@@ -10,6 +9,8 @@ import javax.swing.ImageIcon;
 import de.og.batterycreator.gui.widgets.DrawableComboBox;
 
 public class StyleSettings implements Serializable {
+	private static final String LOCKHANDLE_FILENAME_DEFAULT = "ic_lockscreen_handle_normal.png";
+
 	private static final long serialVersionUID = 4747296256398459127L;
 
 	public static final String BATT_ICON_CHARGE_NAME_AOKP = "stat_sys_battery_circle_charge_anim";
@@ -18,6 +19,7 @@ public class StyleSettings implements Serializable {
 	public static final String BATT_ICON_NAME_STOCK_ICS_JKAY = "stat_sys_battery_";
 
 	public static final String FOLDER_SYSTEMUI = "MORPH/system/app/SystemUI.apk/res/";
+	public static final String FOLDER_FRAMEWORK = "MORPH/system/framework/framework-res.apk/res/";
 
 	public static final String WIFI_ICON_NAME = "stat_sys_wifi_signal_";
 	public static final String WIFI_ICON_EXTENSION_FULLY = "_fully";
@@ -65,7 +67,11 @@ public class StyleSettings implements Serializable {
 	private String filePatternCharge = new String(BATT_ICON_CHARGE_NAME_AOKP);
 
 	private String zipResolutionFolder = DrawableComboBox.FOLDER_XHDPI;
-	private String folderWithinZip = FOLDER_SYSTEMUI + DrawableComboBox.FOLDER_XHDPI + File.separator;
+	private String folderSystemUIInZip = FOLDER_SYSTEMUI + DrawableComboBox.FOLDER_XHDPI + "/";
+	private String folderFrameworkInZip = FOLDER_FRAMEWORK + DrawableComboBox.FOLDER_XHDPI + "/";
+
+	private String lockHandleFileName = LOCKHANDLE_FILENAME_DEFAULT;
+	private int lockHandleSize = RomPreset.LOCK_XHDPI;
 
 	private int targetIconSize = DrawableComboBox.ICON_HEIGHT_XHDPI;
 	private boolean useAdvancedResize = true;
@@ -89,8 +95,12 @@ public class StyleSettings implements Serializable {
 	private Color wifiColor = Color.white;
 	private Color wifiColorFully = AOKP_BLUE;
 
-	public String getFolderWithinZip() {
-		return folderWithinZip;
+	public String getFolderSystemUIInZip() {
+		return folderSystemUIInZip;
+	}
+
+	public String getFolderFrameworkInZip() {
+		return folderFrameworkInZip;
 	}
 
 	public Color getFontColor() {
@@ -412,8 +422,8 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setZipResolutionFolder(final String zipResolutionFolder) {
 		this.zipResolutionFolder = zipResolutionFolder;
-		folderWithinZip = FOLDER_SYSTEMUI + zipResolutionFolder + "/";
-
+		folderSystemUIInZip = FOLDER_SYSTEMUI + zipResolutionFolder + "/";
+		folderFrameworkInZip = FOLDER_FRAMEWORK + zipResolutionFolder + "/";
 	}
 
 	/**
@@ -752,6 +762,36 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setWifiColorFully(final Color wifiColorFully) {
 		this.wifiColorFully = wifiColorFully;
+	}
+
+	/**
+	 * @return the lockHandleFileName
+	 */
+	public String getLockHandleFileName() {
+		return lockHandleFileName;
+	}
+
+	/**
+	 * @param lockHandleFileName
+	 *            the lockHandleFileName to set
+	 */
+	public void setLockHandleFileName(final String lockHandleFileName) {
+		this.lockHandleFileName = lockHandleFileName;
+	}
+
+	/**
+	 * @return the lockHandleSize
+	 */
+	public int getLockHandleSize() {
+		return lockHandleSize;
+	}
+
+	/**
+	 * @param lockHandleSize
+	 *            the lockHandleSize to set
+	 */
+	public void setLockHandleSize(final int lockHandleSize) {
+		this.lockHandleSize = lockHandleSize;
 	}
 
 }

@@ -55,6 +55,7 @@ public class ToggleSelector extends JComboBox<ImageIcon> {
 		overviewPanel.add(overviewLabel, BorderLayout.CENTER);
 		overviewPanel.setBackground(Color.black);
 		overviewLabel.setForeground(Color.white);
+		System.out.println("Loading Custom ToggleSets!");
 		addToggleSetsFromFilesystem();
 
 		addActionListener(new ActionListener() {
@@ -83,6 +84,8 @@ public class ToggleSelector extends JComboBox<ImageIcon> {
 				}
 			}
 		});
+		if (getItemCount() > 0)
+			setSelectedIndex(0);
 	}
 
 	/**

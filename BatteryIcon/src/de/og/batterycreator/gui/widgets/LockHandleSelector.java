@@ -63,6 +63,7 @@ public class LockHandleSelector extends JComboBox<ImageIcon> {
 				writeSelectedIcon();
 			}
 		});
+		setSelectedIndex(0);
 	}
 
 	protected void writeSelectedIcon() {
@@ -97,6 +98,7 @@ public class LockHandleSelector extends JComboBox<ImageIcon> {
 	}
 
 	private Vector<ImageIcon> fillIconVector() {
+		System.out.println("Loading Custom Lockhandles!");
 		handleList.add(nada);
 		handleList.add(origlock);
 		handleList.add(entelock);

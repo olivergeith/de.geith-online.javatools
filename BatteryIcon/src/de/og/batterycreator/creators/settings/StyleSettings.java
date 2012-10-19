@@ -56,7 +56,7 @@ public class StyleSettings implements Serializable {
 	private boolean coloredFont = false;
 	private boolean coloredIcon = true;
 	private boolean showChargeSymbol = true;
-	private boolean resizeChargeSymbol = false;
+	private boolean resizeChargeSymbol = true;
 	private int resizeChargeSymbolHeight = 24;
 	private boolean useGradiantForMediumColor = false;
 	private boolean useGradiantForNormalColor = false;

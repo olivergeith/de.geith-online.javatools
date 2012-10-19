@@ -28,6 +28,7 @@ public class IconCreatorFrame extends JFrame {
 	private final JMenuBar menuBar = new JMenuBar();
 
 	public static void main(final String[] args) {
+		System.out.println("Starting The Battery Icon Creator");
 		frame = new IconCreatorFrame();
 
 	}
@@ -39,6 +40,7 @@ public class IconCreatorFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 100, 300, 1280);
 		initUI();
+		System.out.println("Showing up Frame!");
 		setVisible(true);
 		pack();
 	}

@@ -29,7 +29,7 @@ public class BinarySquaresCreator extends AbstractIconCreator {
 		String binary = Integer.toBinaryString(percentage);
 		while (binary.length() < 7)
 			binary = "0" + binary;
-		System.out.println(binary);
+		// System.out.println(binary);
 
 		final char c01 = binary.charAt(6);
 		final char c02 = binary.charAt(5);

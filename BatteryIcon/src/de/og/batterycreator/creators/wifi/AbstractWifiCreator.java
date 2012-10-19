@@ -38,6 +38,7 @@ public abstract class AbstractWifiCreator extends AbstractCreator {
 	// ###############################################################################
 	@Override
 	public void createAllImages() {
+		System.out.println("Wifi: Creating Icons!");
 		iconMap.removeAllElements();
 		filenames.removeAllElements();
 		filenamesAndPath.removeAllElements();
@@ -115,6 +116,7 @@ public abstract class AbstractWifiCreator extends AbstractCreator {
 	// ###############################################################################
 	@Override
 	public ImageIcon createOverview() {
+		System.out.println("Wifi: Creating Overview!");
 		if (iconMap != null && iconMap.size() > 0) {
 			final ImageIcon img1 = iconMap.get(0);
 			final int iw = img1.getIconWidth();

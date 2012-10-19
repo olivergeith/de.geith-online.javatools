@@ -27,6 +27,9 @@ public class ChargeIconSelector extends JComboBox<ImageIcon> {
 	private static final ImageIcon charge30 = new ImageIcon(ChargeIconSelector.class.getResource("charge30.png"));
 	private static final ImageIcon charge31 = new ImageIcon(ChargeIconSelector.class.getResource("charge31.png"));
 	private static final ImageIcon charge32 = new ImageIcon(ChargeIconSelector.class.getResource("charge32.png"));
+	private static final ImageIcon charge40 = new ImageIcon(ChargeIconSelector.class.getResource("charge40.png"));
+	private static final ImageIcon charge41 = new ImageIcon(ChargeIconSelector.class.getResource("charge41.png"));
+	private static final ImageIcon charge42 = new ImageIcon(ChargeIconSelector.class.getResource("charge42.png"));
 
 	public ChargeIconSelector() {
 		super();
@@ -34,28 +37,31 @@ public class ChargeIconSelector extends JComboBox<ImageIcon> {
 	}
 
 	private void initUI() {
-		addItem(charge01);
-		addItem(charge02);
-		addItem(charge03);
-		addItem(charge04);
 		addItem(charge20);
 		addItem(charge21);
 		addItem(charge22);
 		addItem(charge23);
+		addItem(charge01);
+		addItem(charge02);
+		addItem(charge03);
+		addItem(charge04);
 		addItem(charge30);
 		addItem(charge31);
 		addItem(charge32);
 		addItem(charge10);
 		addItem(charge11);
 		addItem(charge12);
+		addItem(charge40);
+		addItem(charge41);
+		addItem(charge42);
+		System.out.println("Loading Custom Charge Icons!");
 		addAdditionalIconsFromFilesystem();
 
 		addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(final ActionEvent e) {
-				final ImageIcon icon = (ImageIcon) getSelectedItem();
-				System.out.println("Selected Icon:" + icon);
+				// final ImageIcon icon = (ImageIcon) getSelectedItem();
 			}
 		});
 	}

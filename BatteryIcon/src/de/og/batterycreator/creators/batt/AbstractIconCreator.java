@@ -45,7 +45,9 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 		iconMap.removeAllElements();
 		filenames.removeAllElements();
 		filenamesAndPath.removeAllElements();
+		System.out.println("Battery: Creating Icons!");
 		createImages();
+		System.out.println("Battery: Creating ChargeIcons!");
 		createChargeImages();
 		overview = createOverview();
 	}
@@ -107,7 +109,7 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 			// Resize Charge Icon
 			BufferedImage resizedChargeIcon = new BufferedImage(chargeIcon.getIconWidth(), chargeIcon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
 			final Graphics2D g = resizedChargeIcon.createGraphics();
-			g.drawImage(chargeIcon.getImage(), 1, 1, null);
+			g.drawImage(chargeIcon.getImage(), 0, 0, null);
 			if (stylSettings.isResizeChargeSymbol())
 				resizedChargeIcon = StaticImageHelper.resizeAdvanced(resizedChargeIcon, stylSettings.getResizeChargeSymbolHeight());
 
@@ -177,6 +179,7 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 	// ###############################################################################
 	@Override
 	public ImageIcon createOverview() {
+		System.out.println("Battery: Creating Overview!");
 		if (iconMap != null && iconMap.size() > 100) {
 			final ImageIcon img1 = iconMap.get(0);
 			final int iw = img1.getIconWidth();

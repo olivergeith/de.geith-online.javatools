@@ -18,13 +18,13 @@ import og.basics.gui.file.FileDialogs;
 public class ZipMaker {
 
 	public static void main(final String[] args) {
-		final Vector<String> files2add = new Vector<String>();
-		files2add.add("./tmp/stat_sys_battery_circle_0.png");
-		files2add.add("./tmp/stat_sys_battery_circle_1.png");
-		files2add.add("./tmp/stat_sys_battery_circle_2.png");
+		final Vector<ZipElement> files2add = new Vector<ZipElement>();
+		files2add.add(new ZipElement("./tmp/stat_sys_battery_circle_0.png", "MORPH/system/app/SystemUI.apk/res/drawable-xhdpi/"));
+		files2add.add(new ZipElement("./tmp/stat_sys_battery_circle_1.png", "MORPH/system/app/SystemUI.apk/res/drawable-xhdpi/"));
+		files2add.add(new ZipElement("./tmp/stat_sys_battery_circle_2.png", "MORPH/system/app/SystemUI.apk/res/drawable-xhdpi/"));
 		final ZipMaker zipper = new ZipMaker();
 		try {
-			zipper.addFilesToArchive(files2add, "MORPH/system/app/SystemUI.apk/res/drawable-xhdpi/", "ArcBattery");
+			zipper.addFilesToArchive(files2add, "ArcBattery");
 		} catch (final Exception e) {
 
 			e.printStackTrace();
@@ -59,7 +59,7 @@ public class ZipMaker {
 		this.template = template;
 	}
 
-	public boolean addFilesToArchive(final Vector<String> files2add, final String pathWithinArchive, final String outzipName) throws Exception {
+	public boolean addFilesToArchive(final Vector<ZipElement> elements, final String outzipName) throws Exception {
 		// defining output zip
 		final ZipFile zipSrc = new ZipFile(template);
 
@@ -94,10 +94,10 @@ public class ZipMaker {
 			zos.flush();
 			is.close();
 		}
-		for (final String name : files2add) {
-			final File file = new File(name);
-			traceInfo("Adding File to " + pathWithinArchive + file.getName());
-			final ZipEntry newEntry = new ZipEntry(pathWithinArchive + file.getName());
+		for (final ZipElement ele : elements) {
+			final File file = new File(ele.getFilenameWithPath());
+			traceInfo("Adding File to " + ele.getPathInArchiv() + file.getName());
+			final ZipEntry newEntry = new ZipEntry(ele.getPathInArchiv() + file.getName());
 			zos.putNextEntry(newEntry);
 
 			final InputStream is = new FileInputStream(file);

@@ -14,8 +14,8 @@ public class TopCornerWifiCreator extends AbstractWifiCreator {
 	private static final int imgMitte = 0;
 	private static final int imgWidth = 41;
 	private static final int imgHeight = 41;
-	private static final int height = 7;
-	private static final int width = 7;
+	private static final int height = 8;
+	private static final int width = 8;
 	private static final int stroke = 4;
 	private static final int offsetunten = height + 2;
 

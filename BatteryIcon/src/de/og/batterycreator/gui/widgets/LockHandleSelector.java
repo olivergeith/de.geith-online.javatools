@@ -30,6 +30,7 @@ public class LockHandleSelector extends JComboBox<ImageIcon> {
 	private static final long serialVersionUID = -7712530632645291404L;
 	private final ImageIcon nada = IconStore.nothingIcon;
 	private static final ImageIcon origlock = new ImageIcon(LockHandleSelector.class.getResource("ic_lockscreen_handle_normal.png"));
+	private static final ImageIcon entelock = new ImageIcon(LockHandleSelector.class.getResource("ic_lock_ente.png"));
 
 	private final Vector<ImageIcon> handleList = new Vector<ImageIcon>();
 	private final ConfigPanel configPane;
@@ -98,6 +99,7 @@ public class LockHandleSelector extends JComboBox<ImageIcon> {
 	private Vector<ImageIcon> fillIconVector() {
 		handleList.add(nada);
 		handleList.add(origlock);
+		handleList.add(entelock);
 		final File dir = new File(CUSTOM_DIR);
 		if (!dir.exists())
 			dir.mkdirs();

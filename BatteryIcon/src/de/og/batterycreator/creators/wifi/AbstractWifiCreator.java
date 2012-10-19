@@ -3,6 +3,7 @@ package de.og.batterycreator.creators.wifi;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Polygon;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -151,6 +152,22 @@ public abstract class AbstractWifiCreator extends AbstractCreator {
 			return new ImageIcon(over);
 		}
 		return null;
+	}
+
+	protected Polygon createUpDownTriangle(final int x, final int y, final int w, final int h) {
+		final Polygon p = new Polygon();
+		p.addPoint(x, y);
+		p.addPoint(x + w, y);
+		p.addPoint(x + w / 2, y + h);
+		return p;
+	}
+
+	protected Polygon createLeftRightTriangle(final int x, final int y, final int w, final int h) {
+		final Polygon p = new Polygon();
+		p.addPoint(x, y);
+		p.addPoint(x, y + w);
+		p.addPoint(x + h, y + w / 2);
+		return p;
 	}
 
 	public ImageIcon getOverviewIcon() {

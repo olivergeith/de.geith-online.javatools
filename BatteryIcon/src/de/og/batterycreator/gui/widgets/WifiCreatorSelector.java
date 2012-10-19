@@ -17,7 +17,10 @@ import og.basics.gui.image.StaticImageHelper;
 import de.og.batterycreator.creators.wifi.AbstractWifiCreator;
 import de.og.batterycreator.creators.wifi.BrickWifi2Creator;
 import de.og.batterycreator.creators.wifi.BrickWifiCreator;
+import de.og.batterycreator.creators.wifi.CircleWifiCreator;
+import de.og.batterycreator.creators.wifi.ForkWifiCreator;
 import de.og.batterycreator.creators.wifi.NoWifiIcons;
+import de.og.batterycreator.creators.wifi.StarGateWifiCreator;
 import de.og.batterycreator.creators.wifi.TopCornerWifiCreator;
 import de.og.batterycreator.creators.wifi.TowerWifiCreator;
 import de.og.batterycreator.gui.ConfigPanel;
@@ -42,6 +45,9 @@ public class WifiCreatorSelector extends JComboBox<AbstractWifiCreator> {
 		addItem(new BrickWifi2Creator());
 		addItem(new TowerWifiCreator());
 		addItem(new TopCornerWifiCreator());
+		addItem(new ForkWifiCreator());
+		addItem(new StarGateWifiCreator());
+		addItem(new CircleWifiCreator());
 	}
 
 	private void initUI() {

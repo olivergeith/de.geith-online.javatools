@@ -44,7 +44,8 @@ public class ConfigPanel extends JPanel {
 	JButton fontColorCharge = createClickabelColorLabel("Charge Color", "Color when charging");
 	ChargeIconSelector chargeIconSeletor = new ChargeIconSelector();
 
-	JCheckBox cboxTransparentBgrnd = createCheckbox("Transparent Background (experimental!!!)", "Use this, when your statusbar Background is not black!");
+	JCheckBox cboxTransparentBgrnd = createCheckbox("Transparent Background (switchOff = experimental !)",
+			"Use this, when your statusbar Background is not black!");
 	JButton backgroundColor = createClickabelColorLabel("Background Color", "Color if not transparent");
 
 	JButton iconColor = createClickabelColorLabel("Main Color", "Color when normal battery-level");
@@ -227,14 +228,13 @@ public class ConfigPanel extends JPanel {
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 
 		builder.add(iconColorInactiv, cc.xyw(2, ++row, 1));
+		builder.add(backgroundColor, cc.xyw(4, row, 1));
 		builder.add(cboxColoredIcon, cc.xyw(6, row, 3));
 		builder.add(iconColor, cc.xyw(2, ++row, 1));
 		builder.add(iconColorCharge, cc.xyw(4, row, 1));
 		builder.add(iconColorLowBatt, cc.xyw(6, row, 1));
 		builder.add(iconColorMedBatt, cc.xyw(8, row, 1));
-
-		builder.add(backgroundColor, cc.xyw(2, ++row, 1));
-		builder.add(cboxTransparentBgrnd, cc.xyw(4, row, 6));
+		builder.add(cboxTransparentBgrnd, cc.xyw(1, ++row, 6));
 
 		builder.add(createGroupLabel("Thresholds..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
@@ -519,6 +519,7 @@ public class ConfigPanel extends JPanel {
 		cboxResizeChargeSymbol.setEnabled(cboxShowChargeSymbol.isSelected());
 		// transparent Backround special behaviour
 		backgroundColor.setEnabled(!cboxTransparentBgrnd.isSelected());
+		backgroundColor.setVisible(!cboxTransparentBgrnd.isSelected());
 		if (!backgroundColor.isEnabled()) {
 			backgroundColor.setBackground(Color.black);
 		}

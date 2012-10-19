@@ -39,7 +39,10 @@ You can mod many aspects of the statusbar and notification Area now!
 [COLOR="Blue"][B]Oct-10-2012[/B] : Release 10.0[/COLOR]
 [LIST]
 [*]Support for Lockhandles/Lockrings on Lockscreen
-[*]Add your own custom Lockhandles to ./custom/lockhandles
+[*]Add your own custom Lockhandles to ./custom/lockhandles/*.png
+[*]support for possible future adons to framework-res.apk (so far only Lockhandle)
+[*]experimental feature to set Background color of Battery- and Wifi-icons, in case your statusbar is not black.
+[*]Optimized TopCorner Wifi
 [/LIST]
 
 [COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]

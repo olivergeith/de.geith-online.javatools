@@ -28,7 +28,7 @@ public class StyleSettings implements Serializable {
 	public static final String WIFI_ICON_NAME_INOUT = "stat_sys_wifi_inout.png";
 
 	// Konstanten
-	public static final Color COLOR_INACTIV = Color.darkGray;
+	public static final Color COLOR_INACTIV = Color.darkGray.brighter();
 	public static final Color COLOR_BGRND = Color.black;
 	public static final Color COLOR_FONT = Color.white;
 	public static final Color COLOR_CHARGE = Color.green.darker();

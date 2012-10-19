@@ -43,6 +43,7 @@ You can mod many aspects of the statusbar and notification Area now!
 [*]support for possible future adons to framework-res.apk (so far only Lockhandle)
 [*]experimental feature to set Background color of Battery- and Wifi-icons, in case your statusbar is not black.
 [*]Optimized TopCorner Wifi
+[*}4 new Wifi Designs
 [/LIST]
 
 [COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]

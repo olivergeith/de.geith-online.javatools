@@ -12,11 +12,8 @@ import javax.swing.ImageIcon;
 public class StarGateWifiCreator extends AbstractWifiCreator {
 	public static String name = "StarGate-Wifi";
 
-	private static final int imgMitte = 18;
 	private static final int imgWidth = 40;
 	private static final int imgHeight = 40;
-	private static final int height = 6;
-	private static final int width = 7;
 	private static final int stroke = 4;
 
 	public StarGateWifiCreator() {

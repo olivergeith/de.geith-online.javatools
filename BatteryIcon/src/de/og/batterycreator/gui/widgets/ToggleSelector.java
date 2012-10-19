@@ -250,6 +250,8 @@ public class ToggleSelector extends JComboBox<ImageIcon> {
 				renderer.setForeground(Color.white);
 				final ImageIcon icon = value;
 				renderer.setIcon(icon);
+				if (index > 0)
+					renderer.setText(toggledirs[index - 1].getName());
 				if (icon.equals(nada)) {
 					renderer.setText("Don't include Toggles");
 				}

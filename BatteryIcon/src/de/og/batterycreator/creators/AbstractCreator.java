@@ -169,14 +169,24 @@ public abstract class AbstractCreator {
 		return toString();
 	}
 
+	protected Graphics2D initGrafics2D(final BufferedImage img) {
+		return initGrafics2D(img, false);
+	}
+
 	// ###############################################################################
 	// Grafics2D
 	// ###############################################################################
-	protected Graphics2D initGrafics2D(final BufferedImage img) {
+	protected Graphics2D initGrafics2D(final BufferedImage img, final boolean forceTransparent) {
 		final Graphics2D g2d = img.createGraphics();
 		g2d.setFont(stylSettings.getFont());
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setStroke(new BasicStroke(stylSettings.getStrokewidth()));
+		if (!forceTransparent) {
+			if (!stylSettings.isTransparentBackground()) {
+				g2d.setColor(stylSettings.getBackgroundColor());
+				g2d.fillRect(0, 0, img.getWidth(), img.getHeight());
+			}
+		}
 		return g2d;
 	}
 

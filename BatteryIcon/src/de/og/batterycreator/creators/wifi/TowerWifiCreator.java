@@ -40,12 +40,12 @@ public class TowerWifiCreator extends AbstractWifiCreator {
 				System.out.println("Wifirect = " + rect);
 				if (i > 0) {
 					rect.y = rect.y - 2;
-					g2d.setColor(Color.black);
+					g2d.setColor(stylSettings.getBackgroundColor());
 					g2d.fillArc(rect.x - 1, rect.y - 1, rect.width + 2, rect.height + 2, 45, 90);
 					g2d.setColor(stylSettings.getIconColorInActiv());
 					g2d.fillArc(rect.x, rect.y, rect.width, rect.height, 45, 90);
 				} else {
-					g2d.setColor(Color.black);
+					g2d.setColor(stylSettings.getBackgroundColor());
 					g2d.fillArc(rect.x - 1, rect.y - 1, rect.width + 2, rect.height + 2, 0, 360);
 					g2d.setColor(stylSettings.getIconColorInActiv());
 					g2d.fillArc(rect.x, rect.y, rect.width, rect.height, 0, 360);
@@ -63,12 +63,12 @@ public class TowerWifiCreator extends AbstractWifiCreator {
 						col = stylSettings.getIconColorInActiv();
 					}
 					rect.y = rect.y - 2;
-					g2d.setColor(Color.black);
+					g2d.setColor(stylSettings.getBackgroundColor());
 					g2d.fillArc(rect.x - 1, rect.y - 1, rect.width + 2, rect.height + 2, 45, 90);
 					g2d.setColor(col);
 					g2d.fillArc(rect.x, rect.y, rect.width, rect.height, 45, 90);
 				} else {
-					g2d.setColor(Color.black);
+					g2d.setColor(stylSettings.getBackgroundColor());
 					g2d.fillArc(rect.x - 2, rect.y - 2, rect.width + 4, rect.height + 4, 0, 360);
 					g2d.setColor(col);
 					g2d.fillArc(rect.x - 1, rect.y - 1, rect.width + 2, rect.height + 2, 0, 360);
@@ -85,7 +85,7 @@ public class TowerWifiCreator extends AbstractWifiCreator {
 	public ImageIcon createInOutImage(final boolean in, final boolean out) {
 		// Create a graphics contents on the buffered image
 		BufferedImage img = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_ARGB);
-		final Graphics2D g2d = initGrafics2D(img);
+		final Graphics2D g2d = initGrafics2D(img, true);
 
 		final Rectangle rectin = new Rectangle(imgMitte - width + 1, height * 3 + 2, width * 3, height * 3);
 		final Rectangle rectout = new Rectangle(imgMitte - width + 1, 1, width * 3, height * 3);

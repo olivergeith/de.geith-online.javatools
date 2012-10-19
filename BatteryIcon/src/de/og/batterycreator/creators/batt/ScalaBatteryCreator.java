@@ -39,7 +39,7 @@ public class ScalaBatteryCreator extends AbstractIconCreator {
 		}
 		// Create a graphics contents on the buffered image
 		BufferedImage img = new BufferedImage(82, 41, BufferedImage.TYPE_INT_ARGB);
-		final Graphics2D g2d = initGrafics2D(img);
+		final Graphics2D g2d = initGrafics2D(img, true);
 
 		final int offsetStart = 10;
 

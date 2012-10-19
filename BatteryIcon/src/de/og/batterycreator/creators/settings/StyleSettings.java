@@ -28,11 +28,13 @@ public class StyleSettings implements Serializable {
 	public static final String WIFI_ICON_NAME_INOUT = "stat_sys_wifi_inout.png";
 
 	// Konstanten
+	public static final Color COLOR_INACTIV = Color.darkGray;
+	public static final Color COLOR_BGRND = Color.black;
 	public static final Color COLOR_FONT = Color.white;
 	public static final Color COLOR_CHARGE = Color.green.darker();
 	public static final Color COLOR_Med_BATT = Color.orange;
 	public static final Color COLOR_LOW_BATT = Color.red;
-	public static final Color AOKP_BLUE = new Color(15, 174, 234);
+	public static final Color COLOR_AOKP_BLUE = new Color(15, 174, 234);
 	public static final Font DEFAULT_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 21);
 
 	// Member
@@ -41,11 +43,14 @@ public class StyleSettings implements Serializable {
 	private Color fontColorMedBatt = COLOR_Med_BATT;
 	private Color fontChargeColor = COLOR_FONT;
 
-	private Color iconColorInActiv = Color.darkGray;
-	private Color iconColor = AOKP_BLUE;
+	private Color iconColorInActiv = COLOR_INACTIV;
+	private Color iconColor = COLOR_AOKP_BLUE;
 	private Color iconColorLowBatt = COLOR_LOW_BATT;
 	private Color iconColorMedBatt = COLOR_Med_BATT;
 	private Color iconChargeColor = COLOR_CHARGE;
+
+	private boolean transparentBackground = true;
+	private Color backgroundColor = COLOR_BGRND;
 
 	private boolean showFont = true;
 	private boolean coloredFont = false;
@@ -93,7 +98,7 @@ public class StyleSettings implements Serializable {
 	private Color inWifiColor = Color.red;
 	private Color outWifiColor = Color.green.darker();
 	private Color wifiColor = Color.white;
-	private Color wifiColorFully = AOKP_BLUE;
+	private Color wifiColorFully = COLOR_AOKP_BLUE;
 
 	public String getFolderSystemUIInZip() {
 		return folderSystemUIInZip;
@@ -792,6 +797,39 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setLockHandleSize(final int lockHandleSize) {
 		this.lockHandleSize = lockHandleSize;
+	}
+
+	/**
+	 * @return the transparentBackground
+	 */
+	public boolean isTransparentBackground() {
+		return transparentBackground;
+	}
+
+	/**
+	 * @param transparentBackground
+	 *            the transparentBackground to set
+	 */
+	public void setTransparentBackground(final boolean transparentBackground) {
+		this.transparentBackground = transparentBackground;
+	}
+
+	/**
+	 * @return the backgroundColor
+	 */
+	public Color getBackgroundColor() {
+		// if (!isTransparentBackground())
+		return backgroundColor;
+		// else
+		// return Color.black;
+	}
+
+	/**
+	 * @param backgroundColor
+	 *            the backgroundColor to set
+	 */
+	public void setBackgroundColor(final Color backgroundColor) {
+		this.backgroundColor = backgroundColor;
 	}
 
 }

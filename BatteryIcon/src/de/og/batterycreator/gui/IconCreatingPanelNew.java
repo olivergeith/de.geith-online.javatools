@@ -24,6 +24,7 @@ import de.og.batterycreator.gui.widgets.LockHandleSelector;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
 import de.og.batterycreator.gui.widgets.ToggleSelector;
 import de.og.batterycreator.gui.widgets.WifiCreatorSelector;
+import de.og.batterycreator.zipcreator.ZipElementCollection;
 import de.og.batterycreator.zipcreator.ZipMaker;
 
 public class IconCreatingPanelNew extends JPanel {
@@ -131,13 +132,13 @@ public class IconCreatingPanelNew extends JPanel {
 		// Lockhandle
 		files2add2Framework.addAll(lockHandleSelector.getFilenamesAndPath());
 
-		// TODO Hier fehlt noch was im Zipper!!! um auch framework ins zip zu
-		// bekommen
-
-		// now thew actual zipping...
+		// ZipElementCollection anlegen und alle Zipelemente einfügen
+		final ZipElementCollection zipCollection = new ZipElementCollection();
+		zipCollection.addElements(files2add2SystemUI, activBattCreator.getStylSettings().getFolderSystemUIInZip());
+		zipCollection.addElements(files2add2Framework, activBattCreator.getStylSettings().getFolderFrameworkInZip());
+		// now the actual zipping...
 		try {
-			final boolean saved = zipper.addFilesToArchive(files2add2SystemUI, activBattCreator.getStylSettings().getFolderSystemUIInZip(),
-					activBattCreator.getName());
+			final boolean saved = zipper.addFilesToArchive(zipCollection.getZipelEments(), activBattCreator.getName());
 			// all ok ? Then Messagebox
 			if (saved == true) {
 				JOptionPane.showMessageDialog(IconCreatingPanelNew.this, "Zip was created successfully", "Zip creating", JOptionPane.INFORMATION_MESSAGE);

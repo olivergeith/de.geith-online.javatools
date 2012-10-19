@@ -60,7 +60,7 @@ public class BrickWifi2Creator extends AbstractWifiCreator {
 	public ImageIcon createInOutImage(final boolean in, final boolean out) {
 		// Create a graphics contents on the buffered image
 		BufferedImage img = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_ARGB);
-		final Graphics2D g2d = initGrafics2D(img);
+		final Graphics2D g2d = initGrafics2D(img, true);
 
 		final Rectangle rectin = new Rectangle(imgMitte - width - 1, imgHeight - (height + 1), width, height);
 		final Rectangle rectout = new Rectangle(imgMitte + width + 1, imgHeight - (height + 1), width, height);

@@ -38,17 +38,20 @@ public class ConfigPanel extends JPanel {
 			"12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32"
 	};
 
-	JButton fontColor;
-	JButton fontColorLowBatt;
-	JButton fontColorMedBatt;
-	JButton fontColorCharge;
+	JButton fontColor = createClickabelColorLabel("Main Color", "Color when normal battery-level");
+	JButton fontColorLowBatt = createClickabelColorLabel("LowBatt", "Color when low battery");
+	JButton fontColorMedBatt = createClickabelColorLabel("MedBatt", "Color when Med battery");
+	JButton fontColorCharge = createClickabelColorLabel("Charge Color", "Color when charging");
 	ChargeIconSelector chargeIconSeletor = new ChargeIconSelector();
 
-	JButton iconColor;
-	JButton iconColorLowBatt;
-	JButton iconColorMedBatt;
-	JButton iconColorInactiv;
-	JButton iconColorCharge;
+	JCheckBox cboxTransparentBgrnd = createCheckbox("Transparent Background (experimental!!!)", "Use this, when your statusbar Background is not black!");
+	JButton backgroundColor = createClickabelColorLabel("Background Color", "Color if not transparent");
+
+	JButton iconColor = createClickabelColorLabel("Main Color", "Color when normal battery-level");
+	JButton iconColorLowBatt = createClickabelColorLabel("LowBatt", "Color when low battery");
+	JButton iconColorMedBatt = createClickabelColorLabel("MedBatt", "Color when Med battery");
+	JButton iconColorInactiv = createClickabelColorLabel("Inactiv", "Color for inactiv Iconelements");
+	JButton iconColorCharge = createClickabelColorLabel("Charge Color", "Color when charging");
 
 	SliderAndLabel sliderStroke = new SliderAndLabel(1, 10);
 	JCheckBox cboxFlip = createCheckbox("Flip Icon", "Mirror's the Icon...ony has effect on a few styls!");
@@ -107,17 +110,6 @@ public class ConfigPanel extends JPanel {
 	}
 
 	private void initComponents() {
-		fontColor = createClickabelColorLabel("Main Color", "Color when normal battery-level");
-		fontColorLowBatt = createClickabelColorLabel("LowBatt", "Color when low battery");
-		fontColorMedBatt = createClickabelColorLabel("MedBatt", "Color when Med battery");
-		fontColorCharge = createClickabelColorLabel("Charge Color", "Color when charging");
-
-		iconColor = createClickabelColorLabel("Main Color", "Color when normal battery-level");
-		iconColorInactiv = createClickabelColorLabel("Background", "Color for Background");
-
-		iconColorLowBatt = createClickabelColorLabel("LowBatt", "Color when low battery");
-		iconColorMedBatt = createClickabelColorLabel("MedBatt", "Color when Med battery");
-		iconColorCharge = createClickabelColorLabel("Charge Color", "Color when charging");
 
 		romPresetCombo.addActionListener(new ActionListener() {
 
@@ -167,7 +159,8 @@ public class ConfigPanel extends JPanel {
 		builder.add(createGroupLabel("Colors"), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(createBlueDeviderLabel("For having Battery and Wifi Icons in 'harmony', some Colors are used from Battery Icon:"), cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel(" - Icon BackgroundColor == Background"), cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel(" - WifiIcon BackgroundColor == Background"), cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel(" - WifiIcon InactivColor == Inaktiv Color"), cc.xyw(2, ++row, 7));
 		builder.add(createGroupLabel("Wifi specific Colors"), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(createBlueDeviderLabel("Colors for Connection"), cc.xyw(2, ++row, 3));
@@ -239,6 +232,9 @@ public class ConfigPanel extends JPanel {
 		builder.add(iconColorCharge, cc.xyw(4, row, 1));
 		builder.add(iconColorLowBatt, cc.xyw(6, row, 1));
 		builder.add(iconColorMedBatt, cc.xyw(8, row, 1));
+
+		builder.add(backgroundColor, cc.xyw(2, ++row, 1));
+		builder.add(cboxTransparentBgrnd, cc.xyw(4, row, 6));
 
 		builder.add(createGroupLabel("Thresholds..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
@@ -385,6 +381,9 @@ public class ConfigPanel extends JPanel {
 		iconColorInactiv.setBackground(settings.getIconColorInActiv());
 		iconColorCharge.setBackground(settings.getIconChargeColor());
 
+		backgroundColor.setBackground(settings.getBackgroundColor());
+		cboxTransparentBgrnd.setSelected(settings.isTransparentBackground());
+
 		cboxFlip.setSelected(settings.isFlip());
 		sliderStroke.setValue(settings.getStrokewidth());
 
@@ -451,6 +450,9 @@ public class ConfigPanel extends JPanel {
 		settings.setIconColorInActiv(iconColorInactiv.getBackground());
 		settings.setIconChargeColor(iconColorCharge.getBackground());
 
+		settings.setBackgroundColor(backgroundColor.getBackground());
+		settings.setTransparentBackground(cboxTransparentBgrnd.isSelected());
+
 		settings.setFlip(cboxFlip.isSelected());
 		settings.setStrokewidth(sliderStroke.getValue());
 
@@ -515,6 +517,11 @@ public class ConfigPanel extends JPanel {
 		romPresetCombo.setSelectedIndex(0);
 		sliderResizeChargeSymbol.setEnabled(cboxShowChargeSymbol.isSelected() && cboxResizeChargeSymbol.isSelected());
 		cboxResizeChargeSymbol.setEnabled(cboxShowChargeSymbol.isSelected());
+		// transparent Backround special behaviour
+		backgroundColor.setEnabled(!cboxTransparentBgrnd.isSelected());
+		if (!backgroundColor.isEnabled()) {
+			backgroundColor.setBackground(Color.black);
+		}
 	}
 
 	public void enableSupportedFeatures(final boolean supportsFlip, final boolean suppoertsStrokewidth) {

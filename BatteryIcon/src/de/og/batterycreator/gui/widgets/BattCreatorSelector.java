@@ -26,15 +26,19 @@ import de.og.batterycreator.creators.batt.BatterySymbolCreator;
 import de.og.batterycreator.creators.batt.BatteryVerticalSymbolCreator;
 import de.og.batterycreator.creators.batt.BinaryBarsCreator;
 import de.og.batterycreator.creators.batt.BinarySquaresCreator;
+import de.og.batterycreator.creators.batt.BoxCreator;
 import de.og.batterycreator.creators.batt.BrickBattCreator;
 import de.og.batterycreator.creators.batt.BrickBattNoGapCreator;
 import de.og.batterycreator.creators.batt.BrickDecimal2Creator;
 import de.og.batterycreator.creators.batt.BrickDecimalCreator;
+import de.og.batterycreator.creators.batt.BubbleCreator;
 import de.og.batterycreator.creators.batt.ClockCreator;
 import de.og.batterycreator.creators.batt.ClockPointerCreator;
 import de.og.batterycreator.creators.batt.DecimalBar2Creator;
 import de.og.batterycreator.creators.batt.DecimalBarCreator;
 import de.og.batterycreator.creators.batt.ScalaBatteryCreator;
+import de.og.batterycreator.creators.batt.XORAndroidCreator;
+import de.og.batterycreator.creators.batt.XORApfelCreator;
 import de.og.batterycreator.gui.ConfigPanel;
 
 public class BattCreatorSelector extends JComboBox<AbstractIconCreator> {
@@ -56,10 +60,13 @@ public class BattCreatorSelector extends JComboBox<AbstractIconCreator> {
 
 	private void fillCreatorList() {
 		addItem(new ArcCreator());
+		addItem(new XORAndroidCreator());
 		addItem(new ArcSunCreator());
 		addItem(new ArcQuaterCreator2());
 		addItem(new ArcDecimalCreator());
 		addItem(new AOKPCircleModCreator());
+		addItem(new BoxCreator());
+		addItem(new BubbleCreator());
 		addItem(new BrickBattCreator());
 		addItem(new BrickBattNoGapCreator());
 		addItem(new BrickDecimalCreator());
@@ -74,6 +81,8 @@ public class BattCreatorSelector extends JComboBox<AbstractIconCreator> {
 		addItem(new ClockCreator());
 		addItem(new ClockPointerCreator());
 		addItem(new ScalaBatteryCreator());
+		addItem(new XORAndroidCreator());
+		addItem(new XORApfelCreator());
 	}
 
 	private void initIconList() {

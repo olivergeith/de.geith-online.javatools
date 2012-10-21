@@ -92,6 +92,13 @@ public class ConfigPanel extends JPanel {
 
 	JComboBox<RomPreset> romPresetCombo = new JComboBox<RomPreset>(RomPreset.getPresets());
 
+	// Signal stuff
+	private final JTextField fileNameSignalIn = new JTextField();
+	private final JTextField fileNameSignalOut = new JTextField();
+	private final JTextField fileNameSignalInOut = new JTextField();
+	private final JTextField fileSignalPattern = new JTextField();
+	private final JTextField fileSignalPatternFully = new JTextField();
+
 	// Wifi stuff
 	private final JTextField fileNameWifiIn = new JTextField();
 	private final JTextField fileNameWifiOut = new JTextField();
@@ -291,6 +298,20 @@ public class ConfigPanel extends JPanel {
 		builder.add(fileWifiPattern, cc.xyw(2, ++row, 3));
 		builder.add(fileWifiPatternFully, cc.xyw(6, row, 3));
 
+		builder.add(createGroupLabel("Signal Filenames & Output ..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel("Filename Data In"), cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("Filename Data Out"), cc.xyw(6, row, 3));
+		builder.add(fileNameSignalIn, cc.xyw(2, ++row, 3));
+		builder.add(fileNameSignalOut, cc.xyw(6, row, 3));
+		builder.add(createBlueDeviderLabel("Filename Data InOut"), cc.xyw(2, ++row, 3));
+		builder.add(fileNameSignalInOut, cc.xyw(2, ++row, 3));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel("Filename Pattern"), cc.xyw(2, ++row, 3));
+		builder.add(createBlueDeviderLabel("Fileextens. 'fully'"), cc.xyw(6, row, 3));
+		builder.add(fileSignalPattern, cc.xyw(2, ++row, 3));
+		builder.add(fileSignalPatternFully, cc.xyw(6, row, 3));
+
 		builder.add(createGroupLabel("Lockhandle Filename & Size ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(createBlueDeviderLabel("Lockhandle Filename"), cc.xyw(2, ++row, 3));
@@ -419,12 +440,21 @@ public class ConfigPanel extends JPanel {
 		sliderResizeChargeSymbol.setValue(settings.getResizeChargeSymbolHeight());
 		cboxResizeChargeSymbol.setSelected(settings.isResizeChargeSymbol());
 
+		// Signal stuff
+		fileNameSignalIn.setText(settings.getFileSignalIn());
+		fileNameSignalOut.setText(settings.getFileSignalOut());
+		fileNameSignalInOut.setText(settings.getFileSignalInOut());
+		fileSignalPattern.setText(settings.getFileSignalPattern());
+		fileSignalPatternFully.setText(settings.getFileSignalEXtensionFully());
+
 		// Wifi stuff
 		fileNameWifiIn.setText(settings.getFileWifiIn());
 		fileNameWifiOut.setText(settings.getFileWifiOut());
 		fileNameWifiInOut.setText(settings.getFileWifiInOut());
 		fileWifiPattern.setText(settings.getFileWifiPattern());
 		fileWifiPatternFully.setText(settings.getFileWifiEXtensionFully());
+
+		// Colors for Wifi and Signal
 		inWifiColor.setBackground(settings.getInWifiColor());
 		outWifiColor.setBackground(settings.getOutWifiColor());
 		wifiColor.setBackground(settings.getWifiColor());
@@ -483,12 +513,19 @@ public class ConfigPanel extends JPanel {
 		settings.setResizeChargeSymbol(cboxResizeChargeSymbol.isSelected());
 		settings.setResizeChargeSymbolHeight(sliderResizeChargeSymbol.getValue());
 
+		// Signal stuff
+		settings.setFileSignalIn(fileNameSignalIn.getText());
+		settings.setFileSignalOut(fileNameSignalOut.getText());
+		settings.setFileSignalInOut(fileNameSignalInOut.getText());
+		settings.setFileSignalPattern(fileSignalPattern.getText());
+		settings.setFileSignalEXtensionFully(fileSignalPatternFully.getText());
 		// Wifi stuff
 		settings.setFileWifiIn(fileNameWifiIn.getText());
 		settings.setFileWifiOut(fileNameWifiOut.getText());
 		settings.setFileWifiInOut(fileNameWifiInOut.getText());
 		settings.setFileWifiPattern(fileWifiPattern.getText());
 		settings.setFileWifiEXtensionFully(fileWifiPatternFully.getText());
+		// Wifi and Signal Colors
 		settings.setInWifiColor(inWifiColor.getBackground());
 		settings.setOutWifiColor(outWifiColor.getBackground());
 		settings.setWifiColor(wifiColor.getBackground());

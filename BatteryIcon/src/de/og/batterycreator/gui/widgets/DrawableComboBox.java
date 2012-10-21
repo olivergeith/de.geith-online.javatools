@@ -13,7 +13,7 @@ public class DrawableComboBox extends JComboBox<String> {
 	public static final String FOLDER_720DP = "drawable-sw720dp-xhdpi";
 	public static final String FOLDER_600DP = "drawable-sw600dp-xhdpi";
 
-	public static final int ICON_HEIGHT_XHDPI = 38;
+	public static final int ICON_HEIGHT_XHDPI = 36;
 	public static final int ICON_HEIGHT_HDPI = 27;
 	public static final int ICON_HEIGHT_720DP = 48;
 	public static final int ICON_HEIGHT_600DP = 43;

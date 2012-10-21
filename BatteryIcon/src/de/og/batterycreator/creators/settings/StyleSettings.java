@@ -27,6 +27,12 @@ public class StyleSettings implements Serializable {
 	public static final String WIFI_ICON_NAME_OUT = "stat_sys_wifi_out.png";
 	public static final String WIFI_ICON_NAME_INOUT = "stat_sys_wifi_inout.png";
 
+	public static final String SIGNAL_ICON_NAME = "stat_sys_signal_signal_";
+	public static final String SIGNAL_ICON_EXTENSION_FULLY = "_fully";
+	public static final String SIGNAL_ICON_NAME_IN = "stat_sys_signal_in.png";
+	public static final String SIGNAL_ICON_NAME_OUT = "stat_sys_signal_out.png";
+	public static final String SIGNAL_ICON_NAME_INOUT = "stat_sys_signal_inout.png";
+
 	// Konstanten
 	public static final Color COLOR_INACTIV = Color.darkGray.brighter();
 	public static final Color COLOR_BGRND = Color.black;
@@ -88,6 +94,13 @@ public class StyleSettings implements Serializable {
 	private int fontXOffset = 0;
 	private int fontYOffset = 0;
 	private int reduceFontOn100 = -3;
+
+	// Signal Stuff
+	private String fileSignalPattern = new String(SIGNAL_ICON_NAME);
+	private String fileSignalEXtensionFully = new String(SIGNAL_ICON_EXTENSION_FULLY);
+	private String fileSignalIn = new String(SIGNAL_ICON_NAME_IN);
+	private String fileSignalOut = new String(SIGNAL_ICON_NAME_OUT);
+	private String fileSignalInOut = new String(SIGNAL_ICON_NAME_INOUT);
 
 	// Wifi Stuff
 	private String fileWifiPattern = new String(WIFI_ICON_NAME);
@@ -830,6 +843,81 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setBackgroundColor(final Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
+	}
+
+	/**
+	 * @return the fileSignalInOut
+	 */
+	public String getFileSignalInOut() {
+		return fileSignalInOut;
+	}
+
+	/**
+	 * @param fileSignalInOut
+	 *            the fileSignalInOut to set
+	 */
+	public void setFileSignalInOut(final String fileSignalInOut) {
+		this.fileSignalInOut = fileSignalInOut;
+	}
+
+	/**
+	 * @return the fileSignalOut
+	 */
+	public String getFileSignalOut() {
+		return fileSignalOut;
+	}
+
+	/**
+	 * @param fileSignalOut
+	 *            the fileSignalOut to set
+	 */
+	public void setFileSignalOut(final String fileSignalOut) {
+		this.fileSignalOut = fileSignalOut;
+	}
+
+	/**
+	 * @return the fileSignalIn
+	 */
+	public String getFileSignalIn() {
+		return fileSignalIn;
+	}
+
+	/**
+	 * @param fileSignalIn
+	 *            the fileSignalIn to set
+	 */
+	public void setFileSignalIn(final String fileSignalIn) {
+		this.fileSignalIn = fileSignalIn;
+	}
+
+	/**
+	 * @return the fileSignalEXtensionFully
+	 */
+	public String getFileSignalEXtensionFully() {
+		return fileSignalEXtensionFully;
+	}
+
+	/**
+	 * @param fileSignalEXtensionFully
+	 *            the fileSignalEXtensionFully to set
+	 */
+	public void setFileSignalEXtensionFully(final String fileSignalEXtensionFully) {
+		this.fileSignalEXtensionFully = fileSignalEXtensionFully;
+	}
+
+	/**
+	 * @return the fileSignalPattern
+	 */
+	public String getFileSignalPattern() {
+		return fileSignalPattern;
+	}
+
+	/**
+	 * @param fileSignalPattern
+	 *            the fileSignalPattern to set
+	 */
+	public void setFileSignalPattern(final String fileSignalPattern) {
+		this.fileSignalPattern = fileSignalPattern;
 	}
 
 }

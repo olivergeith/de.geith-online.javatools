@@ -16,12 +16,15 @@ import javax.swing.JToolBar;
 
 import og.basics.gui.icon.CommonIconProvider;
 import de.og.batterycreator.creators.batt.AbstractIconCreator;
+import de.og.batterycreator.creators.signal.AbstractSignalCreator;
+import de.og.batterycreator.creators.signal.NoSignalIcons;
 import de.og.batterycreator.creators.wifi.AbstractWifiCreator;
 import de.og.batterycreator.creators.wifi.NoWifiIcons;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.BattCreatorSelector;
 import de.og.batterycreator.gui.widgets.LockHandleSelector;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
+import de.og.batterycreator.gui.widgets.SignalCreatorSelector;
 import de.og.batterycreator.gui.widgets.ToggleSelector;
 import de.og.batterycreator.gui.widgets.WifiCreatorSelector;
 import de.og.batterycreator.zipcreator.ZipElementCollection;
@@ -41,6 +44,10 @@ public class IconCreatingPanelNew extends JPanel {
 	private final WifiCreatorSelector wifiCreatorBox = new WifiCreatorSelector(configPane);;
 	private final OverviewPanel wifiOverviewPanel = wifiCreatorBox.getWifiOverviewPanel();
 	private AbstractWifiCreator activWifiCreator = null;
+
+	private final SignalCreatorSelector signalCreatorBox = new SignalCreatorSelector(configPane);;
+	private final OverviewPanel signalOverviewPanel = signalCreatorBox.getSignalOverviewPanel();
+	private AbstractSignalCreator activSignalCreator = null;
 
 	private final LockHandleSelector lockHandleSelector = new LockHandleSelector(configPane);
 	private final ToggleSelector toggleBox = new ToggleSelector();
@@ -70,6 +77,7 @@ public class IconCreatingPanelNew extends JPanel {
 		tabPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabPane.addTab("Battery Icon", IconStore.batteryIcon, battTabPane, "Get an Overview of your icons");
 		tabPane.addTab("Optional Wifi Icons", IconStore.wifiIcon, wifiOverviewPanel, "Get an Overview of your icons");
+		tabPane.addTab("Optional Signal Icons", IconStore.wifiIcon, signalOverviewPanel, "Get an Overview of your icons");
 		tabPane.addTab("Optional Toggle Icons", IconStore.toggleIcon, toggleBox.getOverviewPanel(), "Get an Overview of your toggles");
 
 		// Panel zusammensetzen
@@ -79,6 +87,7 @@ public class IconCreatingPanelNew extends JPanel {
 		// Comobox abfragen
 		activBattCreator = (AbstractIconCreator) battCreatorBox.getSelectedItem();
 		activWifiCreator = (AbstractWifiCreator) wifiCreatorBox.getSelectedItem();
+		activSignalCreator = (AbstractSignalCreator) signalCreatorBox.getSelectedItem();
 
 		makeButtonBar();
 	}
@@ -99,6 +108,8 @@ public class IconCreatingPanelNew extends JPanel {
 		toolBar.add(battCreatorBox);
 		toolBar.addSeparator();
 		toolBar.add(wifiCreatorBox);
+		toolBar.addSeparator();
+		toolBar.add(signalCreatorBox);
 		toolBar.addSeparator();
 		toolBar.add(toggleBox);
 		toolBar.addSeparator();
@@ -126,6 +137,13 @@ public class IconCreatingPanelNew extends JPanel {
 		if (activWifiCreator != null && !activWifiCreator.toString().equals(NoWifiIcons.name)) {
 			files2add2SystemUI.addAll(activWifiCreator.getAllFilenamesAndPath());
 		}
+
+		// Add Signal Icons
+		activSignalCreator = (AbstractSignalCreator) signalCreatorBox.getSelectedItem();
+		if (activSignalCreator != null && !activSignalCreator.toString().equals(NoSignalIcons.name)) {
+			files2add2SystemUI.addAll(activSignalCreator.getAllFilenamesAndPath());
+		}
+
 		// Add Toggles
 		files2add2SystemUI.addAll(toggleBox.getFilenamesAndPath());
 
@@ -171,6 +189,14 @@ public class IconCreatingPanelNew extends JPanel {
 			activWifiCreator.setStylSettings(configPane.getSettings());
 			activWifiCreator.createAllImages();
 			wifiOverviewPanel.setOverview(activWifiCreator.getOverviewIcon());
+		}
+
+		// Creating Signal Icons
+		activSignalCreator = (AbstractSignalCreator) signalCreatorBox.getSelectedItem();
+		if (activSignalCreator != null && !activSignalCreator.toString().equals(NoSignalIcons.name)) {
+			activSignalCreator.setStylSettings(configPane.getSettings());
+			activSignalCreator.createAllImages();
+			signalOverviewPanel.setOverview(activSignalCreator.getOverviewIcon());
 		}
 
 	}

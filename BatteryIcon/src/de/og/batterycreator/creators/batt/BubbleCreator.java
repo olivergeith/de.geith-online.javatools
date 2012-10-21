@@ -13,6 +13,17 @@ public class BubbleCreator extends AbstractIconCreator {
 	public BubbleCreator() {
 		super();
 		stylSettings.setFontXOffset(-1);
+		// stylSettings.setStrokewidth(3);
+	}
+
+	@Override
+	public boolean supportsStrokeWidth() {
+		return true;
+	}
+
+	@Override
+	public boolean supportsFlip() {
+		return true;
 	}
 
 	/*
@@ -33,11 +44,24 @@ public class BubbleCreator extends AbstractIconCreator {
 		final Color col = stylSettings.getActivIconColor(percentage, charge);
 		g2d.setXORMode(col);
 
-		final int h = Math.round(40f / 100f * percentage);
-		final int y = img.getHeight() - h;
+		int strokew = 0;
+		if (stylSettings.isFlip()) {
+			strokew = stylSettings.getStrokewidth();
+		}
+
+		final int h = Math.round((40 - strokew) / 100f * percentage);
+		final int y = img.getHeight() - strokew - h;
 		g2d.fillRect(0, y, 40, h);
 
 		g2d.setPaintMode();
+		if (stylSettings.isFlip()) {
+			g2d.setColor(stylSettings.getActivIconColor(percentage));
+			final int arcx = Math.round(strokew / 2);
+			final int arcy = Math.round(strokew / 2);
+			final int arcw = 40 - strokew;
+			final int arch = 40 - strokew;
+			g2d.drawArc(arcx, arcy, arcw, arch, 0, 360);
+		}
 		drawPercentage(g2d, percentage, charge, img);
 
 		// Filewriting

@@ -13,6 +13,12 @@ public class DecimalBar2Creator extends AbstractIconCreator {
 		super();
 		stylSettings.setFontXOffset(-1);
 		stylSettings.setColoredFont(true);
+		stylSettings.setStrokewidth(8);
+	}
+
+	@Override
+	public boolean supportsStrokeWidth() {
+		return true;
 	}
 
 	/*
@@ -27,7 +33,7 @@ public class DecimalBar2Creator extends AbstractIconCreator {
 		final int icodim = 40;
 		BufferedImage img = new BufferedImage(icodim, icodim, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img);
-		final int bars = 6;
+		final int bars = stylSettings.getStrokewidth();
 		final int w = Math.round(icodim / (float) bars);
 
 		g2d.setColor(stylSettings.getIconColorInActiv());

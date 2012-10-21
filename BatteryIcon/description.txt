@@ -15,6 +15,7 @@ You can mod many aspects of the statusbar and notification Area now!
 [*]...You can change colors, style, charge-icon, with or without percentage text, fonts, thesholds, gradient...
 [*]...add your own custom charge-icons...(place your own charge icons in folder ./custom/charge/ ...see samples there)
 [*]4+ highly customizable Wifi Icon Styles (more to come...ideas welcome !)
+[*]4+ highly customizable Signal Icon Styles (more to come...ideas welcome !)
 [*]Creating of an overview.png's (If you want to show of your creations!)
 [*]Icons are resized to any supported dpi (can be fine-tuned)
 [*]Add Toggles to your flashable Zip (Attention the predefined toggles only work with AOKP roms)
@@ -44,6 +45,9 @@ You can mod many aspects of the statusbar and notification Area now!
 [*]experimental feature to set Background color of Battery- and Wifi-icons, in case your statusbar is not black.
 [*]Optimized TopCorner Wifi
 [*}4 new Wifi Designs
+[*]4 new Battery Designs
+[*]DecimalBar Battery now flipable and number of bars now adjustable via "strokewidth"
+[*]Support for Signal / Connection Icon
 [/LIST]
 
 [COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]

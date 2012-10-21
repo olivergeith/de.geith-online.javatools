@@ -67,8 +67,8 @@ public class ConfigPanel extends JPanel {
 	SliderAndLabel sliderLowBatt = new SliderAndLabel(0, 30);
 	SliderAndLabel sliderMedBatt = new SliderAndLabel(20, 100);
 
-	SliderAndLabel sliderFontXOffset = new SliderAndLabel(-4, 4);
-	SliderAndLabel sliderFontYOffset = new SliderAndLabel(-4, 4);
+	SliderAndLabel sliderFontXOffset = new SliderAndLabel(-12, 12);
+	SliderAndLabel sliderFontYOffset = new SliderAndLabel(-12, 12);
 	SliderAndLabel slidericonXOffset = new SliderAndLabel(-4, 4);
 	SliderAndLabel slidericonYOffset = new SliderAndLabel(-4, 4);
 

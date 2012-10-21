@@ -61,13 +61,6 @@ public class ForkWifiCreator extends AbstractWifiCreator {
 			}
 		}
 
-		// final Rectangle rectin = new Rectangle(1, 2, 3, imgHeight - 4);
-		// final Rectangle rectout = new Rectangle(3, 2, 3, imgHeight - 4);
-		// g2d.setColor(stylSettings.getInWifiColor());
-		// g2d.fillRect(rectin.x, rectin.y, rectin.width, rectin.height);
-		// g2d.setColor(stylSettings.getOutWifiColor());
-		// g2d.fillRect(rectout.x, rectout.y, rectout.width, rectout.height);
-
 		// Filewriting
 		img = writeFile(getFileName(level, fully), img);
 		return new ImageIcon(img);

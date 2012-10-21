@@ -47,7 +47,7 @@ You can mod many aspects of the statusbar and notification Area now!
 [*}4 new Wifi Designs
 [*]4 new Battery Designs
 [*]DecimalBar Battery now flipable and number of bars now adjustable via "strokewidth"
-[*]Support for Signal / Connection Icon
+[*]Support for Signal / Connection Icon and a few designs for that!
 [/LIST]
 
 [COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]

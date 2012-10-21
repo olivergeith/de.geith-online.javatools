@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 public class XORApfelCreator extends AbstractIconXORCreator {
 
-	protected static String name = "XAppleBattery";
+	protected static String name = "XApfelBattery";
 	public static final ImageIcon myIcon = new ImageIcon(AbstractIconXORCreator.class.getResource("apple.png"));
 
 	public XORApfelCreator() {

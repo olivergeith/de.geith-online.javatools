@@ -27,7 +27,7 @@ public class StyleSettings implements Serializable {
 	public static final String WIFI_ICON_NAME_OUT = "stat_sys_wifi_out.png";
 	public static final String WIFI_ICON_NAME_INOUT = "stat_sys_wifi_inout.png";
 
-	public static final String SIGNAL_ICON_NAME = "stat_sys_signal_signal_";
+	public static final String SIGNAL_ICON_NAME = "stat_sys_signal_";
 	public static final String SIGNAL_ICON_EXTENSION_FULLY = "_fully";
 	public static final String SIGNAL_ICON_NAME_IN = "stat_sys_signal_in.png";
 	public static final String SIGNAL_ICON_NAME_OUT = "stat_sys_signal_out.png";

@@ -19,6 +19,8 @@ import de.og.batterycreator.main.IconCreatorFrame;
  */
 public abstract class AbstractSignalCreator extends AbstractCreator {
 
+	protected static final int NULL_LEVEL = 5;
+
 	// ###############################################################################
 	// Abstracte Methoden
 	// ###############################################################################
@@ -57,7 +59,7 @@ public abstract class AbstractSignalCreator extends AbstractCreator {
 	}
 
 	private void createImages() {
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i <= NULL_LEVEL; i++) {
 			filenamesAndPath.add(getFilenameAndPath(i, false));
 			filenames.add(getFileName(i, false));
 			iconMap.add(createImage(i, false));
@@ -100,7 +102,7 @@ public abstract class AbstractSignalCreator extends AbstractCreator {
 			filename = stylSettings.getFileSignalPattern() + level + stylSettings.getFileSignalEXtensionFully() + ".png";
 
 		// Sonderbehandlung für null image
-		if (level == -1)
+		if (level == NULL_LEVEL)
 			filename = stylSettings.getFileSignalPattern() + "null.png";
 
 		return filename;

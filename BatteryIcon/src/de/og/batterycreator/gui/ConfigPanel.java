@@ -150,7 +150,7 @@ public class ConfigPanel extends JPanel {
 		tab9.add(createTabPaneMoreSettings(), BorderLayout.CENTER);
 
 		tabPane.addTab("Battery Settings", IconStore.colorIcon, tab1, "Color & Font Settings for Icons");
-		tabPane.addTab("Wifi Settings", IconStore.colorwifiIcon, tab2, "Special Colors for Wifi Icon");
+		tabPane.addTab("Wifi/Signal Colors", IconStore.colorwifiIcon, tab2, "Special Colors for Wifi Icon");
 		tabPane.addTab("Output Settings", IconStore.cfgIcon, tab9, "Output Settings like Filenames, Resize...");
 
 		this.add(tabPane, BorderLayout.CENTER);
@@ -166,10 +166,11 @@ public class ConfigPanel extends JPanel {
 
 		builder.add(createGroupLabel("Colors"), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel("For having Battery and Wifi Icons in 'harmony', some Colors are used from Battery Icon:"), cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel(" - WifiIcon BackgroundColor == Background"), cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel(" - WifiIcon InactivColor == Inaktiv Color"), cc.xyw(2, ++row, 7));
-		builder.add(createGroupLabel("Wifi specific Colors"), cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel("For having Battery and Wifi/Signal Icons in 'harmony', some Colors are used from Battery Icon:"),
+				cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel(" - Icon BackgroundColor == Background"), cc.xyw(2, ++row, 7));
+		builder.add(createBlueDeviderLabel(" - Icon InactivColor == Inaktiv Color"), cc.xyw(2, ++row, 7));
+		builder.add(createGroupLabel("Wifi / Signal specific Colors"), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(createBlueDeviderLabel("Colors for Connection"), cc.xyw(2, ++row, 3));
 		builder.add(createBlueDeviderLabel("Colors for Data Activity"), cc.xyw(6, row, 3));

@@ -69,8 +69,13 @@ public class ForkSignalCreator extends AbstractSignalCreator {
 		BufferedImage img = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img, true);
 
-		final Rectangle rectout = new Rectangle(0, imgHeight - 6, imgWidth, 3);
-		final Rectangle rectin = new Rectangle(0, imgHeight - 3, imgWidth, 3);
+		final Rectangle rectout = new Rectangle(0, imgHeight - 6, imgWidth / 2 - 2, 5);
+		final Rectangle rectin = new Rectangle(imgWidth / 2 + 2, imgHeight - 6, imgWidth / 2 - 2, 5);
+
+		// final Rectangle rectout = new Rectangle(0, imgHeight - 6, imgWidth,
+		// 3);
+		// final Rectangle rectin = new Rectangle(0, imgHeight - 3, imgWidth,
+		// 3);
 		if (in) {
 			g2d.setColor(stylSettings.getInWifiColor());
 			g2d.fillRect(rectin.x, rectin.y, rectin.width, rectin.height);

@@ -138,7 +138,7 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 	private void writeFileFull(final boolean charge, final BufferedImage img) {
 		final File file = new File(getFilenameAndPathFull(charge));
 		// hier schreiben wir direct, weil img schon resized ist!
-		writePNG(img, file);
+		StaticImageHelper.writePNG(img, file);
 	}
 
 	// ###############################################################################

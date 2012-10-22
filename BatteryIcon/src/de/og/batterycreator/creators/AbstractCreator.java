@@ -12,7 +12,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Vector;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import og.basics.gui.file.FileDialogs;
@@ -73,30 +72,13 @@ public abstract class AbstractCreator {
 				img = StaticImageHelper.resize(img, stylSettings.getTargetIconSize());
 		}
 		// the writing
-		writePNG(img, file);
+		StaticImageHelper.writePNG(img, file);
 		return img;
 	}
 
 	protected void writeOverviewFile(final BufferedImage overview) {
 		final File file = new File(getPath() + File.separator + "overview_" + getName() + ".png");
-		writePNG(overview, file);
-	}
-
-	public void writePNG(final BufferedImage img, final File file) {
-		try {
-			file.createNewFile();
-			while (!file.canWrite()) {
-				// do nothing until it can write...
-			}
-			ImageIO.write(img, "png", file);
-		} catch (final IOException e) {
-			System.out.println("Oh, Icon could not be written!!...Trying again!");
-			try {
-				ImageIO.write(img, "png", file);
-			} catch (final IOException e1) {
-				System.out.println("Hm that's strange...still not writable!...giving up!");
-			}
-		}
+		StaticImageHelper.writePNG(overview, file);
 	}
 
 	// ###############################################################################

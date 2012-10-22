@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 public class NoWifiIcons extends AbstractWifiCreator {
 
-	public static String name = "Don't create Wifi Icons";
+	public static String name = "No Wifi Icons";
 
 	public NoWifiIcons() {
 	}

@@ -1,5 +1,7 @@
+[B][SIZE="5"]New Version out : [/SIZE][/B]
+
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Oct-xx-2012[/B] : Release 10.0[/COLOR]
+[COLOR="Blue"][B]Oct-22-2012[/B] : Release 10.0[/COLOR]
 [LIST]
 [*][B]New:[/B]Support for custom Lockhandles/Lockrings on Lockscreen
 [*]Add your own custom Lockhandles to ./custom/lockhandles/*.png
@@ -31,4 +33,3 @@ Just put them in the right place in the custom area of this tool.
 
 The Battery Icon Creator will take all of the above icons and put them into one flashable zip!
 So what you finally get is almost a "theme"!
-

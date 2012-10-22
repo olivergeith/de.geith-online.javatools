@@ -39,28 +39,9 @@ Now it has grown up and much more was added. (I should think about a new Name? :
 
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Oct-xx-2012[/B] : Release 10.0[/COLOR]
-The Battery Icon Designer seems to grow up!!...by now it is much more than just an Battery-Icon-Renderer.
-Need to think about a new name!!!???
-You can now modify many aspects of the statusbar and notification area!
-But you need to know, there are 2 different approches how this tool uses/creats icons:
+[COLOR="Blue"][B]Oct-22-2012[/B] : Release 10.0[/COLOR]
 [LIST]
-[*]Signal, Wifi & Battery: Those are the icons that are rendered directly from this tool. 
-It uses a mathmatical and grafical algorithms for that.
-
-[*]And there are the other icons like lockring, weather and toggle-icons. 
-These icons are not rendered. You can use any Icons you collected.
-Just put them in the right place in the custom area of this tool. 
-[B]Attention:[/B] Make sure they are correctly named to fit with the "to be replaced" icons in your ROM!! 
-(To every rule there is an exception! Lockrings, can be named what ever you want...they are renamed befor flash-zip creation) 
-[/LIST]
-
-The Battery Icon Creator will take all of the above icons and put them into one flashable zip!
-So what you finally get is almost a "theme"!
-
-
-[LIST]
-[*][B]New:[/B]Support for Lockhandles/Lockrings on Lockscreen
+[*][B]New:[/B]Support for custom Lockhandles/Lockrings on Lockscreen
 [*]Add your own custom Lockhandles to ./custom/lockhandles/*.png
 [*][B]New:[/B]Support for Signal / Connection Icons
 [*]3 new Signal Designs

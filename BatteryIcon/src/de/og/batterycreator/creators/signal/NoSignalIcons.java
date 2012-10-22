@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 public class NoSignalIcons extends AbstractSignalCreator {
 
-	public static String name = "Don't create Signal Icons";
+	public static String name = "No Signal Icons";
 
 	public NoSignalIcons() {
 	}

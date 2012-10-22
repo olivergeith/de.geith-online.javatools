@@ -222,7 +222,7 @@ public class IconSetSelector extends JComboBox<ImageIcon> {
 				if (index > 0)
 					renderer.setText(setDirs[index - 1].getName());
 				if (icon.equals(nada)) {
-					renderer.setText("Don't include " + name + " Icons");
+					renderer.setText("No " + name + " Icons");
 				}
 			}
 			return renderer;

@@ -165,7 +165,7 @@ public class LockHandleSelector extends JComboBox<ImageIcon> {
 				final ImageIcon icon = value;
 				renderer.setIcon(icon);
 				if (icon.equals(nada)) {
-					renderer.setText("Don't include Lockhandle");
+					renderer.setText("No Lockhandle");
 				}
 			}
 			return renderer;

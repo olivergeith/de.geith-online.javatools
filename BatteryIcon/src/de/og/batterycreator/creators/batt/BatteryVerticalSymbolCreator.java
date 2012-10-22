@@ -1,51 +1,72 @@
 package de.og.batterycreator.creators.batt;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.creators.settings.StyleSettings;
+
 public class BatteryVerticalSymbolCreator extends AbstractIconCreator {
 
 	protected static String name = "BatteryVerticalSymbol";
+
+	private final int imgHeight = 41;
+	private final int imgWidth = 45;
+
+	public BatteryVerticalSymbolCreator() {
+		super();
+		stylSettings.setIconColorInActiv(StyleSettings.COLOR_INACTIV.darker());
+		stylSettings.setFontXOffset(-2);
+	}
 
 	@Override
 	public boolean supportsFlip() {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.og.creators.AbstractCreator#createImage(int, boolean)
-	 */
+	@Override
+	public boolean supportsStrokeWidth() {
+		return true;
+	}
+
 	@Override
 	public ImageIcon createImage(final int percentage, final boolean charge) {
+		final int height = 35 - stylSettings.getStrokewidth();
+		final int knobHeight = 17;
+		final int knobWidth = 4;
+		final int width = imgWidth - knobWidth;
+		final int offsetOben = (imgHeight - height) / 2;
+		final int offsetKnob = (imgHeight - knobHeight) / 2;
 
 		// Create a graphics contents on the buffered image
-		BufferedImage img = new BufferedImage(41, 41, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage img = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img);
 
-		g2d.setColor(Color.gray);
-		final int w = Math.round(31f / 100f * percentage);
+		g2d.setColor(stylSettings.getIconColorInActiv().brighter());
+		final int w = Math.round((width - 6) / 100f * percentage);
 
 		if (!stylSettings.isFlip()) {
-			g2d.fillRect(1, 5, 37, 31); // Battery Border
-			g2d.fillRect(38, 10, 3, 21); // Battery Knob
+			g2d.fillRect(0, offsetOben, width, height); // Battery Border
+			g2d.fillRect(width, offsetKnob, knobWidth, knobHeight); // Battery
+																	// Knob
 
 			g2d.setColor(stylSettings.getIconColorInActiv());
-			g2d.fillRect(3, 7, 33, 27); // Inner Battery
+			g2d.fillRect(2, offsetOben + 2, width - 4, height - 4); // Inner
+																	// Battery
 			g2d.setColor(stylSettings.getActivIconColor(percentage, charge));
-			g2d.fillRect(4, 8, w, 25); // Battery Level
+			g2d.fillRect(3, offsetOben + 3, w, height - 6); // Battery Level
 		} else {
-			g2d.fillRect(3, 5, 37, 31); // Battery Border
-			g2d.fillRect(1, 10, 3, 21); // Battery Knob
+			g2d.fillRect(0, offsetKnob, knobWidth, knobHeight); // Battery Knob
+			g2d.fillRect(knobWidth, offsetOben, width, height); // Battery
+																// Border
 
 			g2d.setColor(stylSettings.getIconColorInActiv());
-			g2d.fillRect(5, 7, 33, 27); // Inner Battery
+			g2d.fillRect(knobWidth + 2, offsetOben + 2, width - 4, height - 4); // Inner
+			// Battery
 			g2d.setColor(stylSettings.getActivIconColor(percentage, charge));
-			g2d.fillRect(37 - w, 8, w, 25); // Battery Level
+			g2d.fillRect(knobWidth + width - 3 - w, offsetOben + 3, w, height - 6); // Battery
+			// Level
 		}
 		// Schrift
 		drawPercentage(g2d, percentage, charge, img);

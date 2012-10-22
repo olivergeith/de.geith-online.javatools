@@ -56,7 +56,7 @@ public class SignalCreatorSelector extends JComboBox<AbstractSignalCreator> {
 					signalOverviewPanel.setOverview(cre.getOverviewIcon());
 					signalOverviewPanel.setText("");
 				} else {
-					signalOverviewPanel.setOverview(null);
+					signalOverviewPanel.setOverview(IconStore.nothingIcon);
 					signalOverviewPanel.setText("    No Signal Icons selected...choose Signal icon style in Toolbar");
 				}
 			}

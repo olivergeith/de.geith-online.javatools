@@ -66,7 +66,7 @@ public class WifiCreatorSelector extends JComboBox<AbstractWifiCreator> {
 					wifiOverviewPanel.setOverview(cre.getOverviewIcon());
 					wifiOverviewPanel.setText("");
 				} else {
-					wifiOverviewPanel.setOverview(null);
+					wifiOverviewPanel.setOverview(IconStore.nothingIcon);
 					wifiOverviewPanel.setText("    No Wifi Icons selected...choose Wifi icon style in Toolbar");
 				}
 			}

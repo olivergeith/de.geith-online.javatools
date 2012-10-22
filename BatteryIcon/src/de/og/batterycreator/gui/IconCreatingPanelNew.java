@@ -3,6 +3,7 @@ package de.og.batterycreator.gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.AbstractAction;
@@ -30,7 +31,7 @@ import de.og.batterycreator.gui.widgets.WifiCreatorSelector;
 import de.og.batterycreator.zipcreator.ZipElementCollection;
 import de.og.batterycreator.zipcreator.ZipMaker;
 
-public class IconCreatingPanelNew extends JPanel {
+public class IconCreatingPanelNew extends JPanel implements ActionListener {
 	private static final long serialVersionUID = -2956273745014471932L;
 
 	private final JTabbedPane tabPane = new JTabbedPane();
@@ -60,9 +61,6 @@ public class IconCreatingPanelNew extends JPanel {
 	private void initUI() {
 		setLayout(new BorderLayout());
 
-		//
-		lockHandleSelector.setPreferredSize(new Dimension(200, 30));
-
 		// Icon Liste
 		final JScrollPane scroller = new JScrollPane();
 		scroller.add(battIconList);
@@ -76,11 +74,19 @@ public class IconCreatingPanelNew extends JPanel {
 		battTabPane.addTab("", IconStore.listIcon, scroller, "Get an Overview of your icons");
 		// Tabbed Pane
 		tabPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-		tabPane.addTab("Battery Icon", IconStore.batteryIcon, battTabPane, "Get an Overview of your icons");
-		tabPane.addTab("Optional Wifi Icons", IconStore.wifiIcon, wifiOverviewPanel, "Get an Overview of your icons");
-		tabPane.addTab("Optional Signal Icons", IconStore.wifiIcon, signalOverviewPanel, "Get an Overview of your icons");
-		tabPane.addTab("Optional Toggle Icons", IconStore.toggleIcon, toggleBox.getOverviewPanel(), "Get an Overview of your toggles");
-		tabPane.addTab("Optional Weather Icons", IconStore.toggleIcon, weatherBox.getOverviewPanel(), "Get an Overview of your weather icons");
+		tabPane.addTab("Battery", IconStore.batteryIcon, battTabPane, "Get an Overview of your icons");
+		tabPane.addTab("Wifi", IconStore.wifiIcon, wifiOverviewPanel, "Get an Overview of your icons");
+		tabPane.addTab("Signal", IconStore.signalIcon, signalOverviewPanel, "Get an Overview of your icons");
+		tabPane.addTab("Toggle", IconStore.toggleIcon, toggleBox.getOverviewPanel(), "Get an Overview of your toggles");
+		tabPane.addTab("Weather", IconStore.weatherIcon, weatherBox.getOverviewPanel(), "Get an Overview of your weather icons");
+		tabPane.addTab("Lockring", IconStore.lockringIcon, lockHandleSelector.getOverviewPanel(), "See your choosen Lockring!");
+
+		// Actionlistener für die dropdownboxen, damit die Tabs aktiv werden
+		wifiCreatorBox.addActionListener(this);
+		signalCreatorBox.addActionListener(this);
+		toggleBox.addActionListener(this);
+		weatherBox.addActionListener(this);
+		lockHandleSelector.addActionListener(this);
 
 		// Panel zusammensetzen
 		add(tabPane, BorderLayout.CENTER);
@@ -92,6 +98,37 @@ public class IconCreatingPanelNew extends JPanel {
 		activSignalCreator = (AbstractSignalCreator) signalCreatorBox.getSelectedItem();
 
 		makeButtonBar();
+		validateComponents();
+
+	}
+
+	@Override
+	public void actionPerformed(final ActionEvent e) {
+		if (e.getSource().equals(wifiCreatorBox) && wifiCreatorBox.getSelectedIndex() != 0) {
+			tabPane.setSelectedIndex(1);
+		}
+		if (e.getSource().equals(signalCreatorBox) && signalCreatorBox.getSelectedIndex() != 0) {
+			tabPane.setSelectedIndex(2);
+		}
+		if (e.getSource().equals(toggleBox) && toggleBox.getSelectedIndex() != 0) {
+			tabPane.setSelectedIndex(3);
+		}
+		if (e.getSource().equals(weatherBox) && weatherBox.getSelectedIndex() != 0) {
+			tabPane.setSelectedIndex(4);
+		}
+		if (e.getSource().equals(lockHandleSelector) && lockHandleSelector.getSelectedIndex() != 0) {
+			tabPane.setSelectedIndex(5);
+		}
+		validateComponents();
+	}
+
+	private void validateComponents() {
+		// tabPane.setEnabledAt(0, battCreatorBox.getSelectedIndex() != 0);
+		tabPane.setEnabledAt(1, wifiCreatorBox.getSelectedIndex() != 0);
+		tabPane.setEnabledAt(2, signalCreatorBox.getSelectedIndex() != 0);
+		tabPane.setEnabledAt(3, toggleBox.getSelectedIndex() != 0);
+		tabPane.setEnabledAt(4, weatherBox.getSelectedIndex() != 0);
+		tabPane.setEnabledAt(5, lockHandleSelector.getSelectedIndex() != 0);
 	}
 
 	/**

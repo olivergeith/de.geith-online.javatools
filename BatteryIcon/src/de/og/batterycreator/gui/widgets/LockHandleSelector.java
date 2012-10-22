@@ -3,6 +3,7 @@ package de.og.batterycreator.gui.widgets;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -16,6 +17,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
 import og.basics.gui.image.StaticImageHelper;
@@ -30,10 +32,12 @@ public class LockHandleSelector extends JComboBox<ImageIcon> {
 	private static final long serialVersionUID = -7712530632645291404L;
 	private final ImageIcon nada = IconStore.nothingIcon;
 	private static final ImageIcon origlock = new ImageIcon(LockHandleSelector.class.getResource("ic_lockscreen_handle_normal.png"));
+	private static final ImageIcon androidlock = new ImageIcon(LockHandleSelector.class.getResource("ic_lock_android.png"));
 	private static final ImageIcon entelock = new ImageIcon(LockHandleSelector.class.getResource("ic_lock_ente.png"));
 
 	private final Vector<ImageIcon> handleList = new Vector<ImageIcon>();
 	private final ConfigPanel configPane;
+	protected OverviewPanel overPane = new OverviewPanel();
 
 	private final Vector<String> filenamesAndPath = new Vector<String>();
 
@@ -53,17 +57,31 @@ public class LockHandleSelector extends JComboBox<ImageIcon> {
 				addItem(icon);
 			}
 		}
+		setPreferredSize(new Dimension(200, 30));
 		setMaximumRowCount(8);
 		setRenderer(new MyCellRenderer());
 		addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(final ActionEvent e) {
-				// final ImageIcon icon = (ImageIcon) getSelectedItem();
 				writeSelectedIcon();
+				updateOverview();
 			}
+
 		});
 		setSelectedIndex(0);
+	}
+
+	private void updateOverview() {
+		final ImageIcon icon = getSelectedIcon();
+		if (!icon.equals(nada)) {
+			overPane.setOverview(icon);
+			overPane.setText("   This will be your lockring");
+		} else {
+			overPane.setText("   Choose Lockring from Dropdownbox");
+			overPane.setOverview(icon);
+		}
+
 	}
 
 	protected void writeSelectedIcon() {
@@ -91,6 +109,13 @@ public class LockHandleSelector extends JComboBox<ImageIcon> {
 	}
 
 	/**
+	 * @return the overviewPanel
+	 */
+	public JPanel getOverviewPanel() {
+		return overPane;
+	}
+
+	/**
 	 * @return the filenamesAndPath
 	 */
 	public Vector<String> getFilenamesAndPath() {
@@ -101,6 +126,7 @@ public class LockHandleSelector extends JComboBox<ImageIcon> {
 		System.out.println("Loading Custom Lockhandles!");
 		handleList.add(nada);
 		handleList.add(origlock);
+		handleList.add(androidlock);
 		handleList.add(entelock);
 		final File dir = new File(CUSTOM_DIR);
 		if (!dir.exists())

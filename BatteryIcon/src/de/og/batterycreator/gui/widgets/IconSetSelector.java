@@ -30,12 +30,8 @@ import de.og.batterycreator.main.IconCreatorFrame;
 public class IconSetSelector extends JComboBox<ImageIcon> {
 	private static final long serialVersionUID = -2767025548199058416L;
 
-	// protected abstract String getSetTypeName();
-	//
-	// protected abstract String getCustomSetRootDir();
+	protected OverviewPanel overPane = new OverviewPanel();
 
-	protected final JPanel overviewPanel = new JPanel(new BorderLayout());
-	protected final JLabel overviewLabel = new JLabel();
 	protected final ImageIcon nada = IconStore.nothingIcon;
 	protected File[] setDirs;
 	protected final Vector<String> filenamesAndPath = new Vector<String>();
@@ -120,7 +116,7 @@ public class IconSetSelector extends JComboBox<ImageIcon> {
 	 * @return the overviewPanel
 	 */
 	public JPanel getOverviewPanel() {
-		return overviewPanel;
+		return overPane;
 	}
 
 	protected File[] findCustomDirs(final File dir) {
@@ -150,9 +146,6 @@ public class IconSetSelector extends JComboBox<ImageIcon> {
 
 		setRenderer(new MyCellRenderer());
 		setToolTipText("Choose your " + name + " Iconset");
-		overviewPanel.add(overviewLabel, BorderLayout.CENTER);
-		overviewPanel.setBackground(Color.black);
-		overviewLabel.setForeground(Color.white);
 		System.out.println("Loading Custom " + name + " Icon Sets!");
 		addSetsFromFilesystem();
 
@@ -173,12 +166,12 @@ public class IconSetSelector extends JComboBox<ImageIcon> {
 						// System.out.println("adding: " + png.getPath());
 					}
 					final ImageIcon over = createOverview(iconMap, setDir.getName());
-					overviewLabel.setIcon(over);
-					overviewLabel.setText("");
+					overPane.setOverview(over);
+					overPane.setText("");
 					// System.out.println("Selected Icon:" + icon);
 				} else {
-					overviewLabel.setIcon(null);
-					overviewLabel.setText("   Choose " + name + "-Set from Dropdownbox");
+					overPane.setOverview(icon);
+					overPane.setText("   Choose " + name + "-Set from Dropdownbox");
 				}
 			}
 		});

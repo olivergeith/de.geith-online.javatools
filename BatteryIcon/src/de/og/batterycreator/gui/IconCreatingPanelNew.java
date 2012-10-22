@@ -22,10 +22,10 @@ import de.og.batterycreator.creators.wifi.AbstractWifiCreator;
 import de.og.batterycreator.creators.wifi.NoWifiIcons;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.BattCreatorSelector;
+import de.og.batterycreator.gui.widgets.IconSetSelector;
 import de.og.batterycreator.gui.widgets.LockHandleSelector;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
 import de.og.batterycreator.gui.widgets.SignalCreatorSelector;
-import de.og.batterycreator.gui.widgets.ToggleSelector;
 import de.og.batterycreator.gui.widgets.WifiCreatorSelector;
 import de.og.batterycreator.zipcreator.ZipElementCollection;
 import de.og.batterycreator.zipcreator.ZipMaker;
@@ -50,7 +50,8 @@ public class IconCreatingPanelNew extends JPanel {
 	private AbstractSignalCreator activSignalCreator = null;
 
 	private final LockHandleSelector lockHandleSelector = new LockHandleSelector(configPane);
-	private final ToggleSelector toggleBox = new ToggleSelector();
+	private final IconSetSelector toggleBox = new IconSetSelector("Toggle", "./custom/toggles/");
+	private final IconSetSelector weatherBox = new IconSetSelector("Weather", "./custom/weather/");
 
 	public IconCreatingPanelNew() {
 		initUI();
@@ -79,6 +80,7 @@ public class IconCreatingPanelNew extends JPanel {
 		tabPane.addTab("Optional Wifi Icons", IconStore.wifiIcon, wifiOverviewPanel, "Get an Overview of your icons");
 		tabPane.addTab("Optional Signal Icons", IconStore.wifiIcon, signalOverviewPanel, "Get an Overview of your icons");
 		tabPane.addTab("Optional Toggle Icons", IconStore.toggleIcon, toggleBox.getOverviewPanel(), "Get an Overview of your toggles");
+		tabPane.addTab("Optional Weather Icons", IconStore.toggleIcon, weatherBox.getOverviewPanel(), "Get an Overview of your weather icons");
 
 		// Panel zusammensetzen
 		add(tabPane, BorderLayout.CENTER);
@@ -113,6 +115,8 @@ public class IconCreatingPanelNew extends JPanel {
 		toolBar.addSeparator();
 		toolBar.add(toggleBox);
 		toolBar.addSeparator();
+		toolBar.add(weatherBox);
+		toolBar.addSeparator();
 		toolBar.add(lockHandleSelector);
 		toolBar.addSeparator();
 		toolBar.add(createAktion);
@@ -146,6 +150,8 @@ public class IconCreatingPanelNew extends JPanel {
 
 		// Add Toggles
 		files2add2SystemUI.addAll(toggleBox.getFilenamesAndPath());
+		// Add Weather
+		files2add2Framework.addAll(weatherBox.getFilenamesAndPath());
 
 		// Lockhandle
 		files2add2Framework.addAll(lockHandleSelector.getFilenamesAndPath());

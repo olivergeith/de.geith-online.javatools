@@ -24,8 +24,8 @@ public abstract class AbstractCreator {
 	private static final String SETTINGS_DIR = "./stylSettings/";
 
 	protected final Vector<ImageIcon> iconMap = new Vector<ImageIcon>();
-	protected final Vector<String> filenames = new Vector<String>();;
-	protected final Vector<String> filenamesAndPath = new Vector<String>();;
+	protected final Vector<String> filenames = new Vector<String>();
+	protected final Vector<String> filenamesAndPath = new Vector<String>();
 	protected ImageIcon overview = null;
 	protected StyleSettings stylSettings = new StyleSettings();
 

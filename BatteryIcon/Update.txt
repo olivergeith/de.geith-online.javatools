@@ -1,16 +1,34 @@
-New Version of [B][SIZE="4"][URL="http://forum.xda-developers.com/showthread.php?t=1918500"]The Battery Icon Creator[/URL][/SIZE][/B] out !!!
-
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Oct-10-2012[/B] : Release 9.0[/COLOR]
+[COLOR="Blue"][B]Oct-xx-2012[/B] : Release 10.0[/COLOR]
 [LIST]
-[*]Now with custom Wifi Icons (and adding them to flashable zip)
-[*]Add Toggles to your flashable Zip (Attention the predefined toggles only work with AOKP roms)
-[*]4 new Wifi styles
-[*]Gui heavily reworked for better workflow
-[*]Settings now in 3 tabs for better fitting to small Laptop screens
+[*][B]New:[/B]Support for custom Lockhandles/Lockrings on Lockscreen
+[*]Add your own custom Lockhandles to ./custom/lockhandles/*.png
+[*][B]New:[/B]Support for Signal / Connection Icons
+[*]3 new Signal Designs
+[*][B]New:[/B]Support for weather Iconsets 
+[*]Add your own custom weather iconsets to ./custom/weather/<setname>/*.png
+[*]Optimized TopCorner Wifi
+[*]4 new Wifi Designs
+[*]4 new Battery Designs
+[*]DecimalBar Battery now flipable and number of bars now adjustable via "strokewidth"
+[*]experimental feature to set Background color of Battery- and Wifi-icons, in case your statusbar is not black.
+[*]Lots of internal refactoring and bugfixing
 [/LIST]
 
-Now you can add custom Toggles and create wifi icons for the statusbar!
-For adding your own toggles read the OP and the readmy in the ./custom/toggles/ folder!
+The Battery Icon Designer seems to grow up!!...By now it is much more than just an Battery-Icon-Renderer.
+Need to think about a new name ?!
+Now you can additionally modify many aspects of the statusbar and notification area!
+But you need to know, there are 2 different approaches how this tool uses/creates icons:
+[LIST]
+[*]Signal, Wifi & Battery: Those are the icons that are rendered directly from this tool. 
+It uses a mathmatic and graphical algorithms for that.
+[*]And there are the other icons like lockring, weather and toggle-icons. 
+These icons are not rendered. You can use any Icons you collected.
+Just put them in the right place in the custom area of this tool. 
+[B]Attention:[/B] Make sure they are correctly named to fit with the "to be replaced" icons in your ROM!! 
+(To every rule there is an exception! Lockrings, can be named what ever you want...they are renamed before flash-zip creation) 
+[/LIST]
 
-Check it out !
+The Battery Icon Creator will take all of the above icons and put them into one flashable zip!
+So what you finally get is almost a "theme"!
+

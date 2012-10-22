@@ -36,10 +36,12 @@ import de.og.batterycreator.creators.batt.ClockCreator;
 import de.og.batterycreator.creators.batt.ClockPointerCreator;
 import de.og.batterycreator.creators.batt.DecimalBar2Creator;
 import de.og.batterycreator.creators.batt.DecimalBarCreator;
+import de.og.batterycreator.creators.batt.NoBattIcons;
 import de.og.batterycreator.creators.batt.ScalaBatteryCreator;
 import de.og.batterycreator.creators.batt.XORAndroidCreator;
 import de.og.batterycreator.creators.batt.XORApfelCreator;
 import de.og.batterycreator.gui.ConfigPanel;
+import de.og.batterycreator.gui.iconstore.IconStore;
 
 public class BattCreatorSelector extends JComboBox<AbstractIconCreator> {
 	private static final long serialVersionUID = -5956664471952448919L;
@@ -60,7 +62,6 @@ public class BattCreatorSelector extends JComboBox<AbstractIconCreator> {
 
 	private void fillCreatorList() {
 		addItem(new ArcCreator());
-		addItem(new XORAndroidCreator());
 		addItem(new ArcSunCreator());
 		addItem(new ArcQuaterCreator2());
 		addItem(new ArcDecimalCreator());
@@ -97,14 +98,17 @@ public class BattCreatorSelector extends JComboBox<AbstractIconCreator> {
 			public void actionPerformed(final ActionEvent arg0) {
 				final AbstractIconCreator cre = (AbstractIconCreator) getSelectedItem();
 
-				if (cre != null) {
+				if (cre != null && !cre.toString().equals(NoBattIcons.name)) {
 					activBattCreator = cre;
 					configPane.setSettings(cre.getStylSettings());
 					configPane.enableSupportedFeatures(cre.supportsFlip(), cre.supportsStrokeWidth());
 					// remove next line, if you dont want to generate images
 					// on startup!
 					updateOverviews(cre);
-
+				} else {
+					battIconList.removeAll();
+					battOverviewPanel.setOverview(IconStore.nothingIcon);
+					battOverviewPanel.setText("    No Battery Icons selected...choose Wifi icon style in Toolbar");
 				}
 			}
 

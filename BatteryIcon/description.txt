@@ -4,7 +4,6 @@
 I was fed up, with designing my battery icons with a painttool. 204 icons per set is a lot work, if you do it manually!
 As I mostly did abstract and simple icons to be in harmony with AOKP, I had the idea, to develop a little Java tool to do the work for me ;)
 Now it has grown up and much more was added. (I should think about a new Name? :)) 
-You can mod many aspects of the statusbar and notification Area now!
 
 
 [SIZE="4"][B][CENTER]So here is: ...[/CENTER][/B][/SIZE]
@@ -19,7 +18,10 @@ You can mod many aspects of the statusbar and notification Area now!
 [*]Creating of an overview.png's (If you want to show of your creations!)
 [*]Icons are resized to any supported dpi (can be fine-tuned)
 [*]Add Toggles to your flashable Zip (Attention the predefined toggles only work with AOKP roms)
-[*]Add your own toggle-icon-sets to folder ./custom/toggles/<setname> ([B]Howto is somewere down below...[/B])
+[*]Add your own toggle-icon-sets to folder ./custom/toggles/<setname>
+[*]Add Weather icons to your flashable Zip (Attention the predefined weathericons only work with AOKP roms)
+[*]Add your own weather-icon-sets to folder ./custom/weather/<setname>
+[*]Add a custom lockring to your flashable Zip (put them in ./custom/lockhandle/*.png)
 [*]Easy "all in one frame" Interface (you will find out how it works !)
 [*]Creation of[COLOR="Blue"][B] flashable Zips[/B][/COLOR] for xhdpi, hdpi, 720dp and 600dp ROMs
 [*]Creates a backup during flash (Thanks to the "Universal Flasher Tool") 
@@ -37,17 +39,39 @@ You can mod many aspects of the statusbar and notification Area now!
 
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Oct-10-2012[/B] : Release 10.0[/COLOR]
+[COLOR="Blue"][B]Oct-xx-2012[/B] : Release 10.0[/COLOR]
+The Battery Icon Designer seems to grow up!!...by now it is much more than just an Battery-Icon-Renderer.
+Need to think about a new name!!!???
+You can now modify many aspects of the statusbar and notification area!
+But you need to know, there are 2 different approches how this tool uses/creats icons:
 [LIST]
-[*]Support for Lockhandles/Lockrings on Lockscreen
+[*]Signal, Wifi & Battery: Those are the icons that are rendered directly from this tool. 
+It uses a mathmatical and grafical algorithms for that.
+
+[*]And there are the other icons like lockring, weather and toggle-icons. 
+These icons are not rendered. You can use any Icons you collected.
+Just put them in the right place in the custom area of this tool. 
+[B]Attention:[/B] Make sure they are correctly named to fit with the "to be replaced" icons in your ROM!! 
+(To every rule there is an exception! Lockrings, can be named what ever you want...they are renamed befor flash-zip creation) 
+[/LIST]
+
+The Battery Icon Creator will take all of the above icons and put them into one flashable zip!
+So what you finally get is almost a "theme"!
+
+
+[LIST]
+[*][B]New:[/B]Support for Lockhandles/Lockrings on Lockscreen
 [*]Add your own custom Lockhandles to ./custom/lockhandles/*.png
-[*]support for possible future adons to framework-res.apk (so far only Lockhandle)
-[*]experimental feature to set Background color of Battery- and Wifi-icons, in case your statusbar is not black.
+[*][B]New:[/B]Support for Signal / Connection Icons
+[*]3 new Signal Designs
+[*][B]New:[/B]Support for weather Iconsets 
+[*]Add your own custom weather iconsets to ./custom/weather/<setname>/*.png
 [*]Optimized TopCorner Wifi
-[*}4 new Wifi Designs
+[*]4 new Wifi Designs
 [*]4 new Battery Designs
 [*]DecimalBar Battery now flipable and number of bars now adjustable via "strokewidth"
-[*]Support for Signal / Connection Icon and a few designs for that!
+[*]experimental feature to set Background color of Battery- and Wifi-icons, in case your statusbar is not black.
+[*]Lots of internal refactoring and bugfixing
 [/LIST]
 
 [COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]

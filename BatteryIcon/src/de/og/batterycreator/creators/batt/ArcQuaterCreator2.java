@@ -21,10 +21,10 @@ public class ArcQuaterCreator2 extends AbstractIconCreator {
 		BufferedImage img = new BufferedImage(41, 41, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img);
 
-		g2d.setColor(stylSettings.getIconColorInActiv());
+		g2d.setColor(settings.getIconColorInActiv());
 		g2d.fillArc(-41, 0, 82, 82, 0, 90);
 
-		g2d.setColor(stylSettings.getActivIconColor(percentage, charge));
+		g2d.setColor(settings.getActivIconColor(percentage, charge));
 		g2d.fillArc(-41, 0, 82, 82, 0, Math.round(percentage * (90f / 100f)));
 
 		// // for later customisation...

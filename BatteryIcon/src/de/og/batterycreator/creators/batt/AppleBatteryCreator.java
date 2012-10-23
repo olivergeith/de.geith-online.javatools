@@ -12,11 +12,11 @@ public class AppleBatteryCreator extends AbstractIconCreator {
 
 	public AppleBatteryCreator() {
 		super();
-		stylSettings.setShowFont(false);
-		stylSettings.setIconColor(Color.white);
-		stylSettings.setFontXOffset(-3);
-		stylSettings.setColoredIcon(false);
-		stylSettings.setShowChargeSymbol(false);
+		settings.setShowFont(false);
+		settings.setIconColor(Color.white);
+		settings.setFontXOffset(-3);
+		settings.setColoredIcon(false);
+		settings.setShowChargeSymbol(false);
 	}
 
 	/*
@@ -38,11 +38,11 @@ public class AppleBatteryCreator extends AbstractIconCreator {
 		g2d.fillRoundRect(1, 7, 45, 27, cornerRad + 2, cornerRad + 2); // Battery
 		g2d.fillRoundRect(45, 15, 6, 11, cornerRad - 2, cornerRad - 2); // BatteryKnob
 
-		g2d.setColor(stylSettings.getIconColorInActiv());
+		g2d.setColor(settings.getIconColorInActiv());
 		g2d.fillRoundRect(3, 9, 41, 23, cornerRad, cornerRad); // InnerBattery
 		g2d.fillRoundRect(46, 17, 3, 7, cornerRad - 2, cornerRad - 2); // InnerBatteryKnob
 
-		g2d.setColor(stylSettings.getActivIconColor(percentage, charge));
+		g2d.setColor(settings.getActivIconColor(percentage, charge));
 		g2d.fillRoundRect(4, 10, w, 21, cornerRad - 3, cornerRad - 3); // Batterylevel
 		// Schrift
 		drawPercentage(g2d, percentage, charge, img);

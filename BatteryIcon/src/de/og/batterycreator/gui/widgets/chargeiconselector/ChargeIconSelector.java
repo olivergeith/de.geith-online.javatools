@@ -1,4 +1,4 @@
-package de.og.batterycreator.gui.widgets;
+package de.og.batterycreator.gui.widgets.chargeiconselector;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;

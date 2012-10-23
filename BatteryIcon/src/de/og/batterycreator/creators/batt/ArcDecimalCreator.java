@@ -24,13 +24,13 @@ public class ArcDecimalCreator extends AbstractIconCreator {
 		final int einer = percentage % 10;
 		final int zehner = percentage / 10;
 
-		g2d.setColor(stylSettings.getIconColorInActiv());
+		g2d.setColor(settings.getIconColorInActiv());
 		g2d.drawArc(6, 6, 29, 29, 0, 360);
 		g2d.drawArc(2, 2, 37, 37, 0, 360);
 
-		g2d.setColor(stylSettings.getIconColorInActiv());
+		g2d.setColor(settings.getIconColorInActiv());
 
-		g2d.setColor(stylSettings.getActivIconColor(percentage, charge));
+		g2d.setColor(settings.getActivIconColor(percentage, charge));
 		g2d.drawArc(6, 6, 29, 29, 90, -Math.round(einer * (360f / 10f)));
 		g2d.drawArc(2, 2, 37, 37, 90, -Math.round(zehner * (360f / 10f)));
 

@@ -13,9 +13,9 @@ public class AOKPCircleModCreator extends AbstractIconCreator {
 
 	public AOKPCircleModCreator() {
 		super();
-		stylSettings.setFontXOffset(-1);
-		stylSettings.setFontYOffset(-1);
-		stylSettings.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 19));
+		settings.setFontXOffset(-1);
+		settings.setFontYOffset(-1);
+		settings.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 19));
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class AOKPCircleModCreator extends AbstractIconCreator {
 		BufferedImage img = new BufferedImage(41, 41, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img);
 
-		g2d.setColor(stylSettings.getIconColorInActiv());
+		g2d.setColor(settings.getIconColorInActiv());
 		final int gap = 8;
 		final int arcs = 8;
 		final int onearc = 360 / arcs;
@@ -43,9 +43,9 @@ public class AOKPCircleModCreator extends AbstractIconCreator {
 		for (int i = 0; i < arcs; i++)
 			g2d.fillArc(0, 0, 41, 41, i * onearc + gap / 2, onearc - gap);
 
-		g2d.setXORMode(stylSettings.getActivIconColor(percentage, charge));
+		g2d.setXORMode(settings.getActivIconColor(percentage, charge));
 		// g2d.setColor(stylSettings.getActivIconColor(percentage, charge));
-		if (stylSettings.isFlip())
+		if (settings.isFlip())
 			g2d.fillArc(0, 0, 41, 41, 90, -Math.round(percentage * (360f / 100f)));
 		else
 			g2d.fillArc(0, 0, 41, 41, 90, +Math.round(percentage * (360f / 100f)));

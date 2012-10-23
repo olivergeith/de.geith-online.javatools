@@ -100,7 +100,7 @@ public class BattCreatorSelector extends JComboBox<AbstractIconCreator> {
 
 				if (cre != null && !cre.toString().equals(NoBattIcons.name)) {
 					activBattCreator = cre;
-					configPane.setSettings(cre.getStylSettings());
+					configPane.setSettings(cre.getSettings());
 					configPane.enableSupportedFeatures(cre.supportsFlip(), cre.supportsStrokeWidth());
 					// remove next line, if you dont want to generate images
 					// on startup!
@@ -113,7 +113,7 @@ public class BattCreatorSelector extends JComboBox<AbstractIconCreator> {
 			}
 
 			public void updateOverviews(final AbstractIconCreator cre) {
-				cre.setStylSettings(configPane.getSettings());
+				cre.setSettings(configPane.getSettings());
 				cre.createAllImages();
 				battOverviewPanel.setOverview(cre.getOverviewIcon());
 				battIconList.removeAll();

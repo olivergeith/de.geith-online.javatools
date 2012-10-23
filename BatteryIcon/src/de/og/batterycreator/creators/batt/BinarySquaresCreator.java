@@ -58,12 +58,12 @@ public class BinarySquaresCreator extends AbstractIconCreator {
 	}
 
 	private void drawRect(final Rectangle rect, final Graphics2D g2d, final boolean charge, final boolean activ) {
-		Color col = stylSettings.getIconColorInActiv();
+		Color col = settings.getIconColorInActiv();
 		if (activ) {
 			if (charge)
-				col = stylSettings.getIconChargeColor();
+				col = settings.getIconChargeColor();
 			else
-				col = stylSettings.getIconColor();
+				col = settings.getIconColor();
 		}
 		g2d.setColor(col);
 		g2d.fillRect(rect.x, rect.y, rect.width, rect.height);

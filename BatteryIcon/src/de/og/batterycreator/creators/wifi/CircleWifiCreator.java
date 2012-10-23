@@ -38,14 +38,14 @@ public class CircleWifiCreator extends AbstractWifiCreator {
 
 				g2d.setColor(Color.black);
 				g2d.fillArc(x - 1, y - 1, w + 2, h + 2, 0, 360);
-				g2d.setColor(stylSettings.getIconColorInActiv());
+				g2d.setColor(settings.getIconColorInActiv());
 				g2d.fillArc(x, y, w, h, 0, 360);
 			}
 		} else {
 			for (int i = 4; i >= 0; i--) {
 				Color col = getConnectColor(fully);
 				if (i > level) {
-					col = stylSettings.getIconColorInActiv();
+					col = settings.getIconColorInActiv();
 				}
 				final int x = imgMitte - ((i + 1) * width);
 				final int y = imgMitte - ((i + 1) * height);
@@ -59,7 +59,7 @@ public class CircleWifiCreator extends AbstractWifiCreator {
 		}
 
 		// Black
-		g2d.setColor(stylSettings.getIconColorInActiv());
+		g2d.setColor(settings.getIconColorInActiv());
 		final int pw = 14;
 		final int ph = 18;
 		final int px = imgWidth / 2 - pw / 2;
@@ -100,11 +100,11 @@ public class CircleWifiCreator extends AbstractWifiCreator {
 		final Polygon poliou = createUpDownTriangle(px, py - 6, pw, -ph); // oben
 
 		if (in) {
-			g2d.setColor(stylSettings.getInWifiColor());
+			g2d.setColor(settings.getInWifiColor());
 			g2d.fillPolygon(poliin);
 		}
 		if (out) {
-			g2d.setColor(stylSettings.getOutWifiColor());
+			g2d.setColor(settings.getOutWifiColor());
 			g2d.fillPolygon(poliou);
 		}
 

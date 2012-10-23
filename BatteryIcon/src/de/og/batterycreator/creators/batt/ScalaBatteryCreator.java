@@ -18,10 +18,10 @@ public class ScalaBatteryCreator extends AbstractIconCreator {
 
 	public ScalaBatteryCreator() {
 		super();
-		stylSettings.setColoredIcon(true);
-		stylSettings.setShowChargeSymbol(false);
-		stylSettings.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));
-		stylSettings.setStrokewidth(2);
+		settings.setColoredIcon(true);
+		settings.setShowChargeSymbol(false);
+		settings.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));
+		settings.setStrokewidth(2);
 		scala = createScala(false);
 		scalaCharge = createScala(true);
 	}
@@ -48,7 +48,7 @@ public class ScalaBatteryCreator extends AbstractIconCreator {
 		else
 			g2d.drawImage(scalaCharge, 40 - offsetStart - 4 * percentage, 0, null);
 
-		g2d.setColor(stylSettings.getActivFontColor(percentage));
+		g2d.setColor(settings.getActivFontColor(percentage));
 		// g2d.setColor(new Color(255, 255, 255, 160));
 		g2d.fillRect(38, 0, 2, 5);
 		g2d.fillRect(40, 0, 2, 41);
@@ -77,7 +77,7 @@ public class ScalaBatteryCreator extends AbstractIconCreator {
 
 		for (int i = 0; i <= 100; i++) {
 
-			g2d.setColor(stylSettings.getActivIconColor(i, charge));
+			g2d.setColor(settings.getActivIconColor(i, charge));
 
 			final int x = offsetStart + i * (width + gap);
 
@@ -89,13 +89,13 @@ public class ScalaBatteryCreator extends AbstractIconCreator {
 			final int y = 41 - height;
 			g2d.fillRect(x, y, width, height);
 
-			g2d.setColor(stylSettings.getActivFontColor(i, charge));
+			g2d.setColor(settings.getActivFontColor(i, charge));
 			if (height == h10) {
 				final FontMetrics metrix = g2d.getFontMetrics();
 				// Farbe für Schrift
 				final String str = "" + i;
 				final Rectangle2D strRect = metrix.getStringBounds(str, g2d);
-				g2d.drawString(str, x + stylSettings.getFontXOffset() - Math.round(strRect.getWidth() / 2), 17 + stylSettings.getFontYOffset());
+				g2d.drawString(str, x + settings.getFontXOffset() - Math.round(strRect.getWidth() / 2), 17 + settings.getFontYOffset());
 			}
 
 		}

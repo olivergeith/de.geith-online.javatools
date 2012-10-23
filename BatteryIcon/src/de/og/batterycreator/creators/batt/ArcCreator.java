@@ -29,7 +29,7 @@ public class ArcCreator extends AbstractIconCreator {
 
 		final int d = 41;
 
-		g2d.setColor(stylSettings.getIconColorInActiv());
+		g2d.setColor(settings.getIconColorInActiv());
 		int ecke = 1;
 		g2d.fillArc(ecke, ecke, d - ecke * 2, d - ecke * 2, 0, 360);
 
@@ -37,8 +37,8 @@ public class ArcCreator extends AbstractIconCreator {
 		ecke = 4;
 		g2d.fillArc(ecke, ecke, d - ecke * 2, d - ecke * 2, 0, 360);
 
-		g2d.setColor(stylSettings.getActivIconColor(percentage, charge));
-		if (!stylSettings.isFlip()) {
+		g2d.setColor(settings.getActivIconColor(percentage, charge));
+		if (!settings.isFlip()) {
 			ecke = 0;
 			g2d.fillArc(ecke, ecke, d - ecke * 2, d - ecke * 2, 90, -Math.round(percentage * (360f / 100f)));
 

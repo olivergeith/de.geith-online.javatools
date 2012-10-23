@@ -72,51 +72,51 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 	}
 
 	protected void drawPercentage(final Graphics2D g2d, final int percentage, final boolean charge, final BufferedImage img) {
-		if (stylSettings.isShowFont()) {
+		if (settings.isShowFont()) {
 			int yoff = 8;
-			if (charge && stylSettings.isShowChargeSymbol()) {
+			if (charge && settings.isShowChargeSymbol()) {
 				drawChargeIcon(g2d, img);
 			} else {
 				// Sonderbehandlung bei 100% --> Schrift kleiner machen
-				if (percentage == 100 && stylSettings.getReduceFontOn100() < 0) {
-					final Font font = stylSettings.getFont();
-					final Font newfont = new Font(font.getName(), font.getStyle(), font.getSize() + stylSettings.getReduceFontOn100());
+				if (percentage == 100 && settings.getReduceFontOn100() < 0) {
+					final Font font = settings.getFont();
+					final Font newfont = new Font(font.getName(), font.getStyle(), font.getSize() + settings.getReduceFontOn100());
 					g2d.setFont(newfont);
 					// offset extra berechnen proportional zur verkleinerten
 					// Font
-					yoff = 8 + Math.round(stylSettings.getReduceFontOn100() / 2f);
+					yoff = 8 + Math.round(settings.getReduceFontOn100() / 2f);
 				}
 				final FontMetrics metrix = g2d.getFontMetrics();
 				// Farbe für Schrift
-				g2d.setColor(stylSettings.getActivFontColor(percentage, charge));
+				g2d.setColor(settings.getActivFontColor(percentage, charge));
 				final String str = "" + percentage;
 				final Rectangle2D strRect = metrix.getStringBounds(str, g2d);
-				final int strxpos = 1 + stylSettings.getFontXOffset() + (int) (Math.round(img.getWidth() / 2) - Math.round(strRect.getWidth() / 2));
-				final int strypos = img.getHeight() / 2 + yoff + stylSettings.getFontYOffset();
+				final int strxpos = 1 + settings.getFontXOffset() + (int) (Math.round(img.getWidth() / 2) - Math.round(strRect.getWidth() / 2));
+				final int strypos = img.getHeight() / 2 + yoff + settings.getFontYOffset();
 
 				g2d.drawString(str, strxpos, strypos);
 				// Schrift wieder normal machen!!!
-				g2d.setFont(stylSettings.getFont());
+				g2d.setFont(settings.getFont());
 			}
-		} else if (charge && stylSettings.isShowChargeSymbol()) {
+		} else if (charge && settings.isShowChargeSymbol()) {
 			drawChargeIcon(g2d, img);
 		}
 	}
 
 	private void drawChargeIcon(final Graphics2D g2d, final BufferedImage img) {
-		final ImageIcon chargeIcon = stylSettings.getChargeIcon();
+		final ImageIcon chargeIcon = settings.getChargeIcon();
 		if (chargeIcon != null) {
 			// Resize Charge Icon
 			BufferedImage resizedChargeIcon = new BufferedImage(chargeIcon.getIconWidth(), chargeIcon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
 			final Graphics2D g = resizedChargeIcon.createGraphics();
 			g.drawImage(chargeIcon.getImage(), 0, 0, null);
-			if (stylSettings.isResizeChargeSymbol())
-				resizedChargeIcon = StaticImageHelper.resizeAdvanced(resizedChargeIcon, stylSettings.getResizeChargeSymbolHeight());
+			if (settings.isResizeChargeSymbol())
+				resizedChargeIcon = StaticImageHelper.resizeAdvanced(resizedChargeIcon, settings.getResizeChargeSymbolHeight());
 
 			final int w = resizedChargeIcon.getWidth();
 			final int h = resizedChargeIcon.getHeight();
-			final int x = 1 + stylSettings.getIconXOffset() + img.getWidth() / 2 - w / 2;
-			final int y = img.getHeight() / 2 - h / 2 + stylSettings.getIconYOffset();
+			final int x = 1 + settings.getIconXOffset() + img.getWidth() / 2 - w / 2;
+			final int y = img.getHeight() / 2 - h / 2 + settings.getIconYOffset();
 			g2d.drawImage(resizedChargeIcon, x, y, null);
 		}
 	}
@@ -151,9 +151,9 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 	private String getFileNameFull(final boolean charge) {
 		String filename;
 		if (charge == false)
-			filename = stylSettings.getFilePattern() + "_full.png";
+			filename = settings.getFilePattern() + "_full.png";
 		else
-			filename = stylSettings.getFilePatternCharge() + "full.png";
+			filename = settings.getFilePatternCharge() + "full.png";
 		return filename;
 	}
 
@@ -163,9 +163,9 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 	public String getFileName(final int percentage, final boolean charge) {
 		String filename;
 		if (charge == false)
-			filename = stylSettings.getFilePattern() + percentage + ".png";
+			filename = settings.getFilePattern() + percentage + ".png";
 		else
-			filename = stylSettings.getFilePatternCharge() + percentage + ".png";
+			filename = settings.getFilePatternCharge() + percentage + ".png";
 		return filename;
 	}
 
@@ -196,7 +196,7 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 			g2d.setColor(Color.black);
 			g2d.fillRect(0, 0, w, h);
 			g2d.setColor(Color.white);
-			g2d.drawString(getName(), 2, 20);
+			g2d.drawString(getCreatorName(), 2, 20);
 			g2d.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 12));
 			g2d.setColor(Color.gray);
 			g2d.drawString("Created with ''The Battery Icon Creator'' V" + IconCreatorFrame.VERSION_NR + " by OlliG", 2, 32);

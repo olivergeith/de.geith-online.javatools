@@ -51,7 +51,7 @@ public class SignalCreatorSelector extends JComboBox<AbstractSignalCreator> {
 				final AbstractSignalCreator cre = (AbstractSignalCreator) getSelectedItem();
 
 				if (cre != null && !cre.toString().equals(NoSignalIcons.name)) {
-					cre.setStylSettings(configPane.getSettings());
+					cre.setSettings(configPane.getSettings());
 					cre.createAllImages();
 					signalOverviewPanel.setOverview(cre.getOverviewIcon());
 					signalOverviewPanel.setText("");

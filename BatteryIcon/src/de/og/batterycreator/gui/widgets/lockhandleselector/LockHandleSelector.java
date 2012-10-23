@@ -1,4 +1,4 @@
-package de.og.batterycreator.gui.widgets;
+package de.og.batterycreator.gui.widgets.lockhandleselector;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,11 +21,14 @@ import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
 import og.basics.gui.image.StaticImageHelper;
+import de.og.batterycreator.creators.IconProviderInterface;
 import de.og.batterycreator.creators.settings.StyleSettings;
 import de.og.batterycreator.gui.ConfigPanel;
 import de.og.batterycreator.gui.iconstore.IconStore;
+import de.og.batterycreator.gui.widgets.OverviewPanel;
 
-public class LockHandleSelector extends JComboBox<ImageIcon> {
+public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProviderInterface {
+	private static final String PROVIDER_NAME = "Lockhandle";
 	private static final String CUSTOM_DIR = "./custom/lockhandles/";
 	private static final String CUSTOM_OUT_DIR = "./pngs/lock/";
 
@@ -118,7 +121,8 @@ public class LockHandleSelector extends JComboBox<ImageIcon> {
 	/**
 	 * @return the filenamesAndPath
 	 */
-	public Vector<String> getFilenamesAndPath() {
+	@Override
+	public Vector<String> getAllFilenamesAndPath() {
 		return filenamesAndPath;
 	}
 
@@ -192,5 +196,10 @@ public class LockHandleSelector extends JComboBox<ImageIcon> {
 		f.add(combo, BorderLayout.CENTER);
 
 		f.setVisible(true);
+	}
+
+	@Override
+	public String getProviderName() {
+		return PROVIDER_NAME;
 	}
 }

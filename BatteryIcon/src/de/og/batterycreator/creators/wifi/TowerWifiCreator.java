@@ -41,19 +41,19 @@ public class TowerWifiCreator extends AbstractWifiCreator {
 
 			if (i > 0) {
 				if (i > level) {
-					col = stylSettings.getIconColorInActiv();
+					col = settings.getIconColorInActiv();
 				}
 				if (level == 0 && fully == true)
-					col = stylSettings.getIconColorInActiv().darker().darker();
+					col = settings.getIconColorInActiv().darker().darker();
 				rect.y = rect.y - 2;
-				g2d.setColor(stylSettings.getBackgroundColor());
+				g2d.setColor(settings.getBackgroundColor());
 				g2d.fillArc(rect.x - 1, rect.y - 1, rect.width + 2, rect.height + 2, 45, 90);
 				g2d.setColor(col);
 				g2d.fillArc(rect.x, rect.y, rect.width, rect.height, 45, 90);
 			} else {
 				if (level == 0 && fully == true)
-					col = stylSettings.getIconColorInActiv().darker().darker();
-				g2d.setColor(stylSettings.getBackgroundColor());
+					col = settings.getIconColorInActiv().darker().darker();
+				g2d.setColor(settings.getBackgroundColor());
 				g2d.fillArc(rect.x - 2, rect.y - 2, rect.width + 4, rect.height + 4, 0, 360);
 				g2d.setColor(col);
 				g2d.fillArc(rect.x - 1, rect.y - 1, rect.width + 2, rect.height + 2, 0, 360);
@@ -74,11 +74,11 @@ public class TowerWifiCreator extends AbstractWifiCreator {
 		final Rectangle rectin = new Rectangle(imgMitte - width + 1, height * 3 + 2, width * 3, height * 3);
 		final Rectangle rectout = new Rectangle(imgMitte - width + 1, 1, width * 3, height * 3);
 		if (in) {
-			g2d.setColor(stylSettings.getInWifiColor());
+			g2d.setColor(settings.getInWifiColor());
 			g2d.fillArc(rectin.x, rectin.y, rectin.width, rectin.height, 65, 50);
 		}
 		if (out) {
-			g2d.setColor(stylSettings.getOutWifiColor());
+			g2d.setColor(settings.getOutWifiColor());
 			g2d.fillArc(rectout.x, rectout.y, rectout.width, rectout.height, -65, -50);
 		}
 

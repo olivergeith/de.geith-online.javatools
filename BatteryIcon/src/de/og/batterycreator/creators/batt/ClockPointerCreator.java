@@ -12,7 +12,7 @@ public class ClockPointerCreator extends AbstractIconCreator {
 
 	public ClockPointerCreator() {
 		super();
-		stylSettings.setShowFont(false);
+		settings.setShowFont(false);
 	}
 
 	/*
@@ -41,9 +41,9 @@ public class ClockPointerCreator extends AbstractIconCreator {
 	}
 
 	private void drawBubbleCircle(final int winkel, final Graphics2D g2d, final boolean charge, final boolean activ, final int percentage) {
-		Color col = stylSettings.getIconColorInActiv();
+		Color col = settings.getIconColorInActiv();
 		if (activ) {
-			col = stylSettings.getActivIconColor(percentage, charge);
+			col = settings.getActivIconColor(percentage, charge);
 		} else {
 			// if (charge)
 			// col = Color.green.darker();
@@ -58,7 +58,7 @@ public class ClockPointerCreator extends AbstractIconCreator {
 	}
 
 	private void drawZeiger(final int winkel, final Graphics2D g2d, final boolean charge, final boolean activ, final int percentage) {
-		final Color col = stylSettings.getActivIconColor(percentage, charge);
+		final Color col = settings.getActivIconColor(percentage, charge);
 		g2d.setColor(col);
 		final int w = Math.round(180 - (3.6f * winkel));
 		final int r = 19;

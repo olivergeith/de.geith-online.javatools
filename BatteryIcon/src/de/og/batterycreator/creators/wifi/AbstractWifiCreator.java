@@ -27,9 +27,9 @@ public abstract class AbstractWifiCreator extends AbstractCreator {
 	public abstract ImageIcon createInOutImage(boolean in, boolean out);
 
 	protected Color getConnectColor(final boolean fully) {
-		Color col = stylSettings.getWifiColor();
+		Color col = settings.getWifiColor();
 		if (fully == true)
-			col = stylSettings.getWifiColorFully();
+			col = settings.getWifiColorFully();
 		return col;
 	}
 
@@ -66,16 +66,16 @@ public abstract class AbstractWifiCreator extends AbstractCreator {
 	}
 
 	private void createInOutImages() {
-		filenames.add(stylSettings.getFileWifiIn());
+		filenames.add(settings.getFileWifiIn());
 		iconMap.add(createInOutImage(true, false));
-		filenames.add(stylSettings.getFileWifiOut());
+		filenames.add(settings.getFileWifiOut());
 		iconMap.add(createInOutImage(false, true));
-		filenames.add(stylSettings.getFileWifiInOut());
+		filenames.add(settings.getFileWifiInOut());
 		iconMap.add(createInOutImage(true, true));
 
-		filenamesAndPath.add(getPath() + File.separator + stylSettings.getFileWifiIn());
-		filenamesAndPath.add(getPath() + File.separator + stylSettings.getFileWifiOut());
-		filenamesAndPath.add(getPath() + File.separator + stylSettings.getFileWifiInOut());
+		filenamesAndPath.add(getPath() + File.separator + settings.getFileWifiIn());
+		filenamesAndPath.add(getPath() + File.separator + settings.getFileWifiOut());
+		filenamesAndPath.add(getPath() + File.separator + settings.getFileWifiInOut());
 
 	}
 
@@ -84,24 +84,24 @@ public abstract class AbstractWifiCreator extends AbstractCreator {
 	// ###############################################################################
 	protected String getFileNameInOut(final boolean in, final boolean out) {
 		if (in && out)
-			return stylSettings.getFileWifiInOut();
+			return settings.getFileWifiInOut();
 		if (in && !out)
-			return stylSettings.getFileWifiIn();
+			return settings.getFileWifiIn();
 		if (!in && out)
-			return stylSettings.getFileWifiOut();
+			return settings.getFileWifiOut();
 		return "";
 	}
 
 	protected String getFileName(final int level, final boolean fully) {
 		String filename;
 		if (!fully)
-			filename = stylSettings.getFileWifiPattern() + level + ".png";
+			filename = settings.getFileWifiPattern() + level + ".png";
 		else
-			filename = stylSettings.getFileWifiPattern() + level + stylSettings.getFileWifiEXtensionFully() + ".png";
+			filename = settings.getFileWifiPattern() + level + settings.getFileWifiEXtensionFully() + ".png";
 
 		// Sonderbehandlung für null image
 		if (fully == true && level == 0)
-			filename = stylSettings.getFileWifiPattern() + "null.png";
+			filename = settings.getFileWifiPattern() + "null.png";
 
 		return filename;
 	}
@@ -133,7 +133,7 @@ public abstract class AbstractWifiCreator extends AbstractCreator {
 			g2d.setColor(Color.black);
 			g2d.fillRect(0, 0, w, h);
 			g2d.setColor(Color.white);
-			g2d.drawString(getName(), 2, 20);
+			g2d.drawString(getCreatorName(), 2, 20);
 			g2d.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 12));
 			g2d.setColor(Color.gray);
 			g2d.drawString("Created with ''The Battery Icon Creator'' V" + IconCreatorFrame.VERSION_NR + " by OlliG", 2, 32);

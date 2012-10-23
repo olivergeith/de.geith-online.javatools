@@ -32,7 +32,7 @@ public class BrickWifiCreator extends AbstractWifiCreator {
 
 		if (level == 0 && fully == true) {
 			for (int i = 0; i < 5; i++) {
-				g2d.setColor(stylSettings.getIconColorInActiv());
+				g2d.setColor(settings.getIconColorInActiv());
 				final Rectangle rect = new Rectangle(imgMitte - i * width, imgHeight - (i + 1) * (height + gap), (1 + 2 * i) * width, height);
 				g2d.fillRect(rect.x, rect.y, rect.width, rect.height);
 			}
@@ -45,7 +45,7 @@ public class BrickWifiCreator extends AbstractWifiCreator {
 					g2d.fillRect(rect.x, rect.y, rect.width, rect.height);
 			}
 		}
-		g2d.setColor(stylSettings.getIconColorInActiv());
+		g2d.setColor(settings.getIconColorInActiv());
 
 		// in out inactiv
 		g2d.drawLine(imgMitte - 1, imgHeight, 2, 10);
@@ -63,11 +63,11 @@ public class BrickWifiCreator extends AbstractWifiCreator {
 		final Graphics2D g2d = initGrafics2D(img, true);
 
 		if (in) {
-			g2d.setColor(stylSettings.getInWifiColor());
+			g2d.setColor(settings.getInWifiColor());
 			g2d.drawLine(imgMitte - 1, imgHeight, 2, 10);
 		}
 		if (out) {
-			g2d.setColor(stylSettings.getOutWifiColor());
+			g2d.setColor(settings.getOutWifiColor());
 			g2d.drawLine(imgMitte + width, imgHeight, imgWidth - 2, 10);
 		}
 

@@ -40,10 +40,10 @@ public class TopCornerWifiCreator extends AbstractWifiCreator {
 				rect.y = rect.y - 2;
 				g2d.setColor(Color.black);
 				g2d.fillArc(rect.x - 1, rect.y - 1, rect.width + 2, rect.height + 2, 0, -90);
-				g2d.setColor(stylSettings.getIconColorInActiv());
+				g2d.setColor(settings.getIconColorInActiv());
 				g2d.fillArc(rect.x, rect.y, rect.width, rect.height, 0, -90);
 				if (i == 0) {
-					g2d.setColor(stylSettings.getIconColorInActiv());
+					g2d.setColor(settings.getIconColorInActiv());
 					g2d.fillArc(rect.x, rect.y, rect.width, rect.height, 0, 360);
 				}
 			}
@@ -53,7 +53,7 @@ public class TopCornerWifiCreator extends AbstractWifiCreator {
 				final Rectangle rect = new Rectangle(imgMitte - (i * width), offsetunten - ((1 + i) * height), width * (2 * i + 1), height * (2 * i + 1));
 
 				if (i > level) {
-					col = stylSettings.getIconColorInActiv();
+					col = settings.getIconColorInActiv();
 				}
 				rect.y = rect.y - 2;
 				g2d.setColor(Color.black);
@@ -68,7 +68,7 @@ public class TopCornerWifiCreator extends AbstractWifiCreator {
 
 		final Rectangle rectin = new Rectangle(width, 0, width * 4, 3);
 		final Rectangle rectout = new Rectangle(0, height, 3, height * 4);
-		g2d.setColor(stylSettings.getIconColorInActiv());
+		g2d.setColor(settings.getIconColorInActiv());
 		g2d.fillRect(rectin.x, rectin.y, rectin.width, rectin.height);
 		g2d.fillRect(rectout.x, rectout.y, rectout.width, rectout.height);
 
@@ -86,11 +86,11 @@ public class TopCornerWifiCreator extends AbstractWifiCreator {
 		final Rectangle rectin = new Rectangle(width, 0, width * 4, 3);
 		final Rectangle rectout = new Rectangle(0, height, 3, height * 4);
 		if (in) {
-			g2d.setColor(stylSettings.getInWifiColor());
+			g2d.setColor(settings.getInWifiColor());
 			g2d.fillRect(rectin.x, rectin.y, rectin.width, rectin.height);
 		}
 		if (out) {
-			g2d.setColor(stylSettings.getOutWifiColor());
+			g2d.setColor(settings.getOutWifiColor());
 			g2d.fillRect(rectout.x, rectout.y, rectout.width, rectout.height);
 		}
 

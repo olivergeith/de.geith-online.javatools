@@ -12,7 +12,7 @@ public class BubbleCreator extends AbstractIconCreator {
 
 	public BubbleCreator() {
 		super();
-		stylSettings.setFontXOffset(-1);
+		settings.setFontXOffset(-1);
 		// stylSettings.setStrokewidth(3);
 	}
 
@@ -38,15 +38,15 @@ public class BubbleCreator extends AbstractIconCreator {
 		BufferedImage img = new BufferedImage(40, 40, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img);
 
-		g2d.setColor(stylSettings.getIconColorInActiv());
+		g2d.setColor(settings.getIconColorInActiv());
 		g2d.fillArc(0, 0, 40, 40, 0, 360);
 
-		final Color col = stylSettings.getActivIconColor(percentage, charge);
+		final Color col = settings.getActivIconColor(percentage, charge);
 		g2d.setXORMode(col);
 
 		int strokew = 0;
-		if (stylSettings.isFlip()) {
-			strokew = stylSettings.getStrokewidth();
+		if (settings.isFlip()) {
+			strokew = settings.getStrokewidth();
 		}
 
 		final int h = Math.round((40 - strokew) / 100f * percentage);
@@ -54,8 +54,8 @@ public class BubbleCreator extends AbstractIconCreator {
 		g2d.fillRect(0, y, 40, h);
 
 		g2d.setPaintMode();
-		if (stylSettings.isFlip()) {
-			g2d.setColor(stylSettings.getActivIconColor(percentage));
+		if (settings.isFlip()) {
+			g2d.setColor(settings.getActivIconColor(percentage));
 			final int arcx = Math.round(strokew / 2);
 			final int arcy = Math.round(strokew / 2);
 			final int arcw = 40 - strokew;

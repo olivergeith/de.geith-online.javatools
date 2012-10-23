@@ -26,12 +26,12 @@ public class BatterySymbolCreator extends AbstractIconCreator {
 		g2d.fillRect(5, 3, 31, 37); // Battery Border
 		g2d.fillRect(10, 0, 21, 3); // Battery Knob
 
-		g2d.setColor(stylSettings.getIconColorInActiv());
+		g2d.setColor(settings.getIconColorInActiv());
 		g2d.fillRect(7, 5, 27, 33); // Inner Battery
 
 		final int h = Math.round(31f / 100f * percentage);
 
-		g2d.setColor(stylSettings.getActivIconColor(percentage, charge));
+		g2d.setColor(settings.getActivIconColor(percentage, charge));
 		g2d.fillRect(8, 6 + 31 - h, 25, h); // Battery Border
 
 		// Schrift

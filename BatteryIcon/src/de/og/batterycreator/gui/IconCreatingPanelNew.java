@@ -24,10 +24,10 @@ import de.og.batterycreator.creators.wifi.NoWifiIcons;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.BattCreatorSelector;
 import de.og.batterycreator.gui.widgets.IconSetSelector;
-import de.og.batterycreator.gui.widgets.LockHandleSelector;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
 import de.og.batterycreator.gui.widgets.SignalCreatorSelector;
 import de.og.batterycreator.gui.widgets.WifiCreatorSelector;
+import de.og.batterycreator.gui.widgets.lockhandleselector.LockHandleSelector;
 import de.og.batterycreator.zipcreator.ZipElementCollection;
 import de.og.batterycreator.zipcreator.ZipMaker;
 
@@ -186,20 +186,20 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		}
 
 		// Add Toggles
-		files2add2SystemUI.addAll(toggleBox.getFilenamesAndPath());
+		files2add2SystemUI.addAll(toggleBox.getAllFilenamesAndPath());
 		// Add Weather
-		files2add2Framework.addAll(weatherBox.getFilenamesAndPath());
+		files2add2Framework.addAll(weatherBox.getAllFilenamesAndPath());
 
 		// Lockhandle
-		files2add2Framework.addAll(lockHandleSelector.getFilenamesAndPath());
+		files2add2Framework.addAll(lockHandleSelector.getAllFilenamesAndPath());
 
 		// ZipElementCollection anlegen und alle Zipelemente einfügen
 		final ZipElementCollection zipCollection = new ZipElementCollection();
-		zipCollection.addElements(files2add2SystemUI, activBattCreator.getStylSettings().getFolderSystemUIInZip());
-		zipCollection.addElements(files2add2Framework, activBattCreator.getStylSettings().getFolderFrameworkInZip());
+		zipCollection.addElements(files2add2SystemUI, activBattCreator.getSettings().getFolderSystemUIInZip());
+		zipCollection.addElements(files2add2Framework, activBattCreator.getSettings().getFolderFrameworkInZip());
 		// now the actual zipping...
 		try {
-			final boolean saved = zipper.addFilesToArchive(zipCollection.getZipelEments(), activBattCreator.getName());
+			final boolean saved = zipper.addFilesToArchive(zipCollection.getZipelEments(), activBattCreator.getCreatorName());
 			// all ok ? Then Messagebox
 			if (saved == true) {
 				JOptionPane.showMessageDialog(IconCreatingPanelNew.this, "Zip was created successfully", "Zip creating", JOptionPane.INFORMATION_MESSAGE);
@@ -219,7 +219,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 	private void create() {
 		// Creating Battery Icons
 		activBattCreator = (AbstractIconCreator) battCreatorBox.getSelectedItem();
-		activBattCreator.setStylSettings(configPane.getSettings());
+		activBattCreator.setSettings(configPane.getSettings());
 		activBattCreator.createAllImages();
 		battIconList.removeAll();
 		battIconList.setListData(activBattCreator.getFilenames());
@@ -229,7 +229,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		// Creating Wifi Icons
 		activWifiCreator = (AbstractWifiCreator) wifiCreatorBox.getSelectedItem();
 		if (activWifiCreator != null && !activWifiCreator.toString().equals(NoWifiIcons.name)) {
-			activWifiCreator.setStylSettings(configPane.getSettings());
+			activWifiCreator.setSettings(configPane.getSettings());
 			activWifiCreator.createAllImages();
 			wifiOverviewPanel.setOverview(activWifiCreator.getOverviewIcon());
 		}
@@ -237,7 +237,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		// Creating Signal Icons
 		activSignalCreator = (AbstractSignalCreator) signalCreatorBox.getSelectedItem();
 		if (activSignalCreator != null && !activSignalCreator.toString().equals(NoSignalIcons.name)) {
-			activSignalCreator.setStylSettings(configPane.getSettings());
+			activSignalCreator.setSettings(configPane.getSettings());
 			activSignalCreator.createAllImages();
 			signalOverviewPanel.setOverview(activSignalCreator.getOverviewIcon());
 		}
@@ -290,7 +290,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		public void actionPerformed(final ActionEvent arg0) {
 			if (activBattCreator != null) {
 				activBattCreator.loadSettings();
-				configPane.setSettings(activBattCreator.getStylSettings());
+				configPane.setSettings(activBattCreator.getSettings());
 			}
 		}
 	}
@@ -308,7 +308,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 
 		public void actionPerformed(final ActionEvent arg0) {
 			if (activBattCreator != null) {
-				activBattCreator.setStylSettings(configPane.getSettings());
+				activBattCreator.setSettings(configPane.getSettings());
 				activBattCreator.persistSettings();
 			}
 		}

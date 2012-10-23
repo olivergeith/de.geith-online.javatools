@@ -24,10 +24,11 @@ import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
 import og.basics.gui.image.StaticImageHelper;
+import de.og.batterycreator.creators.IconProviderInterface;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.main.IconCreatorFrame;
 
-public class IconSetSelector extends JComboBox<ImageIcon> {
+public class IconSetSelector extends JComboBox<ImageIcon> implements IconProviderInterface {
 	private static final long serialVersionUID = -2767025548199058416L;
 
 	protected OverviewPanel overPane = new OverviewPanel();
@@ -44,6 +45,11 @@ public class IconSetSelector extends JComboBox<ImageIcon> {
 		this.rootDir = rootDir;
 		this.name = name;
 		initUI();
+	}
+
+	@Override
+	public String getProviderName() {
+		return name;
 	}
 
 	/**
@@ -137,7 +143,7 @@ public class IconSetSelector extends JComboBox<ImageIcon> {
 	/**
 	 * @return the filenamesAndPath
 	 */
-	public Vector<String> getFilenamesAndPath() {
+	public Vector<String> getAllFilenamesAndPath() {
 		return filenamesAndPath;
 	}
 

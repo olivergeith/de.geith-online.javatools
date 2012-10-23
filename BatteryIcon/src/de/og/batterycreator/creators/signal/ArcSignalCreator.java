@@ -31,10 +31,10 @@ public class ArcSignalCreator extends AbstractSignalCreator {
 		for (int i = 4; i >= 0; i--) {
 			Color col = getConnectColor(fully);
 			if (i > level) {
-				col = stylSettings.getIconColorInActiv();
+				col = settings.getIconColorInActiv();
 			}
 			if (level == NULL_LEVEL)
-				col = stylSettings.getIconColorInActiv().darker().darker();
+				col = settings.getIconColorInActiv().darker().darker();
 			final int x = imgMitte - (i * width);
 			int y = offsetunten - ((1 + i) * height);
 			final int w = width * (2 * i + 1);
@@ -50,9 +50,9 @@ public class ArcSignalCreator extends AbstractSignalCreator {
 		}
 		final Rectangle rectin = new Rectangle(width + 2, imgHeight - 4, width * 2 - 2, 3);
 		final Rectangle rectout = new Rectangle(width * 3 + 2, imgHeight - 4, width * 2, 3);
-		g2d.setColor(stylSettings.getIconColorInActiv());
+		g2d.setColor(settings.getIconColorInActiv());
 		if (level == NULL_LEVEL)
-			g2d.setColor(stylSettings.getIconColorInActiv().darker().darker());
+			g2d.setColor(settings.getIconColorInActiv().darker().darker());
 		g2d.fillRect(rectin.x, rectin.y, rectin.width, rectin.height);
 		g2d.fillRect(rectout.x, rectout.y, rectout.width, rectout.height);
 
@@ -70,11 +70,11 @@ public class ArcSignalCreator extends AbstractSignalCreator {
 		final Rectangle rectin = new Rectangle(width + 2, imgHeight - 4, width * 2 - 2, 3);
 		final Rectangle rectout = new Rectangle(width * 3 + 2, imgHeight - 4, width * 2, 3);
 		if (in) {
-			g2d.setColor(stylSettings.getInWifiColor());
+			g2d.setColor(settings.getInWifiColor());
 			g2d.fillRect(rectin.x, rectin.y, rectin.width, rectin.height);
 		}
 		if (out) {
-			g2d.setColor(stylSettings.getOutWifiColor());
+			g2d.setColor(settings.getOutWifiColor());
 			g2d.fillRect(rectout.x, rectout.y, rectout.width, rectout.height);
 		}
 

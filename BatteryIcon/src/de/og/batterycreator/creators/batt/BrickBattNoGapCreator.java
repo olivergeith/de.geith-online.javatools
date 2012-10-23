@@ -42,9 +42,9 @@ public class BrickBattNoGapCreator extends AbstractIconCreator {
 	}
 
 	private void drawRect(final Rectangle rect, final Graphics2D g2d, final boolean charge, final boolean activ, final int percentage) {
-		Color col = stylSettings.getIconColorInActiv();
+		Color col = settings.getIconColorInActiv();
 		if (activ) {
-			col = stylSettings.getActivIconColor(percentage, charge);
+			col = settings.getActivIconColor(percentage, charge);
 		} else {
 			// if (charge)
 			// col = Color.green.darker();

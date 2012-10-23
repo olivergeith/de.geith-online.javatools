@@ -18,7 +18,7 @@ import og.basics.gui.file.FileDialogs;
 import og.basics.gui.image.StaticImageHelper;
 import de.og.batterycreator.creators.settings.StyleSettings;
 
-public abstract class AbstractCreator {
+public abstract class AbstractCreator implements IconProviderInterface {
 	private static final String SETTINGS_EXTENSION = ".cfg";
 	private static final String SETTINGS_DIR = "./stylSettings/";
 
@@ -26,7 +26,7 @@ public abstract class AbstractCreator {
 	protected final Vector<String> filenames = new Vector<String>();
 	protected final Vector<String> filenamesAndPath = new Vector<String>();
 	protected ImageIcon overview = null;
-	protected StyleSettings stylSettings = new StyleSettings();
+	protected StyleSettings settings = new StyleSettings();
 
 	// ###############################################################################
 	// Abstracte Methoden
@@ -42,12 +42,12 @@ public abstract class AbstractCreator {
 	// Settings
 	// ###############################################################################
 
-	public StyleSettings getStylSettings() {
-		return stylSettings;
+	public StyleSettings getSettings() {
+		return settings;
 	}
 
-	public void setStylSettings(final StyleSettings stylSettings) {
-		this.stylSettings = stylSettings;
+	public void setSettings(final StyleSettings settings) {
+		this.settings = settings;
 	}
 
 	// ###############################################################################
@@ -64,12 +64,12 @@ public abstract class AbstractCreator {
 		final File pa = new File(getPath() + File.separator);
 		pa.mkdirs();
 		// resize ?
-		if (stylSettings.getTargetIconSize() != img.getHeight()) {
+		if (settings.getTargetIconSize() != img.getHeight()) {
 			// do the resizing before save
-			if (stylSettings.isUseAdvancedResize())
-				img = StaticImageHelper.resizeAdvanced(img, stylSettings.getTargetIconSize());
+			if (settings.isUseAdvancedResize())
+				img = StaticImageHelper.resizeAdvanced(img, settings.getTargetIconSize());
 			else
-				img = StaticImageHelper.resize(img, stylSettings.getTargetIconSize());
+				img = StaticImageHelper.resize(img, settings.getTargetIconSize());
 		}
 		// the writing
 		StaticImageHelper.writePNG(img, file);
@@ -77,7 +77,7 @@ public abstract class AbstractCreator {
 	}
 
 	protected void writeOverviewFile(final BufferedImage overview) {
-		final File file = new File(getPath() + File.separator + "overview_" + getName() + ".png");
+		final File file = new File(getPath() + File.separator + "overview_" + getCreatorName() + ".png");
 		StaticImageHelper.writePNG(overview, file);
 	}
 
@@ -90,12 +90,12 @@ public abstract class AbstractCreator {
 			final File pa = new File(SETTINGS_DIR);
 			if (!pa.exists())
 				pa.mkdirs();
-			final String filename = SETTINGS_DIR + getName() + SETTINGS_EXTENSION;
+			final String filename = SETTINGS_DIR + getCreatorName() + SETTINGS_EXTENSION;
 			final File saveFile = FileDialogs.saveFile(pa, new File(filename), SETTINGS_EXTENSION, "IconSettings");
 			if (saveFile != null) {
 				final FileOutputStream file = new FileOutputStream(saveFile);
 				final ObjectOutputStream o = new ObjectOutputStream(file);
-				o.writeObject(stylSettings);
+				o.writeObject(settings);
 				o.close();
 			}
 		} catch (final IOException e) {
@@ -115,7 +115,7 @@ public abstract class AbstractCreator {
 			if (loadFile != null) {
 				final FileInputStream file = new FileInputStream(loadFile);
 				final ObjectInputStream o = new ObjectInputStream(file);
-				stylSettings = (StyleSettings) o.readObject();
+				settings = (StyleSettings) o.readObject();
 				o.close();
 			}
 		} catch (final IOException e) {
@@ -147,7 +147,11 @@ public abstract class AbstractCreator {
 		return "./pngs/" + toString();
 	}
 
-	public String getName() {
+	public String getCreatorName() {
+		return toString();
+	}
+
+	public String getProviderName() {
 		return toString();
 	}
 
@@ -160,12 +164,12 @@ public abstract class AbstractCreator {
 	// ###############################################################################
 	protected Graphics2D initGrafics2D(final BufferedImage img, final boolean forceTransparent) {
 		final Graphics2D g2d = img.createGraphics();
-		g2d.setFont(stylSettings.getFont());
+		g2d.setFont(settings.getFont());
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.setStroke(new BasicStroke(stylSettings.getStrokewidth()));
+		g2d.setStroke(new BasicStroke(settings.getStrokewidth()));
 		if (!forceTransparent) {
-			if (!stylSettings.isTransparentBackground()) {
-				g2d.setColor(stylSettings.getBackgroundColor());
+			if (!settings.isTransparentBackground()) {
+				g2d.setColor(settings.getBackgroundColor());
 				g2d.fillRect(0, 0, img.getWidth(), img.getHeight());
 			}
 		}

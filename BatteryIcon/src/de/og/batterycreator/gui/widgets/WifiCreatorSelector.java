@@ -61,7 +61,7 @@ public class WifiCreatorSelector extends JComboBox<AbstractWifiCreator> {
 				final AbstractWifiCreator cre = (AbstractWifiCreator) getSelectedItem();
 
 				if (cre != null && !cre.toString().equals(NoWifiIcons.name)) {
-					cre.setStylSettings(configPane.getSettings());
+					cre.setSettings(configPane.getSettings());
 					cre.createAllImages();
 					wifiOverviewPanel.setOverview(cre.getOverviewIcon());
 					wifiOverviewPanel.setText("");

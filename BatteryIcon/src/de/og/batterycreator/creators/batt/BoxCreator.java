@@ -12,8 +12,8 @@ public class BoxCreator extends AbstractIconCreator {
 
 	public BoxCreator() {
 		super();
-		stylSettings.setFontXOffset(-1);
-		stylSettings.setStrokewidth(4);
+		settings.setFontXOffset(-1);
+		settings.setStrokewidth(4);
 	}
 
 	@Override
@@ -38,20 +38,20 @@ public class BoxCreator extends AbstractIconCreator {
 		BufferedImage img = new BufferedImage(40, 40, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img);
 
-		g2d.setColor(stylSettings.getIconColorInActiv());
+		g2d.setColor(settings.getIconColorInActiv());
 
-		final int w = stylSettings.getStrokewidth();
+		final int w = settings.getStrokewidth();
 
 		g2d.fillRect(0, 0, 40, w);
 		g2d.fillRect(0, 40 - w, 40, w);
 		g2d.fillRect(0, 0, w, 40);
 		g2d.fillRect(40 - w, 0, w, 40);
 
-		final Color col = stylSettings.getActivIconColor(percentage, charge);
+		final Color col = settings.getActivIconColor(percentage, charge);
 		g2d.setXORMode(col);
 		final int winkel = Math.round(360f / 100f * percentage);
 
-		if (stylSettings.isFlip())
+		if (settings.isFlip())
 			g2d.fillArc(-20, -20, 80, 80, 135, winkel);
 		else
 			g2d.fillArc(-20, -20, 80, 80, 135, -winkel);

@@ -16,8 +16,8 @@ public class BatteryVerticalSymbolCreator extends AbstractIconCreator {
 
 	public BatteryVerticalSymbolCreator() {
 		super();
-		stylSettings.setIconColorInActiv(StyleSettings.COLOR_INACTIV.darker());
-		stylSettings.setFontXOffset(-2);
+		settings.setIconColorInActiv(StyleSettings.COLOR_INACTIV.darker());
+		settings.setFontXOffset(-2);
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class BatteryVerticalSymbolCreator extends AbstractIconCreator {
 
 	@Override
 	public ImageIcon createImage(final int percentage, final boolean charge) {
-		final int height = 35 - stylSettings.getStrokewidth();
+		final int height = 35 - settings.getStrokewidth();
 		final int knobHeight = 17;
 		final int knobWidth = 4;
 		final int width = imgWidth - knobWidth;
@@ -43,28 +43,28 @@ public class BatteryVerticalSymbolCreator extends AbstractIconCreator {
 		BufferedImage img = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img);
 
-		g2d.setColor(stylSettings.getIconColorInActiv().brighter());
+		g2d.setColor(settings.getIconColorInActiv().brighter());
 		final int w = Math.round((width - 6) / 100f * percentage);
 
-		if (!stylSettings.isFlip()) {
+		if (!settings.isFlip()) {
 			g2d.fillRect(0, offsetOben, width, height); // Battery Border
 			g2d.fillRect(width, offsetKnob, knobWidth, knobHeight); // Battery
 																	// Knob
 
-			g2d.setColor(stylSettings.getIconColorInActiv());
+			g2d.setColor(settings.getIconColorInActiv());
 			g2d.fillRect(2, offsetOben + 2, width - 4, height - 4); // Inner
 																	// Battery
-			g2d.setColor(stylSettings.getActivIconColor(percentage, charge));
+			g2d.setColor(settings.getActivIconColor(percentage, charge));
 			g2d.fillRect(3, offsetOben + 3, w, height - 6); // Battery Level
 		} else {
 			g2d.fillRect(0, offsetKnob, knobWidth, knobHeight); // Battery Knob
 			g2d.fillRect(knobWidth, offsetOben, width, height); // Battery
 																// Border
 
-			g2d.setColor(stylSettings.getIconColorInActiv());
+			g2d.setColor(settings.getIconColorInActiv());
 			g2d.fillRect(knobWidth + 2, offsetOben + 2, width - 4, height - 4); // Inner
 			// Battery
-			g2d.setColor(stylSettings.getActivIconColor(percentage, charge));
+			g2d.setColor(settings.getActivIconColor(percentage, charge));
 			g2d.fillRect(knobWidth + width - 3 - w, offsetOben + 3, w, height - 6); // Battery
 			// Level
 		}

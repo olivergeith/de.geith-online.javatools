@@ -76,6 +76,19 @@ public class StaticImageHelper {
 		return resizedImage;
 	}
 
+	public static BufferedImage resizeIgnoreAspectRatio(final BufferedImage img, final int width, final int height) {
+		final int type = img.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : img.getType();
+		final BufferedImage resizedImage = new BufferedImage(width, height, type);
+		final Graphics2D g = resizedImage.createGraphics();
+		g.setComposite(AlphaComposite.Src);
+		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g.drawImage(img, 0, 0, width, height, null);
+		g.dispose();
+		return resizedImage;
+	}
+
 	public static BufferedImage resizeAdvanced(BufferedImage image, final int height) {
 		image = createCompatibleImage(image);
 		image = resize(image, 100);

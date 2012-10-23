@@ -280,12 +280,19 @@ public class ConfigPanel extends JPanel {
 		final PanelBuilder builder = new PanelBuilder(layout);
 		int row = 1;
 
-		builder.add(JGoodiesHelper.createGroupLabel("Battery Filenames & Output ..."), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createGroupLabel("Resizing..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(JGoodiesHelper.createBlueDeviderLabel("Choose your ROM's resolution"), cc.xyw(2, ++row, 3));
 		builder.add(JGoodiesHelper.createBlueDeviderLabel("Rom Presets"), cc.xyw(6, row, 3));
 		builder.add(zipResolutionFolderCombo, cc.xyw(2, ++row, 3));
 		builder.add(romPresetCombo, cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Resize Icon to (hight)"), cc.xyw(2, ++row, 7));
+		builder.add(sliderResize, cc.xyw(2, ++row, 1));
+		builder.add(sliderResize.getValueLabel(), cc.xyw(4, row, 1));
+		builder.add(cboxUseAdvResize, cc.xyw(6, row, 3));
+
+		builder.add(JGoodiesHelper.createGroupLabel("Battery Filenames & Output ..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(JGoodiesHelper.createBlueDeviderLabel("FileName-Pattern Nomal / Charge"), cc.xyw(2, ++row, 7));
 		builder.add(filepattern, cc.xyw(2, ++row, 3));
 		builder.add(filepatternCharge, cc.xyw(6, row, 3));
@@ -331,13 +338,6 @@ public class ConfigPanel extends JPanel {
 		builder.add(JGoodiesHelper.createBlueDeviderLabel("Size (height)"), cc.xyw(6, row, 3));
 		builder.add(notificationFileName, cc.xyw(2, ++row, 3));
 		builder.add(notificationHeight, cc.xyw(6, row, 3));
-
-		builder.add(JGoodiesHelper.createGroupLabel("Resizing..."), cc.xyw(2, ++row, 7));
-		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(JGoodiesHelper.createBlueDeviderLabel("Resize Icon to (hight)"), cc.xyw(2, ++row, 7));
-		builder.add(sliderResize, cc.xyw(2, ++row, 1));
-		builder.add(sliderResize.getValueLabel(), cc.xyw(4, row, 1));
-		builder.add(cboxUseAdvResize, cc.xyw(6, row, 3));
 
 		final JPanel cfp = builder.getPanel();
 		return cfp;

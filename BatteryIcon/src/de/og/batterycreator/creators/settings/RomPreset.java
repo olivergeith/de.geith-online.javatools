@@ -8,25 +8,29 @@ public class RomPreset {
 
 	public static final int LOCK_XHDPI = 216;
 	public static final int LOCK_HDPI = 162;
+	public static final int NOTIFICATION_HDPI = 3;
+	public static final int NOTIFICATION_XHDPI = 4;
+
 	public static final String APPLY = "Apply Settings for Rom...";
 	private static Vector<RomPreset> presets = new Vector<RomPreset>();
 
 	static {
-		presets.add(new RomPreset(APPLY, DrawableComboBox.FOLDER_XHDPI, StyleSettings.BATT_ICON_NAME_AOKP, StyleSettings.BATT_ICON_CHARGE_NAME_AOKP, LOCK_XHDPI));
+		presets.add(new RomPreset(APPLY, DrawableComboBox.FOLDER_XHDPI, StyleSettings.BATT_ICON_NAME_AOKP, StyleSettings.BATT_ICON_CHARGE_NAME_AOKP,
+				LOCK_XHDPI, NOTIFICATION_XHDPI));
 		presets.add(new RomPreset("Default", DrawableComboBox.FOLDER_XHDPI, StyleSettings.BATT_ICON_NAME_AOKP, StyleSettings.BATT_ICON_CHARGE_NAME_AOKP,
-				LOCK_XHDPI));
+				LOCK_XHDPI, NOTIFICATION_XHDPI));
 		presets.add(new RomPreset("Resurrection Remix JB 3.x.x", DrawableComboBox.FOLDER_XHDPI, StyleSettings.BATT_ICON_NAME_AOKP,
-				StyleSettings.BATT_ICON_CHARGE_NAME_AOKP, LOCK_XHDPI));
+				StyleSettings.BATT_ICON_CHARGE_NAME_AOKP, LOCK_XHDPI, NOTIFICATION_XHDPI));
 		presets.add(new RomPreset("Resurrection Remix ICS 2.6-2.7", DrawableComboBox.FOLDER_HDPI, StyleSettings.BATT_ICON_NAME_AOKP,
-				StyleSettings.BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI));
+				StyleSettings.BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_HDPI));
 		presets.add(new RomPreset("HydraH2O ICS 1.x", DrawableComboBox.FOLDER_HDPI, StyleSettings.BATT_ICON_NAME_AOKP,
-				StyleSettings.BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI));
+				StyleSettings.BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_HDPI));
 		presets.add(new RomPreset("RootBox JB 2.x", DrawableComboBox.FOLDER_HDPI, StyleSettings.BATT_ICON_NAME_AOKP, StyleSettings.BATT_ICON_CHARGE_NAME_AOKP,
-				LOCK_HDPI));
+				LOCK_HDPI, NOTIFICATION_HDPI));
 		presets.add(new RomPreset("Original AOKP JB", DrawableComboBox.FOLDER_HDPI, StyleSettings.BATT_ICON_NAME_AOKP,
-				StyleSettings.BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI));
+				StyleSettings.BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_HDPI));
 		presets.add(new RomPreset("Stock ROM ICS incl. JKay", DrawableComboBox.FOLDER_HDPI, StyleSettings.BATT_ICON_NAME_STOCK_ICS_JKAY,
-				StyleSettings.BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY, LOCK_HDPI));
+				StyleSettings.BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY, LOCK_HDPI, NOTIFICATION_HDPI));
 	}
 
 	private final String romName;
@@ -35,14 +39,17 @@ public class RomPreset {
 	private final String filePatternCharge;
 
 	private final int lockHandleSize;
+	private final int notificationHeight;
 
-	public RomPreset(final String romName, final String zipResolutionFolder, final String filePattern, final String filePatternCharge, final int lockHandleSize) {
+	public RomPreset(final String romName, final String zipResolutionFolder, final String filePattern, final String filePatternCharge,
+			final int lockHandleSize, final int notificationHeight) {
 		super();
 		this.romName = romName;
 		this.zipResolutionFolder = zipResolutionFolder;
 		this.filePattern = filePattern;
 		this.filePatternCharge = filePatternCharge;
 		this.lockHandleSize = lockHandleSize;
+		this.notificationHeight = notificationHeight;
 	}
 
 	public static Vector<RomPreset> getPresets() {
@@ -72,5 +79,9 @@ public class RomPreset {
 
 	public int getLockHandleSize() {
 		return lockHandleSize;
+	}
+
+	public int getNotificationHeight() {
+		return notificationHeight;
 	}
 }

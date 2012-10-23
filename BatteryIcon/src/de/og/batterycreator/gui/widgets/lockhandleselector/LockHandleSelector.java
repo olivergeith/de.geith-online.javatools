@@ -52,6 +52,7 @@ public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProv
 
 	private void initUI() {
 		fillIconVector();
+		overPane.add(this, BorderLayout.NORTH);
 		for (final ImageIcon icon : handleList) {
 			if (!icon.equals(nada)) {
 				final BufferedImage bimg = StaticImageHelper.resizeAdvanced(StaticImageHelper.convertImageIcon(icon), 64);

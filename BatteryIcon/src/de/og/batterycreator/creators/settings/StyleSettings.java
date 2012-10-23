@@ -33,6 +33,8 @@ public class StyleSettings implements Serializable {
 	public static final String SIGNAL_ICON_NAME_OUT = "stat_sys_signal_out.png";
 	public static final String SIGNAL_ICON_NAME_INOUT = "stat_sys_signal_inout.png";
 
+	public static final String NOTIFICATION_BG_FILENME = "notification_panel_bg.9.png";
+
 	// Konstanten
 	public static final Color COLOR_INACTIV = Color.darkGray.brighter();
 	public static final Color COLOR_BGRND = Color.black;
@@ -95,6 +97,9 @@ public class StyleSettings implements Serializable {
 	private int fontYOffset = 0;
 	private int reduceFontOn100 = -3;
 
+	// Notification
+	private String notificationBGFilename = NOTIFICATION_BG_FILENME;
+	private int notificationHeight = 4;
 	// Signal Stuff
 	private String fileSignalPattern = new String(SIGNAL_ICON_NAME);
 	private String fileSignalEXtensionFully = new String(SIGNAL_ICON_EXTENSION_FULLY);
@@ -918,6 +923,36 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setFileSignalPattern(final String fileSignalPattern) {
 		this.fileSignalPattern = fileSignalPattern;
+	}
+
+	/**
+	 * @return the notificationBGFilename
+	 */
+	public String getNotificationBGFilename() {
+		return notificationBGFilename;
+	}
+
+	/**
+	 * @param notificationBGFilename
+	 *            the notificationBGFilename to set
+	 */
+	public void setNotificationBGFilename(final String notificationBGFilename) {
+		this.notificationBGFilename = notificationBGFilename;
+	}
+
+	/**
+	 * @return the notificationHeight
+	 */
+	public int getNotificationHeight() {
+		return notificationHeight;
+	}
+
+	/**
+	 * @param notificationHeight
+	 *            the notificationHeight to set
+	 */
+	public void setNotificationHeight(final int notificationHeight) {
+		this.notificationHeight = notificationHeight;
 	}
 
 }

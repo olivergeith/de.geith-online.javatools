@@ -154,7 +154,7 @@ public class IconSetSelector extends JComboBox<ImageIcon> implements IconProvide
 		setToolTipText("Choose your " + name + " Iconset");
 		System.out.println("Loading Custom " + name + " Icon Sets!");
 		addSetsFromFilesystem();
-
+		overPane.add(this, BorderLayout.NORTH);
 		addActionListener(new ActionListener() {
 
 			@Override

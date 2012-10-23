@@ -28,6 +28,7 @@ import de.og.batterycreator.gui.widgets.OverviewPanel;
 import de.og.batterycreator.gui.widgets.SignalCreatorSelector;
 import de.og.batterycreator.gui.widgets.WifiCreatorSelector;
 import de.og.batterycreator.gui.widgets.lockhandleselector.LockHandleSelector;
+import de.og.batterycreator.gui.widgets.transparent.NotificationAreaBG;
 import de.og.batterycreator.zipcreator.ZipElementCollection;
 import de.og.batterycreator.zipcreator.ZipMaker;
 
@@ -53,6 +54,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 	private final LockHandleSelector lockHandleSelector = new LockHandleSelector(configPane);
 	private final IconSetSelector toggleBox = new IconSetSelector("Toggle", "./custom/toggles/");
 	private final IconSetSelector weatherBox = new IconSetSelector("Weather", "./custom/weather/");
+	private final NotificationAreaBG notificationBG = new NotificationAreaBG(configPane);
 
 	public IconCreatingPanelNew() {
 		initUI();
@@ -72,14 +74,18 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		battTabPane.setTabPlacement(JTabbedPane.LEFT);
 		battTabPane.addTab("", IconStore.overIcon, battOverviewPanel, "Get an Overview of your icons");
 		battTabPane.addTab("", IconStore.listIcon, scroller, "Get an Overview of your icons");
+		final JTabbedPane additionalIconsTabPane = new JTabbedPane();
+		additionalIconsTabPane.addTab("Toggle", IconStore.toggleIcon, toggleBox.getOverviewPanel(), "Get an Overview of your toggles");
+		additionalIconsTabPane.addTab("Weather", IconStore.weatherIcon, weatherBox.getOverviewPanel(), "Get an Overview of your weather icons");
+		additionalIconsTabPane.addTab("Lockring", IconStore.lockringIcon, lockHandleSelector.getOverviewPanel(), "See your choosen Lockring!");
+		additionalIconsTabPane.addTab("NotificationPanel", IconStore.notificationIcon, notificationBG, "Transparent Notification Panel");
+
 		// Tabbed Pane
 		tabPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabPane.addTab("Battery", IconStore.batteryIcon, battTabPane, "Get an Overview of your icons");
 		tabPane.addTab("Wifi", IconStore.wifiIcon, wifiOverviewPanel, "Get an Overview of your icons");
 		tabPane.addTab("Signal", IconStore.signalIcon, signalOverviewPanel, "Get an Overview of your icons");
-		tabPane.addTab("Toggle", IconStore.toggleIcon, toggleBox.getOverviewPanel(), "Get an Overview of your toggles");
-		tabPane.addTab("Weather", IconStore.weatherIcon, weatherBox.getOverviewPanel(), "Get an Overview of your weather icons");
-		tabPane.addTab("Lockring", IconStore.lockringIcon, lockHandleSelector.getOverviewPanel(), "See your choosen Lockring!");
+		tabPane.addTab("Additional Icons", IconStore.additionalIcon, additionalIconsTabPane, "Add additional icons to your zip");
 
 		// Actionlistener für die dropdownboxen, damit die Tabs aktiv werden
 		wifiCreatorBox.addActionListener(this);
@@ -110,15 +116,18 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		if (e.getSource().equals(signalCreatorBox) && signalCreatorBox.getSelectedIndex() != 0) {
 			tabPane.setSelectedIndex(2);
 		}
-		if (e.getSource().equals(toggleBox) && toggleBox.getSelectedIndex() != 0) {
-			tabPane.setSelectedIndex(3);
-		}
-		if (e.getSource().equals(weatherBox) && weatherBox.getSelectedIndex() != 0) {
-			tabPane.setSelectedIndex(4);
-		}
-		if (e.getSource().equals(lockHandleSelector) && lockHandleSelector.getSelectedIndex() != 0) {
-			tabPane.setSelectedIndex(5);
-		}
+		// if (e.getSource().equals(toggleBox) && toggleBox.getSelectedIndex()
+		// != 0) {
+		// tabPane.setSelectedIndex(3);
+		// }
+		// if (e.getSource().equals(weatherBox) && weatherBox.getSelectedIndex()
+		// != 0) {
+		// tabPane.setSelectedIndex(4);
+		// }
+		// if (e.getSource().equals(lockHandleSelector) &&
+		// lockHandleSelector.getSelectedIndex() != 0) {
+		// tabPane.setSelectedIndex(5);
+		// }
 		validateComponents();
 	}
 
@@ -126,9 +135,9 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		// tabPane.setEnabledAt(0, battCreatorBox.getSelectedIndex() != 0);
 		tabPane.setEnabledAt(1, wifiCreatorBox.getSelectedIndex() != 0);
 		tabPane.setEnabledAt(2, signalCreatorBox.getSelectedIndex() != 0);
-		tabPane.setEnabledAt(3, toggleBox.getSelectedIndex() != 0);
-		tabPane.setEnabledAt(4, weatherBox.getSelectedIndex() != 0);
-		tabPane.setEnabledAt(5, lockHandleSelector.getSelectedIndex() != 0);
+		// tabPane.setEnabledAt(3, toggleBox.getSelectedIndex() != 0);
+		// tabPane.setEnabledAt(4, weatherBox.getSelectedIndex() != 0);
+		// tabPane.setEnabledAt(5, lockHandleSelector.getSelectedIndex() != 0);
 	}
 
 	/**
@@ -149,12 +158,12 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		toolBar.add(wifiCreatorBox);
 		toolBar.addSeparator();
 		toolBar.add(signalCreatorBox);
-		toolBar.addSeparator();
-		toolBar.add(toggleBox);
-		toolBar.addSeparator();
-		toolBar.add(weatherBox);
-		toolBar.addSeparator();
-		toolBar.add(lockHandleSelector);
+		// toolBar.addSeparator();
+		// toolBar.add(toggleBox);
+		// toolBar.addSeparator();
+		// toolBar.add(weatherBox);
+		// toolBar.addSeparator();
+		// toolBar.add(lockHandleSelector);
 		toolBar.addSeparator();
 		toolBar.add(createAktion);
 		toolBar.add(zipAktion);
@@ -192,6 +201,9 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 
 		// Lockhandle
 		files2add2Framework.addAll(lockHandleSelector.getAllFilenamesAndPath());
+
+		// notification BG
+		files2add2SystemUI.addAll(notificationBG.getAllFilenamesAndPath());
 
 		// ZipElementCollection anlegen und alle Zipelemente einfügen
 		final ZipElementCollection zipCollection = new ZipElementCollection();
@@ -241,7 +253,8 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 			activSignalCreator.createAllImages();
 			signalOverviewPanel.setOverview(activSignalCreator.getOverviewIcon());
 		}
-
+		// creating notification bg again
+		notificationBG.createBGImage();
 	}
 
 	/**

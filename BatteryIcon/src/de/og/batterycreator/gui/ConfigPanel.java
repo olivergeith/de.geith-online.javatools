@@ -2,11 +2,9 @@ package de.og.batterycreator.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -16,8 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-import og.basics.gui.Jcolorselectbutton.JColorSelectButton;
 import og.basics.gui.jfontchooser.JFontChooserButton;
+import og.basics.jgoodies.JGoodiesHelper;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
@@ -38,21 +36,21 @@ public class ConfigPanel extends JPanel {
 			"12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32"
 	};
 
-	JButton fontColor = createClickabelColorLabel("Main Color", "Color when normal battery-level");
-	JButton fontColorLowBatt = createClickabelColorLabel("LowBatt", "Color when low battery");
-	JButton fontColorMedBatt = createClickabelColorLabel("MedBatt", "Color when Med battery");
-	JButton fontColorCharge = createClickabelColorLabel("Charge Color", "Color when charging");
+	JButton fontColor = JGoodiesHelper.createClickabelColorLabel("Main Color", "Color when normal battery-level");
+	JButton fontColorLowBatt = JGoodiesHelper.createClickabelColorLabel("LowBatt", "Color when low battery");
+	JButton fontColorMedBatt = JGoodiesHelper.createClickabelColorLabel("MedBatt", "Color when Med battery");
+	JButton fontColorCharge = JGoodiesHelper.createClickabelColorLabel("Charge Color", "Color when charging");
 	ChargeIconSelector chargeIconSeletor = new ChargeIconSelector();
 
 	JCheckBox cboxTransparentBgrnd = createCheckbox("Transparent Background (switchOff = experimental !)",
 			"Use this, when your statusbar Background is not black!");
-	JButton backgroundColor = createClickabelColorLabel("Background Color", "Color if not transparent");
+	JButton backgroundColor = JGoodiesHelper.createClickabelColorLabel("Background Color", "Color if not transparent");
 
-	JButton iconColor = createClickabelColorLabel("Main Color", "Color when normal battery-level");
-	JButton iconColorLowBatt = createClickabelColorLabel("LowBatt", "Color when low battery");
-	JButton iconColorMedBatt = createClickabelColorLabel("MedBatt", "Color when Med battery");
-	JButton iconColorInactiv = createClickabelColorLabel("Inactiv", "Color for inactiv Iconelements");
-	JButton iconColorCharge = createClickabelColorLabel("Charge Color", "Color when charging");
+	JButton iconColor = JGoodiesHelper.createClickabelColorLabel("Main Color", "Color when normal battery-level");
+	JButton iconColorLowBatt = JGoodiesHelper.createClickabelColorLabel("LowBatt", "Color when low battery");
+	JButton iconColorMedBatt = JGoodiesHelper.createClickabelColorLabel("MedBatt", "Color when Med battery");
+	JButton iconColorInactiv = JGoodiesHelper.createClickabelColorLabel("Inactiv", "Color for inactiv Iconelements");
+	JButton iconColorCharge = JGoodiesHelper.createClickabelColorLabel("Charge Color", "Color when charging");
 
 	SliderAndLabel sliderStroke = new SliderAndLabel(1, 10);
 	JCheckBox cboxFlip = createCheckbox("Flip Icon", "Mirror's the Icon...ony has effect on a few styls!");
@@ -83,14 +81,20 @@ public class ConfigPanel extends JPanel {
 	JTextField filepattern = new JTextField();
 	JTextField filepatternCharge = new JTextField();
 
-	JTextField lockHandleFileName = new JTextField();
-	JLabel lockHandleSize = new JLabel();
 	JFontChooserButton fontButton = new JFontChooserButton("Choose Font", fontSizes);
 
+	//
 	DrawableComboBox zipResolutionFolderCombo = new DrawableComboBox();
 	SliderAndLabel sliderResize = zipResolutionFolderCombo.getSizeSlider();
-
 	JComboBox<RomPreset> romPresetCombo = new JComboBox<RomPreset>(RomPreset.getPresets());
+
+	// Lockhandle
+	JTextField lockHandleFileName = new JTextField();
+	JLabel lockHandleSize = new JLabel();
+
+	// Notification
+	JTextField notificationFileName = new JTextField();
+	JLabel notificationHeight = new JLabel();
 
 	// Signal stuff
 	private final JTextField fileNameSignalIn = new JTextField();
@@ -105,10 +109,10 @@ public class ConfigPanel extends JPanel {
 	private final JTextField fileNameWifiInOut = new JTextField();
 	private final JTextField fileWifiPattern = new JTextField();
 	private final JTextField fileWifiPatternFully = new JTextField();
-	private final JButton inWifiColor = createClickabelColorLabel("ColorDataIn", "Color when Data comes in ;-)");
-	private final JButton outWifiColor = createClickabelColorLabel("ColorDataOut", "Color when Data comes in ;-)");
-	private final JButton wifiColor = createClickabelColorLabel("Connected", "Color when connected");
-	private final JButton wifiColorFully = createClickabelColorLabel("Fully Connected", "Color when fully connected");
+	private final JButton inWifiColor = JGoodiesHelper.createClickabelColorLabel("ColorDataIn", "Color when Data comes in ;-)");
+	private final JButton outWifiColor = JGoodiesHelper.createClickabelColorLabel("ColorDataOut", "Color when Data comes in ;-)");
+	private final JButton wifiColor = JGoodiesHelper.createClickabelColorLabel("Connected", "Color when connected");
+	private final JButton wifiColorFully = JGoodiesHelper.createClickabelColorLabel("Fully Connected", "Color when fully connected");
 
 	// Construktor
 	public ConfigPanel() {
@@ -130,6 +134,7 @@ public class ConfigPanel extends JPanel {
 					filepatternCharge.setText(pre.getFilePatternCharge());
 					romPresetCombo.setSelectedIndex(0);
 					lockHandleSize.setText("" + pre.getLockHandleSize());
+					notificationHeight.setText("" + pre.getNotificationHeight());
 				}
 			}
 		});
@@ -164,16 +169,16 @@ public class ConfigPanel extends JPanel {
 		final PanelBuilder builder = new PanelBuilder(layout);
 		int row = 1;
 
-		builder.add(createGroupLabel("Colors"), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createGroupLabel("Colors"), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel("For having Battery and Wifi/Signal Icons in 'harmony', some Colors are used from Battery Icon:"),
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("For having Battery and Wifi/Signal Icons in 'harmony', some Colors are used from Battery Icon:"),
 				cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel(" - Icon BackgroundColor == Background"), cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel(" - Icon InactivColor == Inaktiv Color"), cc.xyw(2, ++row, 7));
-		builder.add(createGroupLabel("Wifi / Signal specific Colors"), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel(" - Icon BackgroundColor == Background"), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel(" - Icon InactivColor == Inaktiv Color"), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createGroupLabel("Wifi / Signal specific Colors"), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel("Colors for Connection"), cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("Colors for Data Activity"), cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Colors for Connection"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Colors for Data Activity"), cc.xyw(6, row, 3));
 		builder.add(wifiColor, cc.xyw(2, ++row, 1));
 		builder.add(wifiColorFully, cc.xyw(4, row, 1));
 		builder.add(inWifiColor, cc.xyw(6, row, 1));
@@ -190,7 +195,7 @@ public class ConfigPanel extends JPanel {
 		final CellConstraints cc = new CellConstraints();
 		final PanelBuilder builder = new PanelBuilder(layout);
 		int row = 1;
-		builder.add(createGroupLabel("Percentages..."), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createGroupLabel("Percentages..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 
 		builder.add(cboxShowChargeSymbol, cc.xyw(2, ++row, 3));
@@ -203,26 +208,26 @@ public class ConfigPanel extends JPanel {
 		builder.add(fontColorLowBatt, cc.xyw(6, row, 1));
 		builder.add(fontColorMedBatt, cc.xyw(8, row, 1));
 
-		builder.add(createBlueDeviderLabel("Reduce font on 100% by <x> pixel"), cc.xyw(6, ++row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Reduce font on 100% by <x> pixel"), cc.xyw(6, ++row, 3));
 		builder.add(fontButton, cc.xyw(2, ++row, 3));
 		builder.add(sliderReduceOn100, cc.xyw(6, row, 1));
 		builder.add(sliderReduceOn100.getValueLabel(), cc.xyw(8, row, 1));
 
-		builder.add(createBlueDeviderLabel("Font Pixel Position Offsets X"), cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("Font Pixel Position Offsets Y"), cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Font Pixel Position Offsets X"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Font Pixel Position Offsets Y"), cc.xyw(6, row, 3));
 		builder.add(sliderFontXOffset, cc.xyw(2, ++row, 1));
 		builder.add(sliderFontXOffset.getValueLabel(), cc.xyw(4, row, 1));
 		builder.add(sliderFontYOffset, cc.xyw(6, row, 1));
 		builder.add(sliderFontYOffset.getValueLabel(), cc.xyw(8, row, 1));
 
-		builder.add(createGroupLabel("Charge Icon..."), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createGroupLabel("Charge Icon..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 
 		builder.add(cboxShowChargeSymbol, cc.xyw(2, ++row, 1));
 		builder.add(chargeIconSeletor, cc.xyw(4, row, 1));
 
-		builder.add(createBlueDeviderLabel("ChargeIcon Pixel Position Offsets X"), cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("ChargeIcon Pixel Position Offsets Y"), cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("ChargeIcon Pixel Position Offsets X"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("ChargeIcon Pixel Position Offsets Y"), cc.xyw(6, row, 3));
 		builder.add(slidericonXOffset, cc.xyw(2, ++row, 1));
 		builder.add(slidericonXOffset.getValueLabel(), cc.xyw(4, row, 1));
 		builder.add(slidericonYOffset, cc.xyw(6, row, 1));
@@ -232,7 +237,7 @@ public class ConfigPanel extends JPanel {
 		builder.add(sliderResizeChargeSymbol, cc.xyw(6, row, 1));
 		builder.add(sliderResizeChargeSymbol.getValueLabel(), cc.xyw(8, row, 1));
 
-		builder.add(createGroupLabel("Battery Icon..."), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createGroupLabel("Battery Icon..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 
 		builder.add(iconColorInactiv, cc.xyw(2, ++row, 1));
@@ -244,10 +249,10 @@ public class ConfigPanel extends JPanel {
 		builder.add(iconColorMedBatt, cc.xyw(8, row, 1));
 		builder.add(cboxTransparentBgrnd, cc.xyw(1, ++row, 6));
 
-		builder.add(createGroupLabel("Thresholds..."), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createGroupLabel("Thresholds..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel("...for Low Battery-Levels"), cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("...for Med Battery-Levels"), cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("...for Low Battery-Levels"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("...for Med Battery-Levels"), cc.xyw(6, row, 3));
 		builder.add(sliderLowBatt, cc.xyw(2, ++row, 1));
 		builder.add(sliderLowBatt.getValueLabel(), cc.xyw(4, row, 1));
 		builder.add(sliderMedBatt, cc.xyw(6, row, 1));
@@ -255,10 +260,10 @@ public class ConfigPanel extends JPanel {
 		builder.add(cboxUseGradientMediumLevels, cc.xyw(2, ++row, 3));
 		builder.add(cboxUseGradientNormalLevels, cc.xyw(6, row, 3));
 
-		builder.add(createGroupLabel("Misc Options ..."), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createGroupLabel("Misc Options ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel("These settings only work on some styls"), cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("Stroke Width"), cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("These settings only work on some styls"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Stroke Width"), cc.xyw(6, row, 3));
 		builder.add(cboxFlip, cc.xyw(2, ++row, 3));
 		builder.add(sliderStroke, cc.xyw(6, row, 1));
 		builder.add(sliderStroke.getValueLabel(), cc.xyw(8, row, 1));
@@ -275,100 +280,67 @@ public class ConfigPanel extends JPanel {
 		final PanelBuilder builder = new PanelBuilder(layout);
 		int row = 1;
 
-		builder.add(createGroupLabel("Battery Filenames & Output ..."), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createGroupLabel("Battery Filenames & Output ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel("Choose your ROM's resolution"), cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("Rom Presets"), cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Choose your ROM's resolution"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Rom Presets"), cc.xyw(6, row, 3));
 		builder.add(zipResolutionFolderCombo, cc.xyw(2, ++row, 3));
 		builder.add(romPresetCombo, cc.xyw(6, row, 3));
-		builder.add(createBlueDeviderLabel("FileName-Pattern Nomal / Charge"), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("FileName-Pattern Nomal / Charge"), cc.xyw(2, ++row, 7));
 		builder.add(filepattern, cc.xyw(2, ++row, 3));
 		builder.add(filepatternCharge, cc.xyw(6, row, 3));
 
-		builder.add(createGroupLabel("Wifi Filenames & Output ..."), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createGroupLabel("Wifi Filenames & Output ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel("Filename Data In"), cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("Filename Data Out"), cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Filename Data In"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Filename Data Out"), cc.xyw(6, row, 3));
 		builder.add(fileNameWifiIn, cc.xyw(2, ++row, 3));
 		builder.add(fileNameWifiOut, cc.xyw(6, row, 3));
-		builder.add(createBlueDeviderLabel("Filename Data InOut"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Filename Data InOut"), cc.xyw(2, ++row, 3));
 		builder.add(fileNameWifiInOut, cc.xyw(2, ++row, 3));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel("Filename Pattern"), cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("Fileextens. 'fully'"), cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Filename Pattern"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Fileextens. 'fully'"), cc.xyw(6, row, 3));
 		builder.add(fileWifiPattern, cc.xyw(2, ++row, 3));
 		builder.add(fileWifiPatternFully, cc.xyw(6, row, 3));
 
-		builder.add(createGroupLabel("Signal Filenames & Output ..."), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createGroupLabel("Signal Filenames & Output ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel("Filename Data In"), cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("Filename Data Out"), cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Filename Data In"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Filename Data Out"), cc.xyw(6, row, 3));
 		builder.add(fileNameSignalIn, cc.xyw(2, ++row, 3));
 		builder.add(fileNameSignalOut, cc.xyw(6, row, 3));
-		builder.add(createBlueDeviderLabel("Filename Data InOut"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Filename Data InOut"), cc.xyw(2, ++row, 3));
 		builder.add(fileNameSignalInOut, cc.xyw(2, ++row, 3));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel("Filename Pattern"), cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("Fileextens. 'fully'"), cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Filename Pattern"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Fileextens. 'fully'"), cc.xyw(6, row, 3));
 		builder.add(fileSignalPattern, cc.xyw(2, ++row, 3));
 		builder.add(fileSignalPatternFully, cc.xyw(6, row, 3));
 
-		builder.add(createGroupLabel("Lockhandle Filename & Size ..."), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createGroupLabel("Lockhandle Filename & Size ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel("Lockhandle Filename"), cc.xyw(2, ++row, 3));
-		builder.add(createBlueDeviderLabel("Lockhandle Filename"), cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Lockhandle Filename"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Size"), cc.xyw(6, row, 3));
 		builder.add(lockHandleFileName, cc.xyw(2, ++row, 3));
 		builder.add(lockHandleSize, cc.xyw(6, row, 3));
 
-		builder.add(createGroupLabel("Resizing..."), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createGroupLabel("Notification BG Filename & Size ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(createBlueDeviderLabel("Resize Icon to (hight)"), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Notification BG Filename"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Size (height)"), cc.xyw(6, row, 3));
+		builder.add(notificationFileName, cc.xyw(2, ++row, 3));
+		builder.add(notificationHeight, cc.xyw(6, row, 3));
+
+		builder.add(JGoodiesHelper.createGroupLabel("Resizing..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Resize Icon to (hight)"), cc.xyw(2, ++row, 7));
 		builder.add(sliderResize, cc.xyw(2, ++row, 1));
 		builder.add(sliderResize.getValueLabel(), cc.xyw(4, row, 1));
 		builder.add(cboxUseAdvResize, cc.xyw(6, row, 3));
 
 		final JPanel cfp = builder.getPanel();
 		return cfp;
-	}
-
-	private JButton createClickabelColorLabel(final String text, final String tooltip) {
-		final JColorSelectButton label = new JColorSelectButton();
-		label.setText(text);
-		label.setToolTipText(tooltip);
-		return label;
-	}
-
-	private JLabel createGroupLabel(final String txt) {
-		final JLabel lab = createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 18), Color.BLUE.darker().darker());
-		lab.setBorder(BorderFactory.createEmptyBorder(4, 0, 0, 0));
-		return lab;
-	}
-
-	/**
-	 * Creates a Label with a very small blue font
-	 * 
-	 * @param txt
-	 * @return
-	 */
-	private JLabel createBlueDeviderLabel(final String txt) {
-		final JLabel lab = createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 10), Color.black);
-		lab.setBorder(BorderFactory.createEmptyBorder(1, 0, 0, 0));
-		return lab;
-	}
-
-	/**
-	 * Creates a Label with a font and Color
-	 * 
-	 * @param txt
-	 * @param font
-	 * @param color
-	 * @return
-	 */
-	private JLabel createColoredFontLabel(final String txt, final Font font, final Color color) {
-		final JLabel label = new JLabel(txt);
-		label.setForeground(color);
-		label.setFont(font);
-		return label;
 	}
 
 	/**
@@ -464,6 +436,9 @@ public class ConfigPanel extends JPanel {
 		// Lockhandle
 		lockHandleFileName.setText(settings.getLockHandleFileName());
 		lockHandleSize.setText("" + settings.getLockHandleSize());
+		// Notification
+		notificationFileName.setText(settings.getNotificationBGFilename());
+		notificationHeight.setText("" + settings.getNotificationHeight());
 
 		validateControls();
 		this.repaint();
@@ -534,6 +509,9 @@ public class ConfigPanel extends JPanel {
 		// Lockhandle
 		settings.setLockHandleFileName(lockHandleFileName.getText());
 		settings.setLockHandleSize(Integer.parseInt(lockHandleSize.getText()));
+		// Notification
+		settings.setNotificationBGFilename(notificationFileName.getText());
+		settings.setNotificationHeight(Integer.parseInt(notificationHeight.getText()));
 		return settings;
 	}
 

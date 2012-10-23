@@ -1,0 +1,203 @@
+package de.og.batterycreator.gui.widgets.transparent;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.Vector;
+
+import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import og.basics.gui.image.StaticImageHelper;
+import og.basics.jgoodies.JGoodiesHelper;
+
+import com.jgoodies.forms.builder.PanelBuilder;
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
+
+import de.og.batterycreator.creators.IconProviderInterface;
+import de.og.batterycreator.creators.settings.StyleSettings;
+import de.og.batterycreator.gui.ConfigPanel;
+import de.og.batterycreator.gui.widgets.SliderAndLabel;
+
+public class NotificationAreaBG extends JPanel implements IconProviderInterface {
+
+	private static final String PROVIDER_NAME = "Transparent NotificationArea";
+	private static final long serialVersionUID = 7145187966709405687L;
+	private static final String CUSTOM_OUT_DIR = "./pngs/notificationbg/";
+
+	private static final ImageIcon background = new ImageIcon(NotificationAreaBG.class.getResource("background2.png"));
+	private final Vector<String> filenamesAndPath = new Vector<String>();
+	private final JCheckBox activBox = new JCheckBox("Include transparent Notification Area");
+	private final SliderAndLabel transparencySlider = new SliderAndLabel(0, 100);
+	private final JLabel overview = new JLabel(background);
+
+	private ImageIcon notificationBG;
+	private final ConfigPanel configPane;
+
+	public NotificationAreaBG(final ConfigPanel configPane) {
+		this.configPane = configPane;
+		initUI();
+
+	}
+
+	private void initUI() {
+		setLayout(new BorderLayout());
+		activBox.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(final ActionEvent e) {
+				transparencySlider.setEnabled(activBox.isSelected());
+				overview.setVisible(activBox.isSelected());
+				updateGui();
+				if (!activBox.isSelected())
+					filenamesAndPath.removeAllElements();
+			}
+		});
+		activBox.setSelected(false);
+		transparencySlider.setEnabled(false);
+		transparencySlider.setValue(75);
+		overview.setVisible(false);
+		transparencySlider.addChangeListener(new ChangeListener() {
+
+			@Override
+			public void stateChanged(final ChangeEvent e) {
+				updateGui();
+			}
+
+		});
+		final JPanel gui = createSettingsPanel();
+		add(gui, BorderLayout.CENTER);
+
+	}
+
+	public JPanel createSettingsPanel() {
+		// -----------------------------------------1-----2------3-----4------5-----6------7-----8-----9------10----11
+		final FormLayout layout = new FormLayout("2dlu, 64dlu, 2dlu, 16dlu, 2dlu, 96dlu, 2dlu",
+				"p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p");
+		final CellConstraints cc = new CellConstraints();
+		final PanelBuilder builder = new PanelBuilder(layout);
+		int row = 1;
+
+		builder.add(activBox, cc.xyw(2, ++row, 5));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Transparency"), cc.xyw(2, ++row, 3));
+		builder.add(transparencySlider, cc.xyw(2, ++row, 1));
+		builder.add(transparencySlider.getValueLabel(), cc.xyw(4, row, 1));
+		builder.add(JGoodiesHelper.createBlueDeviderLabel("Preview"), cc.xyw(2, ++row, 3));
+		builder.addSeparator("", cc.xyw(2, ++row, 5));
+		builder.add(overview, cc.xyw(2, ++row, 5));
+
+		final JPanel cfp = builder.getPanel();
+		return cfp;
+	}
+
+	public void updateGui() {
+		createBGImage();
+		createPreview();
+	}
+
+	public ImageIcon createBGImage() {
+		// Create a graphics contents on the buffered image
+		final int h = configPane.getSettings().getNotificationHeight();
+		final int w = h * 10;
+		final BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+		final Graphics2D g2d = img.createGraphics();
+		final File outf = new File(CUSTOM_OUT_DIR + configPane.getSettings().getNotificationBGFilename());
+		final File dir = new File(CUSTOM_OUT_DIR);
+
+		final Color col = new Color(0f, 0f, 0f, transparencySlider.getValue() / 100f);
+		g2d.setColor(col);
+
+		g2d.fillRect(0, 0, img.getWidth(), img.getHeight());
+
+		// Filewriting
+		if (!dir.exists())
+			dir.mkdirs();
+
+		StaticImageHelper.writePNG(img, outf);
+		filenamesAndPath.removeAllElements();
+		filenamesAndPath.addElement(outf.getPath());
+		// System.out.println("Notification Background was created: " +
+		// outf.getPath());
+		notificationBG = new ImageIcon(img);
+		return notificationBG;
+	}
+
+	protected void createPreview() {
+
+		final int w = background.getIconWidth();
+		final int h = background.getIconHeight();
+		final BufferedImage hintergrund = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+		final Graphics2D g2d = hintergrund.createGraphics();
+		g2d.drawImage(background.getImage(), 0, 0, null);
+
+		final Color col = new Color(0f, 0f, 0f, transparencySlider.getValue() / 100f);
+		g2d.setColor(col);
+
+		g2d.fillRect(0, 0, w, h);
+		overview.setIcon(new ImageIcon(hintergrund));
+
+	}
+
+	@Override
+	public String getProviderName() {
+		return PROVIDER_NAME;
+	}
+
+	@Override
+	public String toString() {
+		return PROVIDER_NAME;
+	}
+
+	@Override
+	public Vector<String> getAllFilenamesAndPath() {
+		return filenamesAndPath;
+	}
+
+	/**
+	 * For testing purposes !!!
+	 * 
+	 * @param args
+	 */
+	public static void main(final String[] args) {
+
+		final JFrame f = new JFrame();
+		f.setTitle("Hallo Emmy!!!!!!!");
+		f.setBounds(200, 200, 300, 80);
+		f.setLayout(new BorderLayout());
+		final StyleSettings settings = new StyleSettings();
+		final ConfigPanel cp = new ConfigPanel();
+		cp.setSettings(settings);
+
+		final NotificationAreaBG bg = new NotificationAreaBG(cp);
+		f.add(bg, BorderLayout.CENTER);
+
+		f.setVisible(true);
+		f.pack();
+	}
+
+	/**
+	 * @return the bg
+	 */
+	public ImageIcon getBg() {
+		return notificationBG;
+	}
+
+	/**
+	 * @param bg
+	 *            the bg to set
+	 */
+	public void setBg(final ImageIcon bg) {
+		notificationBG = bg;
+	}
+
+}

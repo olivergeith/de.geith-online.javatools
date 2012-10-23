@@ -46,7 +46,7 @@ public class ForkWifiCreator extends AbstractWifiCreator {
 			for (int i = 0; i < 5; i++) {
 				g2d.setColor(settings.getIconColorInActiv());
 				final Rectangle rect = calculateRectForLevel(i);
-				g2d.drawRect(rect.x + 1, rect.y, rect.width - 1, rect.height - 1);
+				g2d.drawRect(rect.x, rect.y, rect.width - 1, rect.height - 1);
 			}
 		} else {
 			for (int i = 0; i < 5; i++) {
@@ -72,8 +72,8 @@ public class ForkWifiCreator extends AbstractWifiCreator {
 		BufferedImage img = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img, true);
 
-		final Rectangle rectout = new Rectangle(1, 2, 3, imgHeight - 4);
-		final Rectangle rectin = new Rectangle(3, 2, 3, imgHeight - 4);
+		final Rectangle rectout = new Rectangle(1, 2, 5, (imgHeight - 4) / 2 - 1);
+		final Rectangle rectin = new Rectangle(1, 3 + (imgHeight - 4) / 2, 5, (imgHeight - 4) / 2 - 1);
 		if (in) {
 			g2d.setColor(settings.getInWifiColor());
 			g2d.fillRect(rectin.x, rectin.y, rectin.width, rectin.height);

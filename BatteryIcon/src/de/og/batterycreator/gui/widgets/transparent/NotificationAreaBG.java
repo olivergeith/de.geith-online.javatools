@@ -40,6 +40,7 @@ public class NotificationAreaBG extends JPanel implements IconProviderInterface 
 	private final JCheckBox activBox = new JCheckBox("Include transparent Notification Area");
 	private final SliderAndLabel transparencySlider = new SliderAndLabel(0, 100);
 	private final JLabel overview = new JLabel(background);
+	private final JLabel hint = new JLabel(createLableHtml());
 
 	private ImageIcon notificationBG;
 	private final ConfigPanel configPane;
@@ -50,6 +51,29 @@ public class NotificationAreaBG extends JPanel implements IconProviderInterface 
 
 	}
 
+	private String createLableHtml() {
+		String html = "<html>";
+
+		html += "<font size=5 color=blue>";
+		html += "<b>" + "Attention !!" + "</b><br><hr>";
+		html += "</font>";
+
+		html += "<font size=3 color=black>";
+		html += "There seeems to be some other half transparent png, that is <br>";
+		html += "above or on top the background png! <br>";
+		html += "So the background is not as transparent as you see it here. <br> <br>";
+		html += "A transparency of 80 would result in an almost black notification area! <br>";
+		html += "A transparency of 50 is still pretty dark!<br>";
+		html += "A transparency of 0 will ever be completely transparent! <br> <br>";
+		html += "(Speaking for Resurrection Remix ROM...<br>";
+		html += "...don't know about other ROM's)<br>";
+		html += "<hr>";
+		html += "</font>";
+
+		html += "</html>";
+		return html;
+	}
+
 	private void initUI() {
 		setLayout(new BorderLayout());
 		activBox.addActionListener(new ActionListener() {
@@ -58,6 +82,7 @@ public class NotificationAreaBG extends JPanel implements IconProviderInterface 
 			public void actionPerformed(final ActionEvent e) {
 				transparencySlider.setEnabled(activBox.isSelected());
 				overview.setVisible(activBox.isSelected());
+				hint.setVisible(activBox.isSelected());
 				updateGui();
 				if (!activBox.isSelected())
 					filenamesAndPath.removeAllElements();
@@ -67,6 +92,7 @@ public class NotificationAreaBG extends JPanel implements IconProviderInterface 
 		transparencySlider.setEnabled(false);
 		transparencySlider.setValue(75);
 		overview.setVisible(false);
+		hint.setVisible(false);
 		transparencySlider.addChangeListener(new ChangeListener() {
 
 			@Override
@@ -82,19 +108,20 @@ public class NotificationAreaBG extends JPanel implements IconProviderInterface 
 
 	public JPanel createSettingsPanel() {
 		// -----------------------------------------1-----2------3-----4------5-----6------7-----8-----9------10----11
-		final FormLayout layout = new FormLayout("2dlu, 64dlu, 2dlu, 16dlu, 2dlu, 96dlu, 2dlu",
+		final FormLayout layout = new FormLayout("2dlu, 64dlu, 2dlu, 16dlu, 2dlu, 32dlu, 2dlu,256dlu, 2dlu",
 				"p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p");
 		final CellConstraints cc = new CellConstraints();
 		final PanelBuilder builder = new PanelBuilder(layout);
 		int row = 1;
 
-		builder.add(activBox, cc.xyw(2, ++row, 5));
+		builder.add(activBox, cc.xyw(2, ++row, 7));
 		builder.add(JGoodiesHelper.createBlueDeviderLabel("Transparency"), cc.xyw(2, ++row, 3));
 		builder.add(transparencySlider, cc.xyw(2, ++row, 1));
 		builder.add(transparencySlider.getValueLabel(), cc.xyw(4, row, 1));
 		builder.add(JGoodiesHelper.createBlueDeviderLabel("Preview"), cc.xyw(2, ++row, 3));
-		builder.addSeparator("", cc.xyw(2, ++row, 5));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(overview, cc.xyw(2, ++row, 5));
+		builder.add(hint, cc.xyw(8, row, 1));
 
 		final JPanel cfp = builder.getPanel();
 		return cfp;

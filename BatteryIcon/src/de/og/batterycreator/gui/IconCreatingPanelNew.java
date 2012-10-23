@@ -90,9 +90,9 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		// Actionlistener für die dropdownboxen, damit die Tabs aktiv werden
 		wifiCreatorBox.addActionListener(this);
 		signalCreatorBox.addActionListener(this);
-		toggleBox.addActionListener(this);
-		weatherBox.addActionListener(this);
-		lockHandleSelector.addActionListener(this);
+		// toggleBox.addActionListener(this);
+		// weatherBox.addActionListener(this);
+		// lockHandleSelector.addActionListener(this);
 
 		// Panel zusammensetzen
 		add(tabPane, BorderLayout.CENTER);
@@ -133,8 +133,8 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 
 	private void validateComponents() {
 		// tabPane.setEnabledAt(0, battCreatorBox.getSelectedIndex() != 0);
-		tabPane.setEnabledAt(1, wifiCreatorBox.getSelectedIndex() != 0);
-		tabPane.setEnabledAt(2, signalCreatorBox.getSelectedIndex() != 0);
+		// tabPane.setEnabledAt(1, wifiCreatorBox.getSelectedIndex() != 0);
+		// tabPane.setEnabledAt(2, signalCreatorBox.getSelectedIndex() != 0);
 		// tabPane.setEnabledAt(3, toggleBox.getSelectedIndex() != 0);
 		// tabPane.setEnabledAt(4, weatherBox.getSelectedIndex() != 0);
 		// tabPane.setEnabledAt(5, lockHandleSelector.getSelectedIndex() != 0);

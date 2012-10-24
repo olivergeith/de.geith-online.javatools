@@ -234,4 +234,9 @@ public class NotificationAreaBG extends JPanel implements IconProviderInterface 
 		notificationBG = bg;
 	}
 
+	@Override
+	public boolean isActiv() {
+		return activBox.isSelected();
+	}
+
 }

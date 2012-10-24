@@ -259,4 +259,12 @@ public class IconSetSelector extends JComboBox<ImageIcon> implements IconProvide
 		f.setVisible(true);
 	}
 
+	@Override
+	public boolean isActiv() {
+		final ImageIcon icon = (ImageIcon) getSelectedItem();
+		if (!icon.equals(nada))
+			return true;
+		return false;
+	}
+
 }

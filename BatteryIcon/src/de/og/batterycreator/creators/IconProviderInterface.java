@@ -8,4 +8,6 @@ public interface IconProviderInterface {
 
 	public Vector<String> getAllFilenamesAndPath();
 
+	public boolean isActiv();
+
 }

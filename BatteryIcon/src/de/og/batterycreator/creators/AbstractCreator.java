@@ -176,4 +176,9 @@ public abstract class AbstractCreator implements IconProviderInterface {
 		return g2d;
 	}
 
+	@Override
+	public boolean isActiv() {
+		return true;
+	}
+
 }

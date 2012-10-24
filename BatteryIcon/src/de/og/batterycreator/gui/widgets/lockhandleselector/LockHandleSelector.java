@@ -203,4 +203,12 @@ public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProv
 	public String getProviderName() {
 		return PROVIDER_NAME;
 	}
+
+	@Override
+	public boolean isActiv() {
+		final ImageIcon icon = (ImageIcon) getSelectedItem();
+		if (!icon.equals(nada))
+			return true;
+		return false;
+	}
 }

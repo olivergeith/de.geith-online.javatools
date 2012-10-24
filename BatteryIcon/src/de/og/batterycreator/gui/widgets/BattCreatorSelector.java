@@ -61,6 +61,7 @@ public class BattCreatorSelector extends JComboBox<AbstractIconCreator> {
 	}
 
 	private void fillCreatorList() {
+		addItem(new NoBattIcons());
 		addItem(new ArcCreator());
 		addItem(new ArcSunCreator());
 		addItem(new ArcQuaterCreator2());
@@ -98,7 +99,7 @@ public class BattCreatorSelector extends JComboBox<AbstractIconCreator> {
 			public void actionPerformed(final ActionEvent arg0) {
 				final AbstractIconCreator cre = (AbstractIconCreator) getSelectedItem();
 
-				if (cre != null && !cre.toString().equals(NoBattIcons.name)) {
+				if (cre != null) {
 					activBattCreator = cre;
 					configPane.setSettings(cre.getSettings());
 					configPane.enableSupportedFeatures(cre.supportsFlip(), cre.supportsStrokeWidth());
@@ -115,6 +116,10 @@ public class BattCreatorSelector extends JComboBox<AbstractIconCreator> {
 			public void updateOverviews(final AbstractIconCreator cre) {
 				cre.setSettings(configPane.getSettings());
 				cre.createAllImages();
+				if (cre.getOverviewIcon().equals(IconStore.nothingIcon))
+					battOverviewPanel.setText("Choose your Battery Style in dropdown box");
+				else
+					battOverviewPanel.setText("");
 				battOverviewPanel.setOverview(cre.getOverviewIcon());
 				battIconList.removeAll();
 				battIconList.setListData(cre.getFilenames());

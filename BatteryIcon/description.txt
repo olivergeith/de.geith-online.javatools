@@ -39,20 +39,12 @@ Now it has grown up and much more was added. (I should think about a new Name? :
 
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Oct-22-2012[/B] : Release 10.0[/COLOR]
+[COLOR="Blue"][B]Oct-xx-2012[/B] : Release 11.0[/COLOR]
 [LIST]
-[*][B]New:[/B]Support for custom Lockhandles/Lockrings on Lockscreen
-[*]Add your own custom Lockhandles to ./custom/lockhandles/*.png
-[*][B]New:[/B]Support for Signal / Connection Icons
-[*]3 new Signal Designs
-[*][B]New:[/B]Support for weather Iconsets 
-[*]Add your own custom weather iconsets to ./custom/weather/<setname>/*.png
-[*]Optimized TopCorner Wifi
-[*]4 new Wifi Designs
-[*]4 new Battery Designs
-[*]DecimalBar Battery now flipable and number of bars now adjustable via "strokewidth"
-[*]experimental feature to set Background color of Battery- and Wifi-icons, in case your statusbar is not black.
-[*]Lots of internal refactoring and bugfixing
+[*][B]New:[/B]Support for transparent notification area
+[*]Added possibility to "not" choose a battery ;-)
+[*]Gui-changes (lots of options by now...so I constantly try to move some things around to optimize the workflow)
+[*]Vertical Battery now adjustable in height (use strokewidth slider for that)
 [/LIST]
 
 [COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]
@@ -141,9 +133,7 @@ Now it has grown up and much more was added. (I should think about a new Name? :
 [*]Bugfixing
 [*]Make the Style-Modules even more customizable
 [*]Creating new styles
-[*]Supporting Connection icons
-[*]adding transparent Notificationarea to flashable zip
-[*]adding custom lockhandle
+[*]flashin any png's
 [*]And finally....A lot of things that you might come up with ;)
 [/LIST]
 

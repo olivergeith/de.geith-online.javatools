@@ -94,7 +94,7 @@ public class SignalCreatorSelector extends JComboBox<AbstractSignalCreator> {
 						icon = IconStore.nothingIcon;
 						renderer.setIcon(icon);
 					} else {
-						final BufferedImage bimg = StaticImageHelper.resize(StaticImageHelper.convertImageIcon(icon), 32);
+						final BufferedImage bimg = StaticImageHelper.resize2Height(StaticImageHelper.convertImageIcon(icon), 32);
 						renderer.setIcon(new ImageIcon(bimg));
 					}
 				}

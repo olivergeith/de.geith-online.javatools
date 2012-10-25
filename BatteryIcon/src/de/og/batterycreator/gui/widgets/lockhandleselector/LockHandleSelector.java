@@ -55,7 +55,7 @@ public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProv
 		overPane.add(this, BorderLayout.NORTH);
 		for (final ImageIcon icon : handleList) {
 			if (!icon.equals(nada)) {
-				final BufferedImage bimg = StaticImageHelper.resizeAdvanced(StaticImageHelper.convertImageIcon(icon), 64);
+				final BufferedImage bimg = StaticImageHelper.resizeAdvanced2Height(StaticImageHelper.convertImageIcon(icon), 64);
 				addItem(new ImageIcon(bimg));
 			} else {
 				addItem(icon);
@@ -97,7 +97,7 @@ public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProv
 			final File dir = new File(CUSTOM_OUT_DIR);
 			if (!dir.exists())
 				dir.mkdirs();
-			final BufferedImage img = StaticImageHelper.resize(StaticImageHelper.convertImageIcon(icon), sizeTo);
+			final BufferedImage img = StaticImageHelper.resize2Height(StaticImageHelper.convertImageIcon(icon), sizeTo);
 			StaticImageHelper.writePNG(img, outf);
 			filenamesAndPath.addElement(outf.getPath());
 			System.out.println("LockHandle was created: " + outf.getPath());

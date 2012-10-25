@@ -67,9 +67,9 @@ public abstract class AbstractCreator implements IconProviderInterface {
 		if (settings.getTargetIconSize() != img.getHeight()) {
 			// do the resizing before save
 			if (settings.isUseAdvancedResize())
-				img = StaticImageHelper.resizeAdvanced(img, settings.getTargetIconSize());
+				img = StaticImageHelper.resizeAdvanced2Height(img, settings.getTargetIconSize());
 			else
-				img = StaticImageHelper.resize(img, settings.getTargetIconSize());
+				img = StaticImageHelper.resize2Height(img, settings.getTargetIconSize());
 		}
 		// the writing
 		StaticImageHelper.writePNG(img, file);

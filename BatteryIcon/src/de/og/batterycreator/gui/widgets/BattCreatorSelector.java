@@ -161,7 +161,7 @@ public class BattCreatorSelector extends JComboBox<AbstractIconCreator> {
 				final AbstractIconCreator creator = value;
 				if (creator != null && renderer.getIcon() == null) {
 					final ImageIcon icon = creator.createImage(45, false);
-					final BufferedImage bimg = StaticImageHelper.resize(StaticImageHelper.convertImageIcon(icon), 32);
+					final BufferedImage bimg = StaticImageHelper.resize2Height(StaticImageHelper.convertImageIcon(icon), 32);
 					renderer.setIcon(new ImageIcon(bimg));
 				}
 			}

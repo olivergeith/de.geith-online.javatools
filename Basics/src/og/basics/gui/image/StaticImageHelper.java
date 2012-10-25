@@ -52,18 +52,26 @@ public class StaticImageHelper {
 		}
 	}
 
-	/**
-	 * Method to resize an Image
-	 * 
-	 * @param img
-	 * @param width
-	 * @param height
-	 * @return
-	 */
-	public static BufferedImage resize(final BufferedImage img, final int height) {
+	public static BufferedImage resizeLongestSide2Size(final BufferedImage img, final int size) {
+		if (img.getWidth() > img.getHeight())
+			return resize2Width(img, size);
+		else
+			return resize2Height(img, size);
+	}
+
+	public static BufferedImage resize2Width(final BufferedImage img, final int width) {
+		// get the aspect ratio right...
+		final int height = Math.round((float) img.getHeight() / (float) img.getWidth() * width);
+		return resize(img, width, height);
+	}
+
+	public static BufferedImage resize2Height(final BufferedImage img, final int height) {
 		// get the aspect ratio right...
 		final int width = Math.round((float) img.getWidth() / (float) img.getHeight() * height);
+		return resize(img, width, height);
+	}
 
+	public static BufferedImage resize(final BufferedImage img, final int width, final int height) {
 		final int type = img.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : img.getType();
 		final BufferedImage resizedImage = new BufferedImage(width, height, type);
 		final Graphics2D g = resizedImage.createGraphics();
@@ -76,24 +84,11 @@ public class StaticImageHelper {
 		return resizedImage;
 	}
 
-	public static BufferedImage resizeIgnoreAspectRatio(final BufferedImage img, final int width, final int height) {
-		final int type = img.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : img.getType();
-		final BufferedImage resizedImage = new BufferedImage(width, height, type);
-		final Graphics2D g = resizedImage.createGraphics();
-		g.setComposite(AlphaComposite.Src);
-		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-		g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g.drawImage(img, 0, 0, width, height, null);
-		g.dispose();
-		return resizedImage;
-	}
-
-	public static BufferedImage resizeAdvanced(BufferedImage image, final int height) {
+	public static BufferedImage resizeAdvanced2Height(BufferedImage image, final int height) {
 		image = createCompatibleImage(image);
-		image = resize(image, 100);
+		image = resize2Height(image, 100);
 		image = blurImage(image);
-		image = resize(image, height);
+		image = resize2Height(image, height);
 		return image;
 	}
 

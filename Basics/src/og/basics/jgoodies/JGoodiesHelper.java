@@ -4,22 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JLabel;
-
-import og.basics.gui.Jcolorselectbutton.JColorSelectButton;
 
 public class JGoodiesHelper {
 
 	public JGoodiesHelper() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public static JButton createClickabelColorLabel(final String text, final String tooltip) {
-		final JColorSelectButton label = new JColorSelectButton();
-		label.setText(text);
-		label.setToolTipText(tooltip);
-		return label;
 	}
 
 	public static JLabel createGroupLabel(final String txt) {
@@ -34,8 +24,20 @@ public class JGoodiesHelper {
 	 * @param txt
 	 * @return
 	 */
-	public static JLabel createBlueDeviderLabel(final String txt) {
+	public static JLabel createBlackLabel(final String txt) {
 		final JLabel lab = createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 10), Color.black);
+		lab.setBorder(BorderFactory.createEmptyBorder(1, 0, 0, 0));
+		return lab;
+	}
+
+	/**
+	 * Creates a Label with a very small blue font
+	 * 
+	 * @param txt
+	 * @return
+	 */
+	public static JLabel createBlueLabel(final String txt) {
+		final JLabel lab = createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 10), Color.blue);
 		lab.setBorder(BorderFactory.createEmptyBorder(1, 0, 0, 0));
 		return lab;
 	}

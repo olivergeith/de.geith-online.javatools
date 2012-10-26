@@ -18,6 +18,9 @@ import javax.swing.JLabel;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
 
 /**
+ * This Button opens a ColorChooser and sets its onw Background to the choosen
+ * color.
+ * 
  * @author geith
  * 
  */
@@ -48,6 +51,12 @@ public class JColorSelectButton extends JButton {
 	 */
 	public JColorSelectButton(final String arg0) {
 		super(arg0);
+		initUI();
+	}
+
+	public JColorSelectButton(final String arg0, final String tooltip) {
+		super(arg0);
+		setToolTipText(tooltip);
 		initUI();
 	}
 
@@ -92,16 +101,15 @@ public class JColorSelectButton extends JButton {
 				bringUpColorChooser2();
 			}
 		});
-
 	}
 
-	// private void bringUpColorChooser1() {
-	// final Color newColor = JColorChooser.showDialog(JColorSelectButton.this,
-	// "Choose Color", getBackground());
-	// if (newColor != null) {
-	// setBackground(newColor);
-	// }
-	// }
+	public void setColor(final Color col) {
+		setBackground(col);
+	}
+
+	public Color getColor() {
+		return getBackground();
+	}
 
 	private void bringUpColorChooser2() {
 		final JColorChooser colorChooser = new JColorChooser();

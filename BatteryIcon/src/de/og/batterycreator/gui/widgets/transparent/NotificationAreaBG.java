@@ -116,10 +116,10 @@ public class NotificationAreaBG extends JPanel implements IconProviderInterface 
 		int row = 1;
 
 		builder.add(activBox, cc.xyw(2, ++row, 7));
-		builder.add(JGoodiesHelper.createBlueDeviderLabel("Transparency"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Transparency"), cc.xyw(2, ++row, 3));
 		builder.add(transparencySlider, cc.xyw(2, ++row, 1));
 		builder.add(transparencySlider.getValueLabel(), cc.xyw(4, row, 1));
-		builder.add(JGoodiesHelper.createBlueDeviderLabel("Preview"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Preview"), cc.xyw(2, ++row, 3));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(overview, cc.xyw(2, ++row, 5));
 		builder.add(hint, cc.xyw(8, row, 1));

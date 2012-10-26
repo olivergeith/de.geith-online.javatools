@@ -133,8 +133,9 @@ public class IconSet {
 		f.setTitle("Hallo Emmy!!!!!!!");
 		f.setBounds(200, 200, 640, 600);
 		f.setLayout(new BorderLayout());
-		final IconSet set = new IconSet(new File("./custom/weather/(AOKP) RR Weather HTC Home Weather"));
-		// final IconSet set = new IconSet(new File("./custom/lockhandles"));
+		// final IconSet set = new IconSet(new
+		// File("./custom/weather/(AOKP) RR Weather HTC Home Weather"));
+		final IconSet set = new IconSet(new File("./custom/lockhandles"));
 		f.add(new JLabel(set.getOverviewsmall()), BorderLayout.CENTER);
 		f.add(new JLabel(set.getOverviewStripe()), BorderLayout.NORTH);
 

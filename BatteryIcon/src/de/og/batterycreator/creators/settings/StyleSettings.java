@@ -85,8 +85,9 @@ public class StyleSettings implements Serializable {
 
 	private String lockHandleFileName = LOCKHANDLE_FILENAME_DEFAULT;
 	private int lockHandleSize = RomPreset.LOCK_XHDPI;
-
 	private int targetIconSize = DrawableComboBox.ICON_HEIGHT_XHDPI;
+	private int toggleSize = RomPreset.TOGGLE_XHDPI;
+
 	private boolean useAdvancedResize = true;
 
 	private Font font = DEFAULT_FONT;
@@ -953,6 +954,21 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setNotificationHeight(final int notificationHeight) {
 		this.notificationHeight = notificationHeight;
+	}
+
+	/**
+	 * @return the toggleSize
+	 */
+	public int getToggleSize() {
+		return toggleSize;
+	}
+
+	/**
+	 * @param toggleSize
+	 *            the toggleSize to set
+	 */
+	public void setToggleSize(final int toggleSize) {
+		this.toggleSize = toggleSize;
 	}
 
 }

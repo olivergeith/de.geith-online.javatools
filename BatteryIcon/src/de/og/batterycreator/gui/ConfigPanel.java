@@ -92,6 +92,9 @@ public class ConfigPanel extends JPanel {
 	JTextField lockHandleFileName = new JTextField();
 	JLabel lockHandleSize = new JLabel();
 
+	// Toggles
+	JLabel toggleSize = new JLabel();
+
 	// Notification
 	JTextField notificationFileName = new JTextField();
 	JLabel notificationHeight = new JLabel();
@@ -135,6 +138,7 @@ public class ConfigPanel extends JPanel {
 					romPresetCombo.setSelectedIndex(0);
 					lockHandleSize.setText("" + pre.getLockHandleSize());
 					notificationHeight.setText("" + pre.getNotificationHeight());
+					toggleSize.setText("" + pre.getToggleSize());
 				}
 			}
 		});
@@ -155,8 +159,8 @@ public class ConfigPanel extends JPanel {
 		tab9.add(createTabPaneMoreSettings(), BorderLayout.CENTER);
 
 		tabPane.addTab("Battery Settings", IconStore.colorIcon, tab1, "Color & Font Settings for Icons");
-		tabPane.addTab("Wifi/Signal Colors", IconStore.colorwifiIcon, tab2, "Special Colors for Wifi Icon");
-		tabPane.addTab("Output Settings", IconStore.cfgIcon, tab9, "Output Settings like Filenames, Resize...");
+		tabPane.addTab("Wifi/Signal Settings", IconStore.colorwifiIcon, tab2, "Special Colors for Wifi Icon");
+		tabPane.addTab("ROM Settings", IconStore.cfgIcon, tab9, "Output Settings like Filenames, Resize...");
 
 		this.add(tabPane, BorderLayout.CENTER);
 	}
@@ -183,6 +187,34 @@ public class ConfigPanel extends JPanel {
 		builder.add(wifiColorFully, cc.xyw(4, row, 1));
 		builder.add(inWifiColor, cc.xyw(6, row, 1));
 		builder.add(outWifiColor, cc.xyw(8, row, 1));
+
+		builder.add(JGoodiesHelper.createGroupLabel("Wifi Filenames & Output ..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createBlackLabel("Filename Data In"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Filename Data Out"), cc.xyw(6, row, 3));
+		builder.add(fileNameWifiIn, cc.xyw(2, ++row, 3));
+		builder.add(fileNameWifiOut, cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Filename Data InOut"), cc.xyw(2, ++row, 3));
+		builder.add(fileNameWifiInOut, cc.xyw(2, ++row, 3));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createBlackLabel("Filename Pattern"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Fileextens. 'fully'"), cc.xyw(6, row, 3));
+		builder.add(fileWifiPattern, cc.xyw(2, ++row, 3));
+		builder.add(fileWifiPatternFully, cc.xyw(6, row, 3));
+
+		builder.add(JGoodiesHelper.createGroupLabel("Signal Filenames & Output ..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createBlackLabel("Filename Data In"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Filename Data Out"), cc.xyw(6, row, 3));
+		builder.add(fileNameSignalIn, cc.xyw(2, ++row, 3));
+		builder.add(fileNameSignalOut, cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Filename Data InOut"), cc.xyw(2, ++row, 3));
+		builder.add(fileNameSignalInOut, cc.xyw(2, ++row, 3));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createBlackLabel("Filename Pattern"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Fileextens. 'fully'"), cc.xyw(6, row, 3));
+		builder.add(fileSignalPattern, cc.xyw(2, ++row, 3));
+		builder.add(fileSignalPatternFully, cc.xyw(6, row, 3));
 
 		final JPanel cfp = builder.getPanel();
 		return cfp;
@@ -297,40 +329,17 @@ public class ConfigPanel extends JPanel {
 		builder.add(filepattern, cc.xyw(2, ++row, 3));
 		builder.add(filepatternCharge, cc.xyw(6, row, 3));
 
-		builder.add(JGoodiesHelper.createGroupLabel("Wifi Filenames & Output ..."), cc.xyw(2, ++row, 7));
-		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(JGoodiesHelper.createBlackLabel("Filename Data In"), cc.xyw(2, ++row, 3));
-		builder.add(JGoodiesHelper.createBlackLabel("Filename Data Out"), cc.xyw(6, row, 3));
-		builder.add(fileNameWifiIn, cc.xyw(2, ++row, 3));
-		builder.add(fileNameWifiOut, cc.xyw(6, row, 3));
-		builder.add(JGoodiesHelper.createBlackLabel("Filename Data InOut"), cc.xyw(2, ++row, 3));
-		builder.add(fileNameWifiInOut, cc.xyw(2, ++row, 3));
-		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(JGoodiesHelper.createBlackLabel("Filename Pattern"), cc.xyw(2, ++row, 3));
-		builder.add(JGoodiesHelper.createBlackLabel("Fileextens. 'fully'"), cc.xyw(6, row, 3));
-		builder.add(fileWifiPattern, cc.xyw(2, ++row, 3));
-		builder.add(fileWifiPatternFully, cc.xyw(6, row, 3));
-
-		builder.add(JGoodiesHelper.createGroupLabel("Signal Filenames & Output ..."), cc.xyw(2, ++row, 7));
-		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(JGoodiesHelper.createBlackLabel("Filename Data In"), cc.xyw(2, ++row, 3));
-		builder.add(JGoodiesHelper.createBlackLabel("Filename Data Out"), cc.xyw(6, row, 3));
-		builder.add(fileNameSignalIn, cc.xyw(2, ++row, 3));
-		builder.add(fileNameSignalOut, cc.xyw(6, row, 3));
-		builder.add(JGoodiesHelper.createBlackLabel("Filename Data InOut"), cc.xyw(2, ++row, 3));
-		builder.add(fileNameSignalInOut, cc.xyw(2, ++row, 3));
-		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(JGoodiesHelper.createBlackLabel("Filename Pattern"), cc.xyw(2, ++row, 3));
-		builder.add(JGoodiesHelper.createBlackLabel("Fileextens. 'fully'"), cc.xyw(6, row, 3));
-		builder.add(fileSignalPattern, cc.xyw(2, ++row, 3));
-		builder.add(fileSignalPatternFully, cc.xyw(6, row, 3));
-
 		builder.add(JGoodiesHelper.createGroupLabel("Lockhandle Filename & Size ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(JGoodiesHelper.createBlackLabel("Lockhandle Filename"), cc.xyw(2, ++row, 3));
 		builder.add(JGoodiesHelper.createBlackLabel("Size"), cc.xyw(6, row, 3));
 		builder.add(lockHandleFileName, cc.xyw(2, ++row, 3));
 		builder.add(lockHandleSize, cc.xyw(6, row, 3));
+
+		builder.add(JGoodiesHelper.createGroupLabel("Toggle Size ..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createBlackLabel("Size (is set via Rom Presets)"), cc.xyw(2, ++row, 3));
+		builder.add(toggleSize, cc.xyw(2, ++row, 3));
 
 		builder.add(JGoodiesHelper.createGroupLabel("Notification BG Filename & Size ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
@@ -439,6 +448,8 @@ public class ConfigPanel extends JPanel {
 		// Notification
 		notificationFileName.setText(settings.getNotificationBGFilename());
 		notificationHeight.setText("" + settings.getNotificationHeight());
+		// toggle
+		toggleSize.setText("" + settings.getToggleSize());
 
 		validateControls();
 		this.repaint();
@@ -512,6 +523,8 @@ public class ConfigPanel extends JPanel {
 		// Notification
 		settings.setNotificationBGFilename(notificationFileName.getText());
 		settings.setNotificationHeight(Integer.parseInt(notificationHeight.getText()));
+		// toggle
+		settings.setToggleSize(Integer.parseInt(toggleSize.getText()));
 		return settings;
 	}
 

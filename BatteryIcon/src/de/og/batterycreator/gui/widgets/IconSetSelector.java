@@ -68,6 +68,7 @@ public class IconSetSelector extends JComboBox<ImageIcon> implements IconProvide
 	 * @return the filenamesAndPath
 	 */
 	public Vector<String> getAllFilenamesAndPath() {
+		// TODO hier nur noch die Fileliste ausgeben
 		final int index = getSelectedIndex();
 		if (index > 0) {
 			final IconSet set = iconSets.elementAt(index - 1);
@@ -94,9 +95,15 @@ public class IconSetSelector extends JComboBox<ImageIcon> implements IconProvide
 					final IconSet set = iconSets.elementAt(index - 1);
 					overPane.setOverview(set.getOverviewsmall());
 					overPane.setText("");
+					// TODO Icons lesen
+					// TODO resizen
+					// TODO ins zielverzeichnis kopieren
+					// TODO FileListe anlegen (fürs spätere Zippen)
 				} else {
 					overPane.setOverview(icon);
 					overPane.setText("   Choose " + name + "-Set from Dropdownbox");
+					// TODO Icons dort wieder löschen
+					// TODO FileListe leeren
 				}
 			}
 		});

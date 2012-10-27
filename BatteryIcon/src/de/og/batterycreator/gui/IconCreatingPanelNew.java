@@ -11,6 +11,7 @@ import javax.swing.Icon;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
@@ -56,12 +57,27 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 	private final IconSetSelector weatherBox = new IconSetSelector("Weather", "./custom/weather/");
 	private final NotificationAreaBG notificationBG = new NotificationAreaBG(configPane);
 
+	// Treadstuff
+	private final JProgressBar progressBar = new JProgressBar();
+	private Thread t = null;
+	private boolean isrunning = false;
+	private boolean stopnow = false;
+	private final int maxsteps = 15;
+	private int step = 0;
+
 	public IconCreatingPanelNew() {
 		initUI();
 	}
 
 	private void initUI() {
 		setLayout(new BorderLayout());
+		// Prograssbar int
+
+		progressBar.setIndeterminate(false);
+		progressBar.setMinimum(0);
+		progressBar.setMaximum(maxsteps);
+		progressBar.setStringPainted(true);
+		resetProgressBar();
 
 		// Icon Liste
 		final JScrollPane scroller = new JScrollPane();
@@ -90,13 +106,11 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		// Actionlistener für die dropdownboxen, damit die Tabs aktiv werden
 		wifiCreatorBox.addActionListener(this);
 		signalCreatorBox.addActionListener(this);
-		// toggleBox.addActionListener(this);
-		// weatherBox.addActionListener(this);
-		// lockHandleSelector.addActionListener(this);
 
 		// Panel zusammensetzen
 		add(tabPane, BorderLayout.CENTER);
 		add(configPane, BorderLayout.WEST);
+		add(progressBar, BorderLayout.SOUTH);
 
 		// Comobox abfragen
 		activBattCreator = (AbstractIconCreator) battCreatorBox.getSelectedItem();
@@ -104,8 +118,6 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		activSignalCreator = (AbstractSignalCreator) signalCreatorBox.getSelectedItem();
 
 		makeButtonBar();
-		validateComponents();
-
 	}
 
 	@Override
@@ -116,28 +128,6 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		if (e.getSource().equals(signalCreatorBox) && signalCreatorBox.getSelectedIndex() != 0) {
 			tabPane.setSelectedIndex(2);
 		}
-		// if (e.getSource().equals(toggleBox) && toggleBox.getSelectedIndex()
-		// != 0) {
-		// tabPane.setSelectedIndex(3);
-		// }
-		// if (e.getSource().equals(weatherBox) && weatherBox.getSelectedIndex()
-		// != 0) {
-		// tabPane.setSelectedIndex(4);
-		// }
-		// if (e.getSource().equals(lockHandleSelector) &&
-		// lockHandleSelector.getSelectedIndex() != 0) {
-		// tabPane.setSelectedIndex(5);
-		// }
-		validateComponents();
-	}
-
-	private void validateComponents() {
-		// tabPane.setEnabledAt(0, battCreatorBox.getSelectedIndex() != 0);
-		// tabPane.setEnabledAt(1, wifiCreatorBox.getSelectedIndex() != 0);
-		// tabPane.setEnabledAt(2, signalCreatorBox.getSelectedIndex() != 0);
-		// tabPane.setEnabledAt(3, toggleBox.getSelectedIndex() != 0);
-		// tabPane.setEnabledAt(4, weatherBox.getSelectedIndex() != 0);
-		// tabPane.setEnabledAt(5, lockHandleSelector.getSelectedIndex() != 0);
 	}
 
 	/**
@@ -158,12 +148,6 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		toolBar.add(wifiCreatorBox);
 		toolBar.addSeparator();
 		toolBar.add(signalCreatorBox);
-		// toolBar.addSeparator();
-		// toolBar.add(toggleBox);
-		// toolBar.addSeparator();
-		// toolBar.add(weatherBox);
-		// toolBar.addSeparator();
-		// toolBar.add(lockHandleSelector);
 		toolBar.addSeparator();
 		toolBar.add(createAktion);
 		toolBar.add(zipAktion);
@@ -174,50 +158,65 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 	 * Zip the flashable Zip!
 	 */
 	private void doZip() {
+		step = 0;
+		// first create everything again, to fill the deploy area with latest
+		// settings
+		updateProgressBar(step++, "Creating and deploying Icons to ./pngs");
+		create();
+
 		final ZipMaker zipper = new ZipMaker();
 		final Vector<String> files2add2SystemUI = new Vector<String>();
 		final Vector<String> files2add2Framework = new Vector<String>();
 		// adding Battery Icons
+		updateProgressBar(step++, "Adding Battery Icons (if configured)");
 		activBattCreator = (AbstractIconCreator) battCreatorBox.getSelectedItem();
 		if (activBattCreator != null) {
 			files2add2SystemUI.addAll(activBattCreator.getAllFilenamesAndPath());
 		}
 		// Add Wifi Icons
+		updateProgressBar(step++, "Adding Wifi Icons (if configured)");
 		activWifiCreator = (AbstractWifiCreator) wifiCreatorBox.getSelectedItem();
 		if (activWifiCreator != null && !activWifiCreator.toString().equals(NoWifiIcons.name)) {
 			files2add2SystemUI.addAll(activWifiCreator.getAllFilenamesAndPath());
 		}
 
 		// Add Signal Icons
+		updateProgressBar(step++, "Adding Signal Icons (if configured)");
 		activSignalCreator = (AbstractSignalCreator) signalCreatorBox.getSelectedItem();
 		if (activSignalCreator != null && !activSignalCreator.toString().equals(NoSignalIcons.name)) {
 			files2add2SystemUI.addAll(activSignalCreator.getAllFilenamesAndPath());
 		}
 
 		// Add Toggles
+		updateProgressBar(step++, "Adding Toggle Icons (if configured)");
 		files2add2SystemUI.addAll(toggleBox.getAllFilenamesAndPath());
 		// Add Weather
+		updateProgressBar(step++, "Adding Weather Icons (if configured)");
 		files2add2Framework.addAll(weatherBox.getAllFilenamesAndPath());
-
 		// Lockhandle
+		updateProgressBar(step++, "Adding Lock Icons (if configured)");
 		files2add2Framework.addAll(lockHandleSelector.getAllFilenamesAndPath());
-
 		// notification BG
+		updateProgressBar(step++, "Adding Notification Background (if configured)");
 		files2add2SystemUI.addAll(notificationBG.getAllFilenamesAndPath());
 
 		// ZipElementCollection anlegen und alle Zipelemente einfügen
+		updateProgressBar(step++, "Creating ZipCollection");
 		final ZipElementCollection zipCollection = new ZipElementCollection();
 		zipCollection.addElements(files2add2SystemUI, activBattCreator.getSettings().getFolderSystemUIInZip());
 		zipCollection.addElements(files2add2Framework, activBattCreator.getSettings().getFolderFrameworkInZip());
 		// now the actual zipping...
 		try {
+			updateProgressBar(step++, "Choose ZipFilename....");
 			final boolean saved = zipper.addFilesToArchive(zipCollection.getZipelEments(), activBattCreator.getCreatorName());
 			// all ok ? Then Messagebox
 			if (saved == true) {
+				updateProgressBar(step++, "Done Successfully!");
 				JOptionPane.showMessageDialog(IconCreatingPanelNew.this, "Zip was created successfully", "Zip creating", JOptionPane.INFORMATION_MESSAGE);
 			}
 		} catch (final Exception e) {
 			// Error during zip...
+			updateProgressBar(step++, "Done With Error!");
 			JOptionPane.showMessageDialog(IconCreatingPanelNew.this,
 					"ERROR: Zip was not created successfully!!!\nDid you create icons already ? (Play-Button?!)", "Zip creating ERROR",
 					JOptionPane.ERROR_MESSAGE);
@@ -230,6 +229,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 	 */
 	private void create() {
 		// Creating Battery Icons
+		updateProgressBar(step++, "Creating Battery Icons (if configured)");
 		activBattCreator = (AbstractIconCreator) battCreatorBox.getSelectedItem();
 		activBattCreator.setSettings(configPane.getSettings());
 		activBattCreator.createAllImages();
@@ -239,6 +239,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		battOverviewPanel.setOverview(activBattCreator.getOverviewIcon());
 
 		// Creating Wifi Icons
+		updateProgressBar(step++, "Creating Wifi Icons (if configured)");
 		activWifiCreator = (AbstractWifiCreator) wifiCreatorBox.getSelectedItem();
 		if (activWifiCreator != null && !activWifiCreator.toString().equals(NoWifiIcons.name)) {
 			activWifiCreator.setSettings(configPane.getSettings());
@@ -247,20 +248,27 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		}
 
 		// Creating Signal Icons
+		updateProgressBar(step++, "Creating Signal Icons (if configured)");
 		activSignalCreator = (AbstractSignalCreator) signalCreatorBox.getSelectedItem();
 		if (activSignalCreator != null && !activSignalCreator.toString().equals(NoSignalIcons.name)) {
 			activSignalCreator.setSettings(configPane.getSettings());
 			activSignalCreator.createAllImages();
 			signalOverviewPanel.setOverview(activSignalCreator.getOverviewIcon());
 		}
-		// creating notification bg again
+
+		// creating notification
+		updateProgressBar(step++, "Deploying Notification Background (if configured)");
 		notificationBG.createAllImages(configPane.getSettings().getNotificationHeight());
-		// same with lockHandle
+		// creating lockHandle
+		updateProgressBar(step++, "Deploying Lockring (if configured)");
 		lockHandleSelector.createAllImages(configPane.getSettings().getLockHandleSize());
-		// same for toggles
+		// creating toggles
+		updateProgressBar(step++, "Deploying Toggles (if configured)");
 		toggleBox.createAllImages(configPane.getSettings().getToggleSize());
-		// same for weather
+		// creating weather
+		updateProgressBar(step++, "Deploying Weather Icons (if configured)");
 		weatherBox.createAllImages(configPane.getSettings().getWeatherSize());
+		updateProgressBar(step++, "Deploying Weather Icons ...done");
 	}
 
 	/**
@@ -291,7 +299,8 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		}
 
 		public void actionPerformed(final ActionEvent arg0) {
-			doZip();
+			startZipThread();
+			// doZip();
 		}
 	}
 
@@ -331,6 +340,52 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 				activBattCreator.persistSettings();
 			}
 		}
+	}
+
+	/**
+	 * Startet den Thread
+	 * 
+	 * @param startDir
+	 */
+	private void startZipThread() {
+		if (t != null)
+			stopThread();
+		if (t == null) {
+			t = new Thread(new Runnable() {
+				public void run() {
+					stopnow = false;
+					isrunning = true;
+					doZip();
+					isrunning = false;
+				}
+			});
+
+			t.start();
+		}
+	}
+
+	public synchronized void stopThread() {
+		if (t != null) {
+			stopnow = true;
+			t = null;
+		}
+	}
+
+	/**
+	 * @return true, wenn Thread noch läuft
+	 */
+	public synchronized boolean isTreadRunning() {
+		return isrunning;
+	}
+
+	private void updateProgressBar(final int value, final String text) {
+		System.out.println("Progress: " + text);
+		progressBar.setValue(value);
+		progressBar.setString(text);
+	}
+
+	private void resetProgressBar() {
+		progressBar.setString("Create your Icons");
 	}
 
 }

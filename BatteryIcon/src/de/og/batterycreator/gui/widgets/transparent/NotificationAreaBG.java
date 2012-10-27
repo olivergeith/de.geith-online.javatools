@@ -158,7 +158,7 @@ public class NotificationAreaBG extends JPanel implements IconProviderInterface 
 		// kommt...
 		if (activBox.isSelected()) {
 			filenamesAndPath.addElement(outf.getPath());
-			System.out.println("Adding notification to Vector:" + filenamesAndPath);
+			System.out.println("Creating notification" + outf.getPath());
 		}
 		notificationBG = new ImageIcon(img);
 	}

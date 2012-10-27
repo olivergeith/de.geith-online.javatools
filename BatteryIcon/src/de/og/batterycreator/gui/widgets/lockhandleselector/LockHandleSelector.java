@@ -90,21 +90,21 @@ public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProv
 
 	}
 
-	protected void writeSelectedIcon(final int sizeTo) {
+	@Override
+	public void createAllImages(final int size) {
 		filenamesAndPath.removeAllElements();
 		final File outf = new File(CUSTOM_OUT_DIR + configPane.getSettings().getLockHandleFileName());
 		final ImageIcon icon = getSelectedIcon();
 		if (!icon.equals(nada)) {
+			System.out.println("Creating Lockhandle");
 			final File dir = new File(CUSTOM_OUT_DIR);
 			if (!dir.exists())
 				dir.mkdirs();
-			final BufferedImage img = StaticImageHelper.resize2Height(StaticImageHelper.convertImageIcon(icon), sizeTo);
+			final BufferedImage img = StaticImageHelper.resize2Height(StaticImageHelper.convertImageIcon(icon), size);
 			StaticImageHelper.writePNG(img, outf);
 			filenamesAndPath.addElement(outf.getPath());
-			System.out.println("LockHandle was created: " + outf.getPath());
 		} else {
 			outf.delete();
-			System.out.println("LockHandle was deleted: " + outf.getPath());
 		}
 	}
 
@@ -213,15 +213,4 @@ public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProv
 		return false;
 	}
 
-	// @Override
-	// public void createAllImages() {
-	// final int sizeTo = configPane.getSettings().getLockHandleSize();
-	// writeSelectedIcon(sizeTo);
-	// }
-
-	@Override
-	public void createAllImages(final int size) {
-		writeSelectedIcon(size);
-
-	}
 }

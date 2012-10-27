@@ -26,22 +26,24 @@ public class IconSetSelector extends JComboBox<ImageIcon> implements IconProvide
 
 	private final OverviewPanel overPane = new OverviewPanel();
 	private final ImageIcon nada = IconStore.nothingIcon;
-
+	private Vector<String> filenamesAndPath = new Vector<String>();
 	private final Vector<IconSet> iconSets = new Vector<IconSet>();
 
 	private final String rootDir;
-	private final String name;
+	private final String setTypeName;
 
-	public IconSetSelector(final String name, final String rootDir) {
+	private int iconDeploySize;
+
+	public IconSetSelector(final String setTypeName, final String rootDir) {
 		super();
 		this.rootDir = rootDir;
-		this.name = name;
+		this.setTypeName = setTypeName;
 		initUI();
 	}
 
 	@Override
 	public String getProviderName() {
-		return name;
+		return setTypeName;
 	}
 
 	/**
@@ -68,13 +70,7 @@ public class IconSetSelector extends JComboBox<ImageIcon> implements IconProvide
 	 * @return the filenamesAndPath
 	 */
 	public Vector<String> getAllFilenamesAndPath() {
-		// TODO hier nur noch die Fileliste ausgeben
-		final int index = getSelectedIndex();
-		if (index > 0) {
-			final IconSet set = iconSets.elementAt(index - 1);
-			return set.getAllFilenamesIncludingPath();
-		}
-		return new Vector<String>();
+		return filenamesAndPath;
 	}
 
 	private void initUI() {
@@ -82,8 +78,8 @@ public class IconSetSelector extends JComboBox<ImageIcon> implements IconProvide
 		addSetsFromFilesystem();
 
 		setRenderer(new MyCellRenderer());
-		setToolTipText("Choose your " + name + " Iconset");
-		System.out.println("Loading Custom " + name + " Icon Sets!");
+		setToolTipText("Choose your " + setTypeName + " Iconset");
+		System.out.println("Loading Custom " + setTypeName + " Icon Sets!");
 		overPane.add(this, BorderLayout.NORTH);
 		addActionListener(new ActionListener() {
 
@@ -95,15 +91,9 @@ public class IconSetSelector extends JComboBox<ImageIcon> implements IconProvide
 					final IconSet set = iconSets.elementAt(index - 1);
 					overPane.setOverview(set.getOverviewsmall());
 					overPane.setText("");
-					// TODO Icons lesen
-					// TODO resizen
-					// TODO ins zielverzeichnis kopieren
-					// TODO FileListe anlegen (fürs spätere Zippen)
 				} else {
 					overPane.setOverview(icon);
-					overPane.setText("   Choose " + name + "-Set from Dropdownbox");
-					// TODO Icons dort wieder löschen
-					// TODO FileListe leeren
+					overPane.setText("   Choose " + setTypeName + "-Set from Dropdownbox");
 				}
 			}
 		});
@@ -154,7 +144,7 @@ public class IconSetSelector extends JComboBox<ImageIcon> implements IconProvide
 					renderer.setText(set.getName());
 				}
 				if (icon.equals(nada)) {
-					renderer.setText("No " + name + " Icons");
+					renderer.setText("No " + setTypeName + " Icons");
 				}
 			}
 			return renderer;
@@ -193,4 +183,37 @@ public class IconSetSelector extends JComboBox<ImageIcon> implements IconProvide
 		return false;
 	}
 
+	// @Override
+	// public void createAllImages() {
+	// }
+
+	/**
+	 * @return the iconDeploySize
+	 */
+	public int getIconDeploySize() {
+		return iconDeploySize;
+	}
+
+	/**
+	 * @param iconDeploySize
+	 *            the iconDeploySize to set
+	 */
+	public void setIconDeploySize(final int iconDeploySize) {
+		this.iconDeploySize = iconDeploySize;
+	}
+
+	@Override
+	public void createAllImages(final int size) {
+		final ImageIcon icon = (ImageIcon) getSelectedItem();
+		if (!icon.equals(nada)) {
+			final int index = getSelectedIndex();
+			final IconSet set = iconSets.elementAt(index - 1);
+
+			final IconSetDeployer depl = new IconSetDeployer(set, setTypeName);
+			depl.createAllImages(size);
+			filenamesAndPath = depl.getAllFilenamesAndPath();
+		} else {
+			filenamesAndPath = new Vector<String>();
+		}
+	}
 }

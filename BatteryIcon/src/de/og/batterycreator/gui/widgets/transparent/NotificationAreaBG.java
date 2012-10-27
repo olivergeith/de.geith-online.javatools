@@ -129,13 +129,14 @@ public class NotificationAreaBG extends JPanel implements IconProviderInterface 
 	}
 
 	public void updateGui() {
-		createBGImage();
+		// createAllImages();
 		createPreview();
 	}
 
-	public ImageIcon createBGImage() {
+	@Override
+	public void createAllImages(final int size) {
 		// Create a graphics contents on the buffered image
-		final int h = configPane.getSettings().getNotificationHeight();
+		final int h = size;
 		final int w = h * 10;
 		final BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = img.createGraphics();
@@ -160,7 +161,6 @@ public class NotificationAreaBG extends JPanel implements IconProviderInterface 
 			System.out.println("Adding notification to Vector:" + filenamesAndPath);
 		}
 		notificationBG = new ImageIcon(img);
-		return notificationBG;
 	}
 
 	protected void createPreview() {

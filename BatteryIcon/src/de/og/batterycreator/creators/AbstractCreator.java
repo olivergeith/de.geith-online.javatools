@@ -38,6 +38,11 @@ public abstract class AbstractCreator implements IconProviderInterface {
 
 	public abstract ImageIcon createOverview();
 
+	@Override
+	public void createAllImages(final int size) {
+		createAllImages();
+	}
+
 	// ###############################################################################
 	// Settings
 	// ###############################################################################

@@ -8,6 +8,10 @@ public interface IconProviderInterface {
 
 	public Vector<String> getAllFilenamesAndPath();
 
+	// public void createAllImages();
+
+	public void createAllImages(final int size);
+
 	public boolean isActiv();
 
 }

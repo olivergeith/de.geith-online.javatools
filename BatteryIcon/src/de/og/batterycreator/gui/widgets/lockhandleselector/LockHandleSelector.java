@@ -30,7 +30,7 @@ import de.og.batterycreator.gui.widgets.OverviewPanel;
 public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProviderInterface {
 	private static final String PROVIDER_NAME = "Lockhandle";
 	private static final String CUSTOM_DIR = "./custom/lockhandles/";
-	private static final String CUSTOM_OUT_DIR = "./pngs/lock/";
+	private static final String CUSTOM_OUT_DIR = "./pngs/deploy/lock/";
 
 	private static final long serialVersionUID = -7712530632645291404L;
 	private final ImageIcon nada = IconStore.nothingIcon;
@@ -68,7 +68,9 @@ public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProv
 
 			@Override
 			public void actionPerformed(final ActionEvent e) {
-				writeSelectedIcon();
+				// final int sizeTo =
+				// configPane.getSettings().getLockHandleSize();
+				// writeSelectedIcon(sizeTo);
 				updateOverview();
 			}
 
@@ -88,12 +90,11 @@ public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProv
 
 	}
 
-	protected void writeSelectedIcon() {
+	protected void writeSelectedIcon(final int sizeTo) {
 		filenamesAndPath.removeAllElements();
 		final File outf = new File(CUSTOM_OUT_DIR + configPane.getSettings().getLockHandleFileName());
 		final ImageIcon icon = getSelectedIcon();
 		if (!icon.equals(nada)) {
-			final int sizeTo = configPane.getSettings().getLockHandleSize();
 			final File dir = new File(CUSTOM_OUT_DIR);
 			if (!dir.exists())
 				dir.mkdirs();
@@ -210,5 +211,17 @@ public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProv
 		if (!icon.equals(nada))
 			return true;
 		return false;
+	}
+
+	// @Override
+	// public void createAllImages() {
+	// final int sizeTo = configPane.getSettings().getLockHandleSize();
+	// writeSelectedIcon(sizeTo);
+	// }
+
+	@Override
+	public void createAllImages(final int size) {
+		writeSelectedIcon(size);
+
 	}
 }

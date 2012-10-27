@@ -82,21 +82,26 @@ public class StyleSettings implements Serializable {
 	private String zipResolutionFolder = DrawableComboBox.FOLDER_XHDPI;
 	private String folderSystemUIInZip = FOLDER_SYSTEMUI + DrawableComboBox.FOLDER_XHDPI + "/";
 	private String folderFrameworkInZip = FOLDER_FRAMEWORK + DrawableComboBox.FOLDER_XHDPI + "/";
-
-	private String lockHandleFileName = LOCKHANDLE_FILENAME_DEFAULT;
-	private int lockHandleSize = RomPreset.LOCK_XHDPI;
 	private int targetIconSize = DrawableComboBox.ICON_HEIGHT_XHDPI;
-	private int toggleSize = RomPreset.TOGGLE_XHDPI;
-
 	private boolean useAdvancedResize = true;
 
-	private Font font = DEFAULT_FONT;
+	// Lockhandle
+	private String lockHandleFileName = LOCKHANDLE_FILENAME_DEFAULT;
+	private int lockHandleSize = RomPreset.LOCK_XHDPI;
+	// toggle
+	private int toggleSize = RomPreset.TOGGLE_XHDPI;
+	// weather
+	private int weatherSize = RomPreset.WEATHER_XHDPI;
 
+	// font
+	private Font font = DEFAULT_FONT;
+	private int reduceFontOn100 = -3;
+
+	// font and charge icon offset
 	private int iconXOffset = 0;
 	private int iconYOffset = 0;
 	private int fontXOffset = 0;
 	private int fontYOffset = 0;
-	private int reduceFontOn100 = -3;
 
 	// Notification
 	private String notificationBGFilename = NOTIFICATION_BG_FILENME;
@@ -969,6 +974,21 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setToggleSize(final int toggleSize) {
 		this.toggleSize = toggleSize;
+	}
+
+	/**
+	 * @return the weatherSize
+	 */
+	public int getWeatherSize() {
+		return weatherSize;
+	}
+
+	/**
+	 * @param weatherSize
+	 *            the weatherSize to set
+	 */
+	public void setWeatherSize(final int weatherSize) {
+		this.weatherSize = weatherSize;
 	}
 
 }

@@ -254,7 +254,13 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 			signalOverviewPanel.setOverview(activSignalCreator.getOverviewIcon());
 		}
 		// creating notification bg again
-		notificationBG.createBGImage();
+		notificationBG.createAllImages(configPane.getSettings().getNotificationHeight());
+		// same with lockHandle
+		lockHandleSelector.createAllImages(configPane.getSettings().getLockHandleSize());
+		// same for toggles
+		toggleBox.createAllImages(configPane.getSettings().getToggleSize());
+		// same for weather
+		weatherBox.createAllImages(configPane.getSettings().getWeatherSize());
 	}
 
 	/**

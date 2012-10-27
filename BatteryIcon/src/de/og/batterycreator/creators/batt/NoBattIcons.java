@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import de.og.batterycreator.gui.iconstore.IconStore;
 
 public class NoBattIcons extends AbstractIconCreator {
-	public static String name = "Don't create Battery Icons";
+	public static String name = "No Battery Icons";
 	private final ImageIcon nada = IconStore.nothingIcon;
 
 	public NoBattIcons() {

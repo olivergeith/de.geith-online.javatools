@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import og.basics.gui.Jcolorselectbutton.JColorSelectButton;
 import og.basics.gui.jfontchooser.JFontChooserButton;
@@ -63,7 +65,7 @@ public class ConfigPanel extends JPanel {
 	JCheckBox cboxUseGradientNormalLevels = createCheckbox("Gradient for Normal levels", "Use Gradient Colors between Med and 100% Batterylevels");
 
 	SliderAndLabel sliderLowBatt = new SliderAndLabel(0, 30);
-	SliderAndLabel sliderMedBatt = new SliderAndLabel(20, 100);
+	SliderAndLabel sliderMedBatt = new SliderAndLabel(0, 100);
 
 	SliderAndLabel sliderFontXOffset = new SliderAndLabel(-12, 12);
 	SliderAndLabel sliderFontYOffset = new SliderAndLabel(-12, 12);
@@ -90,10 +92,12 @@ public class ConfigPanel extends JPanel {
 
 	// Lockhandle
 	JTextField lockHandleFileName = new JTextField();
-	JLabel lockHandleSize = new JLabel();
+	SliderAndLabel lockHandleSize = new SliderAndLabel(150, 250);
 
 	// Toggles
-	JLabel toggleSize = new JLabel();
+	SliderAndLabel toggleSize = new SliderAndLabel(40, 70);
+	// Weather
+	SliderAndLabel weatherSize = new SliderAndLabel(100, 200);
 
 	// Notification
 	JTextField notificationFileName = new JTextField();
@@ -125,6 +129,27 @@ public class ConfigPanel extends JPanel {
 	}
 
 	private void initComponents() {
+		sliderLowBatt.addChangeListener(new ChangeListener() {
+
+			@Override
+			public void stateChanged(final ChangeEvent arg0) {
+				final int low = sliderLowBatt.getValue();
+				final int med = sliderMedBatt.getValue();
+				if (low > med)
+					sliderMedBatt.setValue(low);
+			}
+		});
+
+		sliderMedBatt.addChangeListener(new ChangeListener() {
+
+			@Override
+			public void stateChanged(final ChangeEvent arg0) {
+				final int low = sliderLowBatt.getValue();
+				final int med = sliderMedBatt.getValue();
+				if (med < low)
+					sliderLowBatt.setValue(med);
+			}
+		});
 
 		romPresetCombo.addActionListener(new ActionListener() {
 
@@ -136,9 +161,10 @@ public class ConfigPanel extends JPanel {
 					filepattern.setText(pre.getFilePattern());
 					filepatternCharge.setText(pre.getFilePatternCharge());
 					romPresetCombo.setSelectedIndex(0);
-					lockHandleSize.setText("" + pre.getLockHandleSize());
+					lockHandleSize.setValue(pre.getLockHandleSize());
 					notificationHeight.setText("" + pre.getNotificationHeight());
-					toggleSize.setText("" + pre.getToggleSize());
+					toggleSize.setValue(pre.getToggleSize());
+					weatherSize.setValue(pre.getWeatherSize());
 				}
 			}
 		});
@@ -334,12 +360,17 @@ public class ConfigPanel extends JPanel {
 		builder.add(JGoodiesHelper.createBlackLabel("Lockhandle Filename"), cc.xyw(2, ++row, 3));
 		builder.add(JGoodiesHelper.createBlackLabel("Size"), cc.xyw(6, row, 3));
 		builder.add(lockHandleFileName, cc.xyw(2, ++row, 3));
-		builder.add(lockHandleSize, cc.xyw(6, row, 3));
+		builder.add(lockHandleSize, cc.xyw(6, row, 1));
+		builder.add(lockHandleSize.getValueLabel(), cc.xyw(8, row, 1));
 
-		builder.add(JGoodiesHelper.createGroupLabel("Toggle Size ..."), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createGroupLabel("Toggle & Weather Size ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(JGoodiesHelper.createBlackLabel("Size (is set via Rom Presets)"), cc.xyw(2, ++row, 3));
-		builder.add(toggleSize, cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("ToggleSize (is set via Rom Presets)"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("WeatherSize (is set via Rom Presets)"), cc.xyw(6, row, 3));
+		builder.add(toggleSize, cc.xyw(2, ++row, 1));
+		builder.add(toggleSize.getValueLabel(), cc.xyw(4, row, 1));
+		builder.add(weatherSize, cc.xyw(6, row, 1));
+		builder.add(weatherSize.getValueLabel(), cc.xyw(8, row, 1));
 
 		builder.add(JGoodiesHelper.createGroupLabel("Notification BG Filename & Size ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
@@ -444,12 +475,14 @@ public class ConfigPanel extends JPanel {
 
 		// Lockhandle
 		lockHandleFileName.setText(settings.getLockHandleFileName());
-		lockHandleSize.setText("" + settings.getLockHandleSize());
+		lockHandleSize.setValue(settings.getLockHandleSize());
 		// Notification
 		notificationFileName.setText(settings.getNotificationBGFilename());
 		notificationHeight.setText("" + settings.getNotificationHeight());
 		// toggle
-		toggleSize.setText("" + settings.getToggleSize());
+		toggleSize.setValue(settings.getToggleSize());
+		// weather
+		weatherSize.setValue(settings.getWeatherSize());
 
 		validateControls();
 		this.repaint();
@@ -519,12 +552,14 @@ public class ConfigPanel extends JPanel {
 		settings.setWifiColorFully(wifiColorFully.getColor());
 		// Lockhandle
 		settings.setLockHandleFileName(lockHandleFileName.getText());
-		settings.setLockHandleSize(Integer.parseInt(lockHandleSize.getText()));
+		settings.setLockHandleSize(lockHandleSize.getValue());
 		// Notification
 		settings.setNotificationBGFilename(notificationFileName.getText());
 		settings.setNotificationHeight(Integer.parseInt(notificationHeight.getText()));
 		// toggle
-		settings.setToggleSize(Integer.parseInt(toggleSize.getText()));
+		settings.setToggleSize(toggleSize.getValue());
+		// weather
+		settings.setWeatherSize(weatherSize.getValue());
 		return settings;
 	}
 

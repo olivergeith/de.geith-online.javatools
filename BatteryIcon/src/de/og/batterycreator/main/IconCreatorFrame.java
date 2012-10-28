@@ -24,7 +24,7 @@ public class IconCreatorFrame extends JFrame {
 	private static IconCreatorFrame frame;
 	private BeendenAktion beendenAktion;
 	private AboutAktion aboutAktion;
-	private final IconCreatingPanelNew iconCreatingPanel = new IconCreatingPanelNew();
+	private final IconCreatingPanelNew iconCreatingPanel = new IconCreatingPanelNew(this);
 	private final JMenuBar menuBar = new JMenuBar();
 
 	public static void main(final String[] args) {

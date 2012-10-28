@@ -183,23 +183,11 @@ public class IconSetSelector extends JComboBox<ImageIcon> implements IconProvide
 		return false;
 	}
 
-	// @Override
-	// public void createAllImages() {
-	// }
-
 	/**
 	 * @return the iconDeploySize
 	 */
 	public int getIconDeploySize() {
 		return iconDeploySize;
-	}
-
-	/**
-	 * @param iconDeploySize
-	 *            the iconDeploySize to set
-	 */
-	public void setIconDeploySize(final int iconDeploySize) {
-		this.iconDeploySize = iconDeploySize;
 	}
 
 	@Override

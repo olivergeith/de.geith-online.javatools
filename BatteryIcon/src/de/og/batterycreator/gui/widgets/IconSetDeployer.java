@@ -32,6 +32,11 @@ public class IconSetDeployer implements IconProviderInterface {
 		return filenamesAndPath;
 	}
 
+	/**
+	 * if size == 0 then there is no resizing !!!
+	 * 
+	 * @see de.og.batterycreator.creators.IconProviderInterface#createAllImages(int)
+	 */
 	@Override
 	public void createAllImages(final int size) {
 		final Vector<String> files = iconSet.getAllFilenamesIncludingPath();
@@ -40,7 +45,13 @@ public class IconSetDeployer implements IconProviderInterface {
 			for (final String f : files) {
 				final File icoFile = new File(f);
 				final ImageIcon icon = new ImageIcon(f);
-				final BufferedImage buff = StaticImageHelper.resizeLongestSide2Size(StaticImageHelper.convertImageIcon(icon), size);
+
+				final BufferedImage buff;
+				if (size > 0) {
+					buff = StaticImageHelper.resizeLongestSide2Size(StaticImageHelper.convertImageIcon(icon), size);
+				} else {
+					buff = StaticImageHelper.convertImageIcon(icon);
+				}
 				final File outdir = new File(CUSTOM_OUT_DIR + typeName + File.separator + iconSet.getName() + File.separator);
 				if (!outdir.exists())
 					outdir.mkdirs();

@@ -151,7 +151,7 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 	private String getFileNameFull(final boolean charge) {
 		String filename;
 		if (charge == false)
-			filename = settings.getFilePattern() + "_full.png";
+			filename = settings.getFilePattern() + "full.png";
 		else
 			filename = settings.getFilePatternCharge() + "full.png";
 		return filename;

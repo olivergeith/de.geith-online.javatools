@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import javax.swing.AbstractAction;
 import javax.swing.Icon;
+import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -26,6 +27,7 @@ import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.BattCreatorSelector;
 import de.og.batterycreator.gui.widgets.IconSetSelector;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
+import de.og.batterycreator.gui.widgets.RawIconSetSelector;
 import de.og.batterycreator.gui.widgets.SignalCreatorSelector;
 import de.og.batterycreator.gui.widgets.WifiCreatorSelector;
 import de.og.batterycreator.gui.widgets.lockhandleselector.LockHandleSelector;
@@ -56,16 +58,20 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 	private final IconSetSelector toggleBox = new IconSetSelector("Toggle", "./custom/toggles/");
 	private final IconSetSelector weatherBox = new IconSetSelector("Weather", "./custom/weather/");
 	private final NotificationAreaBG notificationBG = new NotificationAreaBG(configPane);
+	private final RawIconSetSelector systemUIBox = new RawIconSetSelector("SystemUIMods", "./custom/systemui-mods/");
 
 	// Treadstuff
 	private final JProgressBar progressBar = new JProgressBar();
 	private Thread t = null;
 	private boolean isrunning = false;
-	private boolean stopnow = false;
-	private final int maxsteps = 15;
+	// private boolean stopnow = false;
+	private final int maxsteps = 18;
 	private int step = 0;
 
-	public IconCreatingPanelNew() {
+	private final JFrame parentFrame;
+
+	public IconCreatingPanelNew(final JFrame parentFrame) {
+		this.parentFrame = parentFrame;
 		initUI();
 	}
 
@@ -95,6 +101,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		additionalIconsTabPane.addTab("Weather", IconStore.weatherIcon, weatherBox.getOverviewPanel(), "Get an Overview of your weather icons");
 		additionalIconsTabPane.addTab("Lockring", IconStore.lockringIcon, lockHandleSelector.getOverviewPanel(), "See your choosen Lockring!");
 		additionalIconsTabPane.addTab("NotificationPanel", IconStore.notificationIcon, notificationBG, "Transparent Notification Panel");
+		additionalIconsTabPane.addTab("SystemUI Mods", IconStore.weatherIcon, systemUIBox.getOverviewPanel(), "Get an Overview of your icons");
 
 		// Tabbed Pane
 		tabPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -222,6 +229,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
+		resetProgressBar();
 	}
 
 	/**
@@ -353,9 +361,11 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		if (t == null) {
 			t = new Thread(new Runnable() {
 				public void run() {
-					stopnow = false;
+					parentFrame.setEnabled(false);
+					// stopnow = false;
 					isrunning = true;
 					doZip();
+					parentFrame.setEnabled(true);
 					isrunning = false;
 				}
 			});
@@ -366,7 +376,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 
 	public synchronized void stopThread() {
 		if (t != null) {
-			stopnow = true;
+			// stopnow = true;
 			t = null;
 		}
 	}
@@ -379,12 +389,13 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 	}
 
 	private void updateProgressBar(final int value, final String text) {
-		System.out.println("Progress: " + text);
+		System.out.println("Progress: " + value + " " + text);
 		progressBar.setValue(value);
 		progressBar.setString(text);
 	}
 
 	private void resetProgressBar() {
+		progressBar.setValue(0);
 		progressBar.setString("Create your Icons");
 	}
 

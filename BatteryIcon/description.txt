@@ -45,8 +45,10 @@ Now it has grown up and much more was added. (I should think about a new Name? :
 [*]Added possibility to "not" choose a battery ;-)
 [*]Gui-changes (lots of options by now...so I constantly try to move some things around to optimize the workflow)
 [*]Vertical Battery now adjustable in height (use strokewidth slider for that)
-[*]wider threshold range for battery creation
+[*]Wider threshold range for battery creation
 [*]Resizing of Weather and Toggle Icons to fit dpi of rom (Choose correct size via Rom Presets)
+[*][B]New:[/B]Flash any iconset to SystemUI.apk or framework-res.apk (use with caution!!! no checks, no resizing, ...)
+put those icons to ./custom/systemui-mod/<foldername>
 [/LIST]
 
 [COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]

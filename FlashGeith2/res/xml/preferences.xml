@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory
+		android:title="@string/settings"
+		android:key="settings">
+		<CheckBoxPreference
+			android:key="turnon_torch_on_startup"
+			android:title="@string/pref_cbox_turnontorch_title"
+			android:summary="@string/pref_cbox_turnontorch_summary"
+			android:defaultValue="false" />
+	</PreferenceCategory>
+</PreferenceScreen>

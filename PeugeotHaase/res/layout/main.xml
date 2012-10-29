@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	android:id="@+id/LinearLayout1"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="@drawable/wallpaper"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<Button
+		android:text="@string/CallFestnetz"
+		android:layout_height="wrap_content"
+		android:id="@+id/callFest"
+		android:layout_width="fill_parent"
+		android:layout_below="@+id/call0800button"
+		android:layout_alignParentLeft="true"></Button>
+	<Button
+		android:text="@string/Call0800"
+		android:layout_height="wrap_content"
+		android:id="@+id/call0800button"
+		android:layout_width="fill_parent"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentLeft="true"
+		android:layout_marginTop="194dp"></Button>
+	<Button
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/callFest"
+		android:layout_centerHorizontal="true"
+		android:layout_width="fill_parent"
+		android:id="@+id/callWebsite"
+		android:text="@string/CallWebSite"></Button>
+</RelativeLayout>

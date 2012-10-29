@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, PeugeotHaaseMainActivity!</string>
+    <string name="app_name">Peugeot Haase</string>
+    <string name="Call0800">Kostenlose Hotline\n0800-5618000</string>
+    <string name="CallFestnetz">Festnetz\n04321-56180</string>
+    <string name="CallWebSite">Homepage</string>
+    <string name="about_info">Peugeot Haase Service App\n\nCopyright\nby Oliver Geith</string>
+    <string name="about">About</string>
+    <string name="exit">Exit</string>
+</resources>

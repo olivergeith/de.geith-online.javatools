@@ -8,7 +8,6 @@ import javax.swing.border.EmptyBorder;
 
 public class RawIconSetSelector extends IconSetSelector {
 	private static final long serialVersionUID = 8786275103326131451L;
-
 	private final JLabel attention = new JLabel();
 
 	public RawIconSetSelector(final String setTypeName, final String rootDir) {

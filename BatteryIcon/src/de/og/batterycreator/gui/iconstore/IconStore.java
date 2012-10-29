@@ -20,6 +20,9 @@ public class IconStore {
 	public static final ImageIcon weatherIcon = new ImageIcon(IconStore.class.getResource("weather.png"));
 	public static final ImageIcon lockringIcon = new ImageIcon(IconStore.class.getResource("lockring.png"));
 
+	public static final ImageIcon androidblueIcon = new ImageIcon(IconStore.class.getResource("androidblue.png"));
+	public static final ImageIcon androidredIcon = new ImageIcon(IconStore.class.getResource("androidred.png"));
+
 	public static final ImageIcon additionalIcon = new ImageIcon(IconStore.class.getResource("additional.png"));
 	public static final ImageIcon notificationIcon = new ImageIcon(IconStore.class.getResource("notification.png"));
 

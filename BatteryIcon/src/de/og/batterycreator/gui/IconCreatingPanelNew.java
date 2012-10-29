@@ -25,6 +25,7 @@ import de.og.batterycreator.creators.wifi.AbstractWifiCreator;
 import de.og.batterycreator.creators.wifi.NoWifiIcons;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.BattCreatorSelector;
+import de.og.batterycreator.gui.widgets.IconSetDeployer;
 import de.og.batterycreator.gui.widgets.IconSetSelector;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
 import de.og.batterycreator.gui.widgets.RawIconSetSelector;
@@ -58,14 +59,15 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 	private final IconSetSelector toggleBox = new IconSetSelector("Toggle", "./custom/toggles/");
 	private final IconSetSelector weatherBox = new IconSetSelector("Weather", "./custom/weather/");
 	private final NotificationAreaBG notificationBG = new NotificationAreaBG(configPane);
-	private final RawIconSetSelector systemUIBox = new RawIconSetSelector("SystemUIMods", "./custom/systemui-mods/");
+	private final RawIconSetSelector systemUIBox = new RawIconSetSelector("SystemUIMod", "./custom/systemui-mods/");
+	private final RawIconSetSelector frameworkresBox = new RawIconSetSelector("FrameworkResMod", "./custom/frameworkres-mods/");
 
 	// Treadstuff
 	private final JProgressBar progressBar = new JProgressBar();
 	private Thread t = null;
 	private boolean isrunning = false;
 	// private boolean stopnow = false;
-	private final int maxsteps = 18;
+	private final int maxsteps = 20;
 	private int step = 0;
 
 	private final JFrame parentFrame;
@@ -101,7 +103,8 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		additionalIconsTabPane.addTab("Weather", IconStore.weatherIcon, weatherBox.getOverviewPanel(), "Get an Overview of your weather icons");
 		additionalIconsTabPane.addTab("Lockring", IconStore.lockringIcon, lockHandleSelector.getOverviewPanel(), "See your choosen Lockring!");
 		additionalIconsTabPane.addTab("NotificationPanel", IconStore.notificationIcon, notificationBG, "Transparent Notification Panel");
-		additionalIconsTabPane.addTab("SystemUI Mods", IconStore.weatherIcon, systemUIBox.getOverviewPanel(), "Get an Overview of your icons");
+		additionalIconsTabPane.addTab("SystemUI Mods", IconStore.androidredIcon, systemUIBox.getOverviewPanel(), "Get an Overview of your icons");
+		additionalIconsTabPane.addTab("FrameWorkRes Mods", IconStore.androidblueIcon, frameworkresBox.getOverviewPanel(), "Get an Overview of your icons");
 
 		// Tabbed Pane
 		tabPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -207,6 +210,13 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		updateProgressBar(step++, "Adding Notification Background (if configured)");
 		files2add2SystemUI.addAll(notificationBG.getAllFilenamesAndPath());
 
+		// SystemUI
+		updateProgressBar(step++, "Adding SystemUI Mods (if configured)");
+		files2add2SystemUI.addAll(systemUIBox.getAllFilenamesAndPath());
+		// FrameWorkRES
+		updateProgressBar(step++, "Adding SystemUI Mods (if configured)");
+		files2add2Framework.addAll(frameworkresBox.getAllFilenamesAndPath());
+
 		// ZipElementCollection anlegen und alle Zipelemente einfügen
 		updateProgressBar(step++, "Creating ZipCollection");
 		final ZipElementCollection zipCollection = new ZipElementCollection();
@@ -277,6 +287,12 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		updateProgressBar(step++, "Deploying Weather Icons (if configured)");
 		weatherBox.createAllImages(configPane.getSettings().getWeatherSize());
 		updateProgressBar(step++, "Deploying Weather Icons ...done");
+		// Systemui Mods
+		updateProgressBar(step++, "Deploying Weather Icons (if configured)");
+		systemUIBox.createAllImages(IconSetDeployer.NO_RESIZING);
+		// frame Mods
+		updateProgressBar(step++, "Deploying Weather Icons (if configured)");
+		frameworkresBox.createAllImages(IconSetDeployer.NO_RESIZING);
 	}
 
 	/**
@@ -365,7 +381,9 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 					// stopnow = false;
 					isrunning = true;
 					doZip();
+					parentFrame.toFront();
 					parentFrame.setEnabled(true);
+					parentFrame.toFront();
 					isrunning = false;
 				}
 			});

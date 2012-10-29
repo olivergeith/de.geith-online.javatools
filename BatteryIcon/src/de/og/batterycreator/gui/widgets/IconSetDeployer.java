@@ -12,6 +12,7 @@ import de.og.batterycreator.creators.IconProviderInterface;
 public class IconSetDeployer implements IconProviderInterface {
 	private static final String CUSTOM_OUT_DIR = "./pngs/deploy/";
 
+	public static final int NO_RESIZING = 0;
 	private final IconSet iconSet;
 	private final Vector<String> filenamesAndPath = new Vector<String>();
 
@@ -47,7 +48,7 @@ public class IconSetDeployer implements IconProviderInterface {
 				final ImageIcon icon = new ImageIcon(f);
 
 				final BufferedImage buff;
-				if (size > 0) {
+				if (size > NO_RESIZING) {
 					buff = StaticImageHelper.resizeLongestSide2Size(StaticImageHelper.convertImageIcon(icon), size);
 				} else {
 					buff = StaticImageHelper.convertImageIcon(icon);

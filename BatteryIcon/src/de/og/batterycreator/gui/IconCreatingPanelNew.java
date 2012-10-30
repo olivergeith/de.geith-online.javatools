@@ -67,7 +67,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 	private Thread t = null;
 	private boolean isrunning = false;
 	// private boolean stopnow = false;
-	private final int maxsteps = 20;
+	private final int maxsteps = 22;
 	private int step = 0;
 
 	private final JFrame parentFrame;
@@ -102,7 +102,9 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		additionalIconsTabPane.addTab("Toggle", IconStore.toggleIcon, toggleBox.getOverviewPanel(), "Get an Overview of your toggles");
 		additionalIconsTabPane.addTab("Weather", IconStore.weatherIcon, weatherBox.getOverviewPanel(), "Get an Overview of your weather icons");
 		additionalIconsTabPane.addTab("Lockring", IconStore.lockringIcon, lockHandleSelector.getOverviewPanel(), "See your choosen Lockring!");
-		additionalIconsTabPane.addTab("NotificationPanel", IconStore.notificationIcon, notificationBG, "Transparent Notification Panel");
+		// additionalIconsTabPane.addTab("NotificationPanel",
+		// IconStore.notificationIcon, notificationBG,
+		// "Transparent Notification Panel");
 		additionalIconsTabPane.addTab("SystemUI Mods", IconStore.androidredIcon, systemUIBox.getOverviewPanel(), "Get an Overview of your icons");
 		additionalIconsTabPane.addTab("FrameWorkRes Mods", IconStore.androidblueIcon, frameworkresBox.getOverviewPanel(), "Get an Overview of your icons");
 
@@ -111,6 +113,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		tabPane.addTab("Battery", IconStore.batteryIcon, battTabPane, "Get an Overview of your icons");
 		tabPane.addTab("Wifi", IconStore.wifiIcon, wifiOverviewPanel, "Get an Overview of your icons");
 		tabPane.addTab("Signal", IconStore.signalIcon, signalOverviewPanel, "Get an Overview of your icons");
+		tabPane.addTab("NotificationPanel", IconStore.notificationIcon, notificationBG, "Transparent Notification Panel");
 		tabPane.addTab("Additional Icons", IconStore.additionalIcon, additionalIconsTabPane, "Add additional icons to your zip");
 
 		// Actionlistener für die dropdownboxen, damit die Tabs aktiv werden

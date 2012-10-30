@@ -141,7 +141,7 @@ public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProv
 			final File[] pngs = dir.listFiles(new FilenameFilter() {
 
 				public boolean accept(final File dir, final String name) {
-					return name.toLowerCase().endsWith(".png");
+					return name.toLowerCase().endsWith(".png") && !name.toLowerCase().startsWith("over");
 				}
 			});
 			for (final File fi : pngs) {

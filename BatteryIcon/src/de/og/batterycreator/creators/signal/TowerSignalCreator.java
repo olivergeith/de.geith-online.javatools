@@ -12,8 +12,8 @@ public class TowerSignalCreator extends AbstractSignalCreator {
 
 	public static String name = "TowerSignal";
 
-	private static final int imgMitte = 19;
-	private static final int imgWidth = 46;
+	private static final int imgMitte = 18;
+	private static final int imgWidth = 41;
 	private static final int imgHeight = 41;
 	private static final int height = 6;
 	private static final int width = 7;
@@ -41,9 +41,9 @@ public class TowerSignalCreator extends AbstractSignalCreator {
 			if (level == NULL_LEVEL)
 				col = settings.getIconColorInActiv().darker().darker();
 			g2d.setColor(settings.getBackgroundColor());
-			g2d.fillArc(x - 1, y - 1, w + 2, h + 2, -45, -90);
+			g2d.fillArc(x - 1, y - 1, w + 2, h + 2, -50, -80);
 			g2d.setColor(col);
-			g2d.fillArc(x, y, w, h, -45, -90);
+			g2d.fillArc(x, y, w, h, -50, -80);
 
 			if (i == 0) {
 				y = y - 2;

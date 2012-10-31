@@ -12,7 +12,7 @@ public class TowerWifiCreator extends AbstractWifiCreator {
 	public static String name = "TowerWifi";
 
 	private static final int imgMitte = 18;
-	private static final int imgWidth = 46;
+	private static final int imgWidth = 41;
 	private static final int imgHeight = 41;
 	private static final int height = 6;
 	private static final int width = 7;
@@ -47,9 +47,9 @@ public class TowerWifiCreator extends AbstractWifiCreator {
 					col = settings.getIconColorInActiv().darker().darker();
 				rect.y = rect.y - 2;
 				g2d.setColor(settings.getBackgroundColor());
-				g2d.fillArc(rect.x - 1, rect.y - 1, rect.width + 2, rect.height + 2, 45, 90);
+				g2d.fillArc(rect.x - 1, rect.y - 1, rect.width + 2, rect.height + 2, 50, 80);
 				g2d.setColor(col);
-				g2d.fillArc(rect.x, rect.y, rect.width, rect.height, 45, 90);
+				g2d.fillArc(rect.x, rect.y, rect.width, rect.height, 50, 80);
 			} else {
 				if (level == 0 && fully == true)
 					col = settings.getIconColorInActiv().darker().darker();

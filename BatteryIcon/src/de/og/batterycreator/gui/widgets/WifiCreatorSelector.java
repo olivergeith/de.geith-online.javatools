@@ -16,7 +16,6 @@ import javax.swing.ListCellRenderer;
 import og.basics.gui.image.StaticImageHelper;
 import de.og.batterycreator.creators.wifi.AbstractWifiCreator;
 import de.og.batterycreator.creators.wifi.BrickWifi2Creator;
-import de.og.batterycreator.creators.wifi.BrickWifiCreator;
 import de.og.batterycreator.creators.wifi.CircleWifiCreator;
 import de.og.batterycreator.creators.wifi.ForkWifiCreator;
 import de.og.batterycreator.creators.wifi.NoWifiIcons;
@@ -42,7 +41,6 @@ public class WifiCreatorSelector extends JComboBox<AbstractWifiCreator> {
 
 	private void fillFillCreatorList() {
 		addItem(new NoWifiIcons());
-		addItem(new BrickWifiCreator());
 		addItem(new BrickWifi2Creator());
 		addItem(new TowerWifiCreator());
 		addItem(new TopCornerWifiCreator());

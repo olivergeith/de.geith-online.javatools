@@ -10,12 +10,12 @@ import javax.swing.ImageIcon;
 public class BrickWifi2Creator extends AbstractWifiCreator {
 	public static String name = "BrickWifi.V2";
 
-	private static final int imgMitte = 20;
-	private static final int imgWidth = 46;
+	private static final int imgMitte = 18;
+	private static final int imgWidth = 41;
 	private static final int imgHeight = 41;
-	private static final int height = 5;
-	private static final int width = 5;
-	private static final int gap = 3;
+	private static final int height = 6;
+	private static final int width = 4;
+	private static final int gap = 2;
 
 	public BrickWifi2Creator() {
 	}

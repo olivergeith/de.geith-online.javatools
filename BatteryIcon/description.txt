@@ -22,7 +22,12 @@ Now it has grown up and much more was added. (I should think about a new Name? :
 [*]Add Weather icons to your flashable Zip (Attention the predefined weathericons only work with AOKP roms)
 [*]Add your own weather-icon-sets to folder ./custom/weather/<setname>
 [*]Add a custom lockring to your flashable Zip (put them in ./custom/lockhandle/*.png)
-[*]Easy "all in one frame" Interface (you will find out how it works !)
+[*][B]New:[/B]Add any iconset to SystemUI.apk (use with caution!!! no checks, no resizing, ...)
+put those icons to ./custom/systemui-mods/<foldername>  see examples there
+[*][B]New:[/B]Add any iconset to framework-res.apk (use with caution!!! no checks, no resizing, ...)
+put those icons to ./custom/frameworkres-mod/<foldername> see examples there
+[*][B]New:[/B]Support for transparent notification area
+[*]Easy "all in one frame" Userinterface (you will find out how it works !)
 [*]Creation of[COLOR="Blue"][B] flashable Zips[/B][/COLOR] for xhdpi, hdpi, 720dp and 600dp ROMs
 [*]Creates a backup during flash (Thanks to the "Universal Flasher Tool") 
 [/LIST]
@@ -39,7 +44,7 @@ Now it has grown up and much more was added. (I should think about a new Name? :
 
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Oct-xx-2012[/B] : Release 11.0[/COLOR]
+[COLOR="Blue"][B]Oct-30-2012[/B] : Release 11.0[/COLOR]
 [LIST]
 [*][B]New:[/B]Support for transparent notification area
 [*]Added possibility to "not" choose a battery ;-)
@@ -47,8 +52,13 @@ Now it has grown up and much more was added. (I should think about a new Name? :
 [*]Vertical Battery now adjustable in height (use strokewidth slider for that)
 [*]Wider threshold range for battery creation
 [*]Resizing of Weather and Toggle Icons to fit dpi of rom (Choose correct size via Rom Presets)
-[*][B]New:[/B]Flash any iconset to SystemUI.apk or framework-res.apk (use with caution!!! no checks, no resizing, ...)
-put those icons to ./custom/systemui-mod/<foldername>
+[*][B]New:[/B]Add any iconset to SystemUI.apk (use with caution!!! no checks, no resizing, ...)
+put those icons to ./custom/systemui-mods/<foldername>  see examples there
+[*][B]New:[/B]Add any iconset to framework-res.apk (use with caution!!! no checks, no resizing, ...)
+put those icons to ./custom/frameworkres-mod/<foldername> see examples there
+[*]Use a non transparent background for battery, wifi or signal icons (experimental)
+[*]Fixing overlap of wifi and signal icons, caused by too wide icons! (now they have all square shapes)
+[*]A few more predifined custom icon sets
 [/LIST]
 
 [COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]
@@ -137,7 +147,7 @@ put those icons to ./custom/systemui-mod/<foldername>
 [*]Bugfixing
 [*]Make the Style-Modules even more customizable
 [*]Creating new styles
-[*]flashin any png's
+[*]Supporting other apk's (any suggestions?)
 [*]And finally....A lot of things that you might come up with ;)
 [/LIST]
 
@@ -149,8 +159,11 @@ This tool is written in pure Java. So the only thing you need to have is a Java 
 [*]Step into that directory
 [*]Doubleclick in the Jar-file
 [*]...or use the start.bat
-[*]Choose Design (Combobox in Buttonbar)
-[*]Choose your ROM's dpi (RR 2.7 is hdpi, RR 3.x.x is xhdpi)
+[*]Choose Battery Design (Combobox in Buttonbar)
+[*]Choose Wifi Design (Combobox in Buttonbar)
+[*]Choose Signal Design (Combobox in Buttonbar)
+[*]Choose any other iconset you want to add
+[*]Choose your ROM in Rom Presets Dropdown (Default values are for xhdpi Roms like Resurrection Remix 3.x.x)
 [*]Create your images (Play-Button)
 [*]...play with resize-option and algorithm to get best results
 [*]...the Tool will create a new folder "pngs" in the above directory

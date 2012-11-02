@@ -33,6 +33,8 @@ public class RomPreset {
 				StyleSettings.BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, WEATHER_HDPI));
 		presets.add(new RomPreset("Original AOKP JB", DrawableComboBox.FOLDER_HDPI, StyleSettings.BATT_ICON_NAME_AOKP,
 				StyleSettings.BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, WEATHER_HDPI));
+		presets.add(new RomPreset("Original CM9/CM10 + 1%-Mod!!!", DrawableComboBox.FOLDER_HDPI, StyleSettings.BATT_ICON_NAME_AOKP,
+				StyleSettings.BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, WEATHER_HDPI));
 		presets.add(new RomPreset("Stock ROM ICS incl. JKay", DrawableComboBox.FOLDER_HDPI, StyleSettings.BATT_ICON_NAME_STOCK_ICS_JKAY,
 				StyleSettings.BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY, LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, WEATHER_HDPI));
 	}

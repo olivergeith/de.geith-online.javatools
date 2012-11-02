@@ -42,105 +42,11 @@ put those icons to ./custom/frameworkres-mod/<foldername> see examples there
 [*]...should work on many more...let me know!
 [/LIST]
 
-
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Oct-30-2012[/B] : Release 11.0[/COLOR]
+[COLOR="Blue"][B]Nov-xx-2012[/B] : Release 12.0[/COLOR]
 [LIST]
-[*][B]New:[/B]Support for transparent notification area
-[*]Added possibility to "not" choose a battery ;-)
-[*]Gui-changes (lots of options by now...so I constantly try to move some things around to optimize the workflow)
-[*]Vertical Battery now adjustable in height (use strokewidth slider for that)
-[*]Wider threshold range for battery creation
-[*]Resizing of Weather and Toggle Icons to fit dpi of rom (Choose correct size via Rom Presets)
-[*][B]New:[/B]Add any iconset to SystemUI.apk (use with caution!!! no checks, no resizing, ...)
-put those icons to ./custom/systemui-mods/<foldername>  see examples there
-[*][B]New:[/B]Add any iconset to framework-res.apk (use with caution!!! no checks, no resizing, ...)
-put those icons to ./custom/frameworkres-mod/<foldername> see examples there
-[*]Use a non transparent background for battery, wifi or signal icons (experimental)
-[*]Fixing overlap of wifi and signal icons, caused by too wide icons! (now they have all square shapes)
-[*]A few more predifined custom icon sets
+[*]New Skull Battery
 [/LIST]
-
-[COLOR="Blue"][B]Old Changelog Entries[/B][/COLOR]
-[HIDE]
-[COLOR="Blue"][B]Oct-10-2012[/B] : Release 9.0[/COLOR]
-[LIST]
-[*]Now with custom Wifi Icons (and adding them to flashable zip)
-[*]Add Toggles to your flashable Zip (Attention the predefined toggles only work with AOKP roms)
-[*]4 new Wifi styles
-[*]Gui heavily reworked for better workflow
-[*]Settings now in 3 tabs for better fitting to small Laptop screens
-[/LIST]
-[COLOR="Blue"][B]Oct-10-2012[/B] : Release 8.0[/COLOR]
-[LIST]
-[*]Save as Dialog when creating a flashable zip
-[*]finetuning of charge icon position
-[*]resizing of charge icon within battery symbol
-[*]tuned AOKP-Style
-[*]tuned ArcBattery-Style
-[*]little gui layout changes
-[*]removed the wipe dalvic from template ...no more long delays after flashing any more !
-[*]Rootbox and Original AOKP added to RomPresets
-[*]Lots of things I forgot
-[*]New DecimalBarBattery style(s)
-[/LIST]
-[COLOR="Blue"][B]Oct-10-2012[/B] : Release 7.0[/COLOR]
-[LIST]
-[*]4 new Styles
-[*]New "AOKP Circle Mod" style, but customizable like all the other styles ;)
-[*]original cool "ScalaBattery" style....extrawide icon ...check it out ! 
-[*]ROM Presets (please report ROM's and settings you used...so I can add them!) 
-[*]flipping/mirroring (only some styles support this)
-[*]Stokewidth adjustable (only some styles support this)
-[*]refactoring of internal stuff in preparation for adding Signal-/Wifi-/Lockhandle-Icons
-[*]full file save- and load- chooser-dialogs for settings!
-[*]customizable reduction of fontsize for 100%
-[/LIST]
-[COLOR="Blue"][B]Oct-08-2012[/B] : Release 6.0[/COLOR]
-[LIST]
-[*]Overview now shows charging icons too
-[*]2 new Styles
-[*]FontChooser for percentage-numbers
-[*]finetuning position of percentage-numbers
-[*]little GUI changes
-[*]a few fixes
-[/LIST]
-[COLOR="Blue"][B]Oct-06-2012[/B] : Release 5.0[/COLOR]
-[LIST]
-[*]Redone GUI... Hopefully better for small Laptop-Screens ;)
-[*]Gradient Colors for Levels above Medium Battery Level
-[*]More custom charge Icons
-[/LIST]
-[COLOR="Blue"][B]Oct-06-2012[/B] : Release 4.1[/COLOR]
-[LIST]
-[*]Bugfix correcting path for icons in flashable zip
-[/LIST]
-[COLOR="Blue"][B]Oct-06-2012[/B] : Release 4.0[/COLOR]
-[LIST]
-[*][B]Resize-Option[/B] to make the icons fit better in the Statusbar
-[*]Default-Sizes for any supported dpi
-[*]Finetuning option to finetune the defaultsize
-[*]Choose between advanced and normal resize algorithm (...check out for yourself what you like most)
-[*]Now supports ROMS with 720dp and 600dp
-[/LIST]
-[COLOR="Blue"][B]Oct-05-2012[/B] : Release 3.0[/COLOR]
-[LIST]
-[*]Load and save settings for each style
-[*]5 new styles
-[*]New customization : Gradient colors for medium batterylevels
-[*]Creating of an overview.png (If you want to show of your creations!)
-[*]Preview of the style in the dropdownbox for styles
-[/LIST]
-[COLOR="blue"][B]Oct-04-2012[/B] : Release 2.0[/COLOR]
-[LIST]
-[*]Implemented a feature to generate flashable Zips
-[*]Support for hdpi Roms (experimental ...Testers welcome ;) Icons may be too big...depends on your liking ;))
-[/LIST]
-[COLOR="blue"][B]Oct-03-2012[/B] : Release 1.0[/COLOR]
-[LIST]
-[*]Initial Release
-[/LIST]
-[/HIDE]
 
 [SIZE="4"][B]Todo:[/B][/SIZE]
 [LIST]

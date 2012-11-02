@@ -40,6 +40,7 @@ import de.og.batterycreator.creators.batt.NoBattIcons;
 import de.og.batterycreator.creators.batt.ScalaBatteryCreator;
 import de.og.batterycreator.creators.batt.XORAndroidCreator;
 import de.og.batterycreator.creators.batt.XORApfelCreator;
+import de.og.batterycreator.creators.batt.XORSkullCreator;
 import de.og.batterycreator.gui.ConfigPanel;
 import de.og.batterycreator.gui.iconstore.IconStore;
 
@@ -85,6 +86,7 @@ public class BattCreatorSelector extends JComboBox<AbstractIconCreator> {
 		addItem(new ScalaBatteryCreator());
 		addItem(new XORAndroidCreator());
 		addItem(new XORApfelCreator());
+		addItem(new XORSkullCreator());
 	}
 
 	private void initIconList() {

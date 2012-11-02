@@ -19,6 +19,8 @@ import de.og.batterycreator.creators.batt.AOKPCircleModCreator;
 import de.og.batterycreator.creators.batt.AbstractIconCreator;
 import de.og.batterycreator.creators.batt.AppleBatteryCreator;
 import de.og.batterycreator.creators.batt.ArcCreator;
+import de.og.batterycreator.creators.batt.ArcCreator2;
+import de.og.batterycreator.creators.batt.ArcCreator3;
 import de.og.batterycreator.creators.batt.ArcDecimalCreator;
 import de.og.batterycreator.creators.batt.ArcQuaterCreator2;
 import de.og.batterycreator.creators.batt.ArcSunCreator;
@@ -65,6 +67,8 @@ public class BattCreatorSelector extends JComboBox<AbstractIconCreator> {
 	private void fillCreatorList() {
 		addItem(new NoBattIcons());
 		addItem(new ArcCreator());
+		addItem(new ArcCreator2());
+		addItem(new ArcCreator3());
 		addItem(new ArcSunCreator());
 		addItem(new ArcQuaterCreator2());
 		addItem(new ArcDecimalCreator());

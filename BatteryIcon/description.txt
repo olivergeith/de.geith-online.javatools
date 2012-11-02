@@ -45,7 +45,9 @@ put those icons to ./custom/frameworkres-mod/<foldername> see examples there
 [SIZE="4"][B]Changelog:[/B][/SIZE]
 [COLOR="Blue"][B]Nov-xx-2012[/B] : Release 12.0[/COLOR]
 [LIST]
-[*]New Skull Battery
+[*]New Skull Battery (request from xda user "didi")
+[*]New VNV Nation Battery
+[*]Bringing back the old transparent "Arc Batteries" (request from xda user "thekenster")
 [/LIST]
 
 [SIZE="4"][B]Todo:[/B][/SIZE]

@@ -64,7 +64,7 @@ public class NotificationAreaBG extends JPanel implements IconProviderInterface 
 		html += "So the background is not as transparent as you see it here. <br> <br>";
 		html += "A transparency of 80 would result in an almost black notification area! <br>";
 		html += "A transparency of 50 is still pretty dark!<br>";
-		html += "A transparency of 0 will ever be completely transparent! <br> <br>";
+		html += "A transparency of 0 will never be completely transparent! <br> <br>";
 		html += "(Speaking for Resurrection Remix ROM...<br>";
 		html += "...don't know about other ROM's)<br>";
 		html += "<hr>";

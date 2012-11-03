@@ -49,6 +49,7 @@ put those icons to ./custom/frameworkres-mod/<foldername> see examples there
 [*]New VNV Nation Battery
 [*]Bringing back the old transparent "Arc Batteries" (request from xda user "thekenster")
 [*]New Honeycomb Battery
+[*]AOKP CircleBattery now suppoerts strokewidth (but in a different way than you might expect ;-))
 [/LIST]
 
 [SIZE="4"][B]Todo:[/B][/SIZE]

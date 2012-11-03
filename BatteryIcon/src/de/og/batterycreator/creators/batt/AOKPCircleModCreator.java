@@ -16,10 +16,16 @@ public class AOKPCircleModCreator extends AbstractIconCreator {
 		settings.setFontXOffset(-1);
 		settings.setFontYOffset(-1);
 		settings.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 19));
+		settings.setStrokewidth(1);
 	}
 
 	@Override
 	public boolean supportsFlip() {
+		return true;
+	}
+
+	@Override
+	public boolean supportsStrokeWidth() {
 		return true;
 	}
 
@@ -36,8 +42,8 @@ public class AOKPCircleModCreator extends AbstractIconCreator {
 		final Graphics2D g2d = initGrafics2D(img);
 
 		g2d.setColor(settings.getIconColorInActiv());
+		final int arcs = 7 + settings.getStrokewidth();
 		final int gap = 8;
-		final int arcs = 8;
 		final int onearc = 360 / arcs;
 
 		for (int i = 0; i < arcs; i++)

@@ -1,35 +1,20 @@
-[B][SIZE="5"]New Version out : [/SIZE][/B]
+[B][SIZE="3"]New Version out of [SIZE="3"][URL="http://forum.xda-developers.com/showthread.php?t=1918500"]The Battery Icon Creator[/URL][/SIZE] [/SIZE][/B]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Oct-22-2012[/B] : Release 10.0[/COLOR]
+[COLOR="Blue"][B]Nov-05-2012[/B] : Release 12.0[/COLOR]
 [LIST]
-[*][B]New:[/B]Support for custom Lockhandles/Lockrings on Lockscreen
-[*]Add your own custom Lockhandles to ./custom/lockhandles/*.png
-[*][B]New:[/B]Support for Signal / Connection Icons
-[*]3 new Signal Designs
-[*][B]New:[/B]Support for weather Iconsets 
-[*]Add your own custom weather iconsets to ./custom/weather/<setname>/*.png
-[*]Optimized TopCorner Wifi
-[*]4 new Wifi Designs
-[*]4 new Battery Designs
-[*]DecimalBar Battery now flipable and number of bars now adjustable via "strokewidth"
-[*]experimental feature to set Background color of Battery- and Wifi-icons, in case your statusbar is not black.
-[*]Lots of internal refactoring and bugfixing
+[*]New Skull Battery (request from xda user "didi")
+[*]New VNV Nation Battery
+[*]Bringing back the old transparent "Arc Batteries" (request from xda user "thekenster")
+[*]New Honeycomb Battery
+[*]AOKP CircleBattery now suppoerts strokewidth (but in a different way than you might expect ;))
+[*][B][COLOR="Blue"]Fixed compatibility problems with latest "resurrection remix rom" version 3.1.2 (framework-res now hdpi...systemUI still xhdpi)[/COLOR][/B]
+[*]Default settings are now for RR 3.1.2!
+[*]No more changing of build-prop in template.zip derived from UniversalFlasherTool
 [/LIST]
 
-The Battery Icon Designer seems to grow up!!...By now it is much more than just an Battery-Icon-Renderer.
-Need to think about a new name ?!
-Now you can additionally modify many aspects of the statusbar and notification area!
-But you need to know, there are 2 different approaches how this tool uses/creates icons:
-[LIST]
-[*]Signal, Wifi & Battery: Those are the icons that are rendered directly from this tool. 
-It uses a mathmatic and graphical algorithms for that.
-[*]And there are the other icons like lockring, weather and toggle-icons. 
-These icons are not rendered. You can use any Icons you collected.
-Just put them in the right place in the custom area of this tool. 
-[B]Attention:[/B] Make sure they are correctly named to fit with the "to be replaced" icons in your ROM!! 
-(To every rule there is an exception! Lockrings, can be named what ever you want...they are renamed before flash-zip creation) 
-[/LIST]
+The tool now handles with the problem, that framework-res has other dpi than systemUI...in latest RR 3.1.2!
 
-The Battery Icon Creator will take all of the above icons and put them into one flashable zip!
-So what you finally get is almost a "theme"!
+This means all your old Mod's are not compatible any more, when they have stuff in it that ends up in framework-res! You need to create your MOD again! (On the bright side...the old Mod's will not do any harm...they will just add pngs to framework-res, that are never read ;))
+
+Happy modding & flashing :)

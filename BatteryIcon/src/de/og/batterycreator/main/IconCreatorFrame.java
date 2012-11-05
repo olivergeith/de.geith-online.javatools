@@ -17,9 +17,9 @@ import de.og.batterycreator.gui.iconstore.IconStore;
 
 public class IconCreatorFrame extends JFrame {
 
-	private static final String APP_NAME = "Battery Icon Creator";
+	private static final String APP_NAME = "The Battery Icon Creator";
 	public static final String VERSION_NR = "12.0";
-	private static final String VERSION_DATE = "xx.11.2012";
+	private static final String VERSION_DATE = "05.11.2012";
 	private static final long serialVersionUID = 1L;
 	private static IconCreatorFrame frame;
 	private BeendenAktion beendenAktion;

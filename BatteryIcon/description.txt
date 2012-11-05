@@ -43,14 +43,16 @@ put those icons to ./custom/frameworkres-mod/<foldername> see examples there
 [/LIST]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Nov-xx-2012[/B] : Release 12.0[/COLOR]
+[COLOR="Blue"][B]Nov-05-2012[/B] : Release 12.0[/COLOR]
 [LIST]
 [*]New Skull Battery (request from xda user "didi")
 [*]New VNV Nation Battery
 [*]Bringing back the old transparent "Arc Batteries" (request from xda user "thekenster")
 [*]New Honeycomb Battery
-[*]AOKP CircleBattery now suppoerts strokewidth (but in a different way than you might expect ;-))
-[*]Fixed compatibility problems with latest "resurrection remix rom" version 3.1.2 (framework-res now hdpi...systemUI still xhdpi)
+[*]AOKP CircleBattery now suppoerts strokewidth (but in a different way than you might expect ;))
+[*][B][COLOR="Blue"]Fixed compatibility problems with latest "resurrection remix rom" version 3.1.2 (framework-res now hdpi...systemUI still xhdpi)[/COLOR][/B]
+[*]Default settings are now for RR 3.1.2!
+[*]No more changing of build-prop in template.zip derived from UniversalFlasherTool
 [/LIST]
 
 [SIZE="4"][B]Todo:[/B][/SIZE]

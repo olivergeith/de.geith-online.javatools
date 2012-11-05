@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 
+import de.og.batterycreator.creators.settings.RomPreset;
+
 public class DrawableComboBox extends JComboBox<String> {
 	private static final long serialVersionUID = 1L;
 
@@ -12,11 +14,6 @@ public class DrawableComboBox extends JComboBox<String> {
 	public static final String FOLDER_HDPI = "drawable-hdpi";
 	public static final String FOLDER_720DP = "drawable-sw720dp-xhdpi";
 	public static final String FOLDER_600DP = "drawable-sw600dp-xhdpi";
-
-	public static final int ICON_HEIGHT_XHDPI = 36;
-	public static final int ICON_HEIGHT_HDPI = 27;
-	public static final int ICON_HEIGHT_720DP = 48;
-	public static final int ICON_HEIGHT_600DP = 43;
 
 	private final SliderAndLabel sliderResize = new SliderAndLabel(25, 50);
 
@@ -37,13 +34,13 @@ public class DrawableComboBox extends JComboBox<String> {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
 				if (getSelectedItem().equals(FOLDER_XHDPI)) {
-					sliderResize.setValue(ICON_HEIGHT_XHDPI);
+					sliderResize.setValue(RomPreset.BATT_ICON_HEIGHT_XHDPI);
 				} else if (getSelectedItem().equals(FOLDER_HDPI)) {
-					sliderResize.setValue(ICON_HEIGHT_HDPI);
+					sliderResize.setValue(RomPreset.BATT_ICON_HEIGHT_HDPI);
 				} else if (getSelectedItem().equals(FOLDER_720DP)) {
-					sliderResize.setValue(ICON_HEIGHT_720DP);
+					sliderResize.setValue(RomPreset.BATT_ICON_HEIGHT_720DP);
 				} else if (getSelectedItem().equals(FOLDER_600DP)) {
-					sliderResize.setValue(ICON_HEIGHT_600DP);
+					sliderResize.setValue(RomPreset.BATT_ICON_HEIGHT_600DP);
 				}
 			}
 		});

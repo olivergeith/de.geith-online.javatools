@@ -86,8 +86,9 @@ public class ConfigPanel extends JPanel {
 	JFontChooserButton fontButton = new JFontChooserButton("Choose Font", fontSizes);
 
 	//
-	DrawableComboBox zipResolutionFolderCombo = new DrawableComboBox();
-	SliderAndLabel sliderResize = zipResolutionFolderCombo.getSizeSlider();
+	DrawableComboBox systemUIDrawableFolderCombo = new DrawableComboBox();
+	DrawableComboBox frameworkDrawableFolderCombo = new DrawableComboBox();
+	SliderAndLabel sliderResize = systemUIDrawableFolderCombo.getSizeSlider();
 	JComboBox<RomPreset> romPresetCombo = new JComboBox<RomPreset>(RomPreset.getPresets());
 
 	// Lockhandle
@@ -157,7 +158,8 @@ public class ConfigPanel extends JPanel {
 			public void actionPerformed(final ActionEvent e) {
 				final RomPreset pre = (RomPreset) romPresetCombo.getSelectedItem();
 				if (!pre.getRomName().equals(RomPreset.APPLY)) {
-					zipResolutionFolderCombo.setSelectedItem(pre.getZipResolutionFolder());
+					systemUIDrawableFolderCombo.setSelectedItem(pre.getSystemUIDrawableFolder());
+					frameworkDrawableFolderCombo.setSelectedItem(pre.getFrameworkDrawableFolder());
 					filepattern.setText(pre.getFilePattern());
 					filepatternCharge.setText(pre.getFilePatternCharge());
 					romPresetCombo.setSelectedIndex(0);
@@ -340,14 +342,16 @@ public class ConfigPanel extends JPanel {
 
 		builder.add(JGoodiesHelper.createGroupLabel("Resizing..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(JGoodiesHelper.createBlackLabel("Choose your ROM's resolution"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Choose your SystemUI's resolution"), cc.xyw(2, ++row, 3));
 		builder.add(JGoodiesHelper.createBlackLabel("Rom Presets"), cc.xyw(6, row, 3));
-		builder.add(zipResolutionFolderCombo, cc.xyw(2, ++row, 3));
+		builder.add(systemUIDrawableFolderCombo, cc.xyw(2, ++row, 3));
 		builder.add(romPresetCombo, cc.xyw(6, row, 3));
 		builder.add(JGoodiesHelper.createBlackLabel("Resize Icon to (hight)"), cc.xyw(2, ++row, 7));
 		builder.add(sliderResize, cc.xyw(2, ++row, 1));
 		builder.add(sliderResize.getValueLabel(), cc.xyw(4, row, 1));
 		builder.add(cboxUseAdvResize, cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Choose your Framework's resolution"), cc.xyw(2, ++row, 3));
+		builder.add(frameworkDrawableFolderCombo, cc.xyw(2, ++row, 3));
 
 		builder.add(JGoodiesHelper.createGroupLabel("Battery Filenames & Output ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
@@ -438,7 +442,8 @@ public class ConfigPanel extends JPanel {
 
 		filepattern.setText(settings.getFilePattern());
 		filepatternCharge.setText(settings.getFilePatternCharge());
-		zipResolutionFolderCombo.setSelectedItem(settings.getZipResolutionFolder());
+		systemUIDrawableFolderCombo.setSelectedItem(settings.getSystemUIDrawableFolder());
+		frameworkDrawableFolderCombo.setSelectedItem(settings.getFrameworkDrawableFolder());
 		cboxUseGradientMediumLevels.setSelected(settings.isUseGradiantForMediumColor());
 		cboxUseGradientNormalLevels.setSelected(settings.isUseGradiantForNormalColor());
 		fontButton.setFont(settings.getFont());
@@ -519,7 +524,8 @@ public class ConfigPanel extends JPanel {
 		settings.setChargeIcon((ImageIcon) chargeIconSeletor.getSelectedItem());
 		settings.setFilePattern(filepattern.getText());
 		settings.setFilePatternCharge(filepatternCharge.getText());
-		settings.setZipResolutionFolder((String) zipResolutionFolderCombo.getSelectedItem());
+		settings.setSystemUIDrawableFolder((String) systemUIDrawableFolderCombo.getSelectedItem());
+		settings.setFrameworkDrawableFolder((String) frameworkDrawableFolderCombo.getSelectedItem());
 		settings.setUseGradiantForMediumColor(cboxUseGradientMediumLevels.isSelected());
 		settings.setUseGradiantForNormalColor(cboxUseGradientNormalLevels.isSelected());
 

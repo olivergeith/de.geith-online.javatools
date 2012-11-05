@@ -79,19 +79,20 @@ public class StyleSettings implements Serializable {
 	private String filePattern = new String(BATT_ICON_NAME_AOKP);
 	private String filePatternCharge = new String(BATT_ICON_CHARGE_NAME_AOKP);
 
-	private String zipResolutionFolder = DrawableComboBox.FOLDER_XHDPI;
+	private String frameworkDrawableFolder = DrawableComboBox.FOLDER_HDPI;
+	private String systemUIDrawableFolder = DrawableComboBox.FOLDER_XHDPI;
 	private String folderSystemUIInZip = FOLDER_SYSTEMUI + DrawableComboBox.FOLDER_XHDPI + "/";
-	private String folderFrameworkInZip = FOLDER_FRAMEWORK + DrawableComboBox.FOLDER_XHDPI + "/";
-	private int targetIconSize = DrawableComboBox.ICON_HEIGHT_XHDPI;
+	private String folderFrameworkInZip = FOLDER_FRAMEWORK + DrawableComboBox.FOLDER_HDPI + "/";
+	private int targetIconSize = RomPreset.BATT_ICON_HEIGHT_XHDPI;
 	private boolean useAdvancedResize = true;
 
 	// Lockhandle
 	private String lockHandleFileName = LOCKHANDLE_FILENAME_DEFAULT;
-	private int lockHandleSize = RomPreset.LOCK_XHDPI;
+	private int lockHandleSize = RomPreset.LOCK_HDPI;
 	// toggle
 	private int toggleSize = RomPreset.TOGGLE_XHDPI;
 	// weather
-	private int weatherSize = RomPreset.WEATHER_XHDPI;
+	private int weatherSize = RomPreset.WEATHER_HDPI;
 
 	// font
 	private Font font = DEFAULT_FONT;
@@ -105,7 +106,7 @@ public class StyleSettings implements Serializable {
 
 	// Notification
 	private String notificationBGFilename = NOTIFICATION_BG_FILENME;
-	private int notificationHeight = 4;
+	private int notificationHeight = RomPreset.NOTIFICATION_XHDPI;
 	// Signal Stuff
 	private String fileSignalPattern = new String(SIGNAL_ICON_NAME);
 	private String fileSignalEXtensionFully = new String(SIGNAL_ICON_EXTENSION_FULLY);
@@ -439,20 +440,35 @@ public class StyleSettings implements Serializable {
 	}
 
 	/**
-	 * @return the zipOutFolder
+	 * @return the systemUIDrawableFolder
 	 */
-	public String getZipResolutionFolder() {
-		return zipResolutionFolder;
+	public String getSystemUIDrawableFolder() {
+		return systemUIDrawableFolder;
 	}
 
 	/**
-	 * @param zipResolutionFolder
+	 * @param systemUIDrawableFolder
 	 *            the zipOutFolder to set
 	 */
-	public void setZipResolutionFolder(final String zipResolutionFolder) {
-		this.zipResolutionFolder = zipResolutionFolder;
-		folderSystemUIInZip = FOLDER_SYSTEMUI + zipResolutionFolder + "/";
-		folderFrameworkInZip = FOLDER_FRAMEWORK + zipResolutionFolder + "/";
+	public void setSystemUIDrawableFolder(final String systemUIDrawableFolder) {
+		this.systemUIDrawableFolder = systemUIDrawableFolder;
+		folderSystemUIInZip = FOLDER_SYSTEMUI + systemUIDrawableFolder + "/";
+	}
+
+	/**
+	 * @return the frameworkDrawableFolder
+	 */
+	public String getFrameworkDrawableFolder() {
+		return frameworkDrawableFolder;
+	}
+
+	/**
+	 * @param frameworkDrawableFolder
+	 *            the frameworkDrawableFolder to set
+	 */
+	public void setFrameworkDrawableFolder(final String frameworkDrawableFolder) {
+		this.frameworkDrawableFolder = frameworkDrawableFolder;
+		folderFrameworkInZip = FOLDER_FRAMEWORK + frameworkDrawableFolder + "/";
 	}
 
 	/**

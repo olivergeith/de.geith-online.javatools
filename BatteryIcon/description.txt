@@ -50,6 +50,7 @@ put those icons to ./custom/frameworkres-mod/<foldername> see examples there
 [*]Bringing back the old transparent "Arc Batteries" (request from xda user "thekenster")
 [*]New Honeycomb Battery
 [*]AOKP CircleBattery now suppoerts strokewidth (but in a different way than you might expect ;-))
+[*]Fixed compatibility problems with latest "resurrection remix rom" version 3.1.2 (framework-res now hdpi...systemUI still xhdpi)
 [/LIST]
 
 [SIZE="4"][B]Todo:[/B][/SIZE]

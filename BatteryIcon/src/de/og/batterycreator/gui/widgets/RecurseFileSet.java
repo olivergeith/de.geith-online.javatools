@@ -27,6 +27,8 @@ public class RecurseFileSet {
 		// System.out.println("#######################################################");
 		// System.out.println("Scanning the Folder " + dir.getPath());
 		// System.out.println("#######################################################");
+		allPathInZip.removeAllElements();
+		filenamesAndPath.removeAllElements();
 		findAllFilesInDirTree(dir);
 		// System.out.println("#######################################################");
 	}
@@ -35,8 +37,6 @@ public class RecurseFileSet {
 	 * @param file
 	 */
 	private void findAllFilesInDirTree(final File file) {
-		allPathInZip.removeAllElements();
-		filenamesAndPath.removeAllElements();
 		if (file.isDirectory()) {
 			final File[] subDirs = findSubDirs(file);
 			for (int i = 0; i < subDirs.length; i++) {
@@ -97,6 +97,24 @@ public class RecurseFileSet {
 	 */
 	public Vector<String> getAllPathInZip() {
 		return allPathInZip;
+	}
+
+	public String getContentHTML() {
+		String html = "<html>";
+
+		html += "<font size=5 color=white>";
+		html += "<b>" + toString() + "</b><br><hr>";
+		html += "</font>";
+
+		html += "<font size=3 color=white>";
+		for (final String file : filenamesAndPath) {
+			html += file + "<br>";
+		}
+		html += "<hr>";
+		html += "</font>";
+
+		html += "</html>";
+		return html;
 	}
 
 	/**

@@ -58,8 +58,9 @@ public class RecurseFileSetSelector extends JComboBox<RecurseFileSet> {
 				final RecurseFileSet selected = (RecurseFileSet) getSelectedItem();
 				final int index = getSelectedIndex();
 				if (index > 0) {
-					overPane.setText(selected.toString());
 					selectedSet = selected;
+
+					overPane.setText(selected.getContentHTML());
 				} else {
 					overPane.setText("   Choose File-Set from Dropdownbox");
 					selectedSet = null;

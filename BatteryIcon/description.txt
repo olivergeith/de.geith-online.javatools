@@ -15,7 +15,7 @@ Now it has grown up and much more was added. (I should think about a new Name? :
 [*]...add your own custom charge-icons...(place your own charge icons in folder ./custom/charge/ ...see samples there)
 [*]4+ highly customizable Wifi Icon Styles (more to come...ideas welcome !)
 [*]4+ highly customizable Signal Icon Styles (more to come...ideas welcome !)
-[*]Creating of an overview.png's (If you want to show of your creations!)
+[*]Creating of overview.png's (If you want to show of your creations!)
 [*]Icons are resized to any supported dpi (can be fine-tuned)
 [*]Add Toggles to your flashable Zip (Attention the predefined toggles only work with AOKP roms)
 [*]Add your own toggle-icon-sets to folder ./custom/toggles/<setname>

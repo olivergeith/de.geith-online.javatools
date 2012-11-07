@@ -101,6 +101,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		battTabPane.setTabPlacement(JTabbedPane.LEFT);
 		battTabPane.addTab("", IconStore.overIcon, battOverviewPanel, "Get an Overview of your icons");
 		battTabPane.addTab("", IconStore.listIcon, scroller, "Get an Overview of your icons");
+
 		final JTabbedPane additionalIconsTabPane = new JTabbedPane();
 		additionalIconsTabPane.addTab("Toggle", IconStore.toggleIcon, toggleBox.getOverviewPanel(), "Get an Overview of your toggles");
 		additionalIconsTabPane.addTab("Weather", IconStore.weatherIcon, weatherBox.getOverviewPanel(), "Get an Overview of your weather icons");
@@ -109,7 +110,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		additionalIconsTabPane.addTab("FrameWorkRes Mods", IconStore.androidblueIcon, frameworkresBox.getOverviewPanel(), "Get an Overview of your icons");
 
 		final JTabbedPane extrasTabPane = new JTabbedPane();
-		extrasTabPane.addTab("Filesets", IconStore.toggleIcon, filesetBox.getOverviewPanel(), "Add Filesets like apk's, lib's, media...");
+		extrasTabPane.addTab("Filesets", IconStore.folder2Icon, filesetBox.getOverviewPanel(), "Add Filesets like apk's, lib's, media...");
 
 		// Main Tabbed Pane
 		tabPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -118,7 +119,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		tabPane.addTab("Signal", IconStore.signalIcon, signalOverviewPanel, "Get an Overview of your icons");
 		tabPane.addTab("NotificationPanel", IconStore.notificationIcon, notificationBG, "Transparent Notification Panel");
 		tabPane.addTab("Additional Icons", IconStore.additionalIcon, additionalIconsTabPane, "Add additional icons to your zip");
-		tabPane.addTab("Extras", IconStore.additionalIcon, extrasTabPane, "Extras");
+		tabPane.addTab("Extras", IconStore.moreIcon, extrasTabPane, "Extras");
 
 		// Actionlistener für die dropdownboxen, damit die Tabs aktiv werden
 		wifiCreatorBox.addActionListener(this);

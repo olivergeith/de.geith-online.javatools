@@ -29,8 +29,6 @@ public class IconSetMultiSelector extends JList<IconSet> implements IconProvider
 	private final String rootDir;
 	private final String setTypeName;
 
-	private int iconDeploySize;
-
 	public IconSetMultiSelector(final String setTypeName, final String rootDir) {
 		super();
 		this.rootDir = rootDir;
@@ -76,7 +74,7 @@ public class IconSetMultiSelector extends JList<IconSet> implements IconProvider
 		setCellRenderer(new MyCellRenderer());
 		setToolTipText("Choose your " + setTypeName + " Iconset");
 		System.out.println("Loading Custom " + setTypeName + " Icon Sets!");
-		overPane.add(this, BorderLayout.NORTH);
+		// overPane.add(this, BorderLayout.WEST);
 		addListSelectionListener(new ListSelectionListener() {
 
 			@Override
@@ -86,25 +84,8 @@ public class IconSetMultiSelector extends JList<IconSet> implements IconProvider
 			}
 		});
 
-		// ActionListener(new ActionListener() {
-		//
-		// @Override
-		// public void actionPerformed(final ActionEvent e) {
-		// final ImageIcon icon = (ImageIcon) getSelectedItem();
-		// if (!icon.equals(nada)) {
-		// final int index = getSelectedIndex();
-		// final IconSet set = iconSets.elementAt(index - 1);
-		// overPane.setOverview(set.getOverviewsmall());
-		// overPane.setText("");
-		// } else {
-		// overPane.setOverview(icon);
-		// overPane.setText("   Choose " + setTypeName +
-		// "-Set from Dropdownbox");
-		// }
-		// }
-		// });
-		if (getModel().getSize() > 0)
-			setSelectedIndex(0);
+		// if (getModel().getSize() > 0)
+		// setSelectedIndex(0);
 	}
 
 	/**
@@ -150,12 +131,31 @@ public class IconSetMultiSelector extends JList<IconSet> implements IconProvider
 
 	}
 
+	@Override
+	public boolean isActiv() {
+		if (getModel().getSize() > 0)
+			return true;
+		return false;
+	}
+
+	@Override
+	public void createAllImages(final int size) {
+		// final ImageIcon icon = (ImageIcon) getSelectedItem();
+		// if (!icon.equals(nada)) {
+		// final int index = getSelectedIndex();
+		// final IconSet set = iconSets.elementAt(index - 1);
+		//
+		// final IconSetDeployer depl = new IconSetDeployer(set, setTypeName);
+		// depl.createAllImages(size);
+		// filenamesAndPath = depl.getAllFilenamesAndPath();
+		// } else {
+		// filenamesAndPath = new Vector<String>();
+		// }
+	}
+
 	/**
 	 * For testing purposes !!!
 	 * 
-	 * @param args
-	 */
-	/**
 	 * @param args
 	 */
 	public static void main(final String[] args) {
@@ -175,46 +175,5 @@ public class IconSetMultiSelector extends JList<IconSet> implements IconProvider
 		f.add(scroller, BorderLayout.WEST);
 
 		f.setVisible(true);
-	}
-
-	@Override
-	public boolean isActiv() {
-		if (getModel().getSize() > 0)
-			return true;
-		return false;
-	}
-
-	// @Override
-	// public void createAllImages() {
-	// }
-
-	/**
-	 * @return the iconDeploySize
-	 */
-	public int getIconDeploySize() {
-		return iconDeploySize;
-	}
-
-	/**
-	 * @param iconDeploySize
-	 *            the iconDeploySize to set
-	 */
-	public void setIconDeploySize(final int iconDeploySize) {
-		this.iconDeploySize = iconDeploySize;
-	}
-
-	@Override
-	public void createAllImages(final int size) {
-		// final ImageIcon icon = (ImageIcon) getSelectedItem();
-		// if (!icon.equals(nada)) {
-		// final int index = getSelectedIndex();
-		// final IconSet set = iconSets.elementAt(index - 1);
-		//
-		// final IconSetDeployer depl = new IconSetDeployer(set, setTypeName);
-		// depl.createAllImages(size);
-		// filenamesAndPath = depl.getAllFilenamesAndPath();
-		// } else {
-		// filenamesAndPath = new Vector<String>();
-		// }
 	}
 }

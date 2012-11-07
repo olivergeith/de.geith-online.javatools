@@ -32,8 +32,6 @@ public class IconSetSelector extends JComboBox<ImageIcon> implements IconProvide
 	private final String rootDir;
 	private final String setTypeName;
 
-	private int iconDeploySize;
-
 	public IconSetSelector(final String setTypeName, final String rootDir) {
 		super();
 		this.rootDir = rootDir;
@@ -181,13 +179,6 @@ public class IconSetSelector extends JComboBox<ImageIcon> implements IconProvide
 		if (!icon.equals(nada))
 			return true;
 		return false;
-	}
-
-	/**
-	 * @return the iconDeploySize
-	 */
-	public int getIconDeploySize() {
-		return iconDeploySize;
 	}
 
 	@Override

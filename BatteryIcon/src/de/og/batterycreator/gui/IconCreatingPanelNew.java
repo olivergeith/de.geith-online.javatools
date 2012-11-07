@@ -31,6 +31,7 @@ import de.og.batterycreator.gui.widgets.OverviewPanel;
 import de.og.batterycreator.gui.widgets.RawIconSetSelector;
 import de.og.batterycreator.gui.widgets.SignalCreatorSelector;
 import de.og.batterycreator.gui.widgets.WifiCreatorSelector;
+import de.og.batterycreator.gui.widgets.fileset.RecurseFileSetSelector;
 import de.og.batterycreator.gui.widgets.lockhandleselector.LockHandleSelector;
 import de.og.batterycreator.gui.widgets.transparent.NotificationAreaBG;
 import de.og.batterycreator.zipcreator.ZipElementCollection;
@@ -62,12 +63,14 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 	private final RawIconSetSelector systemUIBox = new RawIconSetSelector("SystemUIMod", "./custom/systemui-mods/");
 	private final RawIconSetSelector frameworkresBox = new RawIconSetSelector("FrameworkResMod", "./custom/frameworkres-mods/");
 
+	private final RecurseFileSetSelector filesetBox = new RecurseFileSetSelector();
+
 	// Treadstuff
 	private final JProgressBar progressBar = new JProgressBar();
 	private Thread t = null;
 	private boolean isrunning = false;
 	// private boolean stopnow = false;
-	private final int maxsteps = 22;
+	private final int maxsteps = 23;
 	private int step = 0;
 
 	private final JFrame parentFrame;
@@ -102,19 +105,20 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		additionalIconsTabPane.addTab("Toggle", IconStore.toggleIcon, toggleBox.getOverviewPanel(), "Get an Overview of your toggles");
 		additionalIconsTabPane.addTab("Weather", IconStore.weatherIcon, weatherBox.getOverviewPanel(), "Get an Overview of your weather icons");
 		additionalIconsTabPane.addTab("Lockring", IconStore.lockringIcon, lockHandleSelector.getOverviewPanel(), "See your choosen Lockring!");
-		// additionalIconsTabPane.addTab("NotificationPanel",
-		// IconStore.notificationIcon, notificationBG,
-		// "Transparent Notification Panel");
 		additionalIconsTabPane.addTab("SystemUI Mods", IconStore.androidredIcon, systemUIBox.getOverviewPanel(), "Get an Overview of your icons");
 		additionalIconsTabPane.addTab("FrameWorkRes Mods", IconStore.androidblueIcon, frameworkresBox.getOverviewPanel(), "Get an Overview of your icons");
 
-		// Tabbed Pane
+		final JTabbedPane extrasTabPane = new JTabbedPane();
+		extrasTabPane.addTab("Filesets", IconStore.toggleIcon, filesetBox.getOverviewPanel(), "Add Filesets like apk's, lib's, media...");
+
+		// Main Tabbed Pane
 		tabPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabPane.addTab("Battery", IconStore.batteryIcon, battTabPane, "Get an Overview of your icons");
 		tabPane.addTab("Wifi", IconStore.wifiIcon, wifiOverviewPanel, "Get an Overview of your icons");
 		tabPane.addTab("Signal", IconStore.signalIcon, signalOverviewPanel, "Get an Overview of your icons");
 		tabPane.addTab("NotificationPanel", IconStore.notificationIcon, notificationBG, "Transparent Notification Panel");
 		tabPane.addTab("Additional Icons", IconStore.additionalIcon, additionalIconsTabPane, "Add additional icons to your zip");
+		tabPane.addTab("Extras", IconStore.additionalIcon, extrasTabPane, "Extras");
 
 		// Actionlistener für die dropdownboxen, damit die Tabs aktiv werden
 		wifiCreatorBox.addActionListener(this);
@@ -225,6 +229,13 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		final ZipElementCollection zipCollection = new ZipElementCollection();
 		zipCollection.addElements(files2add2SystemUI, activBattCreator.getSettings().getFolderSystemUIInZip());
 		zipCollection.addElements(files2add2Framework, activBattCreator.getSettings().getFolderFrameworkInZip());
+
+		// Adding XTRAS
+		updateProgressBar(step++, "Adding XTRAS to ZipCollection");
+		if (filesetBox.getSelectedIndex() > 0) {
+			zipCollection.addElements(filesetBox.getSelectedSet().getFilenamesAndPath(), filesetBox.getSelectedSet().getAllPathInZip());
+		}
+
 		// now the actual zipping...
 		try {
 			updateProgressBar(step++, "Choose ZipFilename....");

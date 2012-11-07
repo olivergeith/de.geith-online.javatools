@@ -31,7 +31,7 @@ public class RawIconSetSelector extends IconSetSelector {
 		html += "<b>" + "Attention !!" + "</b><br><hr>";
 		html += "</font>";
 
-		html += "<font size=3 color=black>";
+		html += "<font size=2 color=black>";
 		html += "These iconsets are added to the flashable zip as they are!<br>";
 		html += "There will be: <br>";
 		html += "- no resizing<br>";

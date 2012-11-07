@@ -30,6 +30,8 @@ put those icons to ./custom/frameworkres-mod/<foldername> see examples there
 [*]Easy "all in one frame" Userinterface (you will find out how it works !)
 [*]Creation of[COLOR="Blue"][B] flashable Zips[/B][/COLOR] for xhdpi, hdpi, 720dp and 600dp ROMs
 [*]Creates a backup during flash (Thanks to the "Universal Flasher Tool") 
+[*]Add custom filesets to your flashable zip...for example add apk's, libs, media files whatever you want to be flashed alongside your icons!
+I use this frequently after full wipe installing a new rom...I add some of my own developed Apps to the rom.
 [/LIST]
 
 [SIZE="4"][B]Confirmed to work with the following ROMs:[/B][/SIZE]
@@ -47,12 +49,10 @@ put those icons to ./custom/frameworkres-mod/<foldername> see examples there
 [SIZE="4"][B]Changelog:[/B][/SIZE]
 [COLOR="Blue"][B]Nov-xx-2012[/B] : Release 12.0[/COLOR]
 [LIST]
-[*]New Skull Battery (request from xda user "didi")
-[*]New VNV Nation Battery
-[*]Bringing back the old transparent "Arc Batteries" (request from xda user "thekenster")
-[*]New Honeycomb Battery
-[*]AOKP CircleBattery now suppoerts strokewidth (but in a different way than you might expect ;-))
-[*]Fixed compatibility problems with latest "resurrection remix rom" version 3.1.2 (framework-res now hdpi...systemUI still xhdpi)
+[*]New Feature: Adding almost anything to be flashed alongside your Icons. (Apk's to system/app system/lib and so on)
+Add your own filesets to ./custom/XTRAS/... see example there!
+[*]Wider resize-range for toggles
+[*]Integrated small "Helpsystem"
 [/LIST]
 
 [SIZE="4"][B]Todo:[/B][/SIZE]
@@ -101,7 +101,7 @@ You need to...
 [*]...res\drawable-<xxxx> and find the rom's original 1% battery icons in there
 [*]remember the folder you found your png's in. (normally [B]drawable-hdpi or drawable-xhdpi[/B])
 [*]see how the Files are named. (something like [B]stat_sys_battery_circle_charge_anim<percentage>.png[/B])
-[*]check the hight of the original png's
+[*]check the height of the original png's
 [*]now you got everything to choose the correct settings in the Battery Icon Creator
 [*]...drawable-Folder
 [*]...naming convention/pattern of png's
@@ -111,6 +111,7 @@ If you found your settings, please let me know, what settings, what ROM you used
 So I can add the ROM to my compatibility list and add predefined Settings to the tool itself.
 
 [SIZE="4"][B]HowTo - Toggles...your own, custom toggles[/B][/SIZE]
+Same procedure with weather icons...but they are located in framework-res.apk
 [LIST]
 [*]Same procedure as above to analyse SystemUI.apk 
 [*}...find the toggle icons in there 
@@ -141,6 +142,8 @@ If you want to know how to create your own flashable Zip ...
 Want to see my icons in use?...see my MOD-Post for Resurrection Remix ROM
 [url]http://forum.xda-developers.com/showpost.php?p=32081287&postcount=1388[/url]
 
+
+Finally press [SIZE="4"][b]Thanks[/b][/SIZE] please, if you like my tool!
 ......
 .....
 ....

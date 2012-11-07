@@ -1,0 +1,74 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="de">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Neue Seite 1</title>
+</head>
+
+<body>
+
+<h1>HowTo: The Battery Icon Creator</h1>
+<p>This is a small tutorial for the Battery Icon Creator. </p>
+<h2>Things you need to keep in mind!</h2>
+<h4>1. Settings for each battery style</h4>
+<p>This programm is an App that has grown a lott. First it was -as the name 
+says- only an editor for battery icons. Every battery style had and still has 
+its own set of settings. Even the &quot;No Batt Icons&quot; style. When the App grew up...the 
+settings were growing too with all that stuff you need for Wifi and Signal icons 
+filenames for lockhandle and so on. All this is stored within the settings of 
+the chosen battery style.</p>
+<p>The consequence is, if you choose another battery style, you have to do your 
+adjustments for wifi and so on again. Most important you have to set your Rom 
+presets again for the new battery style! Don't forget that, or you might end up 
+with a flashable zip that does nothing but adding icons to systemui and 
+framework-res in the wrong drawable folder!!!</p>
+<p>The pro on this is: </p>
+<ul>
+  <li>You can store all settings in one file, </li>
+  <li>you can even restore settings from for example ArcBattery to AOKP battery 
+  and all your colorsettings are the same</li>
+</ul>
+<p>What is not stored in settings is:</p>
+<ul>
+  <li>what kind of Wifi style or signal style you chose</li>
+  <li>what weather iconset you chose</li>
+  <li>what lockhandle you chose</li>
+  <li>what toggles you chose</li>
+  <li>how transparent your notification area should be</li>
+  <li>what charge icon you chose (this might be stored in some future 
+  Version..ist mor or less a low prio bug ;-))</li>
+</ul>
+<h4>2. No xml modding by this App</h4>
+<p>This tool dos not mod any xml files within your roms apk's! It most likely 
+will never do this!<br>
+The only thing it does is replacing png's!</p>
+<p>This makes all your flashable zips compatible for every version or 
+incarnation of your rom! No need to create a new zip for every nightly of your 
+rom. As long as the dev of you rom does not change from lets say xhdpi to hdpi 
+the mods will be compatible &quot;forever&quot;. The will even work on other roms with 
+same dpi!</p>
+<h4>3. A 1% battery mod must be in your rom</h4>
+<p>Your rom needs to have a 1% battery mod to be compatible. The tool creates 
+204 png's for the 1% battery. 0 to 100% for charging and discharging and 2 &quot;full&quot; 
+icons. The rom will then show the png corresponding to the battery level.</p>
+<p>All AOKP have a battery circle mod (find it in Rom Control --&gt; Battery) This 
+is what my tool will use and replace the 204 icons for it.</p>
+<p>Stock roms normally don't have a 1% mod unless you install a mod like JKay! 
+Attention the pngs for JKay are named slightly different then the ones in AOKP. 
+You can choose the right names with the Rom-Presets.</p>
+<p>Until late oktober 2012 CM10 did not have a 1% mod. So it is not compatible. 
+Since then they have a circle battery mod to, <b>but this is very different,</b> 
+as it has no 204 png's. It renders the icon online with a grafical algorithm 
+like my tool does. Perhaps it will later have different online renderred battery 
+styles...who knows...there definately is potential!</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

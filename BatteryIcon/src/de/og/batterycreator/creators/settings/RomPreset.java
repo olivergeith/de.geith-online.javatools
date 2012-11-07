@@ -13,6 +13,8 @@ public class RomPreset {
 	public static final int LOCK_HDPI = 162;
 
 	// in systemUI
+	public static final int TOGGLE_720DP = 96;
+	public static final int TOGGLE_600DP = 84;
 	public static final int TOGGLE_XHDPI = 64;
 	public static final int TOGGLE_HDPI = 48;
 	public static final int NOTIFICATION_HDPI = 3;

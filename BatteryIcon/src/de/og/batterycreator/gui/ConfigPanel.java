@@ -93,10 +93,10 @@ public class ConfigPanel extends JPanel {
 
 	// Lockhandle
 	JTextField lockHandleFileName = new JTextField();
-	SliderAndLabel lockHandleSize = new SliderAndLabel(150, 250);
+	SliderAndLabel lockHandleSize = new SliderAndLabel(130, 250);
 
 	// Toggles
-	SliderAndLabel toggleSize = new SliderAndLabel(40, 70);
+	SliderAndLabel toggleSize = new SliderAndLabel(32, 100);
 	// Weather
 	SliderAndLabel weatherSize = new SliderAndLabel(100, 200);
 

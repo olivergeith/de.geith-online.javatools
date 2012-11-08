@@ -25,7 +25,6 @@ import de.og.batterycreator.creators.wifi.AbstractWifiCreator;
 import de.og.batterycreator.creators.wifi.NoWifiIcons;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.BattCreatorSelector;
-import de.og.batterycreator.gui.widgets.HelpSelector;
 import de.og.batterycreator.gui.widgets.IconSetDeployer;
 import de.og.batterycreator.gui.widgets.IconSetSelector;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
@@ -121,7 +120,9 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		tabPane.addTab("NotificationPanel", IconStore.notificationIcon, notificationBG, "Transparent Notification Panel");
 		tabPane.addTab("Additional Icons", IconStore.additionalIcon, additionalIconsTabPane, "Add additional icons to your zip");
 		tabPane.addTab("Extras", IconStore.moreIcon, extrasTabPane, "Extras");
-		tabPane.addTab("Help", CommonIconProvider.getInstance().BUTTON_ICON_HELP, new HelpSelector(), "Help and Howto's");
+		// tabPane.addTab("Help",
+		// CommonIconProvider.getInstance().BUTTON_ICON_HELP, new
+		// HelpSelector(), "Help and Howto's");
 
 		// Actionlistener für die dropdownboxen, damit die Tabs aktiv werden
 		wifiCreatorBox.addActionListener(this);

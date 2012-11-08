@@ -30,6 +30,8 @@ public class HTMLFileDisplay extends JPanel {
 
 	private void initUI() {
 		setLayout(new BorderLayout());
+		edit.addHyperlinkListener(new VerySimpleLinkListener(edit));
+
 		edit.setEditable(false);
 		final JScrollPane editorScrollPane = new JScrollPane(edit);
 		this.add(editorScrollPane, BorderLayout.CENTER);

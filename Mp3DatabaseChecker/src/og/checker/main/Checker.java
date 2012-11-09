@@ -17,11 +17,11 @@ public class Checker {
 
 	public static void main(final String[] args) {
 		version.setApplicationname("Mp3-Database-Checker");
-		version.setVersion("1.6.0");
+		version.setVersion("1.7.0");
 		version.setCopyright("Oliver Geith");
 		version.setLogo(logoIcon);
 		version.setCompany("Music Unlimited");
-		version.setDate("08.04.2011");
+		version.setDate("09.11.2012");
 		version.setDescription(description);
 
 		System.out.println("Starting " + version.getApplicationname());

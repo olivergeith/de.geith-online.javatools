@@ -30,7 +30,7 @@ public class ConfigPanel extends JPanel {
 	private final JCheckBox cboxExpert = createCheckbox("Expert", false, "Enabels the Expertmode Repair-Features");
 	private final JCheckBox cboxFolderMissing = createCheckbox("Missing Folder.jpg", true, "Check for missing Folder.jpg");
 	private final JCheckBox cboxIllegalFiles = createCheckbox("Illegale Files", true, "Check for illegal Files/Filetypes");
-	private final JCheckBox cboxIllegalFilesList = createCheckbox("List Files", false, "List up illegal Files");
+	private final JCheckBox cboxIllegalFilesList = createCheckbox("List/Delete", false, "List & Delete illegal Files");
 	private final JCheckBox cboxHiddenFiles = createCheckbox("Hidden Files", true, "Check for hidden Files");
 	private final JCheckBox cboxHiddenFilesRepair = createRedCheckbox("Repair", false, "Repair hidden Files...only works on Windows-Systems!!!");
 	private final JCheckBox cboxReadonlyCheck = createCheckbox("Readonly Check", true, "Check if Files are readonly");
@@ -55,9 +55,13 @@ public class ConfigPanel extends JPanel {
 	private final JCheckBox cboxID3TagConsistencyCheck = createCheckbox("ID3 Tag-Consistency", false,
 			"Checks, if all MP3's have the same <Tag:Year> and <Tag:AlbumName> and <Tag:AlbumArtist>");
 
-	private final Long[] maxdays = { new Long(1), new Long(2), new Long(3), new Long(4), new Long(5), new Long(6), new Long(7), new Long(14), new Long(30),
-			new Long(60), new Long(90), new Long(365) };
-	private final Long[] bitrates = { new Long(56), new Long(64), new Long(96), new Long(128), new Long(192) };
+	private final Long[] maxdays = {
+			new Long(1), new Long(2), new Long(3), new Long(4), new Long(5), new Long(6), new Long(7), new Long(14), new Long(30), new Long(60), new Long(90),
+			new Long(365)
+	};
+	private final Long[] bitrates = {
+			new Long(56), new Long(64), new Long(96), new Long(128), new Long(192)
+	};
 	private final JComboBox bitrateCombo = createBitrateCombo(bitrates);
 	private final JComboBox maxDayCombo = createMaxdayCombo(maxdays);
 
@@ -72,7 +76,7 @@ public class ConfigPanel extends JPanel {
 		setExpertMode(false);
 		cboxExpert.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				setExpertMode(cboxExpert.isSelected());
 			}
 		});
@@ -81,10 +85,10 @@ public class ConfigPanel extends JPanel {
 		setConfig(Checker.config);
 		validateControls();
 		setLayout(new BorderLayout());
-		FormLayout layout = new FormLayout("2dlu, pref, 4dlu, pref, 2dlu",
+		final FormLayout layout = new FormLayout("2dlu, pref, 4dlu, pref, 2dlu",
 				"4dlu,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p");
-		CellConstraints cc = new CellConstraints();
-		PanelBuilder builder = new PanelBuilder(layout);
+		final CellConstraints cc = new CellConstraints();
+		final PanelBuilder builder = new PanelBuilder(layout);
 
 		int row = 1;
 		builder.add(createGroupLabel("Start-Directory"), cc.xyw(2, ++row, 2));
@@ -170,7 +174,7 @@ public class ConfigPanel extends JPanel {
 	 * @return
 	 */
 	private JTextField createPathField() {
-		JTextField pathField = new JTextField();
+		final JTextField pathField = new JTextField();
 		pathField.setForeground(Color.GREEN.darker());
 		pathField.setEditable(false);
 		// pathField.setBorder(new BevelBorder(1));
@@ -222,7 +226,7 @@ public class ConfigPanel extends JPanel {
 	 * @param txt
 	 * @return
 	 */
-	private JLabel createGroupLabel(String txt) {
+	private JLabel createGroupLabel(final String txt) {
 		return createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 14), Color.BLUE.darker());
 	}
 
@@ -232,7 +236,7 @@ public class ConfigPanel extends JPanel {
 	 * @param txt
 	 * @return
 	 */
-	private JLabel createBlueDeviderLabel(String txt) {
+	private JLabel createBlueDeviderLabel(final String txt) {
 		return createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 10), Color.BLUE.darker());
 	}
 
@@ -242,7 +246,7 @@ public class ConfigPanel extends JPanel {
 	 * @param txt
 	 * @return
 	 */
-	private JLabel createRedDeviderLabel(String txt) {
+	private JLabel createRedDeviderLabel(final String txt) {
 		return createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 10), Color.RED.darker());
 	}
 
@@ -254,8 +258,8 @@ public class ConfigPanel extends JPanel {
 	 * @param color
 	 * @return
 	 */
-	private JLabel createColoredFontLabel(String txt, Font font, Color color) {
-		JLabel label = new JLabel(txt);
+	private JLabel createColoredFontLabel(final String txt, final Font font, final Color color) {
+		final JLabel label = new JLabel(txt);
 		label.setForeground(color);
 		label.setFont(font);
 		return label;
@@ -267,12 +271,12 @@ public class ConfigPanel extends JPanel {
 	 * @param list
 	 * @return
 	 */
-	private JComboBox createBitrateCombo(Object[] list) {
+	private JComboBox createBitrateCombo(final Object[] list) {
 		final JComboBox combo = new JComboBox(list);
 		combo.setToolTipText("Choose a Bitrate");
 		combo.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(final ActionEvent arg0) {
 				if (combo.getSelectedItem() instanceof Long)
 					Checker.config.bitrateBorder = ((Long) combo.getSelectedItem()).longValue();
 			}
@@ -286,12 +290,12 @@ public class ConfigPanel extends JPanel {
 	 * @param list
 	 * @return
 	 */
-	private JComboBox createMaxdayCombo(Object[] list) {
+	private JComboBox createMaxdayCombo(final Object[] list) {
 		final JComboBox combo = new JComboBox(list);
 		combo.setToolTipText("How many days back shall we look?");
 		combo.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(final ActionEvent arg0) {
 				if (combo.getSelectedItem() instanceof Long)
 					Checker.config.maxdays = ((Long) combo.getSelectedItem()).longValue();
 			}
@@ -306,13 +310,13 @@ public class ConfigPanel extends JPanel {
 	 *            Defaultselection
 	 * @return
 	 */
-	private JCheckBox createCheckbox(final String text, final boolean defaultselection, String tooltip) {
+	private JCheckBox createCheckbox(final String text, final boolean defaultselection, final String tooltip) {
 		final JCheckBox cbox = new JCheckBox(text);
 		cbox.setSelected(defaultselection);
 		cbox.setToolTipText(tooltip);
 		cbox.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(final ActionEvent arg0) {
 				saveConfig();
 				validateControls();
 			}
@@ -328,7 +332,7 @@ public class ConfigPanel extends JPanel {
 	 * @param tooltip
 	 * @return
 	 */
-	private JCheckBox createRedCheckbox(final String text, final boolean defaultselection, String tooltip) {
+	private JCheckBox createRedCheckbox(final String text, final boolean defaultselection, final String tooltip) {
 		final JCheckBox cbox = createCheckbox(text, defaultselection, tooltip);
 		cbox.setForeground(Color.RED.darker());
 		return cbox;
@@ -403,7 +407,7 @@ public class ConfigPanel extends JPanel {
 	 * 
 	 * @param b
 	 */
-	private void setExpertMode(boolean b) {
+	private void setExpertMode(final boolean b) {
 		cboxID3V2Repair.setVisible(b);
 		cboxID3AlbumArtistRepair.setVisible(b);
 		cboxID3CoverRepair.setVisible(b);

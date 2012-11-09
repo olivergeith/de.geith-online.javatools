@@ -9,7 +9,7 @@ import og.checker.filewalker.DirectoryInfos;
 public class IllegalFileChecker extends AbstractChecker {
 	private boolean listFiles = false;
 
-	public IllegalFileChecker(boolean doCheck, ITracer tracer, boolean listFiles) {
+	public IllegalFileChecker(final boolean doCheck, final ITracer tracer, final boolean listFiles) {
 		super(doCheck, tracer);
 		this.listFiles = listFiles;
 	}
@@ -27,11 +27,12 @@ public class IllegalFileChecker extends AbstractChecker {
 	 * filewalker.DirectoryInfos)
 	 */
 	@Override
-	boolean performCheck(DirectoryInfos dirInfo) {
+	boolean performCheck(final DirectoryInfos dirInfo) {
 		if (dirInfo.hasIllegalFiles()) {
 			if (listFiles) {
-				for (File file : dirInfo.getIllegalFiles()) {
+				for (final File file : dirInfo.getIllegalFiles()) {
 					getTracer().appendInfoText("[" + StringHelper.fillUpWithBlanksRight("Illegal File: ", ERROR_LENGTH) + "] " + file.getPath());
+					file.delete();
 				}
 			}
 			return false;

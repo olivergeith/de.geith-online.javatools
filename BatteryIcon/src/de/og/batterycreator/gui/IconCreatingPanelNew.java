@@ -186,6 +186,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		create();
 
 		final ZipMaker zipper = new ZipMaker();
+		final Vector<String> files2add2Lidroid = new Vector<String>();
 		final Vector<String> files2add2SystemUI = new Vector<String>();
 		final Vector<String> files2add2Framework = new Vector<String>();
 		// adding Battery Icons
@@ -210,7 +211,11 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 
 		// Add Toggles
 		updateProgressBar(step++, "Adding Toggle Icons (if configured)");
-		files2add2SystemUI.addAll(toggleBox.getAllFilenamesAndPath());
+		if (activBattCreator.getSettings().isUseLidroid() == true) {
+			files2add2Lidroid.addAll(toggleBox.getAllFilenamesAndPath());
+		} else { // default
+			files2add2SystemUI.addAll(toggleBox.getAllFilenamesAndPath());
+		}
 		// Add Weather
 		updateProgressBar(step++, "Adding Weather Icons (if configured)");
 		files2add2Framework.addAll(weatherBox.getAllFilenamesAndPath());
@@ -233,6 +238,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		final ZipElementCollection zipCollection = new ZipElementCollection();
 		zipCollection.addElements(files2add2SystemUI, activBattCreator.getSettings().getFolderSystemUIInZip());
 		zipCollection.addElements(files2add2Framework, activBattCreator.getSettings().getFolderFrameworkInZip());
+		zipCollection.addElements(files2add2Lidroid, activBattCreator.getSettings().getFolderLidroidInZip());
 
 		// Adding XTRAS
 		updateProgressBar(step++, "Adding XTRAS to ZipCollection");

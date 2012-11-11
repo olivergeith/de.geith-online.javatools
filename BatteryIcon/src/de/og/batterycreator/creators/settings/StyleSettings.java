@@ -6,20 +6,14 @@ import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 
-import de.og.batterycreator.gui.widgets.DrawableComboBox;
-
 public class StyleSettings implements Serializable {
 	private static final String LOCKHANDLE_FILENAME_DEFAULT = "ic_lockscreen_handle_normal.png";
 
 	private static final long serialVersionUID = 4747296256398459127L;
 
-	public static final String BATT_ICON_CHARGE_NAME_AOKP = "stat_sys_battery_circle_charge_anim";
-	public static final String BATT_ICON_NAME_AOKP = "stat_sys_battery_circle_";
-	public static final String BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY = "stat_sys_battery_charge_anim";
-	public static final String BATT_ICON_NAME_STOCK_ICS_JKAY = "stat_sys_battery_";
-
 	public static final String FOLDER_SYSTEMUI = "MORPH/system/app/SystemUI.apk/res/";
 	public static final String FOLDER_FRAMEWORK = "MORPH/system/framework/framework-res.apk/res/";
+	public static final String FOLDER_LIDROID = "MORPH/system/framework/lidroid-res.apk/res/";
 
 	public static final String WIFI_ICON_NAME = "stat_sys_wifi_signal_";
 	public static final String WIFI_ICON_EXTENSION_FULLY = "_fully";
@@ -76,13 +70,14 @@ public class StyleSettings implements Serializable {
 
 	private ImageIcon chargeIcon = null;
 
-	private String filePattern = new String(BATT_ICON_NAME_AOKP);
-	private String filePatternCharge = new String(BATT_ICON_CHARGE_NAME_AOKP);
+	private String filePattern = new String(RomPreset.BATT_ICON_NAME_AOKP);
+	private String filePatternCharge = new String(RomPreset.BATT_ICON_CHARGE_NAME_AOKP);
 
-	private String frameworkDrawableFolder = DrawableComboBox.FOLDER_HDPI;
-	private String systemUIDrawableFolder = DrawableComboBox.FOLDER_XHDPI;
-	private String folderSystemUIInZip = FOLDER_SYSTEMUI + DrawableComboBox.FOLDER_XHDPI + "/";
-	private String folderFrameworkInZip = FOLDER_FRAMEWORK + DrawableComboBox.FOLDER_HDPI + "/";
+	private String frameworkDrawableFolder = RomPreset.FOLDER_HDPI;
+	private String systemUIDrawableFolder = RomPreset.FOLDER_XHDPI;
+	private String folderSystemUIInZip = FOLDER_SYSTEMUI + RomPreset.FOLDER_XHDPI + "/";
+	private String folderFrameworkInZip = FOLDER_FRAMEWORK + RomPreset.FOLDER_HDPI + "/";
+	private String folderLidroidInZip = FOLDER_LIDROID + RomPreset.FOLDER_HDPI + "/";
 	private int targetIconSize = RomPreset.BATT_ICON_HEIGHT_XHDPI;
 	private boolean useAdvancedResize = true;
 
@@ -91,6 +86,7 @@ public class StyleSettings implements Serializable {
 	private int lockHandleSize = RomPreset.LOCK_HDPI;
 	// toggle
 	private int toggleSize = RomPreset.TOGGLE_XHDPI;
+	private boolean useLidroid = false;
 	// weather
 	private int weatherSize = RomPreset.WEATHER_HDPI;
 
@@ -453,6 +449,7 @@ public class StyleSettings implements Serializable {
 	public void setSystemUIDrawableFolder(final String systemUIDrawableFolder) {
 		this.systemUIDrawableFolder = systemUIDrawableFolder;
 		folderSystemUIInZip = FOLDER_SYSTEMUI + systemUIDrawableFolder + "/";
+		folderSystemUIInZip = FOLDER_LIDROID + systemUIDrawableFolder + "/";
 	}
 
 	/**
@@ -1005,6 +1002,36 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setWeatherSize(final int weatherSize) {
 		this.weatherSize = weatherSize;
+	}
+
+	/**
+	 * @return the folderLidroidInZip
+	 */
+	public String getFolderLidroidInZip() {
+		return folderLidroidInZip;
+	}
+
+	/**
+	 * @param folderLidroidInZip
+	 *            the folderLidroidInZip to set
+	 */
+	public void setFolderLidroidInZip(final String folderLidroidInZip) {
+		this.folderLidroidInZip = folderLidroidInZip;
+	}
+
+	/**
+	 * @return the useLidroid
+	 */
+	public boolean isUseLidroid() {
+		return useLidroid;
+	}
+
+	/**
+	 * @param useLidroid
+	 *            the useLidroid to set
+	 */
+	public void setUseLidroid(final boolean useLidroid) {
+		this.useLidroid = useLidroid;
 	}
 
 }

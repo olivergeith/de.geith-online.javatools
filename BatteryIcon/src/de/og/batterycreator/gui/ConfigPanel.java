@@ -85,7 +85,7 @@ public class ConfigPanel extends JPanel {
 
 	JFontChooserButton fontButton = new JFontChooserButton("Choose Font", fontSizes);
 
-	//
+	// Battery
 	DrawableComboBox systemUIDrawableFolderCombo = new DrawableComboBox();
 	DrawableComboBox frameworkDrawableFolderCombo = new DrawableComboBox();
 	SliderAndLabel sliderResize = systemUIDrawableFolderCombo.getSizeSlider();
@@ -97,6 +97,9 @@ public class ConfigPanel extends JPanel {
 
 	// Toggles
 	SliderAndLabel toggleSize = new SliderAndLabel(32, 100);
+	JCheckBox cboxUseLidroid = createCheckbox("lidroid-res.apk for Toggles (S3 only)",
+			"Morph Toggles to framework/lidroid-res.apk (Galaxy S3 only dont play with this on S2 !)");
+
 	// Weather
 	SliderAndLabel weatherSize = new SliderAndLabel(100, 200);
 
@@ -130,6 +133,9 @@ public class ConfigPanel extends JPanel {
 	}
 
 	private void initComponents() {
+		cboxUseLidroid.setForeground(Color.red.darker());
+		cboxUseLidroid.setVisible(false);
+
 		sliderLowBatt.addChangeListener(new ChangeListener() {
 
 			@Override
@@ -167,6 +173,9 @@ public class ConfigPanel extends JPanel {
 					notificationHeight.setText("" + pre.getNotificationHeight());
 					toggleSize.setValue(pre.getToggleSize());
 					weatherSize.setValue(pre.getWeatherSize());
+					sliderResize.setValue(pre.getBattsize());
+					cboxUseLidroid.setSelected(pre.isUseLidroid());
+					cboxUseLidroid.setVisible(pre.isUseLidroid());
 				}
 			}
 		});
@@ -375,6 +384,7 @@ public class ConfigPanel extends JPanel {
 		builder.add(toggleSize.getValueLabel(), cc.xyw(4, row, 1));
 		builder.add(weatherSize, cc.xyw(6, row, 1));
 		builder.add(weatherSize.getValueLabel(), cc.xyw(8, row, 1));
+		builder.add(cboxUseLidroid, cc.xyw(2, ++row, 3));
 
 		builder.add(JGoodiesHelper.createGroupLabel("Notification BG Filename & Size ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
@@ -486,6 +496,7 @@ public class ConfigPanel extends JPanel {
 		notificationHeight.setText("" + settings.getNotificationHeight());
 		// toggle
 		toggleSize.setValue(settings.getToggleSize());
+		cboxUseLidroid.setSelected(settings.isUseLidroid());
 		// weather
 		weatherSize.setValue(settings.getWeatherSize());
 
@@ -564,6 +575,7 @@ public class ConfigPanel extends JPanel {
 		settings.setNotificationHeight(Integer.parseInt(notificationHeight.getText()));
 		// toggle
 		settings.setToggleSize(toggleSize.getValue());
+		settings.setUseLidroid(cboxUseLidroid.isSelected());
 		// weather
 		settings.setWeatherSize(weatherSize.getValue());
 		return settings;

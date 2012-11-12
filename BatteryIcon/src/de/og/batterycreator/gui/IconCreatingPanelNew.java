@@ -2,7 +2,6 @@ package de.og.batterycreator.gui;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.AbstractAction;
@@ -26,11 +25,14 @@ import de.og.batterycreator.gui.panels.BatteryPanel;
 import de.og.batterycreator.gui.panels.LockHandlePanel;
 import de.og.batterycreator.gui.panels.SignalPanel;
 import de.og.batterycreator.gui.panels.WifiPanel;
+import de.og.batterycreator.gui.panels.iconset.IconSetDeployer;
+import de.og.batterycreator.gui.panels.iconset.IconSetSelector;
+import de.og.batterycreator.gui.panels.iconset.RawIconSetSelector;
 import de.og.batterycreator.gui.panels.notification.NotificationAreaBG;
 import de.og.batterycreator.zipcreator.ZipElementCollection;
 import de.og.batterycreator.zipcreator.ZipMaker;
 
-public class IconCreatingPanelNew extends JPanel implements ActionListener {
+public class IconCreatingPanelNew extends JPanel {
 	private static final long serialVersionUID = -2956273745014471932L;
 
 	private final JTabbedPane tabPane = new JTabbedPane();
@@ -41,15 +43,11 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 	private final SignalPanel signalPanel = new SignalPanel(romSettingsPanel.getSettings());
 
 	private final LockHandlePanel lockHandleSelector = new LockHandlePanel();
-	// private final IconSetSelector toggleBox = new IconSetSelector("Toggle",
-	// "./custom/toggles/");
-	// private final IconSetSelector weatherBox = new IconSetSelector("Weather",
-	// "./custom/weather/");
+	private final IconSetSelector toggleBox = new IconSetSelector("Toggle", "./custom/toggles/");
+	private final IconSetSelector weatherBox = new IconSetSelector("Weather", "./custom/weather/");
 	private final NotificationAreaBG notificationBG = new NotificationAreaBG();
-	// private final RawIconSetSelector systemUIBox = new
-	// RawIconSetSelector("SystemUIMod", "./custom/systemui-mods/");
-	// private final RawIconSetSelector frameworkresBox = new
-	// RawIconSetSelector("FrameworkResMod", "./custom/frameworkres-mods/");
+	private final RawIconSetSelector systemUIBox = new RawIconSetSelector("SystemUIMod", "./custom/systemui-mods/");
+	private final RawIconSetSelector frameworkresBox = new RawIconSetSelector("FrameworkResMod", "./custom/frameworkres-mods/");
 	//
 	// private final RecurseFileSetSelector filesetBox = new
 	// RecurseFileSetSelector();
@@ -59,7 +57,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 	private Thread t = null;
 	private boolean isrunning = false;
 	// private boolean stopnow = false;
-	private final int maxsteps = 23;
+	private final int maxsteps = 13;
 	private int step = 0;
 
 	private final JFrame parentFrame;
@@ -79,21 +77,6 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		progressBar.setStringPainted(true);
 		resetProgressBar();
 
-		final JTabbedPane additionalIconsTabPane = new JTabbedPane();
-		// additionalIconsTabPane.addTab("Toggle", IconStore.toggleIcon,
-		// toggleBox.getOverviewPanel(), "Get an Overview of your toggles");
-		// additionalIconsTabPane.addTab("Weather", IconStore.weatherIcon,
-		// weatherBox.getOverviewPanel(),
-		// "Get an Overview of your weather icons");
-		additionalIconsTabPane.addTab("Lockring", IconStore.lockringIcon, lockHandleSelector, "See your choosen Lockring!");
-		// additionalIconsTabPane.addTab("SystemUI Mods",
-		// IconStore.androidredIcon, systemUIBox.getOverviewPanel(),
-		// "Get an Overview of your icons");
-		// additionalIconsTabPane.addTab("FrameWorkRes Mods",
-		// IconStore.androidblueIcon, frameworkresBox.getOverviewPanel(),
-		// "Get an Overview of your icons");
-
-		final JTabbedPane extrasTabPane = new JTabbedPane();
 		// extrasTabPane.addTab("Filesets", IconStore.folder2Icon,
 		// filesetBox.getOverviewPanel(),
 		// "Add Filesets like apk's, lib's, media...");
@@ -105,42 +88,19 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		tabPane.addTab("Wifi", IconStore.wifiIcon, wifiPanel, "Create your Wifi Icons here");
 		tabPane.addTab("Signal", IconStore.signalIcon, signalPanel, "Create your Signal Icons here");
 		tabPane.addTab("NotificationPanel", IconStore.notificationIcon, notificationBG, "Transparent Notification Panel");
-		tabPane.addTab("Additional Icons", IconStore.additionalIcon, additionalIconsTabPane, "Add additional icons to your zip");
-		tabPane.addTab("Extras", IconStore.moreIcon, extrasTabPane, "Extras");
-		// tabPane.addTab("Help",
-		// CommonIconProvider.getInstance().BUTTON_ICON_HELP, new
-		// HelpSelector(), "Help and Howto's");
+		tabPane.addTab("Toggle", IconStore.toggleIcon, toggleBox, "Get an Overview of your toggles");
+		tabPane.addTab("Weather", IconStore.weatherIcon, weatherBox, "Get an Overview of your weather icons");
+		tabPane.addTab("Lockring", IconStore.lockringIcon, lockHandleSelector, "See your choosen Lockring!");
+		tabPane.addTab("SystemUI Mods", IconStore.androidredIcon, systemUIBox, "Get an Overview of your icons");
+		tabPane.addTab("FrameWorkRes Mods", IconStore.androidblueIcon, frameworkresBox, "Get an Overview of your icons");
 
-		// Actionlistener für die dropdownboxen, damit die Tabs aktiv werden
-		// wifiCreatorBox.addActionListener(this);
-		// signalCreatorBox.addActionListener(this);
 		tabPane.setSelectedIndex(1);
 		// Panel zusammensetzen
 		add(tabPane, BorderLayout.CENTER);
 		// add(configPane, BorderLayout.WEST);
 		add(progressBar, BorderLayout.SOUTH);
 
-		// Comobox abfragen
-		// activBattCreator = (AbstractIconCreator)
-		// battCreatorBox.getSelectedItem();
-		// activWifiCreator = (AbstractWifiCreator)
-		// wifiCreatorBox.getSelectedItem();
-		// activSignalCreator = (AbstractSignalCreator)
-		// signalCreatorBox.getSelectedItem();
-
 		makeButtonBar();
-	}
-
-	@Override
-	public void actionPerformed(final ActionEvent e) {
-		// if (e.getSource().equals(wifiCreatorBox) &&
-		// wifiCreatorBox.getSelectedIndex() != 0) {
-		// tabPane.setSelectedIndex(1);
-		// }
-		// if (e.getSource().equals(signalCreatorBox) &&
-		// signalCreatorBox.getSelectedIndex() != 0) {
-		// tabPane.setSelectedIndex(2);
-		// }
 	}
 
 	/**
@@ -148,11 +108,11 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 	 */
 	private void makeButtonBar() {
 		final CreateAktion createAktion = new CreateAktion("Create Icons", CommonIconProvider.getInstance().BUTTON_ICON_START);
-		final ZipAktion zipAktion = new ZipAktion("Create flashable Zip", IconStore.zipIcon);
+		final ZipAktion zipAktion = new ZipAktion("Create Zip", IconStore.zipIcon);
 		final LToolBar toolBar = new LToolBar();
 		toolBar.setFloatable(false);
-		toolBar.add(createAktion, false);
-		toolBar.add(zipAktion, false);
+		toolBar.add(createAktion, true);
+		toolBar.add(zipAktion, true);
 		add(toolBar, BorderLayout.NORTH);
 	}
 
@@ -160,7 +120,6 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 	 * Zip the flashable Zip!
 	 */
 	private void doZip() {
-		step = 0;
 		// first create everything again, to fill the deploy area with latest
 		// settings
 		updateProgressBar(step++, "Creating and deploying Icons to ./pngs");
@@ -188,30 +147,30 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		if (activSignalCreator != null && !activSignalCreator.toString().equals(NoSignalIcons.name)) {
 			files2add2SystemUI.addAll(activSignalCreator.getAllFilenamesAndPath());
 		}
-		//
-		// // Add Toggles
-		// updateProgressBar(step++, "Adding Toggle Icons (if configured)");
-		// if (activBattCreator.getRomSettings().isUseLidroid() == true) {
-		// files2add2Lidroid.addAll(toggleBox.getAllFilenamesAndPath());
-		// } else { // default
-		// files2add2SystemUI.addAll(toggleBox.getAllFilenamesAndPath());
-		// }
-		// // Add Weather
-		// updateProgressBar(step++, "Adding Weather Icons (if configured)");
-		// files2add2Framework.addAll(weatherBox.getAllFilenamesAndPath());
+
+		// Add Toggles
+		updateProgressBar(step++, "Adding Toggle Icons (if configured)");
+		if (romSettingsPanel.getSettings().isUseLidroid() == true) {
+			files2add2Lidroid.addAll(toggleBox.getAllFilenamesAndPath());
+		} else { // default
+			files2add2SystemUI.addAll(toggleBox.getAllFilenamesAndPath());
+		}
+		// Add Weather
+		updateProgressBar(step++, "Adding Weather Icons (if configured)");
+		files2add2Framework.addAll(weatherBox.getAllFilenamesAndPath());
 		// Lockhandle
 		updateProgressBar(step++, "Adding Lock Icons (if configured)");
 		files2add2Framework.addAll(lockHandleSelector.getAllFilenamesAndPath());
 		// notification BG
 		updateProgressBar(step++, "Adding Notification Background (if configured)");
 		files2add2SystemUI.addAll(notificationBG.getAllFilenamesAndPath());
-		//
-		// // SystemUI
-		// updateProgressBar(step++, "Adding SystemUI Mods (if configured)");
-		// files2add2SystemUI.addAll(systemUIBox.getAllFilenamesAndPath());
-		// // FrameWorkRES
-		// updateProgressBar(step++, "Adding SystemUI Mods (if configured)");
-		// files2add2Framework.addAll(frameworkresBox.getAllFilenamesAndPath());
+
+		// SystemUI
+		updateProgressBar(step++, "Adding SystemUI Mods (if configured)");
+		files2add2SystemUI.addAll(systemUIBox.getAllFilenamesAndPath());
+		// FrameWorkRES
+		updateProgressBar(step++, "Adding SystemUI Mods (if configured)");
+		files2add2Framework.addAll(frameworkresBox.getAllFilenamesAndPath());
 
 		// ZipElementCollection anlegen und alle Zipelemente einfügen
 		updateProgressBar(step++, "Creating ZipCollection");
@@ -251,6 +210,7 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 	 * Creates the desired Icons ;-)
 	 */
 	private void create() {
+		step = 0;
 		// Creating Battery Icons
 		updateProgressBar(step++, "Creating Battery Icons (if configured)");
 		battPanel.createAllImages(romSettingsPanel.getSettings());
@@ -271,19 +231,20 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 		updateProgressBar(step++, "Deploying Lockring (if configured)");
 		lockHandleSelector.createAllImages(romSettingsPanel.getSettings());
 
-		// // creating toggles
-		// updateProgressBar(step++, "Deploying Toggles (if configured)");
-		// toggleBox.createAllImages(configPane.getSettings().getToggleSize());
-		// // creating weather
-		// updateProgressBar(step++, "Deploying Weather Icons (if configured)");
-		// weatherBox.createAllImages(configPane.getSettings().getWeatherSize());
-		// updateProgressBar(step++, "Deploying Weather Icons ...done");
-		// // Systemui Mods
-		// updateProgressBar(step++, "Deploying Weather Icons (if configured)");
-		// systemUIBox.createAllImages(IconSetDeployer.NO_RESIZING);
-		// // frame Mods
-		// updateProgressBar(step++, "Deploying Weather Icons (if configured)");
-		// frameworkresBox.createAllImages(IconSetDeployer.NO_RESIZING);
+		// creating toggles
+		updateProgressBar(step++, "Deploying Toggles (if configured)");
+		toggleBox.createAllImages(romSettingsPanel.getSettings().getToggleSize());
+		// creating weather
+		updateProgressBar(step++, "Deploying Weather Icons (if configured)");
+		weatherBox.createAllImages(romSettingsPanel.getSettings().getWeatherSize());
+		updateProgressBar(step++, "Deploying Weather Icons ...done");
+		// Systemui Mods
+		updateProgressBar(step++, "Deploying SystemUI Icons (if configured)");
+		systemUIBox.createAllImages(IconSetDeployer.NO_RESIZING);
+		// frame Mods
+		updateProgressBar(step++, "Deploying Framework-res Icons (if configured)");
+		frameworkresBox.createAllImages(IconSetDeployer.NO_RESIZING);
+		resetProgressBar();
 	}
 
 	/**

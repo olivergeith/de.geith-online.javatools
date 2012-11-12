@@ -15,15 +15,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JToolBar;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
 
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
 
-public class RecurseFileSetSelector extends JComboBox<RecurseFileSet> {
+public class RecurseFileSetSelector extends JPanel {
 	private static final long serialVersionUID = -2767025548199058416L;
 
+	private final JComboBox<RecurseFileSet> combo = new JComboBox<RecurseFileSet>();
 	private final OverviewPanel overPane = new OverviewPanel();
 	private final Vector<RecurseFileSet> sets = new Vector<RecurseFileSet>();
 	private RecurseFileSet selectedSet;
@@ -59,27 +61,20 @@ public class RecurseFileSetSelector extends JComboBox<RecurseFileSet> {
 	private void initUI() {
 		attention.setText(createLableHtml());
 		attention.setBorder(new EmptyBorder(5, 5, 5, 5));
-		final JPanel p = new JPanel(new BorderLayout());
-		p.add(attention, BorderLayout.CENTER);
-		getOverviewPanel().add(p, BorderLayout.EAST);
 
-		addItem(new RecurseFileSet(NADA));
+		combo.addItem(new RecurseFileSet(NADA));
 		addSetsFromFilesystem();
-
-		setRenderer(new MyCellRenderer());
-
-		setToolTipText("Choose your Fileset");
+		combo.setRenderer(new MyCellRenderer());
+		combo.setToolTipText("Choose your Fileset");
 		System.out.println("Loading Custom File Sets!");
-		overPane.add(this, BorderLayout.NORTH);
-		addActionListener(new ActionListener() {
+		combo.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(final ActionEvent e) {
-				final RecurseFileSet selected = (RecurseFileSet) getSelectedItem();
-				final int index = getSelectedIndex();
+				final RecurseFileSet selected = (RecurseFileSet) combo.getSelectedItem();
+				final int index = combo.getSelectedIndex();
 				if (index > 0) {
 					selectedSet = selected;
-
 					overPane.setText(selected.getContentHTML());
 				} else {
 					overPane.setText("   Choose File-Set from Dropdownbox");
@@ -87,8 +82,23 @@ public class RecurseFileSetSelector extends JComboBox<RecurseFileSet> {
 				}
 			}
 		});
-		if (getItemCount() > 0)
-			setSelectedIndex(0);
+		if (combo.getItemCount() > 0)
+			combo.setSelectedIndex(0);
+
+		setLayout(new BorderLayout());
+		this.add(attention, BorderLayout.EAST);
+		this.add(overPane, BorderLayout.CENTER);
+		makeButtonBar();
+	}
+
+	/**
+	 * Creating buttonbar
+	 */
+	private void makeButtonBar() {
+		final JToolBar toolBar = new JToolBar();
+		toolBar.setFloatable(false);
+		toolBar.add(combo);
+		this.add(toolBar, BorderLayout.NORTH);
 	}
 
 	/**
@@ -104,7 +114,7 @@ public class RecurseFileSetSelector extends JComboBox<RecurseFileSet> {
 			for (final File setDir : setDirs) {
 				final RecurseFileSet set = new RecurseFileSet(setDir.getPath());
 				sets.add(set);
-				addItem(set);
+				combo.addItem(set);
 				// addItem(set.getRepresentivIcon());
 			}
 		}
@@ -176,10 +186,7 @@ public class RecurseFileSetSelector extends JComboBox<RecurseFileSet> {
 		// final IconSetSelector combo = new IconSetSelector("Weather",
 		// "./custom/weather/");
 		final RecurseFileSetSelector combo = new RecurseFileSetSelector();
-		if (combo.getItemCount() > 0)
-			combo.setSelectedIndex(0);
-		f.add(combo, BorderLayout.NORTH);
-		f.add(combo.getOverviewPanel(), BorderLayout.CENTER);
+		f.add(combo, BorderLayout.CENTER);
 
 		f.setVisible(true);
 	}

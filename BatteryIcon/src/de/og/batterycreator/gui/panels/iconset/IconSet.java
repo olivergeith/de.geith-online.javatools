@@ -1,4 +1,4 @@
-package de.og.batterycreator.gui.widgets;
+package de.og.batterycreator.gui.panels.iconset;
 
 import java.awt.BorderLayout;
 import java.io.File;
@@ -8,6 +8,8 @@ import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import de.og.batterycreator.gui.widgets.OverviewCreator;
 
 import og.basics.gui.image.StaticImageHelper;
 

@@ -11,24 +11,6 @@ public class StyleSettings implements Serializable {
 
 	private static final long serialVersionUID = 4747296256398459127L;
 
-	public static final String FOLDER_SYSTEMUI = "MORPH/system/app/SystemUI.apk/res/";
-	public static final String FOLDER_FRAMEWORK = "MORPH/system/framework/framework-res.apk/res/";
-	public static final String FOLDER_LIDROID = "MORPH/system/framework/lidroid-res.apk/res/";
-
-	public static final String WIFI_ICON_NAME = "stat_sys_wifi_signal_";
-	public static final String WIFI_ICON_EXTENSION_FULLY = "_fully";
-	public static final String WIFI_ICON_NAME_IN = "stat_sys_wifi_in.png";
-	public static final String WIFI_ICON_NAME_OUT = "stat_sys_wifi_out.png";
-	public static final String WIFI_ICON_NAME_INOUT = "stat_sys_wifi_inout.png";
-
-	public static final String SIGNAL_ICON_NAME = "stat_sys_signal_";
-	public static final String SIGNAL_ICON_EXTENSION_FULLY = "_fully";
-	public static final String SIGNAL_ICON_NAME_IN = "stat_sys_signal_in.png";
-	public static final String SIGNAL_ICON_NAME_OUT = "stat_sys_signal_out.png";
-	public static final String SIGNAL_ICON_NAME_INOUT = "stat_sys_signal_inout.png";
-
-	public static final String NOTIFICATION_BG_FILENME = "notification_panel_bg.9.png";
-
 	// Konstanten
 	public static final Color COLOR_INACTIV = Color.darkGray.brighter();
 	public static final Color COLOR_BGRND = Color.black;
@@ -70,14 +52,14 @@ public class StyleSettings implements Serializable {
 
 	private ImageIcon chargeIcon = null;
 
-	private String filePattern = new String(RomPreset.BATT_ICON_NAME_AOKP);
-	private String filePatternCharge = new String(RomPreset.BATT_ICON_CHARGE_NAME_AOKP);
+	private String filePattern = RomPreset.BATT_ICON_NAME_AOKP;
+	private String filePatternCharge = RomPreset.BATT_ICON_CHARGE_NAME_AOKP;
 
-	private String frameworkDrawableFolder = RomPreset.FOLDER_HDPI;
-	private String systemUIDrawableFolder = RomPreset.FOLDER_XHDPI;
-	private String folderSystemUIInZip = FOLDER_SYSTEMUI + RomPreset.FOLDER_XHDPI + "/";
-	private String folderFrameworkInZip = FOLDER_FRAMEWORK + RomPreset.FOLDER_HDPI + "/";
-	private String folderLidroidInZip = FOLDER_LIDROID + RomPreset.FOLDER_HDPI + "/";
+	private String frameworkDrawableFolder = RomPreset.DRAWABLE_HDPI;
+	private String systemUIDrawableFolder = RomPreset.DRAWABLE_XHDPI;
+	private String folderSystemUIInZip = RomPreset.FOLDER_SYSTEMUI + RomPreset.DRAWABLE_XHDPI + "/";
+	private String folderFrameworkInZip = RomPreset.FOLDER_FRAMEWORK + RomPreset.DRAWABLE_HDPI + "/";
+	private String folderLidroidInZip = RomPreset.FOLDER_LIDROID + RomPreset.DRAWABLE_HDPI + "/";
 	private int targetIconSize = RomPreset.BATT_ICON_HEIGHT_XHDPI;
 	private boolean useAdvancedResize = true;
 
@@ -101,21 +83,21 @@ public class StyleSettings implements Serializable {
 	private int fontYOffset = 0;
 
 	// Notification
-	private String notificationBGFilename = NOTIFICATION_BG_FILENME;
+	private String notificationBGFilename = RomPreset.NOTIFICATION_BG_FILENME;
 	private int notificationHeight = RomPreset.NOTIFICATION_XHDPI;
 	// Signal Stuff
-	private String fileSignalPattern = new String(SIGNAL_ICON_NAME);
-	private String fileSignalEXtensionFully = new String(SIGNAL_ICON_EXTENSION_FULLY);
-	private String fileSignalIn = new String(SIGNAL_ICON_NAME_IN);
-	private String fileSignalOut = new String(SIGNAL_ICON_NAME_OUT);
-	private String fileSignalInOut = new String(SIGNAL_ICON_NAME_INOUT);
+	private String fileSignalPattern = RomPreset.SIGNAL_ICON_NAME;
+	private String fileSignalEXtensionFully = RomPreset.SIGNAL_ICON_EXTENSION_FULLY;
+	private String fileSignalIn = RomPreset.SIGNAL_ICON_NAME_IN;
+	private String fileSignalOut = RomPreset.SIGNAL_ICON_NAME_OUT;
+	private String fileSignalInOut = RomPreset.SIGNAL_ICON_NAME_INOUT;
 
 	// Wifi Stuff
-	private String fileWifiPattern = new String(WIFI_ICON_NAME);
-	private String fileWifiEXtensionFully = new String(WIFI_ICON_EXTENSION_FULLY);
-	private String fileWifiIn = new String(WIFI_ICON_NAME_IN);
-	private String fileWifiOut = new String(WIFI_ICON_NAME_OUT);
-	private String fileWifiInOut = new String(WIFI_ICON_NAME_INOUT);
+	private String fileWifiPattern = RomPreset.WIFI_ICON_NAME;
+	private String fileWifiEXtensionFully = RomPreset.WIFI_ICON_EXTENSION_FULLY;
+	private String fileWifiIn = RomPreset.WIFI_ICON_NAME_IN;
+	private String fileWifiOut = RomPreset.WIFI_ICON_NAME_OUT;
+	private String fileWifiInOut = RomPreset.WIFI_ICON_NAME_INOUT;
 	private Color inWifiColor = Color.red;
 	private Color outWifiColor = Color.green.darker();
 	private Color wifiColor = Color.white;
@@ -448,8 +430,8 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setSystemUIDrawableFolder(final String systemUIDrawableFolder) {
 		this.systemUIDrawableFolder = systemUIDrawableFolder;
-		folderSystemUIInZip = FOLDER_SYSTEMUI + systemUIDrawableFolder + "/";
-		folderSystemUIInZip = FOLDER_LIDROID + systemUIDrawableFolder + "/";
+		folderSystemUIInZip = RomPreset.FOLDER_SYSTEMUI + systemUIDrawableFolder + "/";
+		folderSystemUIInZip = RomPreset.FOLDER_LIDROID + systemUIDrawableFolder + "/";
 	}
 
 	/**
@@ -465,7 +447,7 @@ public class StyleSettings implements Serializable {
 	 */
 	public void setFrameworkDrawableFolder(final String frameworkDrawableFolder) {
 		this.frameworkDrawableFolder = frameworkDrawableFolder;
-		folderFrameworkInZip = FOLDER_FRAMEWORK + frameworkDrawableFolder + "/";
+		folderFrameworkInZip = RomPreset.FOLDER_FRAMEWORK + frameworkDrawableFolder + "/";
 	}
 
 	/**

@@ -4,6 +4,27 @@ import java.util.Vector;
 
 public class RomPreset {
 
+	// Konstanten Filenames
+	public static final String LOCKHANDLE_FILENAME_DEFAULT = "ic_lockscreen_handle_normal.png";
+	public static final String FOLDER_SYSTEMUI = "MORPH/system/app/SystemUI.apk/res/";
+	public static final String FOLDER_FRAMEWORK = "MORPH/system/framework/framework-res.apk/res/";
+	public static final String FOLDER_LIDROID = "MORPH/system/framework/lidroid-res.apk/res/";
+	public static final String WIFI_ICON_NAME = "stat_sys_wifi_signal_";
+	public static final String WIFI_ICON_EXTENSION_FULLY = "_fully";
+	public static final String WIFI_ICON_NAME_IN = "stat_sys_wifi_in.png";
+	public static final String WIFI_ICON_NAME_OUT = "stat_sys_wifi_out.png";
+	public static final String WIFI_ICON_NAME_INOUT = "stat_sys_wifi_inout.png";
+	public static final String SIGNAL_ICON_NAME = "stat_sys_signal_";
+	public static final String SIGNAL_ICON_EXTENSION_FULLY = "_fully";
+	public static final String SIGNAL_ICON_NAME_IN = "stat_sys_signal_in.png";
+	public static final String SIGNAL_ICON_NAME_OUT = "stat_sys_signal_out.png";
+	public static final String SIGNAL_ICON_NAME_INOUT = "stat_sys_signal_inout.png";
+	public static final String NOTIFICATION_BG_FILENME = "notification_panel_bg.9.png";
+	public static final String BATT_ICON_CHARGE_NAME_AOKP = "stat_sys_battery_circle_charge_anim";
+	public static final String BATT_ICON_NAME_AOKP = "stat_sys_battery_circle_";
+	public static final String BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY = "stat_sys_battery_charge_anim";
+	public static final String BATT_ICON_NAME_STOCK_ICS_JKAY = "stat_sys_battery_";
+
 	// is in frameworkres...
 	public static final int WEATHER_XHDPI = 162;
 	public static final int WEATHER_HDPI = 144;
@@ -25,56 +46,52 @@ public class RomPreset {
 	public static final int BATT_ICON_HEIGHT_HDPI_S3 = 38;
 	public static final int BATT_ICON_HEIGHT_720DP = 48;
 	public static final int BATT_ICON_HEIGHT_600DP = 43;
-	public static final String BATT_ICON_CHARGE_NAME_AOKP = "stat_sys_battery_circle_charge_anim";
-	public static final String BATT_ICON_NAME_AOKP = "stat_sys_battery_circle_";
-	public static final String BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY = "stat_sys_battery_charge_anim";
-	public static final String BATT_ICON_NAME_STOCK_ICS_JKAY = "stat_sys_battery_";
 
-	public static final String FOLDER_XHDPI = "drawable-xhdpi";
-	public static final String FOLDER_HDPI = "drawable-hdpi";
-	public static final String FOLDER_HDPI_S3 = "drawable-hdpi";
-	public static final String FOLDER_720DP = "drawable-sw720dp-xhdpi";
-	public static final String FOLDER_600DP = "drawable-sw600dp-xhdpi";
+	public static final String DRAWABLE_XHDPI = "drawable-xhdpi";
+	public static final String DRAWABLE_HDPI = "drawable-hdpi";
+	public static final String DRAWABLE_HDPI_S3 = "drawable-hdpi";
+	public static final String DRAWABLE_720DP = "drawable-sw720dp-xhdpi";
+	public static final String DRAWABLE_600DP = "drawable-sw600dp-xhdpi";
 
 	public static final String APPLY = "Apply Settings for Rom...";
 	private static Vector<RomPreset> presets = new Vector<RomPreset>();
 
 	static {
-		presets.add(new RomPreset(APPLY, FOLDER_XHDPI, BATT_ICON_HEIGHT_XHDPI, FOLDER_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI,
+		presets.add(new RomPreset(APPLY, DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI,
 				NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_HDPI));
 
-		presets.add(new RomPreset("Default", FOLDER_XHDPI, BATT_ICON_HEIGHT_XHDPI, FOLDER_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI,
+		presets.add(new RomPreset("Default", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI,
 				NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_HDPI));
 
-		presets.add(new RomPreset("Resurrection Remix JB 3.1.2 and above", FOLDER_XHDPI, BATT_ICON_HEIGHT_XHDPI, FOLDER_HDPI, BATT_ICON_NAME_AOKP,
+		presets.add(new RomPreset("Resurrection Remix JB 3.1.2 and above", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP,
 				BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_HDPI));
 
-		presets.add(new RomPreset("Resurrection Remix JB 3.x.x-3.1.1", FOLDER_XHDPI, BATT_ICON_HEIGHT_XHDPI, FOLDER_XHDPI, BATT_ICON_NAME_AOKP,
+		presets.add(new RomPreset("Resurrection Remix JB 3.x.x-3.1.1", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_XHDPI, BATT_ICON_NAME_AOKP,
 				BATT_ICON_CHARGE_NAME_AOKP, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_XHDPI));
 
-		presets.add(new RomPreset("Resurrection Remix ICS 2.6-2.7", FOLDER_HDPI, BATT_ICON_HEIGHT_HDPI, FOLDER_HDPI, BATT_ICON_NAME_AOKP,
+		presets.add(new RomPreset("Resurrection Remix ICS 2.6-2.7", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP,
 				BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI));
 
-		presets.add(new RomPreset("RootBox JB 2.x - 3.x", FOLDER_HDPI, BATT_ICON_HEIGHT_HDPI, FOLDER_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP,
+		presets.add(new RomPreset("RootBox JB 2.x - 3.x", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP,
 				LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI));
 
-		presets.add(new RomPreset("[MORPHOLOGY SOCIETY] Galaxy S3", FOLDER_HDPI, BATT_ICON_HEIGHT_HDPI_S3, FOLDER_HDPI, BATT_ICON_NAME_STOCK_ICS_JKAY,
+		presets.add(new RomPreset("[MORPHOLOGY SOCIETY] Galaxy S3", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI_S3, DRAWABLE_HDPI, BATT_ICON_NAME_STOCK_ICS_JKAY,
 				BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI_S3, true, WEATHER_XHDPI));
 
-		presets.add(new RomPreset("HydraH2O ICS 1.x", FOLDER_HDPI, BATT_ICON_HEIGHT_HDPI, FOLDER_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP,
+		presets.add(new RomPreset("HydraH2O ICS 1.x", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP,
 				LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI));
 
-		presets.add(new RomPreset("Original AOKP JB", FOLDER_HDPI, BATT_ICON_HEIGHT_HDPI, FOLDER_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP,
+		presets.add(new RomPreset("Original AOKP JB", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP,
 				LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI));
 
-		presets.add(new RomPreset("Original CM9/CM10 + 1%-Mod!!!", FOLDER_HDPI, BATT_ICON_HEIGHT_HDPI, FOLDER_HDPI, BATT_ICON_NAME_AOKP,
+		presets.add(new RomPreset("Original CM9/CM10 + 1%-Mod!!!", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP,
 				BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI));
 
-		presets.add(new RomPreset("Stock ROM ICS incl. JKay", FOLDER_HDPI, BATT_ICON_HEIGHT_HDPI, FOLDER_HDPI, BATT_ICON_NAME_STOCK_ICS_JKAY,
+		presets.add(new RomPreset("Stock ROM ICS incl. JKay", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI, BATT_ICON_NAME_STOCK_ICS_JKAY,
 				BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY, LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI));
 
-		presets.add(new RomPreset("Full xhdpi AOKP ROM", FOLDER_XHDPI, BATT_ICON_HEIGHT_XHDPI, FOLDER_XHDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP,
-				LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_XHDPI));
+		presets.add(new RomPreset("Full xhdpi AOKP ROM", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_XHDPI, BATT_ICON_NAME_AOKP,
+				BATT_ICON_CHARGE_NAME_AOKP, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_XHDPI));
 
 	}
 

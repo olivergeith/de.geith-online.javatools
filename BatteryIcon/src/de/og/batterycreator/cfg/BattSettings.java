@@ -6,28 +6,18 @@ import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 
-public class ROMSettings implements Serializable {
-	private static final String LOCKHANDLE_FILENAME_DEFAULT = "ic_lockscreen_handle_normal.png";
+/**
+ * Everything for Batteries...Colors, Fonts etc...
+ * 
+ * @author geith
+ * 
+ */
+public class BattSettings implements Serializable {
 
-	private static final long serialVersionUID = 4747296256398459127L;
-
-	public static final String FOLDER_SYSTEMUI = "MORPH/system/app/SystemUI.apk/res/";
-	public static final String FOLDER_FRAMEWORK = "MORPH/system/framework/framework-res.apk/res/";
-	public static final String FOLDER_LIDROID = "MORPH/system/framework/lidroid-res.apk/res/";
-
-	public static final String WIFI_ICON_NAME = "stat_sys_wifi_signal_";
-	public static final String WIFI_ICON_EXTENSION_FULLY = "_fully";
-	public static final String WIFI_ICON_NAME_IN = "stat_sys_wifi_in.png";
-	public static final String WIFI_ICON_NAME_OUT = "stat_sys_wifi_out.png";
-	public static final String WIFI_ICON_NAME_INOUT = "stat_sys_wifi_inout.png";
-
-	public static final String SIGNAL_ICON_NAME = "stat_sys_signal_";
-	public static final String SIGNAL_ICON_EXTENSION_FULLY = "_fully";
-	public static final String SIGNAL_ICON_NAME_IN = "stat_sys_signal_in.png";
-	public static final String SIGNAL_ICON_NAME_OUT = "stat_sys_signal_out.png";
-	public static final String SIGNAL_ICON_NAME_INOUT = "stat_sys_signal_inout.png";
-
-	public static final String NOTIFICATION_BG_FILENME = "notification_panel_bg.9.png";
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6505593229306008760L;
 
 	// Konstanten
 	public static final Color COLOR_INACTIV = Color.darkGray.brighter();
@@ -54,6 +44,14 @@ public class ROMSettings implements Serializable {
 	private boolean transparentBackground = true;
 	private Color backgroundColor = COLOR_BGRND;
 
+	// font and charge icon offset
+	private int iconXOffset = 0;
+	private int iconYOffset = 0;
+	private int fontXOffset = 0;
+	private int fontYOffset = 0;
+	// font
+	private Font font = DEFAULT_FONT;
+	private int reduceFontOn100 = -3;
 	private boolean showFont = true;
 	private boolean coloredFont = false;
 	private boolean coloredIcon = true;
@@ -69,65 +67,6 @@ public class ROMSettings implements Serializable {
 	private int MedBattTheshold = 30;
 
 	private ImageIcon chargeIcon = null;
-
-	private String filePattern = new String(RomPreset.BATT_ICON_NAME_AOKP);
-	private String filePatternCharge = new String(RomPreset.BATT_ICON_CHARGE_NAME_AOKP);
-
-	private String frameworkDrawableFolder = RomPreset.FOLDER_HDPI;
-	private String systemUIDrawableFolder = RomPreset.FOLDER_XHDPI;
-	private String folderSystemUIInZip = FOLDER_SYSTEMUI + RomPreset.FOLDER_XHDPI + "/";
-	private String folderFrameworkInZip = FOLDER_FRAMEWORK + RomPreset.FOLDER_HDPI + "/";
-	private String folderLidroidInZip = FOLDER_LIDROID + RomPreset.FOLDER_HDPI + "/";
-	private int targetIconSize = RomPreset.BATT_ICON_HEIGHT_XHDPI;
-	private boolean useAdvancedResize = true;
-
-	// Lockhandle
-	private String lockHandleFileName = LOCKHANDLE_FILENAME_DEFAULT;
-	private int lockHandleSize = RomPreset.LOCK_HDPI;
-	// toggle
-	private int toggleSize = RomPreset.TOGGLE_XHDPI;
-	private boolean useLidroid = false;
-	// weather
-	private int weatherSize = RomPreset.WEATHER_HDPI;
-
-	// font
-	private Font font = DEFAULT_FONT;
-	private int reduceFontOn100 = -3;
-
-	// font and charge icon offset
-	private int iconXOffset = 0;
-	private int iconYOffset = 0;
-	private int fontXOffset = 0;
-	private int fontYOffset = 0;
-
-	// Notification
-	private String notificationBGFilename = NOTIFICATION_BG_FILENME;
-	private int notificationHeight = RomPreset.NOTIFICATION_XHDPI;
-	// Signal Stuff
-	private String fileSignalPattern = new String(SIGNAL_ICON_NAME);
-	private String fileSignalEXtensionFully = new String(SIGNAL_ICON_EXTENSION_FULLY);
-	private String fileSignalIn = new String(SIGNAL_ICON_NAME_IN);
-	private String fileSignalOut = new String(SIGNAL_ICON_NAME_OUT);
-	private String fileSignalInOut = new String(SIGNAL_ICON_NAME_INOUT);
-
-	// Wifi Stuff
-	private String fileWifiPattern = new String(WIFI_ICON_NAME);
-	private String fileWifiEXtensionFully = new String(WIFI_ICON_EXTENSION_FULLY);
-	private String fileWifiIn = new String(WIFI_ICON_NAME_IN);
-	private String fileWifiOut = new String(WIFI_ICON_NAME_OUT);
-	private String fileWifiInOut = new String(WIFI_ICON_NAME_INOUT);
-	private Color inWifiColor = Color.red;
-	private Color outWifiColor = Color.green.darker();
-	private Color wifiColor = Color.white;
-	private Color wifiColorFully = COLOR_AOKP_BLUE;
-
-	public String getFolderSystemUIInZip() {
-		return folderSystemUIInZip;
-	}
-
-	public String getFolderFrameworkInZip() {
-		return folderFrameworkInZip;
-	}
 
 	public Color getFontColor() {
 		return fontColor;
@@ -406,99 +345,6 @@ public class ROMSettings implements Serializable {
 	}
 
 	/**
-	 * @return the filePattern
-	 */
-	public String getFilePattern() {
-		return filePattern;
-	}
-
-	/**
-	 * @param filePattern
-	 *            the filePattern to set
-	 */
-	public void setFilePattern(final String filePattern) {
-		this.filePattern = filePattern;
-	}
-
-	/**
-	 * @return the filePatternCharge
-	 */
-	public String getFilePatternCharge() {
-		return filePatternCharge;
-	}
-
-	/**
-	 * @param filePatternCharge
-	 *            the filePatternCharge to set
-	 */
-	public void setFilePatternCharge(final String filePatternCharge) {
-		this.filePatternCharge = filePatternCharge;
-	}
-
-	/**
-	 * @return the systemUIDrawableFolder
-	 */
-	public String getSystemUIDrawableFolder() {
-		return systemUIDrawableFolder;
-	}
-
-	/**
-	 * @param systemUIDrawableFolder
-	 *            the zipOutFolder to set
-	 */
-	public void setSystemUIDrawableFolder(final String systemUIDrawableFolder) {
-		this.systemUIDrawableFolder = systemUIDrawableFolder;
-		folderSystemUIInZip = FOLDER_SYSTEMUI + systemUIDrawableFolder + "/";
-		folderSystemUIInZip = FOLDER_LIDROID + systemUIDrawableFolder + "/";
-	}
-
-	/**
-	 * @return the frameworkDrawableFolder
-	 */
-	public String getFrameworkDrawableFolder() {
-		return frameworkDrawableFolder;
-	}
-
-	/**
-	 * @param frameworkDrawableFolder
-	 *            the frameworkDrawableFolder to set
-	 */
-	public void setFrameworkDrawableFolder(final String frameworkDrawableFolder) {
-		this.frameworkDrawableFolder = frameworkDrawableFolder;
-		folderFrameworkInZip = FOLDER_FRAMEWORK + frameworkDrawableFolder + "/";
-	}
-
-	/**
-	 * @return the iconSize
-	 */
-	public int getTargetIconSize() {
-		return targetIconSize;
-	}
-
-	/**
-	 * @param targetIconSize
-	 *            the iconSize to set
-	 */
-	public void setTargetIconSize(final int targetIconSize) {
-		this.targetIconSize = targetIconSize;
-	}
-
-	/**
-	 * @return the useAdvancedResize
-	 */
-	public boolean isUseAdvancedResize() {
-		return useAdvancedResize;
-	}
-
-	/**
-	 * @param useAdvancedResize
-	 *            the useAdvancedResize to set
-	 */
-	public void setUseAdvancedResize(final boolean useAdvancedResize) {
-		this.useAdvancedResize = useAdvancedResize;
-	}
-
-	/**
 	 * @return the useGradiantForNormalColor
 	 */
 	public boolean isUseGradiantForNormalColor() {
@@ -672,171 +518,6 @@ public class ROMSettings implements Serializable {
 	}
 
 	/**
-	 * @return the filePattern
-	 */
-	public String getFileWifiPattern() {
-		return fileWifiPattern;
-	}
-
-	/**
-	 * @param filePattern
-	 *            the filePattern to set
-	 */
-	public void setFileWifiPattern(final String filePattern) {
-		fileWifiPattern = filePattern;
-	}
-
-	/**
-	 * @return the fileEXtensionFully
-	 */
-	public String getFileWifiEXtensionFully() {
-		return fileWifiEXtensionFully;
-	}
-
-	/**
-	 * @param fileEXtensionFully
-	 *            the fileEXtensionFully to set
-	 */
-	public void setFileWifiEXtensionFully(final String fileEXtensionFully) {
-		fileWifiEXtensionFully = fileEXtensionFully;
-	}
-
-	/**
-	 * @return the fileIn
-	 */
-	public String getFileWifiIn() {
-		return fileWifiIn;
-	}
-
-	/**
-	 * @param fileIn
-	 *            the fileIn to set
-	 */
-	public void setFileWifiIn(final String fileIn) {
-		fileWifiIn = fileIn;
-	}
-
-	/**
-	 * @return the fileOut
-	 */
-	public String getFileWifiOut() {
-		return fileWifiOut;
-	}
-
-	/**
-	 * @param fileOut
-	 *            the fileOut to set
-	 */
-	public void setFileWifiOut(final String fileOut) {
-		fileWifiOut = fileOut;
-	}
-
-	/**
-	 * @return the fileInOut
-	 */
-	public String getFileWifiInOut() {
-		return fileWifiInOut;
-	}
-
-	/**
-	 * @param fileInOut
-	 *            the fileInOut to set
-	 */
-	public void setFileWifiInOut(final String fileInOut) {
-		fileWifiInOut = fileInOut;
-	}
-
-	/**
-	 * @return the inColor
-	 */
-	public Color getInWifiColor() {
-		return inWifiColor;
-	}
-
-	/**
-	 * @param inColor
-	 *            the inColor to set
-	 */
-	public void setInWifiColor(final Color inColor) {
-		inWifiColor = inColor;
-	}
-
-	/**
-	 * @return the outColor
-	 */
-	public Color getOutWifiColor() {
-		return outWifiColor;
-	}
-
-	/**
-	 * @param outColor
-	 *            the outColor to set
-	 */
-	public void setOutWifiColor(final Color outColor) {
-		outWifiColor = outColor;
-	}
-
-	/**
-	 * @return the wifiColor
-	 */
-	public Color getWifiColor() {
-		return wifiColor;
-	}
-
-	/**
-	 * @param wifiColor
-	 *            the wifiColor to set
-	 */
-	public void setWifiColor(final Color wifiColor) {
-		this.wifiColor = wifiColor;
-	}
-
-	/**
-	 * @return the wifiColorFully
-	 */
-	public Color getWifiColorFully() {
-		return wifiColorFully;
-	}
-
-	/**
-	 * @param wifiColorFully
-	 *            the wifiColorFully to set
-	 */
-	public void setWifiColorFully(final Color wifiColorFully) {
-		this.wifiColorFully = wifiColorFully;
-	}
-
-	/**
-	 * @return the lockHandleFileName
-	 */
-	public String getLockHandleFileName() {
-		return lockHandleFileName;
-	}
-
-	/**
-	 * @param lockHandleFileName
-	 *            the lockHandleFileName to set
-	 */
-	public void setLockHandleFileName(final String lockHandleFileName) {
-		this.lockHandleFileName = lockHandleFileName;
-	}
-
-	/**
-	 * @return the lockHandleSize
-	 */
-	public int getLockHandleSize() {
-		return lockHandleSize;
-	}
-
-	/**
-	 * @param lockHandleSize
-	 *            the lockHandleSize to set
-	 */
-	public void setLockHandleSize(final int lockHandleSize) {
-		this.lockHandleSize = lockHandleSize;
-	}
-
-	/**
 	 * @return the transparentBackground
 	 */
 	public boolean isTransparentBackground() {
@@ -868,170 +549,4 @@ public class ROMSettings implements Serializable {
 	public void setBackgroundColor(final Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
 	}
-
-	/**
-	 * @return the fileSignalInOut
-	 */
-	public String getFileSignalInOut() {
-		return fileSignalInOut;
-	}
-
-	/**
-	 * @param fileSignalInOut
-	 *            the fileSignalInOut to set
-	 */
-	public void setFileSignalInOut(final String fileSignalInOut) {
-		this.fileSignalInOut = fileSignalInOut;
-	}
-
-	/**
-	 * @return the fileSignalOut
-	 */
-	public String getFileSignalOut() {
-		return fileSignalOut;
-	}
-
-	/**
-	 * @param fileSignalOut
-	 *            the fileSignalOut to set
-	 */
-	public void setFileSignalOut(final String fileSignalOut) {
-		this.fileSignalOut = fileSignalOut;
-	}
-
-	/**
-	 * @return the fileSignalIn
-	 */
-	public String getFileSignalIn() {
-		return fileSignalIn;
-	}
-
-	/**
-	 * @param fileSignalIn
-	 *            the fileSignalIn to set
-	 */
-	public void setFileSignalIn(final String fileSignalIn) {
-		this.fileSignalIn = fileSignalIn;
-	}
-
-	/**
-	 * @return the fileSignalEXtensionFully
-	 */
-	public String getFileSignalEXtensionFully() {
-		return fileSignalEXtensionFully;
-	}
-
-	/**
-	 * @param fileSignalEXtensionFully
-	 *            the fileSignalEXtensionFully to set
-	 */
-	public void setFileSignalEXtensionFully(final String fileSignalEXtensionFully) {
-		this.fileSignalEXtensionFully = fileSignalEXtensionFully;
-	}
-
-	/**
-	 * @return the fileSignalPattern
-	 */
-	public String getFileSignalPattern() {
-		return fileSignalPattern;
-	}
-
-	/**
-	 * @param fileSignalPattern
-	 *            the fileSignalPattern to set
-	 */
-	public void setFileSignalPattern(final String fileSignalPattern) {
-		this.fileSignalPattern = fileSignalPattern;
-	}
-
-	/**
-	 * @return the notificationBGFilename
-	 */
-	public String getNotificationBGFilename() {
-		return notificationBGFilename;
-	}
-
-	/**
-	 * @param notificationBGFilename
-	 *            the notificationBGFilename to set
-	 */
-	public void setNotificationBGFilename(final String notificationBGFilename) {
-		this.notificationBGFilename = notificationBGFilename;
-	}
-
-	/**
-	 * @return the notificationHeight
-	 */
-	public int getNotificationHeight() {
-		return notificationHeight;
-	}
-
-	/**
-	 * @param notificationHeight
-	 *            the notificationHeight to set
-	 */
-	public void setNotificationHeight(final int notificationHeight) {
-		this.notificationHeight = notificationHeight;
-	}
-
-	/**
-	 * @return the toggleSize
-	 */
-	public int getToggleSize() {
-		return toggleSize;
-	}
-
-	/**
-	 * @param toggleSize
-	 *            the toggleSize to set
-	 */
-	public void setToggleSize(final int toggleSize) {
-		this.toggleSize = toggleSize;
-	}
-
-	/**
-	 * @return the weatherSize
-	 */
-	public int getWeatherSize() {
-		return weatherSize;
-	}
-
-	/**
-	 * @param weatherSize
-	 *            the weatherSize to set
-	 */
-	public void setWeatherSize(final int weatherSize) {
-		this.weatherSize = weatherSize;
-	}
-
-	/**
-	 * @return the folderLidroidInZip
-	 */
-	public String getFolderLidroidInZip() {
-		return folderLidroidInZip;
-	}
-
-	/**
-	 * @param folderLidroidInZip
-	 *            the folderLidroidInZip to set
-	 */
-	public void setFolderLidroidInZip(final String folderLidroidInZip) {
-		this.folderLidroidInZip = folderLidroidInZip;
-	}
-
-	/**
-	 * @return the useLidroid
-	 */
-	public boolean isUseLidroid() {
-		return useLidroid;
-	}
-
-	/**
-	 * @param useLidroid
-	 *            the useLidroid to set
-	 */
-	public void setUseLidroid(final boolean useLidroid) {
-		this.useLidroid = useLidroid;
-	}
-
 }

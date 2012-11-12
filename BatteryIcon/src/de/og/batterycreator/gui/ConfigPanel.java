@@ -88,7 +88,7 @@ public class ConfigPanel extends JPanel {
 	// Battery
 	DrawableComboBox systemUIDrawableFolderCombo = new DrawableComboBox();
 	DrawableComboBox frameworkDrawableFolderCombo = new DrawableComboBox();
-	SliderAndLabel sliderResize = systemUIDrawableFolderCombo.getSizeSlider();
+	SliderAndLabel sliderResize = systemUIDrawableFolderCombo.getSliderBattSize();
 	JComboBox<RomPreset> romPresetCombo = new JComboBox<RomPreset>(RomPreset.getPresets());
 
 	// Lockhandle

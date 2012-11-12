@@ -26,7 +26,7 @@ public abstract class AbstractSignalCreator extends AbstractCreator {
 	}
 
 	protected static final int NULL_LEVEL = 5;
-	protected WifiSignalSettings settings = new WifiSignalSettings();
+	private WifiSignalSettings settings = new WifiSignalSettings();
 
 	// ###############################################################################
 	// Abstracte Methoden
@@ -36,9 +36,9 @@ public abstract class AbstractSignalCreator extends AbstractCreator {
 	public abstract ImageIcon createInOutImage(boolean in, boolean out);
 
 	protected Color getConnectColor(final boolean fully) {
-		Color col = settings.getColor();
+		Color col = getSettings().getColor();
 		if (fully == true)
-			col = settings.getColorFully();
+			col = getSettings().getColorFully();
 		return col;
 	}
 
@@ -194,15 +194,29 @@ public abstract class AbstractSignalCreator extends AbstractCreator {
 
 	protected Graphics2D initGrafics2D(final BufferedImage img, final boolean forceTransparent) {
 		final Graphics2D g2d = img.createGraphics();
-		g2d.setFont(settings.getFont());
+		g2d.setFont(getSettings().getFont());
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		if (!forceTransparent) {
-			if (!settings.isTransparentBackground()) {
-				g2d.setColor(settings.getBackgroundColor());
+			if (!getSettings().isTransparentBackground()) {
+				g2d.setColor(getSettings().getBackgroundColor());
 				g2d.fillRect(0, 0, img.getWidth(), img.getHeight());
 			}
 		}
 		return g2d;
+	}
+
+	/**
+	 * @return the settings
+	 */
+	public WifiSignalSettings getSettings() {
+		return settings;
+	}
+
+	/**
+	 * @param settings the settings to set
+	 */
+	public void setSettings(WifiSignalSettings settings) {
+		this.settings = settings;
 	}
 
 }

@@ -51,7 +51,7 @@ public class TextWifiCreator extends AbstractWifiCreator {
 
 		if (level == 0 && fully == true) {
 			for (int i = 0; i < 5; i++) {
-				g2d.setColor(settings.getColorInActiv());
+				g2d.setColor(getSettings().getColorInActiv());
 				final Rectangle rect = calculateRectForLevel(i);
 				g2d.drawRect(rect.x + 1, rect.y, rect.width - 1, rect.height - 1);
 			}
@@ -62,14 +62,14 @@ public class TextWifiCreator extends AbstractWifiCreator {
 				if (i <= level)
 					g2d.fillRect(rect.x, rect.y, rect.width, rect.height);
 				else {
-					g2d.setColor(settings.getColorInActiv());
+					g2d.setColor(getSettings().getColorInActiv());
 					g2d.fillRect(rect.x, rect.y, rect.width, rect.height);
 				}
 			}
 		}
 		final FontMetrics metrix = g2d.getFontMetrics();
 		g2d.setColor(getConnectColor(fully));
-		final Font font = settings.getFont();
+		final Font font = getSettings().getFont();
 		final Font font2 = font.deriveFont(14f);
 		g2d.setFont(font2);
 		final String wifi = "Wifi";
@@ -107,11 +107,11 @@ public class TextWifiCreator extends AbstractWifiCreator {
 		final Rectangle rectout = new Rectangle(1, 2, 3, imgHeight - 4);
 		final Rectangle rectin = new Rectangle(3, 2, 3, imgHeight - 4);
 		if (in) {
-			g2d.setColor(settings.getInColor());
+			g2d.setColor(getSettings().getInColor());
 			g2d.fillRect(rectin.x, rectin.y, rectin.width, rectin.height);
 		}
 		if (out) {
-			g2d.setColor(settings.getOutColor());
+			g2d.setColor(getSettings().getOutColor());
 			g2d.fillRect(rectout.x, rectout.y, rectout.width, rectout.height);
 		}
 

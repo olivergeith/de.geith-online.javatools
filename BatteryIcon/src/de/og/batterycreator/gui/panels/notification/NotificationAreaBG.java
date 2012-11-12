@@ -1,4 +1,4 @@
-package de.og.batterycreator.gui.widgets.transparent;
+package de.og.batterycreator.gui.panels.notification;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -24,9 +24,8 @@ import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-import de.og.batterycreator.cfg.StyleSettings;
+import de.og.batterycreator.cfg.RomSettings;
 import de.og.batterycreator.creators.IconProviderInterface;
-import de.og.batterycreator.gui.ConfigPanel;
 import de.og.batterycreator.gui.widgets.SliderAndLabel;
 
 public class NotificationAreaBG extends JPanel implements IconProviderInterface {
@@ -43,10 +42,8 @@ public class NotificationAreaBG extends JPanel implements IconProviderInterface 
 	private final JLabel hint = new JLabel(createLableHtml());
 
 	private ImageIcon notificationBG;
-	private final ConfigPanel configPane;
 
-	public NotificationAreaBG(final ConfigPanel configPane) {
-		this.configPane = configPane;
+	public NotificationAreaBG() {
 		initUI();
 
 	}
@@ -134,13 +131,13 @@ public class NotificationAreaBG extends JPanel implements IconProviderInterface 
 	}
 
 	@Override
-	public void createAllImages(final int size) {
+	public void createAllImages(final RomSettings romSettings) {
 		// Create a graphics contents on the buffered image
-		final int h = size;
+		final int h = romSettings.getNotificationHeight();
 		final int w = h * 10;
 		final BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = img.createGraphics();
-		final File outf = new File(CUSTOM_OUT_DIR + configPane.getSettings().getNotificationBGFilename());
+		final File outf = new File(CUSTOM_OUT_DIR + romSettings.getNotificationBGFilename());
 		final File dir = new File(CUSTOM_OUT_DIR);
 
 		final Color col = new Color(0f, 0f, 0f, transparencySlider.getValue() / 100f);
@@ -208,11 +205,8 @@ public class NotificationAreaBG extends JPanel implements IconProviderInterface 
 		f.setTitle("Hallo Emmy!!!!!!!");
 		f.setBounds(200, 200, 300, 80);
 		f.setLayout(new BorderLayout());
-		final StyleSettings settings = new StyleSettings();
-		final ConfigPanel cp = new ConfigPanel();
-		cp.setSettings(settings);
 
-		final NotificationAreaBG bg = new NotificationAreaBG(cp);
+		final NotificationAreaBG bg = new NotificationAreaBG();
 		f.add(bg, BorderLayout.CENTER);
 
 		f.setVisible(true);

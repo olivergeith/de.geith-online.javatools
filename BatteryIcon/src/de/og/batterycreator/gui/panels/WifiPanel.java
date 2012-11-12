@@ -3,6 +3,7 @@ package de.og.batterycreator.gui.panels;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -13,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JToolBar;
 import javax.swing.ListCellRenderer;
 
 import og.basics.gui.image.StaticImageHelper;
@@ -32,10 +34,11 @@ import de.og.batterycreator.gui.widgets.OverviewPanel;
 
 public class WifiPanel extends JPanel {
 	private static final long serialVersionUID = -4657987890334428414L;
+
 	private final JComboBox<AbstractWifiCreator> combo = new JComboBox<AbstractWifiCreator>();
 	private AbstractWifiCreator activWifiCreator;
 	private final WifiSignaleSettingsPanel settingsPanel = new WifiSignaleSettingsPanel();
-	private final OverviewPanel wifiOverviewPanel = new OverviewPanel();
+	private final OverviewPanel overPane = new OverviewPanel();
 	private final RomSettings romSettings;
 
 	public WifiPanel(final RomSettings romSettings) {
@@ -64,29 +67,52 @@ public class WifiPanel extends JPanel {
 			public void actionPerformed(final ActionEvent arg0) {
 				final AbstractWifiCreator cre = (AbstractWifiCreator) combo.getSelectedItem();
 				setActivWifiCreator((AbstractWifiCreator) combo.getSelectedItem());
-
-				if (cre != null && !cre.toString().equals(NoWifiIcons.name)) {
-					cre.setRomSettings(romSettings);
-					cre.createAllImages();
-					wifiOverviewPanel.setOverview(cre.getOverviewIcon());
-					wifiOverviewPanel.setText("");
-				} else {
-					wifiOverviewPanel.setOverview(IconStore.nothingIcon);
-					wifiOverviewPanel.setText("    No Wifi Icons selected...choose Wifi icon style in Toolbar");
-				}
+				settingsPanel.setSettings(cre.getSettings());
+				create();
 			}
+
 		});
 		combo.setRenderer(new WifiCreatorListCellRenderer());
-		if (combo.getItemCount() > 0)
-			combo.setSelectedIndex(0);
-		setToolTipText("Choose your WifiCreator...then press play-button");
+		combo.setSelectedIndex(0);
+		combo.setToolTipText("Choose your WifiCreator...then press play-button");
 		combo.setMaximumRowCount(10);
-		setActivWifiCreator((AbstractWifiCreator) combo.getSelectedItem());
+		combo.setMaximumSize(new Dimension(300, 40));
+		activWifiCreator = (AbstractWifiCreator) combo.getSelectedItem();
+		settingsPanel.setSettings(activWifiCreator.getSettings());
 
 		setLayout(new BorderLayout());
-		this.add(combo, BorderLayout.NORTH);
-		this.add(wifiOverviewPanel, BorderLayout.CENTER);
+		this.add(overPane, BorderLayout.CENTER);
 		this.add(settingsPanel, BorderLayout.WEST);
+		makeButtonBar();
+	}
+
+	/**
+	 * Creating buttonbar
+	 */
+	private void makeButtonBar() {
+		final JToolBar toolBar = new JToolBar();
+		toolBar.setFloatable(false);
+		toolBar.add(combo);
+		this.add(toolBar, BorderLayout.NORTH);
+	}
+
+	private void create() {
+		createAllImages(null);
+	}
+
+	public void createAllImages(final RomSettings romSettings) {
+		if (!activWifiCreator.toString().equals(NoWifiIcons.name)) {
+			if (romSettings != null)
+				activWifiCreator.setRomSettings(romSettings);
+			activWifiCreator.setSettings(settingsPanel.getSettings());
+			activWifiCreator.createAllImages();
+			overPane.setOverview(activWifiCreator.getOverviewIcon());
+			overPane.setText("");
+		} else {
+			overPane.setOverview(IconStore.nothingIcon);
+			overPane.setText("    No Wifi Icons selected...choose Wifi icon style in Toolbar");
+		}
+
 	}
 
 	/**
@@ -124,10 +150,6 @@ public class WifiPanel extends JPanel {
 
 	}
 
-	public OverviewPanel getWifiOverviewPanel() {
-		return wifiOverviewPanel;
-	}
-
 	/**
 	 * @return the activWifiCreator
 	 */
@@ -142,5 +164,4 @@ public class WifiPanel extends JPanel {
 	private void setActivWifiCreator(final AbstractWifiCreator activWifiCreator) {
 		this.activWifiCreator = activWifiCreator;
 	}
-
 }

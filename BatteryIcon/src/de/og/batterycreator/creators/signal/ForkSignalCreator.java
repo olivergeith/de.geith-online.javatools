@@ -45,7 +45,7 @@ public class ForkSignalCreator extends AbstractSignalCreator {
 
 		if (level == NULL_LEVEL) {
 			for (int i = 0; i < 5; i++) {
-				g2d.setColor(settings.getColorInActiv());
+				g2d.setColor(getSettings().getColorInActiv());
 				final Rectangle rect = calculateRectForLevel(i);
 				g2d.drawRect(rect.x + 1, rect.y, rect.width - 1, rect.height - 1);
 			}
@@ -56,13 +56,13 @@ public class ForkSignalCreator extends AbstractSignalCreator {
 				if (i <= level)
 					g2d.fillRect(rect.x, rect.y, rect.width, rect.height);
 				else {
-					g2d.setColor(settings.getColorInActiv());
+					g2d.setColor(getSettings().getColorInActiv());
 					g2d.fillRect(rect.x, rect.y, rect.width, rect.height);
 				}
 			}
 		}
 
-		g2d.setColor(settings.getColorInActiv());
+		g2d.setColor(getSettings().getColorInActiv());
 		final Rectangle rectout = new Rectangle(0, imgHeight - 5, imgWidth / 2 - 2, 5);
 		final Rectangle rectin = new Rectangle(imgWidth / 2, imgHeight - 5, imgWidth / 2 - 1, 5);
 		g2d.fillRect(rectin.x, rectin.y, rectin.width, rectin.height);
@@ -87,11 +87,11 @@ public class ForkSignalCreator extends AbstractSignalCreator {
 		// final Rectangle rectin = new Rectangle(0, imgHeight - 3, imgWidth,
 		// 3);
 		if (in) {
-			g2d.setColor(settings.getInColor());
+			g2d.setColor(getSettings().getInColor());
 			g2d.fillRect(rectin.x, rectin.y, rectin.width, rectin.height);
 		}
 		if (out) {
-			g2d.setColor(settings.getOutColor());
+			g2d.setColor(getSettings().getOutColor());
 			g2d.fillRect(rectout.x, rectout.y, rectout.width, rectout.height);
 		}
 

@@ -3,6 +3,7 @@ package de.og.batterycreator.gui.panels;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -13,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JToolBar;
 import javax.swing.ListCellRenderer;
 
 import og.basics.gui.image.StaticImageHelper;
@@ -29,11 +31,10 @@ import de.og.batterycreator.gui.widgets.OverviewPanel;
 public class SignalPanel extends JPanel {
 	private static final long serialVersionUID = -4657987890334428414L;
 
-	JComboBox<AbstractSignalCreator> combo = new JComboBox<AbstractSignalCreator>();
-	private final OverviewPanel signalOverviewPanel = new OverviewPanel();
+	private final JComboBox<AbstractSignalCreator> combo = new JComboBox<AbstractSignalCreator>();
+	private final OverviewPanel overPane = new OverviewPanel();
 	private final WifiSignaleSettingsPanel settingsPanel = new WifiSignaleSettingsPanel();
 	private AbstractSignalCreator activSignalCreator;
-
 	private RomSettings romSettings;
 
 	public SignalPanel(final RomSettings romSettings) {
@@ -58,28 +59,50 @@ public class SignalPanel extends JPanel {
 			public void actionPerformed(final ActionEvent arg0) {
 				setActivSignalCreator((AbstractSignalCreator) combo.getSelectedItem());
 				final AbstractSignalCreator cre = (AbstractSignalCreator) combo.getSelectedItem();
-
-				if (cre != null && !cre.toString().equals(NoSignalIcons.name)) {
-					cre.setRomSettings(romSettings);
-					cre.createAllImages();
-					signalOverviewPanel.setOverview(cre.getOverviewIcon());
-					signalOverviewPanel.setText("");
-				} else {
-					signalOverviewPanel.setOverview(IconStore.nothingIcon);
-					signalOverviewPanel.setText("    No Signal Icons selected...choose Signal icon style in Toolbar");
-				}
+				settingsPanel.setSettings(cre.getSettings());
+				create();
 			}
+
 		});
 		combo.setRenderer(new SignalCreatorListCellRenderer());
-		if (combo.getItemCount() > 0)
-			combo.setSelectedIndex(0);
-		setToolTipText("Choose your SignalCreator...then press play-button");
+		combo.setSelectedIndex(0);
+		combo.setToolTipText("Choose your SignalCreator...then press play-button");
 		combo.setMaximumRowCount(10);
+		combo.setMaximumSize(new Dimension(300, 40));
 		setActivSignalCreator((AbstractSignalCreator) combo.getSelectedItem());
 		setLayout(new BorderLayout());
-		this.add(combo, BorderLayout.NORTH);
-		this.add(signalOverviewPanel, BorderLayout.CENTER);
+		this.add(overPane, BorderLayout.CENTER);
 		this.add(settingsPanel, BorderLayout.WEST);
+
+		makeButtonBar();
+	}
+
+	/**
+	 * Creating buttonbar
+	 */
+	private void makeButtonBar() {
+		final JToolBar toolBar = new JToolBar();
+		toolBar.setFloatable(false);
+		toolBar.add(combo);
+		this.add(toolBar, BorderLayout.NORTH);
+	}
+
+	private void create() {
+		createAllImages(null);
+	}
+
+	public void createAllImages(final RomSettings romSettings) {
+		if (!activSignalCreator.toString().equals(NoSignalIcons.name)) {
+			if (romSettings != null)
+				activSignalCreator.setRomSettings(romSettings);
+			activSignalCreator.setSettings(settingsPanel.getSettings());
+			activSignalCreator.createAllImages();
+			overPane.setOverview(activSignalCreator.getOverviewIcon());
+			overPane.setText("");
+		} else {
+			overPane.setOverview(IconStore.nothingIcon);
+			overPane.setText("    No Signal Icons selected...choose Signal icon style in Toolbar");
+		}
 
 	}
 
@@ -119,7 +142,7 @@ public class SignalPanel extends JPanel {
 	}
 
 	public OverviewPanel getSignalOverviewPanel() {
-		return signalOverviewPanel;
+		return overPane;
 	}
 
 	/**

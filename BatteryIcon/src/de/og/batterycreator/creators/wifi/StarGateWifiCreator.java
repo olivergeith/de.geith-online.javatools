@@ -44,7 +44,7 @@ public class StarGateWifiCreator extends AbstractWifiCreator {
 		polis.add(createUpDownTriangle(px, imgHeight - 1, pw, -ph)); // unten
 		polis.add(createLeftRightTriangle(imgWidth - 1, py, pw, -ph));// links
 
-		g2d.setColor(settings.getColorInActiv());
+		g2d.setColor(getSettings().getColorInActiv());
 		final Rectangle rect = new Rectangle(5, 5, imgWidth - 10, imgHeight - 10);
 		g2d.drawArc(rect.x, rect.y, rect.width, rect.height, 0, 360);
 		if (level == 0 && fully == true) {
@@ -61,7 +61,7 @@ public class StarGateWifiCreator extends AbstractWifiCreator {
 				if (i <= level) {
 					g2d.fillPolygon(polis.get(i - 1));
 				} else {
-					g2d.setColor(settings.getColorInActiv());
+					g2d.setColor(getSettings().getColorInActiv());
 					g2d.fillPolygon(polis.get(i - 1));
 				}
 			}
@@ -79,11 +79,11 @@ public class StarGateWifiCreator extends AbstractWifiCreator {
 		final Graphics2D g2d = initGrafics2D(img, true);
 
 		if (in) {
-			g2d.setColor(settings.getInColor());
+			g2d.setColor(getSettings().getInColor());
 			g2d.fillArc(imgWidth / 2 - 4, imgHeight / 2 - 4, 8, 8, 0, 360);
 		}
 		if (out) {
-			g2d.setColor(settings.getOutColor());
+			g2d.setColor(getSettings().getOutColor());
 			g2d.drawArc(imgWidth / 2 - 5, imgHeight / 2 - 5, 10, 10, 0, 360);
 		}
 

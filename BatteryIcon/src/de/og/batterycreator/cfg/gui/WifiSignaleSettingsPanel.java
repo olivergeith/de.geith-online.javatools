@@ -18,7 +18,7 @@ import de.og.batterycreator.cfg.WifiSignalSettings;
 public class WifiSignaleSettingsPanel extends SettingsPanel {
 	private static final long serialVersionUID = 1L;
 
-	private WifiSignalSettings settings;
+	private WifiSignalSettings settings = new WifiSignalSettings();
 
 	private final JCheckBox cboxTransparentBgrnd = createCheckbox("Transparent Background (switchOff = experimental !)",
 			"Use this, when your statusbar Background is not black!");
@@ -34,6 +34,7 @@ public class WifiSignaleSettingsPanel extends SettingsPanel {
 	public WifiSignaleSettingsPanel() {
 		initComponents();
 		myInit();
+		setSettings(settings);
 	}
 
 	private void initComponents() {

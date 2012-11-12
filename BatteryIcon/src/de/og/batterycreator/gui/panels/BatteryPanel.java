@@ -8,9 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
-import javax.swing.AbstractAction;
 import javax.swing.DefaultListCellRenderer;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -22,7 +20,6 @@ import javax.swing.JToolBar;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
 
-import og.basics.gui.icon.CommonIconProvider;
 import og.basics.gui.image.StaticImageHelper;
 import de.og.batterycreator.cfg.RomSettings;
 import de.og.batterycreator.cfg.gui.BattSettingsPanel;
@@ -158,12 +155,9 @@ public class BatteryPanel extends JPanel {
 	 * Creating buttonbar
 	 */
 	private void makeButtonBar() {
-		final CreateAktion createAktion = new CreateAktion("Create Icons", CommonIconProvider.getInstance().BUTTON_ICON_START);
 		final JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		toolBar.add(combo);
-		toolBar.addSeparator();
-		toolBar.add(createAktion);
 		this.add(toolBar, BorderLayout.NORTH);
 	}
 
@@ -173,13 +167,13 @@ public class BatteryPanel extends JPanel {
 	 * @param romSettings
 	 */
 	private void create() {
-		create(null);
+		createAllImages(null);
 	}
 
 	/**
 	 * Creates all Icons
 	 */
-	public void create(final RomSettings romSettings) {
+	public void createAllImages(final RomSettings romSettings) {
 		final AbstractIconCreator cre = (AbstractIconCreator) combo.getSelectedItem();
 		cre.setBattSettings(settingsPanel.getSettings());
 		if (romSettings != null)
@@ -248,31 +242,11 @@ public class BatteryPanel extends JPanel {
 		}
 	}
 
-	public OverviewPanel getBattOverviewPanel() {
-		return battOverviewPanel;
-	}
-
 	/**
 	 * @return the activBattCreator
 	 */
 	public AbstractIconCreator getActivBattCreator() {
 		return activBattCreator;
-	}
-
-	/**
-	 * Create Action for creating off all icons
-	 * 
-	 */
-	private class CreateAktion extends AbstractAction {
-		private static final long serialVersionUID = 1L;
-
-		public CreateAktion(final String arg0, final Icon arg1) {
-			super(arg0, arg1);
-		}
-
-		public void actionPerformed(final ActionEvent arg0) {
-			create();
-		}
 	}
 
 }

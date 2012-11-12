@@ -1,4 +1,4 @@
-package de.og.batterycreator.gui.widgets.lockhandleselector;
+package de.og.batterycreator.gui.panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,50 +21,50 @@ import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
 import og.basics.gui.image.StaticImageHelper;
-import de.og.batterycreator.cfg.StyleSettings;
+import de.og.batterycreator.cfg.RomSettings;
 import de.og.batterycreator.creators.IconProviderInterface;
-import de.og.batterycreator.gui.ConfigPanel;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
 
-public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProviderInterface {
+public class LockHandlePanel extends JPanel implements IconProviderInterface {
+
+	JComboBox<ImageIcon> combo = new JComboBox<ImageIcon>();
+
 	private static final String PROVIDER_NAME = "Lockhandle";
 	private static final String CUSTOM_DIR = "./custom/lockhandles/";
 	private static final String CUSTOM_OUT_DIR = "./pngs/deploy/lock/";
 
 	private static final long serialVersionUID = -7712530632645291404L;
 	private final ImageIcon nada = IconStore.nothingIcon;
-	private static final ImageIcon origlock = new ImageIcon(LockHandleSelector.class.getResource("ic_lockscreen_handle_normal.png"));
-	private static final ImageIcon androidlock = new ImageIcon(LockHandleSelector.class.getResource("ic_lock_android.png"));
-	private static final ImageIcon entelock = new ImageIcon(LockHandleSelector.class.getResource("ic_lock_ente.png"));
+	private static final ImageIcon origlock = new ImageIcon(LockHandlePanel.class.getResource("ic_lockscreen_handle_normal.png"));
+	private static final ImageIcon androidlock = new ImageIcon(LockHandlePanel.class.getResource("ic_lock_android.png"));
+	private static final ImageIcon entelock = new ImageIcon(LockHandlePanel.class.getResource("ic_lock_ente.png"));
 
 	private final Vector<ImageIcon> handleList = new Vector<ImageIcon>();
-	private final ConfigPanel configPane;
 	protected OverviewPanel overPane = new OverviewPanel();
 
 	private final Vector<String> filenamesAndPath = new Vector<String>();
 
-	public LockHandleSelector(final ConfigPanel configPane) {
+	public LockHandlePanel() {
 		super();
-		this.configPane = configPane;
 		initUI();
 	}
 
 	private void initUI() {
 		fillIconVector();
-		overPane.add(this, BorderLayout.NORTH);
 		for (final ImageIcon icon : handleList) {
 			if (!icon.equals(nada)) {
 				final BufferedImage bimg = StaticImageHelper.resizeAdvanced2Height(StaticImageHelper.convertImageIcon(icon), 64);
-				addItem(new ImageIcon(bimg));
+				combo.addItem(new ImageIcon(bimg));
 			} else {
-				addItem(icon);
+				combo.addItem(icon);
 			}
 		}
-		setPreferredSize(new Dimension(200, 30));
-		setMaximumRowCount(8);
-		setRenderer(new MyCellRenderer());
-		addActionListener(new ActionListener() {
+		combo.setPreferredSize(new Dimension(200, 40));
+		combo.setMaximumSize(new Dimension(200, 40));
+		combo.setMaximumRowCount(8);
+		combo.setRenderer(new MyCellRenderer());
+		combo.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(final ActionEvent e) {
@@ -75,7 +75,10 @@ public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProv
 			}
 
 		});
-		setSelectedIndex(0);
+		combo.setSelectedIndex(0);
+		setLayout(new BorderLayout());
+		this.add(overPane, BorderLayout.CENTER);
+		this.add(combo, BorderLayout.NORTH);
 	}
 
 	private void updateOverview() {
@@ -90,17 +93,16 @@ public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProv
 
 	}
 
-	@Override
-	public void createAllImages(final int size) {
+	public void createAllImages(final RomSettings romSettings) {
 		filenamesAndPath.removeAllElements();
-		final File outf = new File(CUSTOM_OUT_DIR + configPane.getSettings().getLockHandleFileName());
+		final File outf = new File(CUSTOM_OUT_DIR + romSettings.getLockHandleFileName());
 		final ImageIcon icon = getSelectedIcon();
 		if (!icon.equals(nada)) {
 			System.out.println("Creating Lockhandle");
 			final File dir = new File(CUSTOM_OUT_DIR);
 			if (!dir.exists())
 				dir.mkdirs();
-			final BufferedImage img = StaticImageHelper.resize2Height(StaticImageHelper.convertImageIcon(icon), size);
+			final BufferedImage img = StaticImageHelper.resize2Height(StaticImageHelper.convertImageIcon(icon), romSettings.getLockHandleSize());
 			StaticImageHelper.writePNG(img, outf);
 			filenamesAndPath.addElement(outf.getPath());
 		} else {
@@ -109,15 +111,8 @@ public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProv
 	}
 
 	private ImageIcon getSelectedIcon() {
-		final int index = getSelectedIndex();
+		final int index = combo.getSelectedIndex();
 		return handleList.get(index);
-	}
-
-	/**
-	 * @return the overviewPanel
-	 */
-	public JPanel getOverviewPanel() {
-		return overPane;
 	}
 
 	/**
@@ -190,11 +185,7 @@ public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProv
 		f.setTitle("Hallo Emmy!!!!!!!");
 		f.setBounds(200, 200, 300, 80);
 		f.setLayout(new BorderLayout());
-		final StyleSettings settings = new StyleSettings();
-		final ConfigPanel cp = new ConfigPanel();
-		cp.setSettings(settings);
-		final LockHandleSelector combo = new LockHandleSelector(cp);
-		combo.setSelectedIndex(0);
+		final LockHandlePanel combo = new LockHandlePanel();
 		f.add(combo, BorderLayout.CENTER);
 
 		f.setVisible(true);
@@ -207,7 +198,7 @@ public class LockHandleSelector extends JComboBox<ImageIcon> implements IconProv
 
 	@Override
 	public boolean isActiv() {
-		final ImageIcon icon = (ImageIcon) getSelectedItem();
+		final ImageIcon icon = (ImageIcon) combo.getSelectedItem();
 		if (!icon.equals(nada))
 			return true;
 		return false;

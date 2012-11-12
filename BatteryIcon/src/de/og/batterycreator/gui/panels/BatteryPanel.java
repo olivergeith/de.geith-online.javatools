@@ -46,6 +46,7 @@ import de.og.batterycreator.creators.batt.ClockCreator;
 import de.og.batterycreator.creators.batt.ClockPointerCreator;
 import de.og.batterycreator.creators.batt.DecimalBar2Creator;
 import de.og.batterycreator.creators.batt.DecimalBarCreator;
+import de.og.batterycreator.creators.batt.FontOnlyCreator;
 import de.og.batterycreator.creators.batt.HoneycombCreator;
 import de.og.batterycreator.creators.batt.NoBattIcons;
 import de.og.batterycreator.creators.batt.ScalaBatteryCreator;
@@ -104,6 +105,7 @@ public class BatteryPanel extends JPanel {
 		combo.addItem(new XORApfelCreator(romSettings));
 		combo.addItem(new XORSkullCreator(romSettings));
 		combo.addItem(new XORVnvCreator(romSettings));
+		combo.addItem(new FontOnlyCreator(romSettings));
 	}
 
 	private void initIconList() {

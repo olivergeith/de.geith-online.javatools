@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-import de.og.batterycreator.creators.settings.StyleSettings;
+import de.og.batterycreator.cfg.StyleSettings;
 
 public class BatteryVerticalSymbolCreator extends AbstractIconCreator {
 

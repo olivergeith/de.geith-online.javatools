@@ -23,8 +23,8 @@ import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-import de.og.batterycreator.creators.settings.RomPreset;
-import de.og.batterycreator.creators.settings.StyleSettings;
+import de.og.batterycreator.cfg.RomPreset;
+import de.og.batterycreator.cfg.StyleSettings;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.DrawableComboBox;
 import de.og.batterycreator.gui.widgets.SliderAndLabel;
@@ -349,18 +349,20 @@ public class ConfigPanel extends JPanel {
 		final PanelBuilder builder = new PanelBuilder(layout);
 		int row = 1;
 
+		builder.add(JGoodiesHelper.createGroupLabel("Rom-Settings..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createBlackLabel("Rom Presets"), cc.xyw(2, ++row, 3));
+		builder.add(romPresetCombo, cc.xyw(2, ++row, 3));
 		builder.add(JGoodiesHelper.createGroupLabel("Resizing..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(JGoodiesHelper.createBlackLabel("Choose your SystemUI's resolution"), cc.xyw(2, ++row, 3));
-		builder.add(JGoodiesHelper.createBlackLabel("Rom Presets"), cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Choose your Framework's resolution"), cc.xyw(6, row, 3));
 		builder.add(systemUIDrawableFolderCombo, cc.xyw(2, ++row, 3));
-		builder.add(romPresetCombo, cc.xyw(6, row, 3));
-		builder.add(JGoodiesHelper.createBlackLabel("Resize Icon to (hight)"), cc.xyw(2, ++row, 7));
+		builder.add(frameworkDrawableFolderCombo, cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Battery, Wifi, Signal Size (hight)"), cc.xyw(2, ++row, 7));
 		builder.add(sliderResize, cc.xyw(2, ++row, 1));
 		builder.add(sliderResize.getValueLabel(), cc.xyw(4, row, 1));
 		builder.add(cboxUseAdvResize, cc.xyw(6, row, 3));
-		builder.add(JGoodiesHelper.createBlackLabel("Choose your Framework's resolution"), cc.xyw(2, ++row, 3));
-		builder.add(frameworkDrawableFolderCombo, cc.xyw(2, ++row, 3));
 
 		builder.add(JGoodiesHelper.createGroupLabel("Battery Filenames & Output ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));

@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
 
 import og.basics.gui.file.FileDialogs;
 import og.basics.gui.image.StaticImageHelper;
-import de.og.batterycreator.creators.settings.StyleSettings;
+import de.og.batterycreator.cfg.StyleSettings;
 
 public abstract class AbstractCreator implements IconProviderInterface {
 	private static final String SETTINGS_EXTENSION = ".cfg";

@@ -24,8 +24,8 @@ import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
+import de.og.batterycreator.cfg.StyleSettings;
 import de.og.batterycreator.creators.IconProviderInterface;
-import de.og.batterycreator.creators.settings.StyleSettings;
 import de.og.batterycreator.gui.ConfigPanel;
 import de.og.batterycreator.gui.widgets.SliderAndLabel;
 

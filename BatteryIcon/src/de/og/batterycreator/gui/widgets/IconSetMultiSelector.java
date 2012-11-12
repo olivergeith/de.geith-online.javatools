@@ -17,9 +17,7 @@ import javax.swing.ListCellRenderer;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import de.og.batterycreator.creators.IconProviderInterface;
-
-public class IconSetMultiSelector extends JList<IconSet> implements IconProviderInterface {
+public class IconSetMultiSelector extends JList<IconSet> {
 	private static final long serialVersionUID = -2767025548199058416L;
 
 	private final OverviewPanel overPane = new OverviewPanel();
@@ -34,11 +32,6 @@ public class IconSetMultiSelector extends JList<IconSet> implements IconProvider
 		this.rootDir = rootDir;
 		this.setTypeName = setTypeName;
 		initUI();
-	}
-
-	@Override
-	public String getProviderName() {
-		return setTypeName;
 	}
 
 	/**
@@ -131,14 +124,6 @@ public class IconSetMultiSelector extends JList<IconSet> implements IconProvider
 
 	}
 
-	@Override
-	public boolean isActiv() {
-		if (getModel().getSize() > 0)
-			return true;
-		return false;
-	}
-
-	@Override
 	public void createAllImages(final int size) {
 		// final ImageIcon icon = (ImageIcon) getSelectedItem();
 		// if (!icon.equals(nada)) {

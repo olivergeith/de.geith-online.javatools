@@ -18,10 +18,9 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
-import de.og.batterycreator.creators.IconProviderInterface;
 import de.og.batterycreator.gui.iconstore.IconStore;
 
-public class IconSetSelector extends JComboBox<ImageIcon> implements IconProviderInterface {
+public class IconSetSelector extends JComboBox<ImageIcon> {
 	private static final long serialVersionUID = -2767025548199058416L;
 
 	private final OverviewPanel overPane = new OverviewPanel();
@@ -39,7 +38,6 @@ public class IconSetSelector extends JComboBox<ImageIcon> implements IconProvide
 		initUI();
 	}
 
-	@Override
 	public String getProviderName() {
 		return setTypeName;
 	}
@@ -173,15 +171,6 @@ public class IconSetSelector extends JComboBox<ImageIcon> implements IconProvide
 		f.setVisible(true);
 	}
 
-	@Override
-	public boolean isActiv() {
-		final ImageIcon icon = (ImageIcon) getSelectedItem();
-		if (!icon.equals(nada))
-			return true;
-		return false;
-	}
-
-	@Override
 	public void createAllImages(final int size) {
 		final ImageIcon icon = (ImageIcon) getSelectedItem();
 		if (!icon.equals(nada)) {

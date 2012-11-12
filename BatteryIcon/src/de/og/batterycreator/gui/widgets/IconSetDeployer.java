@@ -7,9 +7,8 @@ import java.util.Vector;
 import javax.swing.ImageIcon;
 
 import og.basics.gui.image.StaticImageHelper;
-import de.og.batterycreator.creators.IconProviderInterface;
 
-public class IconSetDeployer implements IconProviderInterface {
+public class IconSetDeployer {
 	private static final String CUSTOM_OUT_DIR = "./pngs/deploy/";
 
 	public static final int NO_RESIZING = 0;
@@ -23,12 +22,10 @@ public class IconSetDeployer implements IconProviderInterface {
 		this.typeName = typeName;
 	}
 
-	@Override
 	public String getProviderName() {
 		return iconSet.getName();
 	}
 
-	@Override
 	public Vector<String> getAllFilenamesAndPath() {
 		return filenamesAndPath;
 	}
@@ -38,7 +35,6 @@ public class IconSetDeployer implements IconProviderInterface {
 	 * 
 	 * @see de.og.batterycreator.creators.IconProviderInterface#createAllImages(int)
 	 */
-	@Override
 	public void createAllImages(final int size) {
 		final Vector<String> files = iconSet.getAllFilenamesIncludingPath();
 		filenamesAndPath.removeAllElements();
@@ -62,10 +58,4 @@ public class IconSetDeployer implements IconProviderInterface {
 			}
 		}
 	}
-
-	@Override
-	public boolean isActiv() {
-		return true;
-	}
-
 }

@@ -25,6 +25,7 @@ import de.og.batterycreator.gui.panels.BatteryPanel;
 import de.og.batterycreator.gui.panels.LockHandlePanel;
 import de.og.batterycreator.gui.panels.SignalPanel;
 import de.og.batterycreator.gui.panels.WifiPanel;
+import de.og.batterycreator.gui.panels.fileset.RecurseFileSetSelector;
 import de.og.batterycreator.gui.panels.iconset.IconSetDeployer;
 import de.og.batterycreator.gui.panels.iconset.IconSetSelector;
 import de.og.batterycreator.gui.panels.iconset.RawIconSetSelector;
@@ -48,9 +49,8 @@ public class IconCreatingPanelNew extends JPanel {
 	private final NotificationAreaBG notificationBG = new NotificationAreaBG();
 	private final RawIconSetSelector systemUIBox = new RawIconSetSelector("SystemUIMod", "./custom/systemui-mods/");
 	private final RawIconSetSelector frameworkresBox = new RawIconSetSelector("FrameworkResMod", "./custom/frameworkres-mods/");
-	//
-	// private final RecurseFileSetSelector filesetBox = new
-	// RecurseFileSetSelector();
+
+	private final RecurseFileSetSelector filesetBox = new RecurseFileSetSelector();
 
 	// Treadstuff
 	private final JProgressBar progressBar = new JProgressBar();
@@ -77,10 +77,6 @@ public class IconCreatingPanelNew extends JPanel {
 		progressBar.setStringPainted(true);
 		resetProgressBar();
 
-		// extrasTabPane.addTab("Filesets", IconStore.folder2Icon,
-		// filesetBox.getOverviewPanel(),
-		// "Add Filesets like apk's, lib's, media...");
-
 		// Main Tabbed Pane
 		tabPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabPane.addTab("RomSettings", IconStore.cfgIcon, romSettingsPanel, "RomSettings");
@@ -93,6 +89,7 @@ public class IconCreatingPanelNew extends JPanel {
 		tabPane.addTab("Lockring", IconStore.lockringIcon, lockHandleSelector, "See your choosen Lockring!");
 		tabPane.addTab("SystemUI Mods", IconStore.androidredIcon, systemUIBox, "Get an Overview of your icons");
 		tabPane.addTab("FrameWorkRes Mods", IconStore.androidblueIcon, frameworkresBox, "Get an Overview of your icons");
+		tabPane.addTab("Filesets", IconStore.folder2Icon, filesetBox, "Add Filesets like apk's, lib's, media...");
 
 		tabPane.setSelectedIndex(1);
 		// Panel zusammensetzen
@@ -181,10 +178,9 @@ public class IconCreatingPanelNew extends JPanel {
 
 		// Adding XTRAS
 		updateProgressBar(step++, "Adding XTRAS to ZipCollection");
-		// if (filesetBox.getSelectedIndex() > 0) {
-		// zipCollection.addElements(filesetBox.getSelectedSet().getFilenamesAndPath(),
-		// filesetBox.getSelectedSet().getAllPathInZip());
-		// }
+		if (filesetBox.getSelectedSet() != null) {
+			zipCollection.addElements(filesetBox.getSelectedSet().getFilenamesAndPath(), filesetBox.getSelectedSet().getAllPathInZip());
+		}
 
 		// now the actual zipping...
 		try {

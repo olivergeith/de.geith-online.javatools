@@ -21,8 +21,6 @@ public class RomSettings implements Serializable {
 	private String folderLidroidInZip = RomPreset.FOLDER_LIDROID + RomPreset.DRAWABLE_HDPI + "/";
 
 	private int battIconSize = RomPreset.BATT_ICON_HEIGHT_XHDPI;
-	private int wifiIconSize = RomPreset.BATT_ICON_HEIGHT_XHDPI;
-	private int signalIconSize = RomPreset.BATT_ICON_HEIGHT_XHDPI;
 	private boolean useAdvancedResize = true;
 
 	// Lockhandle
@@ -435,36 +433,6 @@ public class RomSettings implements Serializable {
 	 */
 	public String getLidroidDrawableFolder() {
 		return lidroidDrawableFolder;
-	}
-
-	/**
-	 * @return the wifiIconSize
-	 */
-	public int getWifiIconSize() {
-		return wifiIconSize;
-	}
-
-	/**
-	 * @param wifiIconSize
-	 *            the wifiIconSize to set
-	 */
-	public void setWifiIconSize(final int wifiIconSize) {
-		this.wifiIconSize = wifiIconSize;
-	}
-
-	/**
-	 * @return the signalIconSize
-	 */
-	public int getSignalIconSize() {
-		return signalIconSize;
-	}
-
-	/**
-	 * @param signalIconSize
-	 *            the signalIconSize to set
-	 */
-	public void setSignalIconSize(final int signalIconSize) {
-		this.signalIconSize = signalIconSize;
 	}
 
 }

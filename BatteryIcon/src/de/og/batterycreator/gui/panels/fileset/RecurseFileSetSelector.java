@@ -1,4 +1,4 @@
-package de.og.batterycreator.gui.widgets.fileset;
+package de.og.batterycreator.gui.panels.fileset;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

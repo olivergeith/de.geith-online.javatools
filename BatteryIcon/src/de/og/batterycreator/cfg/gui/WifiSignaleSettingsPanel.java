@@ -7,6 +7,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
 import og.basics.gui.Jcolorselectbutton.JColorSelectButton;
+import og.basics.gui.jfontchooser.JFontChooserButton;
 import og.basics.jgoodies.JGoodiesHelper;
 
 import com.jgoodies.forms.builder.PanelBuilder;
@@ -19,16 +20,19 @@ public class WifiSignaleSettingsPanel extends SettingsPanel {
 	private static final long serialVersionUID = 1L;
 
 	private WifiSignalSettings settings = new WifiSignalSettings();
+	private final String fontSizes[] = {
+			"12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32"
+	};
 
 	private final JCheckBox cboxTransparentBgrnd = createCheckbox("Transparent Background (switchOff = experimental !)",
 			"Use this, when your statusbar Background is not black!");
-
 	private final JColorSelectButton backgroundColor = new JColorSelectButton("Background Color", "Color if not transparent");
 	private final JColorSelectButton iconColorInactiv = new JColorSelectButton("Inactiv", "Color for inactiv Iconelements");
 	private final JColorSelectButton inColor = new JColorSelectButton("ColorDataIn", "Color when Data comes in ;-)");
 	private final JColorSelectButton outColor = new JColorSelectButton("ColorDataOut", "Color when Data comes in ;-)");
 	private final JColorSelectButton color = new JColorSelectButton("Connected", "Color when connected");
 	private final JColorSelectButton colorFully = new JColorSelectButton("Fully Connected", "Color when fully connected");
+	private final JFontChooserButton fontButton = new JFontChooserButton("Choose Font", fontSizes);
 
 	// Construktor
 	public WifiSignaleSettingsPanel() {
@@ -64,6 +68,8 @@ public class WifiSignaleSettingsPanel extends SettingsPanel {
 		builder.add(colorFully, cc.xyw(4, row, 1));
 		builder.add(inColor, cc.xyw(6, row, 1));
 		builder.add(outColor, cc.xyw(8, row, 1));
+		builder.add(fontButton, cc.xyw(2, ++row, 3));
+
 		final JPanel cfp = builder.getPanel();
 		return cfp;
 	}
@@ -77,6 +83,7 @@ public class WifiSignaleSettingsPanel extends SettingsPanel {
 		outColor.setColor(settings.getOutColor());
 		color.setColor(settings.getColor());
 		colorFully.setColor(settings.getColorFully());
+		fontButton.setFont(settings.getFont());
 		validateControls();
 		this.repaint();
 	}
@@ -89,6 +96,7 @@ public class WifiSignaleSettingsPanel extends SettingsPanel {
 		settings.setOutColor(outColor.getColor());
 		settings.setColor(color.getColor());
 		settings.setColorFully(colorFully.getColor());
+		settings.setFont(fontButton.getFont());
 		return settings;
 	}
 

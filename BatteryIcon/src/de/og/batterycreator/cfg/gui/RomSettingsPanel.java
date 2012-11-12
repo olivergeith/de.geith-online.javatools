@@ -11,6 +11,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
@@ -24,6 +25,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import de.og.batterycreator.cfg.RomPreset;
 import de.og.batterycreator.cfg.RomSettings;
 import de.og.batterycreator.cfg.SettingsPersistor;
+import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.DrawableComboBox;
 import de.og.batterycreator.gui.widgets.SliderAndLabel;
 
@@ -43,8 +45,6 @@ public class RomSettingsPanel extends SettingsPanel {
 	DrawableComboBox systemUIDrawableFolderCombo = new DrawableComboBox();
 	// Battery
 	SliderAndLabel sliderBattSize = systemUIDrawableFolderCombo.getSliderBattSize();
-	SliderAndLabel sliderWifiSize = systemUIDrawableFolderCombo.getSliderWifiSize();
-	SliderAndLabel sliderSignalSize = systemUIDrawableFolderCombo.getSliderSignalSize();
 	JTextField filepattern = new JTextField();
 	JTextField filepatternCharge = new JTextField();
 
@@ -119,8 +119,15 @@ public class RomSettingsPanel extends SettingsPanel {
 
 	private void myInit() {
 		setLayout(new BorderLayout());
-		this.add(createTabPaneWifiColors(), BorderLayout.EAST);
-		this.add(createTabPaneRomSettings(), BorderLayout.CENTER);
+		final JLabel label = new JLabel();
+		label.setIcon(IconStore.logoIcon);
+
+		final JTabbedPane tabPane = new JTabbedPane();
+		tabPane.addTab("RomSettings Tab1", IconStore.cfgIcon, createTabPaneRomSettings(), "RomSettings");
+		tabPane.addTab("RomSettings Tab2", IconStore.cfgIcon, createTabPaneWifiColors(), "RomSettings");
+		this.add(tabPane, BorderLayout.WEST);
+		this.add(label, BorderLayout.CENTER);
+		// this.add(createTabPaneRomSettings(), BorderLayout.WEST);
 	}
 
 	public JPanel createTabPaneWifiColors() {
@@ -160,7 +167,10 @@ public class RomSettingsPanel extends SettingsPanel {
 		builder.add(fileSignalPatternFully, cc.xyw(6, row, 3));
 
 		final JPanel cfp = builder.getPanel();
-		return cfp;
+		// cfp.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+		final JPanel out = new JPanel(new BorderLayout());
+		out.add(cfp, BorderLayout.CENTER);
+		return out;
 	}
 
 	public JPanel createTabPaneRomSettings() {
@@ -181,26 +191,16 @@ public class RomSettingsPanel extends SettingsPanel {
 		builder.add(JGoodiesHelper.createBlackLabel("Choose your Framework's resolution"), cc.xyw(6, row, 3));
 		builder.add(systemUIDrawableFolderCombo, cc.xyw(2, ++row, 3));
 		builder.add(frameworkDrawableFolderCombo, cc.xyw(6, row, 3));
-
-		builder.add(JGoodiesHelper.createBlackLabel("Battery Size (hight)"), cc.xyw(2, ++row, 7));
-		builder.add(sliderBattSize, cc.xyw(2, ++row, 1));
-		builder.add(sliderBattSize.getValueLabel(), cc.xyw(4, row, 1));
-
-		builder.add(JGoodiesHelper.createBlackLabel("Wifi, Size (hight)"), cc.xyw(2, ++row, 7));
-		builder.add(sliderWifiSize, cc.xyw(2, ++row, 1));
-		builder.add(sliderWifiSize.getValueLabel(), cc.xyw(4, row, 1));
-
-		builder.add(JGoodiesHelper.createBlackLabel("Signal Size (hight)"), cc.xyw(2, ++row, 7));
-		builder.add(sliderSignalSize, cc.xyw(2, ++row, 1));
-		builder.add(sliderSignalSize.getValueLabel(), cc.xyw(4, row, 1));
-
 		builder.add(cboxUseAdvResize, cc.xyw(2, ++row, 3));
 
-		builder.add(JGoodiesHelper.createGroupLabel("Battery Filenames & Output ..."), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createGroupLabel("Battery Filenames & Size ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(JGoodiesHelper.createBlackLabel("FileName-Pattern Nomal / Charge"), cc.xyw(2, ++row, 7));
 		builder.add(filepattern, cc.xyw(2, ++row, 3));
 		builder.add(filepatternCharge, cc.xyw(6, row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Battery Size (hight)"), cc.xyw(2, ++row, 7));
+		builder.add(sliderBattSize, cc.xyw(2, ++row, 1));
+		builder.add(sliderBattSize.getValueLabel(), cc.xyw(4, row, 1));
 
 		builder.add(JGoodiesHelper.createGroupLabel("Lockhandle Filename & Size ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
@@ -228,7 +228,10 @@ public class RomSettingsPanel extends SettingsPanel {
 		builder.add(notificationHeight, cc.xyw(6, row, 3));
 
 		final JPanel cfp = builder.getPanel();
-		return cfp;
+		// cfp.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+		final JPanel out = new JPanel(new BorderLayout());
+		out.add(cfp, BorderLayout.CENTER);
+		return out;
 	}
 
 	public void setSettings(final RomSettings settings) {
@@ -250,7 +253,6 @@ public class RomSettingsPanel extends SettingsPanel {
 		fileNameSignalInOut.setText(settings.getFileSignalInOut());
 		fileSignalPattern.setText(settings.getFileSignalPattern());
 		fileSignalPatternFully.setText(settings.getFileSignalEXtensionFully());
-		sliderSignalSize.setValue(settings.getSignalIconSize());
 
 		// Wifi stuff
 		fileNameWifiIn.setText(settings.getFileWifiIn());
@@ -258,7 +260,6 @@ public class RomSettingsPanel extends SettingsPanel {
 		fileNameWifiInOut.setText(settings.getFileWifiInOut());
 		fileWifiPattern.setText(settings.getFileWifiPattern());
 		fileWifiPatternFully.setText(settings.getFileWifiEXtensionFully());
-		sliderWifiSize.setValue(settings.getWifiIconSize());
 
 		// Lockhandle
 		lockHandleFileName.setText(settings.getLockHandleFileName());
@@ -293,14 +294,12 @@ public class RomSettingsPanel extends SettingsPanel {
 		settings.setFileSignalInOut(fileNameSignalInOut.getText());
 		settings.setFileSignalPattern(fileSignalPattern.getText());
 		settings.setFileSignalEXtensionFully(fileSignalPatternFully.getText());
-		settings.setSignalIconSize(sliderSignalSize.getValue());
 		// Wifi stuff
 		settings.setFileWifiIn(fileNameWifiIn.getText());
 		settings.setFileWifiOut(fileNameWifiOut.getText());
 		settings.setFileWifiInOut(fileNameWifiInOut.getText());
 		settings.setFileWifiPattern(fileWifiPattern.getText());
 		settings.setFileWifiEXtensionFully(fileWifiPatternFully.getText());
-		settings.setWifiIconSize(sliderWifiSize.getValue());
 		// Lockhandle
 		settings.setLockHandleFileName(lockHandleFileName.getText());
 		settings.setLockHandleSize(lockHandleSize.getValue());

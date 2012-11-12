@@ -11,8 +11,6 @@ public class DrawableComboBox extends JComboBox<String> {
 	private static final long serialVersionUID = 1L;
 
 	private final SliderAndLabel sliderBattSize = new SliderAndLabel(25, 50);
-	private final SliderAndLabel sliderWifiSize = new SliderAndLabel(25, 50);
-	private final SliderAndLabel sliderSignalSize = new SliderAndLabel(25, 50);
 
 	public DrawableComboBox() {
 
@@ -32,20 +30,12 @@ public class DrawableComboBox extends JComboBox<String> {
 			public void actionPerformed(final ActionEvent e) {
 				if (getSelectedItem().equals(RomPreset.DRAWABLE_XHDPI)) {
 					sliderBattSize.setValue(RomPreset.BATT_ICON_HEIGHT_XHDPI);
-					sliderWifiSize.setValue(RomPreset.BATT_ICON_HEIGHT_XHDPI);
-					sliderSignalSize.setValue(RomPreset.BATT_ICON_HEIGHT_XHDPI);
 				} else if (getSelectedItem().equals(RomPreset.DRAWABLE_HDPI)) {
 					sliderBattSize.setValue(RomPreset.BATT_ICON_HEIGHT_HDPI);
-					sliderWifiSize.setValue(RomPreset.BATT_ICON_HEIGHT_HDPI);
-					sliderSignalSize.setValue(RomPreset.BATT_ICON_HEIGHT_HDPI);
 				} else if (getSelectedItem().equals(RomPreset.DRAWABLE_720DP)) {
 					sliderBattSize.setValue(RomPreset.BATT_ICON_HEIGHT_720DP);
-					sliderWifiSize.setValue(RomPreset.BATT_ICON_HEIGHT_720DP);
-					sliderSignalSize.setValue(RomPreset.BATT_ICON_HEIGHT_720DP);
 				} else if (getSelectedItem().equals(RomPreset.DRAWABLE_600DP)) {
 					sliderBattSize.setValue(RomPreset.BATT_ICON_HEIGHT_600DP);
-					sliderWifiSize.setValue(RomPreset.BATT_ICON_HEIGHT_600DP);
-					sliderSignalSize.setValue(RomPreset.BATT_ICON_HEIGHT_600DP);
 				}
 			}
 		});
@@ -57,19 +47,4 @@ public class DrawableComboBox extends JComboBox<String> {
 	public SliderAndLabel getSliderBattSize() {
 		return sliderBattSize;
 	}
-
-	/**
-	 * @return the sliderWifiSize
-	 */
-	public SliderAndLabel getSliderWifiSize() {
-		return sliderWifiSize;
-	}
-
-	/**
-	 * @return the sliderSignalSize
-	 */
-	public SliderAndLabel getSliderSignalSize() {
-		return sliderSignalSize;
-	}
-
 }

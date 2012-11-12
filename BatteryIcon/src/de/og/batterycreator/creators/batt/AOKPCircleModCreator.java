@@ -7,12 +7,14 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class AOKPCircleModCreator extends AbstractIconCreator {
 
 	protected static String name = "AOKPCircleModBattery";
 
-	public AOKPCircleModCreator() {
-		super();
+	public AOKPCircleModCreator(final RomSettings romSettings) {
+		super(romSettings);
 		settings.setFontXOffset(-1);
 		settings.setFontYOffset(-1);
 		settings.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 19));

@@ -36,16 +36,16 @@ public class DrawableComboBox extends JComboBox<String> {
 					sliderSignalSize.setValue(RomPreset.BATT_ICON_HEIGHT_XHDPI);
 				} else if (getSelectedItem().equals(RomPreset.DRAWABLE_HDPI)) {
 					sliderBattSize.setValue(RomPreset.BATT_ICON_HEIGHT_HDPI);
-					sliderWifiSize.setValue(RomPreset.BATT_ICON_HEIGHT_XHDPI);
-					sliderSignalSize.setValue(RomPreset.BATT_ICON_HEIGHT_XHDPI);
+					sliderWifiSize.setValue(RomPreset.BATT_ICON_HEIGHT_HDPI);
+					sliderSignalSize.setValue(RomPreset.BATT_ICON_HEIGHT_HDPI);
 				} else if (getSelectedItem().equals(RomPreset.DRAWABLE_720DP)) {
 					sliderBattSize.setValue(RomPreset.BATT_ICON_HEIGHT_720DP);
-					sliderWifiSize.setValue(RomPreset.BATT_ICON_HEIGHT_XHDPI);
-					sliderSignalSize.setValue(RomPreset.BATT_ICON_HEIGHT_XHDPI);
+					sliderWifiSize.setValue(RomPreset.BATT_ICON_HEIGHT_720DP);
+					sliderSignalSize.setValue(RomPreset.BATT_ICON_HEIGHT_720DP);
 				} else if (getSelectedItem().equals(RomPreset.DRAWABLE_600DP)) {
 					sliderBattSize.setValue(RomPreset.BATT_ICON_HEIGHT_600DP);
-					sliderWifiSize.setValue(RomPreset.BATT_ICON_HEIGHT_XHDPI);
-					sliderSignalSize.setValue(RomPreset.BATT_ICON_HEIGHT_XHDPI);
+					sliderWifiSize.setValue(RomPreset.BATT_ICON_HEIGHT_600DP);
+					sliderSignalSize.setValue(RomPreset.BATT_ICON_HEIGHT_600DP);
 				}
 			}
 		});

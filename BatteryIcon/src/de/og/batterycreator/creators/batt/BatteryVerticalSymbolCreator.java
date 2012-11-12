@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
 import de.og.batterycreator.cfg.StyleSettings;
 
 public class BatteryVerticalSymbolCreator extends AbstractIconCreator {
@@ -14,8 +15,8 @@ public class BatteryVerticalSymbolCreator extends AbstractIconCreator {
 	private final int imgHeight = 41;
 	private final int imgWidth = 45;
 
-	public BatteryVerticalSymbolCreator() {
-		super();
+	public BatteryVerticalSymbolCreator(final RomSettings romSettings) {
+		super(romSettings);
 		settings.setIconColorInActiv(StyleSettings.COLOR_INACTIV.darker());
 		settings.setFontXOffset(-2);
 	}

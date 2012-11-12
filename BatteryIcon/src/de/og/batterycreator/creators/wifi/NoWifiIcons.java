@@ -2,11 +2,14 @@ package de.og.batterycreator.creators.wifi;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class NoWifiIcons extends AbstractWifiCreator {
 
 	public static String name = "No Wifi Icons";
 
-	public NoWifiIcons() {
+	public NoWifiIcons(final RomSettings romSettings) {
+		super(romSettings);
 	}
 
 	@Override

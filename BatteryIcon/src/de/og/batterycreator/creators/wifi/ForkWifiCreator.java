@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class ForkWifiCreator extends AbstractWifiCreator {
 	public static String name = "ForkWifi";
 
@@ -15,7 +17,8 @@ public class ForkWifiCreator extends AbstractWifiCreator {
 	private static final int gap = 2;
 	private final int height = Math.round((imgHeight - 2 - (4 * gap)) / 5f);
 
-	public ForkWifiCreator() {
+	public ForkWifiCreator(final RomSettings romSettings) {
+		super(romSettings);
 	}
 
 	@Override
@@ -44,7 +47,7 @@ public class ForkWifiCreator extends AbstractWifiCreator {
 
 		if (level == 0 && fully == true) {
 			for (int i = 0; i < 5; i++) {
-				g2d.setColor(settings.getIconColorInActiv());
+				g2d.setColor(settings.getColorInActiv());
 				final Rectangle rect = calculateRectForLevel(i);
 				g2d.drawRect(rect.x, rect.y, rect.width - 1, rect.height - 1);
 			}
@@ -55,7 +58,7 @@ public class ForkWifiCreator extends AbstractWifiCreator {
 				if (i <= level)
 					g2d.fillRect(rect.x, rect.y, rect.width, rect.height);
 				else {
-					g2d.setColor(settings.getIconColorInActiv());
+					g2d.setColor(settings.getColorInActiv());
 					g2d.fillRect(rect.x, rect.y, rect.width, rect.height);
 				}
 			}
@@ -75,11 +78,11 @@ public class ForkWifiCreator extends AbstractWifiCreator {
 		final Rectangle rectout = new Rectangle(1, 2, 5, (imgHeight - 4) / 2 - 1);
 		final Rectangle rectin = new Rectangle(1, 3 + (imgHeight - 4) / 2, 5, (imgHeight - 4) / 2 - 1);
 		if (in) {
-			g2d.setColor(settings.getInWifiColor());
+			g2d.setColor(settings.getInColor());
 			g2d.fillRect(rectin.x, rectin.y, rectin.width, rectin.height);
 		}
 		if (out) {
-			g2d.setColor(settings.getOutWifiColor());
+			g2d.setColor(settings.getOutColor());
 			g2d.fillRect(rectout.x, rectout.y, rectout.width, rectout.height);
 		}
 

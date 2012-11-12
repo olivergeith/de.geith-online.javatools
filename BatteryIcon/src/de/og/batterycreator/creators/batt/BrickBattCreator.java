@@ -7,7 +7,13 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class BrickBattCreator extends AbstractIconCreator {
+
+	public BrickBattCreator(final RomSettings romSettings) {
+		super(romSettings);
+	}
 
 	protected static String name = "BrickBattery";
 

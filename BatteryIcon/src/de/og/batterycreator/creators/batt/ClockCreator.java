@@ -6,7 +6,13 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class ClockCreator extends AbstractIconCreator {
+
+	public ClockCreator(final RomSettings romSettings) {
+		super(romSettings);
+	}
 
 	protected static String name = "ClockBattery";
 

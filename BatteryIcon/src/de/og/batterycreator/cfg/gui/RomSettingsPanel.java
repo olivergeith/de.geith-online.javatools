@@ -5,12 +5,16 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.AbstractAction;
+import javax.swing.Icon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JToolBar;
 
+import og.basics.gui.icon.CommonIconProvider;
 import og.basics.jgoodies.JGoodiesHelper;
 
 import com.jgoodies.forms.builder.PanelBuilder;
@@ -19,13 +23,14 @@ import com.jgoodies.forms.layout.FormLayout;
 
 import de.og.batterycreator.cfg.RomPreset;
 import de.og.batterycreator.cfg.RomSettings;
+import de.og.batterycreator.cfg.SettingsPersistor;
 import de.og.batterycreator.gui.widgets.DrawableComboBox;
 import de.og.batterycreator.gui.widgets.SliderAndLabel;
 
 public class RomSettingsPanel extends SettingsPanel {
 	private static final long serialVersionUID = 1L;
 
-	private RomSettings settings;
+	private RomSettings settings = new RomSettings();
 
 	JCheckBox cboxUseAdvResize = createCheckbox("Use advanced Resize-Algorithm",
 			"(Experimental) Advanced Resize-Algorith...might give better results on small imagesizes!?");
@@ -77,6 +82,8 @@ public class RomSettingsPanel extends SettingsPanel {
 	public RomSettingsPanel() {
 		initComponents();
 		myInit();
+		makeButtonBar();
+		setSettings(settings);
 	}
 
 	/**
@@ -306,6 +313,51 @@ public class RomSettingsPanel extends SettingsPanel {
 		// weather
 		settings.setWeatherSize(weatherSize.getValue());
 		return settings;
+	}
+
+	/**
+	 * Creating buttonbar
+	 */
+	private void makeButtonBar() {
+		final LoadSettingsAktion loadAktion = new LoadSettingsAktion("Load Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_OPEN);
+		final SaveSettingsAktion saveAktion = new SaveSettingsAktion("Save Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_SAVE);
+		final JToolBar toolBar = new JToolBar();
+		toolBar.setFloatable(false);
+		toolBar.add(loadAktion);
+		toolBar.add(saveAktion);
+		add(toolBar, BorderLayout.NORTH);
+	}
+
+	/**
+	 * Load Settings Action
+	 * 
+	 */
+	private class LoadSettingsAktion extends AbstractAction {
+		private static final long serialVersionUID = 1L;
+
+		public LoadSettingsAktion(final String arg0, final Icon arg1) {
+			super(arg0, arg1);
+		}
+
+		public void actionPerformed(final ActionEvent arg0) {
+			setSettings(SettingsPersistor.loadRomSettings());
+		}
+	}
+
+	/**
+	 * Save Settings Action
+	 * 
+	 */
+	private class SaveSettingsAktion extends AbstractAction {
+		private static final long serialVersionUID = 1L;
+
+		public SaveSettingsAktion(final String arg0, final Icon arg1) {
+			super(arg0, arg1);
+		}
+
+		public void actionPerformed(final ActionEvent arg0) {
+			SettingsPersistor.saveRomSettings("MyRomSettings", settings);
+		}
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package de.og.batterycreator.creators.batt;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -12,6 +13,8 @@ import java.io.File;
 import javax.swing.ImageIcon;
 
 import og.basics.gui.image.StaticImageHelper;
+import de.og.batterycreator.cfg.BattSettings;
+import de.og.batterycreator.cfg.RomSettings;
 import de.og.batterycreator.creators.AbstractCreator;
 import de.og.batterycreator.main.IconCreatorFrame;
 
@@ -20,6 +23,12 @@ import de.og.batterycreator.main.IconCreatorFrame;
  * 
  */
 public abstract class AbstractIconCreator extends AbstractCreator {
+
+	public AbstractIconCreator(final RomSettings romSettings) {
+		super(romSettings);
+	}
+
+	protected BattSettings settings = new BattSettings();
 
 	// ###############################################################################
 	// Abstracte Methoden
@@ -151,9 +160,9 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 	private String getFileNameFull(final boolean charge) {
 		String filename;
 		if (charge == false)
-			filename = settings.getFilePattern() + "full.png";
+			filename = romSettings.getFilePattern() + "full.png";
 		else
-			filename = settings.getFilePatternCharge() + "full.png";
+			filename = romSettings.getFilePatternCharge() + "full.png";
 		return filename;
 	}
 
@@ -163,9 +172,9 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 	public String getFileName(final int percentage, final boolean charge) {
 		String filename;
 		if (charge == false)
-			filename = settings.getFilePattern() + percentage + ".png";
+			filename = romSettings.getFilePattern() + percentage + ".png";
 		else
-			filename = settings.getFilePatternCharge() + percentage + ".png";
+			filename = romSettings.getFilePatternCharge() + percentage + ".png";
 		return filename;
 	}
 
@@ -233,8 +242,44 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 		return null;
 	}
 
+	// ###############################################################################
+	// Grafics2D
+	// ###############################################################################
+	protected Graphics2D initGrafics2D(final BufferedImage img) {
+		return initGrafics2D(img, false);
+	}
+
+	protected Graphics2D initGrafics2D(final BufferedImage img, final boolean forceTransparent) {
+		final Graphics2D g2d = img.createGraphics();
+		g2d.setFont(settings.getFont());
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g2d.setStroke(new BasicStroke(settings.getStrokewidth()));
+		if (!forceTransparent) {
+			if (!settings.isTransparentBackground()) {
+				g2d.setColor(settings.getBackgroundColor());
+				g2d.fillRect(0, 0, img.getWidth(), img.getHeight());
+			}
+		}
+		return g2d;
+	}
+
 	public ImageIcon getOverviewIcon() {
 		return overview;
+	}
+
+	/**
+	 * @return the settings
+	 */
+	public BattSettings getBattSettings() {
+		return settings;
+	}
+
+	/**
+	 * @param settings
+	 *            the settings to set
+	 */
+	public void setBattSettings(final BattSettings settings) {
+		this.settings = settings;
 	}
 
 }

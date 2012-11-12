@@ -6,7 +6,13 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class ArcCreator3 extends AbstractIconCreator {
+
+	public ArcCreator3(final RomSettings romSettings) {
+		super(romSettings);
+	}
 
 	/**
 	 * 

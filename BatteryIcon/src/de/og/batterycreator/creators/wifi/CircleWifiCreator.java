@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class CircleWifiCreator extends AbstractWifiCreator {
 	public static String name = "CircleWifi";
 
@@ -16,7 +18,8 @@ public class CircleWifiCreator extends AbstractWifiCreator {
 	private static final int height = 4;
 	private static final int width = 4;
 
-	public CircleWifiCreator() {
+	public CircleWifiCreator(final RomSettings romSettings) {
+		super(romSettings);
 	}
 
 	@Override
@@ -38,14 +41,14 @@ public class CircleWifiCreator extends AbstractWifiCreator {
 
 				g2d.setColor(Color.black);
 				g2d.fillArc(x - 1, y - 1, w + 2, h + 2, 0, 360);
-				g2d.setColor(settings.getIconColorInActiv());
+				g2d.setColor(settings.getColorInActiv());
 				g2d.fillArc(x, y, w, h, 0, 360);
 			}
 		} else {
 			for (int i = 4; i >= 0; i--) {
 				Color col = getConnectColor(fully);
 				if (i > level) {
-					col = settings.getIconColorInActiv();
+					col = settings.getColorInActiv();
 				}
 				final int x = imgMitte - ((i + 1) * width);
 				final int y = imgMitte - ((i + 1) * height);
@@ -59,7 +62,7 @@ public class CircleWifiCreator extends AbstractWifiCreator {
 		}
 
 		// Black
-		g2d.setColor(settings.getIconColorInActiv());
+		g2d.setColor(settings.getColorInActiv());
 		final int pw = 14;
 		final int ph = 18;
 		final int px = imgWidth / 2 - pw / 2;
@@ -100,11 +103,11 @@ public class CircleWifiCreator extends AbstractWifiCreator {
 		final Polygon poliou = createUpDownTriangle(px, py - 6, pw, -ph); // oben
 
 		if (in) {
-			g2d.setColor(settings.getInWifiColor());
+			g2d.setColor(settings.getInColor());
 			g2d.fillPolygon(poliin);
 		}
 		if (out) {
-			g2d.setColor(settings.getOutWifiColor());
+			g2d.setColor(settings.getOutColor());
 			g2d.fillPolygon(poliou);
 		}
 

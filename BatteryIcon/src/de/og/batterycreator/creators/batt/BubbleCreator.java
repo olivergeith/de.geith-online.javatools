@@ -6,12 +6,14 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class BubbleCreator extends AbstractIconCreator {
 
 	protected static String name = "BubbleBattery";
 
-	public BubbleCreator() {
-		super();
+	public BubbleCreator(final RomSettings romSettings) {
+		super(romSettings);
 		settings.setFontXOffset(-1);
 		// stylSettings.setStrokewidth(3);
 	}

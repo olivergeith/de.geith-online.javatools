@@ -16,6 +16,11 @@ import javax.swing.JToolBar;
 public class LToolBar extends JToolBar {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5972181516046457075L;
+
+	/**
 	 * Die Normale Methode add(Action) legt einen Button nur mit einem Icon an.
 	 * D er ActionName wird verschluckt! Hier kann man nun über das Boolean
 	 * wählen, ob mit oder ohne Text.

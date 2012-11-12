@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class ForkSignalCreator extends AbstractSignalCreator {
 
 	public static String name = "ForkSignal";
@@ -16,7 +18,8 @@ public class ForkSignalCreator extends AbstractSignalCreator {
 	private static final int gap = 1;
 	private final int breite = Math.round((imgWidth - 2 - (4 * gap)) / 5f);
 
-	public ForkSignalCreator() {
+	public ForkSignalCreator(final RomSettings romSettings) {
+		super(romSettings);
 	}
 
 	private Rectangle calculateRectForLevel(final int level) {
@@ -42,7 +45,7 @@ public class ForkSignalCreator extends AbstractSignalCreator {
 
 		if (level == NULL_LEVEL) {
 			for (int i = 0; i < 5; i++) {
-				g2d.setColor(settings.getIconColorInActiv());
+				g2d.setColor(settings.getColorInActiv());
 				final Rectangle rect = calculateRectForLevel(i);
 				g2d.drawRect(rect.x + 1, rect.y, rect.width - 1, rect.height - 1);
 			}
@@ -53,13 +56,13 @@ public class ForkSignalCreator extends AbstractSignalCreator {
 				if (i <= level)
 					g2d.fillRect(rect.x, rect.y, rect.width, rect.height);
 				else {
-					g2d.setColor(settings.getIconColorInActiv());
+					g2d.setColor(settings.getColorInActiv());
 					g2d.fillRect(rect.x, rect.y, rect.width, rect.height);
 				}
 			}
 		}
 
-		g2d.setColor(settings.getIconColorInActiv());
+		g2d.setColor(settings.getColorInActiv());
 		final Rectangle rectout = new Rectangle(0, imgHeight - 5, imgWidth / 2 - 2, 5);
 		final Rectangle rectin = new Rectangle(imgWidth / 2, imgHeight - 5, imgWidth / 2 - 1, 5);
 		g2d.fillRect(rectin.x, rectin.y, rectin.width, rectin.height);
@@ -84,11 +87,11 @@ public class ForkSignalCreator extends AbstractSignalCreator {
 		// final Rectangle rectin = new Rectangle(0, imgHeight - 3, imgWidth,
 		// 3);
 		if (in) {
-			g2d.setColor(settings.getInWifiColor());
+			g2d.setColor(settings.getInColor());
 			g2d.fillRect(rectin.x, rectin.y, rectin.width, rectin.height);
 		}
 		if (out) {
-			g2d.setColor(settings.getOutWifiColor());
+			g2d.setColor(settings.getOutColor());
 			g2d.fillRect(rectout.x, rectout.y, rectout.width, rectout.height);
 		}
 

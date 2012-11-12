@@ -10,6 +10,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class TextWifiCreator extends AbstractWifiCreator {
 	public static String name = "TextWifi";
 
@@ -17,7 +19,8 @@ public class TextWifiCreator extends AbstractWifiCreator {
 	private static final int imgHeight = 41;
 	private static final int gap = 2;
 
-	public TextWifiCreator() {
+	public TextWifiCreator(final RomSettings romSettings) {
+		super(romSettings);
 	}
 
 	@Override
@@ -48,7 +51,7 @@ public class TextWifiCreator extends AbstractWifiCreator {
 
 		if (level == 0 && fully == true) {
 			for (int i = 0; i < 5; i++) {
-				g2d.setColor(settings.getIconColorInActiv());
+				g2d.setColor(settings.getColorInActiv());
 				final Rectangle rect = calculateRectForLevel(i);
 				g2d.drawRect(rect.x + 1, rect.y, rect.width - 1, rect.height - 1);
 			}
@@ -59,7 +62,7 @@ public class TextWifiCreator extends AbstractWifiCreator {
 				if (i <= level)
 					g2d.fillRect(rect.x, rect.y, rect.width, rect.height);
 				else {
-					g2d.setColor(settings.getIconColorInActiv());
+					g2d.setColor(settings.getColorInActiv());
 					g2d.fillRect(rect.x, rect.y, rect.width, rect.height);
 				}
 			}
@@ -71,15 +74,15 @@ public class TextWifiCreator extends AbstractWifiCreator {
 		g2d.setFont(font2);
 		final String wifi = "Wifi";
 		Rectangle2D strRect = metrix.getStringBounds(wifi, g2d);
-		int strxpos = 1 + settings.getFontXOffset() + (int) (Math.round(img.getWidth() / 2) - Math.round(strRect.getWidth() / 2));
-		int strypos = img.getHeight() / 2 + 16 + settings.getFontYOffset();
+		int strxpos = 1 + (int) (Math.round(img.getWidth() / 2) - Math.round(strRect.getWidth() / 2));
+		int strypos = img.getHeight() / 2 + 16;
 		g2d.drawString(wifi, strxpos + 6, 18);
 
 		g2d.setFont(font);
 		final String str = "" + level;
 		strRect = metrix.getStringBounds(str, g2d);
-		strxpos = 1 + settings.getFontXOffset() + (int) (Math.round(img.getWidth() / 2) - Math.round(strRect.getWidth() / 2));
-		strypos = img.getHeight() / 2 + 16 + settings.getFontYOffset();
+		strxpos = 1 + (int) (Math.round(img.getWidth() / 2) - Math.round(strRect.getWidth() / 2));
+		strypos = img.getHeight() / 2 + 16;
 
 		g2d.drawString(str, strxpos, strypos);
 
@@ -104,11 +107,11 @@ public class TextWifiCreator extends AbstractWifiCreator {
 		final Rectangle rectout = new Rectangle(1, 2, 3, imgHeight - 4);
 		final Rectangle rectin = new Rectangle(3, 2, 3, imgHeight - 4);
 		if (in) {
-			g2d.setColor(settings.getInWifiColor());
+			g2d.setColor(settings.getInColor());
 			g2d.fillRect(rectin.x, rectin.y, rectin.width, rectin.height);
 		}
 		if (out) {
-			g2d.setColor(settings.getOutWifiColor());
+			g2d.setColor(settings.getOutColor());
 			g2d.fillRect(rectout.x, rectout.y, rectout.width, rectout.height);
 		}
 

@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 /**
  * @author Oliver
  * 
@@ -13,8 +15,8 @@ public class ArcCreator2 extends AbstractIconCreator {
 
 	protected static String name = "ArcBattery2";
 
-	public ArcCreator2() {
-		super();
+	public ArcCreator2(final RomSettings romSettings) {
+		super(romSettings);
 		settings.setStrokewidth(4);
 	}
 

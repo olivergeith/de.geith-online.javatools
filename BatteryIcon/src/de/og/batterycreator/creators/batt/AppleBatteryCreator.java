@@ -6,12 +6,14 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class AppleBatteryCreator extends AbstractIconCreator {
 
 	protected static String name = "ApfelBattery";
 
-	public AppleBatteryCreator() {
-		super();
+	public AppleBatteryCreator(final RomSettings romSettings) {
+		super(romSettings);
 		settings.setShowFont(false);
 		settings.setIconColor(Color.white);
 		settings.setFontXOffset(-3);

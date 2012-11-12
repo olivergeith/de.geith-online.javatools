@@ -29,46 +29,46 @@ public class BattSettingsPanel extends SettingsPanel {
 			"12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32"
 	};
 
-	JColorSelectButton fontColor = new JColorSelectButton("Main Color", "Color when normal battery-level");
-	JColorSelectButton fontColorLowBatt = new JColorSelectButton("LowBatt", "Color when low battery");
-	JColorSelectButton fontColorMedBatt = new JColorSelectButton("MedBatt", "Color when Med battery");
-	JColorSelectButton fontColorCharge = new JColorSelectButton("Charge Color", "Color when charging");
-	ChargeIconSelector chargeIconSeletor = new ChargeIconSelector();
+	private final JColorSelectButton fontColor = new JColorSelectButton("Main Color", "Color when normal battery-level");
+	private final JColorSelectButton fontColorLowBatt = new JColorSelectButton("LowBatt", "Color when low battery");
+	private final JColorSelectButton fontColorMedBatt = new JColorSelectButton("MedBatt", "Color when Med battery");
+	private final JColorSelectButton fontColorCharge = new JColorSelectButton("Charge Color", "Color when charging");
+	private final ChargeIconSelector chargeIconSeletor = new ChargeIconSelector();
 
-	JCheckBox cboxTransparentBgrnd = createCheckbox("Transparent Background (switchOff = experimental !)",
+	private final JCheckBox cboxTransparentBgrnd = createCheckbox("Transparent Background (switchOff = experimental !)",
 			"Use this, when your statusbar Background is not black!");
-	JColorSelectButton backgroundColor = new JColorSelectButton("Background Color", "Color if not transparent");
+	private final JColorSelectButton backgroundColor = new JColorSelectButton("Background Color", "Color if not transparent");
 
-	JColorSelectButton iconColor = new JColorSelectButton("Main Color", "Color when normal battery-level");
-	JColorSelectButton iconColorLowBatt = new JColorSelectButton("LowBatt", "Color when low battery");
-	JColorSelectButton iconColorMedBatt = new JColorSelectButton("MedBatt", "Color when Med battery");
-	JColorSelectButton iconColorInactiv = new JColorSelectButton("Inactiv", "Color for inactiv Iconelements");
-	JColorSelectButton iconColorCharge = new JColorSelectButton("Charge Color", "Color when charging");
+	private final JColorSelectButton iconColor = new JColorSelectButton("Main Color", "Color when normal battery-level");
+	private final JColorSelectButton iconColorLowBatt = new JColorSelectButton("LowBatt", "Color when low battery");
+	private final JColorSelectButton iconColorMedBatt = new JColorSelectButton("MedBatt", "Color when Med battery");
+	private final JColorSelectButton iconColorInactiv = new JColorSelectButton("Inactiv", "Color for inactiv Iconelements");
+	private final JColorSelectButton iconColorCharge = new JColorSelectButton("Charge Color", "Color when charging");
 
-	SliderAndLabel sliderStroke = new SliderAndLabel(1, 10);
-	JCheckBox cboxFlip = createCheckbox("Flip Icon", "Mirror's the Icon...ony has effect on a few styls!");
+	private final SliderAndLabel sliderStroke = new SliderAndLabel(1, 10);
+	private final JCheckBox cboxFlip = createCheckbox("Flip Icon", "Mirror's the Icon...ony has effect on a few styls!");
 
-	JCheckBox cboxColoredFont = createCheckbox("Low battery Colors", "...");
-	JCheckBox cboxColoredIcon = createCheckbox("Low battery Colors", "...");
-	JCheckBox cboxShowFont = createCheckbox("Show percentages", "...");
-	JCheckBox cboxShowChargeSymbol = createCheckbox("Charge-Symbol", "Show Charge-Symbol when charging");
-	JCheckBox cboxUseGradientMediumLevels = createCheckbox("Gradient for Medium levels", "Use Gradient Colors between Low and Med Batterylevels");
-	JCheckBox cboxUseGradientNormalLevels = createCheckbox("Gradient for Normal levels", "Use Gradient Colors between Med and 100% Batterylevels");
+	private final JCheckBox cboxColoredFont = createCheckbox("Low battery Colors", "...");
+	private final JCheckBox cboxColoredIcon = createCheckbox("Low battery Colors", "...");
+	private final JCheckBox cboxShowFont = createCheckbox("Show percentages", "...");
+	private final JCheckBox cboxShowChargeSymbol = createCheckbox("Charge-Symbol", "Show Charge-Symbol when charging");
+	private final JCheckBox cboxUseGradientMediumLevels = createCheckbox("Gradient for Medium levels", "Use Gradient Colors between Low and Med Batterylevels");
+	private final JCheckBox cboxUseGradientNormalLevels = createCheckbox("Gradient for Normal levels", "Use Gradient Colors between Med and 100% Batterylevels");
 
-	SliderAndLabel sliderLowBatt = new SliderAndLabel(0, 30);
-	SliderAndLabel sliderMedBatt = new SliderAndLabel(0, 100);
+	private final SliderAndLabel sliderLowBatt = new SliderAndLabel(0, 30);
+	private final SliderAndLabel sliderMedBatt = new SliderAndLabel(0, 100);
 
-	SliderAndLabel sliderFontXOffset = new SliderAndLabel(-12, 12);
-	SliderAndLabel sliderFontYOffset = new SliderAndLabel(-12, 12);
-	SliderAndLabel slidericonXOffset = new SliderAndLabel(-12, 12);
-	SliderAndLabel slidericonYOffset = new SliderAndLabel(-12, 12);
+	private final SliderAndLabel sliderFontXOffset = new SliderAndLabel(-12, 12);
+	private final SliderAndLabel sliderFontYOffset = new SliderAndLabel(-12, 12);
+	private final SliderAndLabel slidericonXOffset = new SliderAndLabel(-12, 12);
+	private final SliderAndLabel slidericonYOffset = new SliderAndLabel(-12, 12);
 
-	SliderAndLabel sliderReduceOn100 = new SliderAndLabel(-5, 0);
+	private final SliderAndLabel sliderReduceOn100 = new SliderAndLabel(-5, 0);
 
-	SliderAndLabel sliderResizeChargeSymbol = new SliderAndLabel(15, 30);
-	JCheckBox cboxResizeChargeSymbol = createCheckbox("resize Charge Symbol to: (pixel)", " Resize the Charge Symbol to make it fit better");
+	private final SliderAndLabel sliderResizeChargeSymbol = new SliderAndLabel(15, 30);
+	private final JCheckBox cboxResizeChargeSymbol = createCheckbox("resize Charge Symbol to: (pixel)", " Resize the Charge Symbol to make it fit better");
 
-	JFontChooserButton fontButton = new JFontChooserButton("Choose Font", fontSizes);
+	private final JFontChooserButton fontButton = new JFontChooserButton("Choose Font", fontSizes);
 
 	// Construktor
 	public BattSettingsPanel() {

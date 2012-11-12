@@ -6,12 +6,14 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class HoneycombCreator extends AbstractIconCreator {
 
 	protected static String name = "HoneyCombBattery";
 
-	public HoneycombCreator() {
-		super();
+	public HoneycombCreator(final RomSettings romSettings) {
+		super(romSettings);
 		settings.setStrokewidth(2);
 		settings.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
 		settings.setReduceFontOn100(-4);

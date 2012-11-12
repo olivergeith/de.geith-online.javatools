@@ -6,12 +6,14 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class ClockPointerCreator extends AbstractIconCreator {
 
 	protected static String name = "ClockPointerBattery";
 
-	public ClockPointerCreator() {
-		super();
+	public ClockPointerCreator(final RomSettings romSettings) {
+		super(romSettings);
 		settings.setShowFont(false);
 	}
 

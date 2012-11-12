@@ -5,7 +5,13 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class ArcDecimalCreator extends AbstractIconCreator {
+
+	public ArcDecimalCreator(final RomSettings romSettings) {
+		super(romSettings);
+	}
 
 	protected static String name = "DecimalArcBattery";
 

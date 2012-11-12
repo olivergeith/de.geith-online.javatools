@@ -2,11 +2,14 @@ package de.og.batterycreator.creators.signal;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class NoSignalIcons extends AbstractSignalCreator {
 
 	public static String name = "No Signal Icons";
 
-	public NoSignalIcons() {
+	public NoSignalIcons(final RomSettings romSettings) {
+		super(romSettings);
 	}
 
 	@Override

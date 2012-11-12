@@ -7,10 +7,12 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public abstract class AbstractIconXORCreator extends AbstractIconCreator {
 
-	public AbstractIconXORCreator() {
-		super();
+	public AbstractIconXORCreator(final RomSettings romSettings) {
+		super(romSettings);
 		settings.setFontXOffset(-1);
 		settings.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 19));
 	}

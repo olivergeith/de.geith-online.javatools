@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class ScalaBatteryCreator extends AbstractIconCreator {
 
 	protected static String name = "ScalaBattery";
@@ -16,8 +18,8 @@ public class ScalaBatteryCreator extends AbstractIconCreator {
 	private BufferedImage scala;
 	private BufferedImage scalaCharge;
 
-	public ScalaBatteryCreator() {
-		super();
+	public ScalaBatteryCreator(final RomSettings romSettings) {
+		super(romSettings);
 		settings.setColoredIcon(true);
 		settings.setShowChargeSymbol(false);
 		settings.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));

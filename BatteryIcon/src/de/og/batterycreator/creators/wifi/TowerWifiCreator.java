@@ -8,6 +8,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class TowerWifiCreator extends AbstractWifiCreator {
 	public static String name = "TowerWifi";
 
@@ -18,7 +20,8 @@ public class TowerWifiCreator extends AbstractWifiCreator {
 	private static final int width = 7;
 	private static final int stroke = 4;
 
-	public TowerWifiCreator() {
+	public TowerWifiCreator(final RomSettings romSettings) {
+		super(romSettings);
 	}
 
 	@Override
@@ -41,10 +44,10 @@ public class TowerWifiCreator extends AbstractWifiCreator {
 
 			if (i > 0) {
 				if (i > level) {
-					col = settings.getIconColorInActiv();
+					col = settings.getColorInActiv();
 				}
 				if (level == 0 && fully == true)
-					col = settings.getIconColorInActiv().darker().darker();
+					col = settings.getColorInActiv().darker().darker();
 				rect.y = rect.y - 2;
 				g2d.setColor(settings.getBackgroundColor());
 				g2d.fillArc(rect.x - 1, rect.y - 1, rect.width + 2, rect.height + 2, 50, 80);
@@ -52,7 +55,7 @@ public class TowerWifiCreator extends AbstractWifiCreator {
 				g2d.fillArc(rect.x, rect.y, rect.width, rect.height, 50, 80);
 			} else {
 				if (level == 0 && fully == true)
-					col = settings.getIconColorInActiv().darker().darker();
+					col = settings.getColorInActiv().darker().darker();
 				g2d.setColor(settings.getBackgroundColor());
 				g2d.fillArc(rect.x - 2, rect.y - 2, rect.width + 4, rect.height + 4, 0, 360);
 				g2d.setColor(col);
@@ -74,11 +77,11 @@ public class TowerWifiCreator extends AbstractWifiCreator {
 		final Rectangle rectin = new Rectangle(imgMitte - width + 1, height * 3 + 2, width * 3, height * 3);
 		final Rectangle rectout = new Rectangle(imgMitte - width + 1, 1, width * 3, height * 3);
 		if (in) {
-			g2d.setColor(settings.getInWifiColor());
+			g2d.setColor(settings.getInColor());
 			g2d.fillArc(rectin.x, rectin.y, rectin.width, rectin.height, 65, 50);
 		}
 		if (out) {
-			g2d.setColor(settings.getOutWifiColor());
+			g2d.setColor(settings.getOutColor());
 			g2d.fillArc(rectout.x, rectout.y, rectout.width, rectout.height, -65, -50);
 		}
 

@@ -10,6 +10,8 @@ import java.io.File;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+import de.og.batterycreator.cfg.WifiSignalSettings;
 import de.og.batterycreator.creators.AbstractCreator;
 import de.og.batterycreator.main.IconCreatorFrame;
 
@@ -19,6 +21,10 @@ import de.og.batterycreator.main.IconCreatorFrame;
  */
 public abstract class AbstractWifiCreator extends AbstractCreator {
 
+	public AbstractWifiCreator(final RomSettings romSettings) {
+		super(romSettings);
+	}
+
 	// ###############################################################################
 	// Abstracte Methoden
 	// ###############################################################################
@@ -26,10 +32,12 @@ public abstract class AbstractWifiCreator extends AbstractCreator {
 
 	public abstract ImageIcon createInOutImage(boolean in, boolean out);
 
+	protected WifiSignalSettings settings = new WifiSignalSettings();
+
 	protected Color getConnectColor(final boolean fully) {
-		Color col = settings.getWifiColor();
+		Color col = settings.getColor();
 		if (fully == true)
-			col = settings.getWifiColorFully();
+			col = settings.getColorFully();
 		return col;
 	}
 
@@ -66,16 +74,16 @@ public abstract class AbstractWifiCreator extends AbstractCreator {
 	}
 
 	private void createInOutImages() {
-		filenames.add(settings.getFileWifiIn());
+		filenames.add(romSettings.getFileWifiIn());
 		iconMap.add(createInOutImage(true, false));
-		filenames.add(settings.getFileWifiOut());
+		filenames.add(romSettings.getFileWifiOut());
 		iconMap.add(createInOutImage(false, true));
-		filenames.add(settings.getFileWifiInOut());
+		filenames.add(romSettings.getFileWifiInOut());
 		iconMap.add(createInOutImage(true, true));
 
-		filenamesAndPath.add(getPath() + File.separator + settings.getFileWifiIn());
-		filenamesAndPath.add(getPath() + File.separator + settings.getFileWifiOut());
-		filenamesAndPath.add(getPath() + File.separator + settings.getFileWifiInOut());
+		filenamesAndPath.add(getPath() + File.separator + romSettings.getFileWifiIn());
+		filenamesAndPath.add(getPath() + File.separator + romSettings.getFileWifiOut());
+		filenamesAndPath.add(getPath() + File.separator + romSettings.getFileWifiInOut());
 
 	}
 
@@ -84,24 +92,24 @@ public abstract class AbstractWifiCreator extends AbstractCreator {
 	// ###############################################################################
 	protected String getFileNameInOut(final boolean in, final boolean out) {
 		if (in && out)
-			return settings.getFileWifiInOut();
+			return romSettings.getFileWifiInOut();
 		if (in && !out)
-			return settings.getFileWifiIn();
+			return romSettings.getFileWifiIn();
 		if (!in && out)
-			return settings.getFileWifiOut();
+			return romSettings.getFileWifiOut();
 		return "";
 	}
 
 	protected String getFileName(final int level, final boolean fully) {
 		String filename;
 		if (!fully)
-			filename = settings.getFileWifiPattern() + level + ".png";
+			filename = romSettings.getFileWifiPattern() + level + ".png";
 		else
-			filename = settings.getFileWifiPattern() + level + settings.getFileWifiEXtensionFully() + ".png";
+			filename = romSettings.getFileWifiPattern() + level + romSettings.getFileWifiEXtensionFully() + ".png";
 
 		// Sonderbehandlung für null image
 		if (fully == true && level == 0)
-			filename = settings.getFileWifiPattern() + "null.png";
+			filename = romSettings.getFileWifiPattern() + "null.png";
 
 		return filename;
 	}
@@ -175,4 +183,25 @@ public abstract class AbstractWifiCreator extends AbstractCreator {
 	public ImageIcon getOverviewIcon() {
 		return overview;
 	}
+
+	// ###############################################################################
+	// Grafics2D
+	// ###############################################################################
+	protected Graphics2D initGrafics2D(final BufferedImage img) {
+		return initGrafics2D(img, false);
+	}
+
+	protected Graphics2D initGrafics2D(final BufferedImage img, final boolean forceTransparent) {
+		final Graphics2D g2d = img.createGraphics();
+		g2d.setFont(settings.getFont());
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		if (!forceTransparent) {
+			if (!settings.isTransparentBackground()) {
+				g2d.setColor(settings.getBackgroundColor());
+				g2d.fillRect(0, 0, img.getWidth(), img.getHeight());
+			}
+		}
+		return g2d;
+	}
+
 }

@@ -5,12 +5,14 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class DecimalBar2Creator extends AbstractIconCreator {
 
 	protected static String name = "DecimalBar2Battery";
 
-	public DecimalBar2Creator() {
-		super();
+	public DecimalBar2Creator(final RomSettings romSettings) {
+		super(romSettings);
 		settings.setFontXOffset(-1);
 		settings.setColoredFont(true);
 		settings.setStrokewidth(8);

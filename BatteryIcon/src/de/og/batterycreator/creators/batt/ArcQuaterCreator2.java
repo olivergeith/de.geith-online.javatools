@@ -5,7 +5,13 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class ArcQuaterCreator2 extends AbstractIconCreator {
+
+	public ArcQuaterCreator2(final RomSettings romSettings) {
+		super(romSettings);
+	}
 
 	protected static String name = "ArcQuaterBattery";
 

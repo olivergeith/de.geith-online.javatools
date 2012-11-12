@@ -4,13 +4,15 @@ import java.util.Vector;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
 import de.og.batterycreator.gui.iconstore.IconStore;
 
 public class NoBattIcons extends AbstractIconCreator {
 	public static String name = "No Battery Icons";
 	private final ImageIcon nada = IconStore.nothingIcon;
 
-	public NoBattIcons() {
+	public NoBattIcons(final RomSettings romSettings) {
+		super(romSettings);
 	}
 
 	@Override

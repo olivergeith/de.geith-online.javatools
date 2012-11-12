@@ -6,12 +6,14 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class BoxCreator extends AbstractIconCreator {
 
 	protected static String name = "BoxBattery";
 
-	public BoxCreator() {
-		super();
+	public BoxCreator(final RomSettings romSettings) {
+		super(romSettings);
 		settings.setFontXOffset(-1);
 		settings.setStrokewidth(4);
 	}

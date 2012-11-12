@@ -7,7 +7,13 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import de.og.batterycreator.cfg.RomSettings;
+
 public class BinaryBarsCreator extends AbstractIconCreator {
+
+	public BinaryBarsCreator(final RomSettings romSettings) {
+		super(romSettings);
+	}
 
 	protected static String name = "BinaryBarBattery";
 

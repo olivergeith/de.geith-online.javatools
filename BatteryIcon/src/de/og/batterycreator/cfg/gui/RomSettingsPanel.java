@@ -50,19 +50,19 @@ public class RomSettingsPanel extends SettingsPanel {
 
 	// Lockhandle
 	JTextField lockHandleFileName = new JTextField();
-	SliderAndLabel lockHandleSize = new SliderAndLabel(130, 250);
+	SliderAndLabel lockHandleSize = frameworkDrawableFolderCombo.getSliderLockSize();
 
 	// Toggles
-	SliderAndLabel toggleSize = new SliderAndLabel(32, 100);
+	SliderAndLabel toggleSize = systemUIDrawableFolderCombo.getSliderToggleSize();
 	JCheckBox cboxUseLidroid = createCheckbox("lidroid-res.apk for Toggles (S3 only)",
 			"Morph Toggles to framework/lidroid-res.apk (Galaxy S3 only dont play with this on S2 !)");
 
 	// Weather
-	SliderAndLabel weatherSize = new SliderAndLabel(100, 200);
+	SliderAndLabel weatherSize = frameworkDrawableFolderCombo.getSliderWeatherSize();
 
 	// Notification
 	JTextField notificationFileName = new JTextField();
-	JLabel notificationHeight = new JLabel();
+	SliderAndLabel notificationHeight = systemUIDrawableFolderCombo.getSliderNotificationSize();
 
 	// Signal stuff
 	private final JTextField fileNameSignalIn = new JTextField();
@@ -105,7 +105,7 @@ public class RomSettingsPanel extends SettingsPanel {
 					filepatternCharge.setText(pre.getFilePatternCharge());
 					romPresetCombo.setSelectedIndex(0);
 					lockHandleSize.setValue(pre.getLockHandleSize());
-					notificationHeight.setText("" + pre.getNotificationHeight());
+					notificationHeight.setValue(pre.getNotificationHeight());
 					toggleSize.setValue(pre.getToggleSize());
 					weatherSize.setValue(pre.getWeatherSize());
 					sliderBattSize.setValue(pre.getBattsize());
@@ -225,7 +225,8 @@ public class RomSettingsPanel extends SettingsPanel {
 		builder.add(JGoodiesHelper.createBlackLabel("Notification BG Filename"), cc.xyw(2, ++row, 3));
 		builder.add(JGoodiesHelper.createBlackLabel("Size (height)"), cc.xyw(6, row, 3));
 		builder.add(notificationFileName, cc.xyw(2, ++row, 3));
-		builder.add(notificationHeight, cc.xyw(6, row, 3));
+		builder.add(notificationHeight, cc.xyw(6, row, 1));
+		builder.add(notificationHeight.getValueLabel(), cc.xyw(8, row, 1));
 
 		final JPanel cfp = builder.getPanel();
 		// cfp.setBorder(BorderFactory.createLineBorder(Color.black, 2));
@@ -267,7 +268,7 @@ public class RomSettingsPanel extends SettingsPanel {
 			lockHandleSize.setValue(settings.getLockHandleSize());
 			// Notification
 			notificationFileName.setText(settings.getNotificationBGFilename());
-			notificationHeight.setText("" + settings.getNotificationHeight());
+			notificationHeight.setValue(settings.getNotificationHeight());
 			// toggle
 			toggleSize.setValue(settings.getToggleSize());
 			cboxUseLidroid.setSelected(settings.isUseLidroid());
@@ -307,7 +308,7 @@ public class RomSettingsPanel extends SettingsPanel {
 		settings.setLockHandleSize(lockHandleSize.getValue());
 		// Notification
 		settings.setNotificationBGFilename(notificationFileName.getText());
-		settings.setNotificationHeight(Integer.parseInt(notificationHeight.getText()));
+		settings.setNotificationHeight(notificationHeight.getValue());
 		// toggle
 		settings.setToggleSize(toggleSize.getValue());
 		settings.setUseLidroid(cboxUseLidroid.isSelected());

@@ -28,30 +28,49 @@ public class RomPreset {
 	// is in frameworkres...
 	public static final int WEATHER_XHDPI = 162;
 	public static final int WEATHER_HDPI = 144;
+	public static final int WEATHER_720DP_XHDPI = 162;
+	public static final int WEATHER_720DP_HDPI = 144;
+	public static final int WEATHER_600DP_XHDPI = 162;
+	public static final int WEATHER_600DP_HDPI = 144;
+
 	public static final int LOCK_XHDPI = 216;
 	public static final int LOCK_HDPI = 162;
+	public static final int LOCK_600DP_HDPI = 183;
+	public static final int LOCK_720P_HDPI = 193;
+	public static final int LOCK_600DP_XHDPI = 183;
+	public static final int LOCK_720P_XHDPI = 193;
 
 	// in systemUI
-	public static final int TOGGLE_720DP = 96;
-	public static final int TOGGLE_600DP = 84;
+	public static final int TOGGLE_720DP_XHDPI = 96;
+	public static final int TOGGLE_600DP_XHDPI = 84;
+	public static final int TOGGLE_720DP_HDPI = 96;
+	public static final int TOGGLE_600DP_HDPI = 84;
 	public static final int TOGGLE_XHDPI = 64;
 	public static final int TOGGLE_HDPI = 48;
 	public static final int TOGGLE_XHDPI_S3 = 72;
 
 	public static final int NOTIFICATION_HDPI = 3;
+	public static final int NOTIFICATION_720DP_HDPI = 3;
+	public static final int NOTIFICATION_600DP_HDPI = 3;
 	public static final int NOTIFICATION_XHDPI = 4;
+	public static final int NOTIFICATION_720DP_XHDPI = 4;
+	public static final int NOTIFICATION_600DP_XHDPI = 4;
 
 	public static final int BATT_ICON_HEIGHT_XHDPI = 36;
 	public static final int BATT_ICON_HEIGHT_HDPI = 27;
 	public static final int BATT_ICON_HEIGHT_HDPI_S3 = 38;
-	public static final int BATT_ICON_HEIGHT_720DP = 48;
-	public static final int BATT_ICON_HEIGHT_600DP = 43;
+	public static final int BATT_ICON_HEIGHT_720DP_XHDPI = 48;
+	public static final int BATT_ICON_HEIGHT_600DP_XHDPI = 43;
+	public static final int BATT_ICON_HEIGHT_720DP_HDPI = 48;
+	public static final int BATT_ICON_HEIGHT_600DP_HDPI = 43;
 
 	public static final String DRAWABLE_XHDPI = "drawable-xhdpi";
 	public static final String DRAWABLE_HDPI = "drawable-hdpi";
 	public static final String DRAWABLE_HDPI_S3 = "drawable-hdpi";
-	public static final String DRAWABLE_720DP = "drawable-sw720dp-xhdpi";
-	public static final String DRAWABLE_600DP = "drawable-sw600dp-xhdpi";
+	public static final String DRAWABLE_720DP_XHDPI = "drawable-sw720dp-xhdpi";
+	public static final String DRAWABLE_600DP_XHDPI = "drawable-sw600dp-xhdpi";
+	public static final String DRAWABLE_720DP_HDPI = "drawable-sw720dp-hdpi";
+	public static final String DRAWABLE_600DP_HDPI = "drawable-sw600dp-hdpi";
 
 	public static final String APPLY = "Apply Settings for Rom...";
 	private static Vector<RomPreset> presets = new Vector<RomPreset>();

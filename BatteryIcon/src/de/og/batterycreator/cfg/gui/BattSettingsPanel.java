@@ -2,14 +2,19 @@ package de.og.batterycreator.cfg.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 
+import javax.swing.AbstractAction;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
+import javax.swing.JToolBar;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import og.basics.gui.Jcolorselectbutton.JColorSelectButton;
+import og.basics.gui.icon.CommonIconProvider;
 import og.basics.gui.jfontchooser.JFontChooserButton;
 import og.basics.jgoodies.JGoodiesHelper;
 
@@ -18,6 +23,7 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
 import de.og.batterycreator.cfg.BattSettings;
+import de.og.batterycreator.cfg.SettingsPersistor;
 import de.og.batterycreator.gui.widgets.SliderAndLabel;
 import de.og.batterycreator.gui.widgets.chargeiconselector.ChargeIconSelector;
 
@@ -103,6 +109,7 @@ public class BattSettingsPanel extends SettingsPanel {
 	private void myInit() {
 		setLayout(new BorderLayout());
 		this.add(createTabPaneBattSettings(), BorderLayout.CENTER);
+		makeButtonBar();
 	}
 
 	public JPanel createTabPaneBattSettings() {
@@ -190,53 +197,55 @@ public class BattSettingsPanel extends SettingsPanel {
 	}
 
 	public void setSettings(final BattSettings settings) {
-		this.settings = settings;
-		fontColor.setColor(settings.getFontColor());
-		fontColorLowBatt.setColor(settings.getFontColorLowBatt());
-		fontColorMedBatt.setColor(settings.getFontColorMedBatt());
-		fontColorCharge.setColor(settings.getFontChargeColor());
+		if (settings != null) {
+			this.settings = settings;
+			fontColor.setColor(settings.getFontColor());
+			fontColorLowBatt.setColor(settings.getFontColorLowBatt());
+			fontColorMedBatt.setColor(settings.getFontColorMedBatt());
+			fontColorCharge.setColor(settings.getFontChargeColor());
 
-		iconColor.setColor(settings.getIconColor());
-		iconColorLowBatt.setColor(settings.getIconColorLowBatt());
-		iconColorMedBatt.setColor(settings.getIconColorMedBatt());
-		iconColorInactiv.setColor(settings.getIconColorInActiv());
-		iconColorCharge.setColor(settings.getIconChargeColor());
+			iconColor.setColor(settings.getIconColor());
+			iconColorLowBatt.setColor(settings.getIconColorLowBatt());
+			iconColorMedBatt.setColor(settings.getIconColorMedBatt());
+			iconColorInactiv.setColor(settings.getIconColorInActiv());
+			iconColorCharge.setColor(settings.getIconChargeColor());
 
-		backgroundColor.setColor(settings.getBackgroundColor());
-		cboxTransparentBgrnd.setSelected(settings.isTransparentBackground());
+			backgroundColor.setColor(settings.getBackgroundColor());
+			cboxTransparentBgrnd.setSelected(settings.isTransparentBackground());
 
-		cboxFlip.setSelected(settings.isFlip());
-		sliderStroke.setValue(settings.getStrokewidth());
+			cboxFlip.setSelected(settings.isFlip());
+			sliderStroke.setValue(settings.getStrokewidth());
 
-		cboxShowFont.setSelected(settings.isShowFont());
-		cboxShowChargeSymbol.setSelected(settings.isShowChargeSymbol());
-		cboxColoredFont.setSelected(settings.isColoredFont());
-		cboxColoredIcon.setSelected(settings.isColoredIcon());
+			cboxShowFont.setSelected(settings.isShowFont());
+			cboxShowChargeSymbol.setSelected(settings.isShowChargeSymbol());
+			cboxColoredFont.setSelected(settings.isColoredFont());
+			cboxColoredIcon.setSelected(settings.isColoredIcon());
 
-		sliderMedBatt.setValue(settings.getMedBattTheshold());
-		sliderLowBatt.setValue(settings.getLowBattTheshold());
+			sliderMedBatt.setValue(settings.getMedBattTheshold());
+			sliderLowBatt.setValue(settings.getLowBattTheshold());
 
-		if (settings.getChargeIcon() != null)
-			chargeIconSeletor.setSelectedItem(settings.getChargeIcon());
-		else
-			chargeIconSeletor.setSelectedIndex(1);
+			if (settings.getChargeIcon() != null)
+				chargeIconSeletor.setSelectedItem(settings.getChargeIcon());
+			else
+				chargeIconSeletor.setSelectedIndex(1);
 
-		cboxUseGradientMediumLevels.setSelected(settings.isUseGradiantForMediumColor());
-		cboxUseGradientNormalLevels.setSelected(settings.isUseGradiantForNormalColor());
-		fontButton.setFont(settings.getFont());
+			cboxUseGradientMediumLevels.setSelected(settings.isUseGradiantForMediumColor());
+			cboxUseGradientNormalLevels.setSelected(settings.isUseGradiantForNormalColor());
+			fontButton.setFont(settings.getFont());
 
-		slidericonXOffset.setValue(settings.getIconXOffset());
-		slidericonYOffset.setValue(settings.getIconYOffset());
+			slidericonXOffset.setValue(settings.getIconXOffset());
+			slidericonYOffset.setValue(settings.getIconYOffset());
 
-		sliderFontXOffset.setValue(settings.getFontXOffset());
-		sliderFontYOffset.setValue(settings.getFontYOffset());
-		sliderReduceOn100.setValue(settings.getReduceFontOn100());
+			sliderFontXOffset.setValue(settings.getFontXOffset());
+			sliderFontYOffset.setValue(settings.getFontYOffset());
+			sliderReduceOn100.setValue(settings.getReduceFontOn100());
 
-		sliderResizeChargeSymbol.setValue(settings.getResizeChargeSymbolHeight());
-		cboxResizeChargeSymbol.setSelected(settings.isResizeChargeSymbol());
+			sliderResizeChargeSymbol.setValue(settings.getResizeChargeSymbolHeight());
+			cboxResizeChargeSymbol.setSelected(settings.isResizeChargeSymbol());
 
-		validateControls();
-		this.repaint();
+			validateControls();
+			this.repaint();
+		}
 	}
 
 	public BattSettings getSettings() {
@@ -312,4 +321,50 @@ public class BattSettingsPanel extends SettingsPanel {
 		cboxFlip.setEnabled(supportsFlip);
 		sliderStroke.setEnabled(suppoertsStrokewidth);
 	}
+
+	/**
+	 * Creating buttonbar
+	 */
+	private void makeButtonBar() {
+		final LoadSettingsAktion loadAktion = new LoadSettingsAktion("Load Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_OPEN);
+		final SaveSettingsAktion saveAktion = new SaveSettingsAktion("Save Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_SAVE);
+		final JToolBar toolBar = new JToolBar();
+		toolBar.setFloatable(false);
+		toolBar.add(loadAktion);
+		toolBar.add(saveAktion);
+		add(toolBar, BorderLayout.NORTH);
+	}
+
+	/**
+	 * Load Settings Action
+	 * 
+	 */
+	private class LoadSettingsAktion extends AbstractAction {
+		private static final long serialVersionUID = 1L;
+
+		public LoadSettingsAktion(final String arg0, final Icon arg1) {
+			super(arg0, arg1);
+		}
+
+		public void actionPerformed(final ActionEvent arg0) {
+			setSettings(SettingsPersistor.loadBattSettings());
+		}
+	}
+
+	/**
+	 * Save Settings Action
+	 * 
+	 */
+	private class SaveSettingsAktion extends AbstractAction {
+		private static final long serialVersionUID = 1L;
+
+		public SaveSettingsAktion(final String arg0, final Icon arg1) {
+			super(arg0, arg1);
+		}
+
+		public void actionPerformed(final ActionEvent arg0) {
+			SettingsPersistor.saveBattSettings("MyBattSettings", settings);
+		}
+	}
+
 }

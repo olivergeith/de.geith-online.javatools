@@ -144,23 +144,29 @@ public class BatteryPanel extends JPanel {
 
 		// Tabbed Pane
 		final JTabbedPane battTabPane = new JTabbedPane();
+
 		// battTabPane.setTabPlacement(JTabbedPane.LEFT);
 		battTabPane.addTab("Overview", IconStore.overIcon, battOverviewPanel, "Get an Overview of your icons");
 		battTabPane.addTab("List", IconStore.listIcon, scroller, "Get an Overview of your icons");
 		setLayout(new BorderLayout());
-		this.add(battTabPane, BorderLayout.CENTER);
+
+		final JPanel p = new JPanel(new BorderLayout());
+		final JToolBar toolBar = makeButtonBar();
+		p.add(battTabPane, BorderLayout.CENTER);
+		p.add(toolBar, BorderLayout.NORTH);
+
+		this.add(p, BorderLayout.CENTER);
 		this.add(settingsPanel, BorderLayout.WEST);
-		makeButtonBar();
 	}
 
 	/**
 	 * Creating buttonbar
 	 */
-	private void makeButtonBar() {
+	private JToolBar makeButtonBar() {
 		final JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		toolBar.add(combo);
-		this.add(toolBar, BorderLayout.NORTH);
+		return toolBar;
 	}
 
 	/**

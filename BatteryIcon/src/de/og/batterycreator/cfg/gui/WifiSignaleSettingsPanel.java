@@ -2,11 +2,16 @@ package de.og.batterycreator.cfg.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 
+import javax.swing.AbstractAction;
+import javax.swing.Icon;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
+import javax.swing.JToolBar;
 
 import og.basics.gui.Jcolorselectbutton.JColorSelectButton;
+import og.basics.gui.icon.CommonIconProvider;
 import og.basics.gui.jfontchooser.JFontChooserButton;
 import og.basics.jgoodies.JGoodiesHelper;
 
@@ -14,6 +19,7 @@ import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
+import de.og.batterycreator.cfg.SettingsPersistor;
 import de.og.batterycreator.cfg.WifiSignalSettings;
 
 public class WifiSignaleSettingsPanel extends SettingsPanel {
@@ -47,6 +53,7 @@ public class WifiSignaleSettingsPanel extends SettingsPanel {
 	private void myInit() {
 		setLayout(new BorderLayout());
 		this.add(createTabPaneWifiColors(), BorderLayout.CENTER);
+		makeButtonBar();
 	}
 
 	public JPanel createTabPaneWifiColors() {
@@ -75,17 +82,19 @@ public class WifiSignaleSettingsPanel extends SettingsPanel {
 	}
 
 	public void setSettings(final WifiSignalSettings settings) {
-		this.settings = settings;
-		iconColorInactiv.setColor(settings.getColorInActiv());
-		backgroundColor.setColor(settings.getBackgroundColor());
-		cboxTransparentBgrnd.setSelected(settings.isTransparentBackground());
-		inColor.setColor(settings.getInColor());
-		outColor.setColor(settings.getOutColor());
-		color.setColor(settings.getColor());
-		colorFully.setColor(settings.getColorFully());
-		fontButton.setFont(settings.getFont());
-		validateControls();
-		this.repaint();
+		if (settings != null) {
+			this.settings = settings;
+			iconColorInactiv.setColor(settings.getColorInActiv());
+			backgroundColor.setColor(settings.getBackgroundColor());
+			cboxTransparentBgrnd.setSelected(settings.isTransparentBackground());
+			inColor.setColor(settings.getInColor());
+			outColor.setColor(settings.getOutColor());
+			color.setColor(settings.getColor());
+			colorFully.setColor(settings.getColorFully());
+			fontButton.setFont(settings.getFont());
+			validateControls();
+			this.repaint();
+		}
 	}
 
 	public WifiSignalSettings getSettings() {
@@ -109,4 +118,50 @@ public class WifiSignaleSettingsPanel extends SettingsPanel {
 			backgroundColor.setBackground(Color.black);
 		}
 	}
+
+	/**
+	 * Creating buttonbar
+	 */
+	private void makeButtonBar() {
+		final LoadSettingsAktion loadAktion = new LoadSettingsAktion("Load Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_OPEN);
+		final SaveSettingsAktion saveAktion = new SaveSettingsAktion("Save Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_SAVE);
+		final JToolBar toolBar = new JToolBar();
+		toolBar.setFloatable(false);
+		toolBar.add(loadAktion);
+		toolBar.add(saveAktion);
+		add(toolBar, BorderLayout.NORTH);
+	}
+
+	/**
+	 * Load Settings Action
+	 * 
+	 */
+	private class LoadSettingsAktion extends AbstractAction {
+		private static final long serialVersionUID = 1L;
+
+		public LoadSettingsAktion(final String arg0, final Icon arg1) {
+			super(arg0, arg1);
+		}
+
+		public void actionPerformed(final ActionEvent arg0) {
+			setSettings(SettingsPersistor.loadWifiSettings());
+		}
+	}
+
+	/**
+	 * Save Settings Action
+	 * 
+	 */
+	private class SaveSettingsAktion extends AbstractAction {
+		private static final long serialVersionUID = 1L;
+
+		public SaveSettingsAktion(final String arg0, final Icon arg1) {
+			super(arg0, arg1);
+		}
+
+		public void actionPerformed(final ActionEvent arg0) {
+			SettingsPersistor.saveWifiSettings("MyWifiSignalSettings", settings);
+		}
+	}
+
 }

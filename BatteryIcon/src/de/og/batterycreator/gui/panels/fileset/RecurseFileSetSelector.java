@@ -3,6 +3,7 @@ package de.og.batterycreator.gui.panels.fileset;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -63,6 +64,7 @@ public class RecurseFileSetSelector extends JPanel {
 		attention.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		combo.addItem(new RecurseFileSet(NADA));
+		combo.setMaximumSize(new Dimension(200, 40));
 		addSetsFromFilesystem();
 		combo.setRenderer(new MyCellRenderer());
 		combo.setToolTipText("Choose your Fileset");
@@ -88,17 +90,17 @@ public class RecurseFileSetSelector extends JPanel {
 		setLayout(new BorderLayout());
 		this.add(attention, BorderLayout.EAST);
 		this.add(overPane, BorderLayout.CENTER);
-		makeButtonBar();
+		this.add(makeButtonBar(), BorderLayout.NORTH);
 	}
 
 	/**
 	 * Creating buttonbar
 	 */
-	private void makeButtonBar() {
+	private JToolBar makeButtonBar() {
 		final JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		toolBar.add(combo);
-		this.add(toolBar, BorderLayout.NORTH);
+		return toolBar;
 	}
 
 	/**

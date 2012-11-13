@@ -235,46 +235,48 @@ public class RomSettingsPanel extends SettingsPanel {
 	}
 
 	public void setSettings(final RomSettings settings) {
-		this.settings = settings;
+		if (settings != null) {
+			this.settings = settings;
 
-		cboxUseAdvResize.setSelected(settings.isUseAdvancedResize());
+			cboxUseAdvResize.setSelected(settings.isUseAdvancedResize());
 
-		// Drawables
-		systemUIDrawableFolderCombo.setSelectedItem(settings.getSystemUIDrawableFolder());
-		frameworkDrawableFolderCombo.setSelectedItem(settings.getFrameworkDrawableFolder());
-		// Battery
-		filepattern.setText(settings.getFilePattern());
-		filepatternCharge.setText(settings.getFilePatternCharge());
-		sliderBattSize.setValue(settings.getBattIconSize());
+			// Drawables
+			systemUIDrawableFolderCombo.setSelectedItem(settings.getSystemUIDrawableFolder());
+			frameworkDrawableFolderCombo.setSelectedItem(settings.getFrameworkDrawableFolder());
+			// Battery
+			filepattern.setText(settings.getFilePattern());
+			filepatternCharge.setText(settings.getFilePatternCharge());
+			sliderBattSize.setValue(settings.getBattIconSize());
 
-		// Signal stuff
-		fileNameSignalIn.setText(settings.getFileSignalIn());
-		fileNameSignalOut.setText(settings.getFileSignalOut());
-		fileNameSignalInOut.setText(settings.getFileSignalInOut());
-		fileSignalPattern.setText(settings.getFileSignalPattern());
-		fileSignalPatternFully.setText(settings.getFileSignalEXtensionFully());
+			// Signal stuff
+			fileNameSignalIn.setText(settings.getFileSignalIn());
+			fileNameSignalOut.setText(settings.getFileSignalOut());
+			fileNameSignalInOut.setText(settings.getFileSignalInOut());
+			fileSignalPattern.setText(settings.getFileSignalPattern());
+			fileSignalPatternFully.setText(settings.getFileSignalEXtensionFully());
 
-		// Wifi stuff
-		fileNameWifiIn.setText(settings.getFileWifiIn());
-		fileNameWifiOut.setText(settings.getFileWifiOut());
-		fileNameWifiInOut.setText(settings.getFileWifiInOut());
-		fileWifiPattern.setText(settings.getFileWifiPattern());
-		fileWifiPatternFully.setText(settings.getFileWifiEXtensionFully());
+			// Wifi stuff
+			fileNameWifiIn.setText(settings.getFileWifiIn());
+			fileNameWifiOut.setText(settings.getFileWifiOut());
+			fileNameWifiInOut.setText(settings.getFileWifiInOut());
+			fileWifiPattern.setText(settings.getFileWifiPattern());
+			fileWifiPatternFully.setText(settings.getFileWifiEXtensionFully());
 
-		// Lockhandle
-		lockHandleFileName.setText(settings.getLockHandleFileName());
-		lockHandleSize.setValue(settings.getLockHandleSize());
-		// Notification
-		notificationFileName.setText(settings.getNotificationBGFilename());
-		notificationHeight.setText("" + settings.getNotificationHeight());
-		// toggle
-		toggleSize.setValue(settings.getToggleSize());
-		cboxUseLidroid.setSelected(settings.isUseLidroid());
-		// weather
-		weatherSize.setValue(settings.getWeatherSize());
+			// Lockhandle
+			lockHandleFileName.setText(settings.getLockHandleFileName());
+			lockHandleSize.setValue(settings.getLockHandleSize());
+			// Notification
+			notificationFileName.setText(settings.getNotificationBGFilename());
+			notificationHeight.setText("" + settings.getNotificationHeight());
+			// toggle
+			toggleSize.setValue(settings.getToggleSize());
+			cboxUseLidroid.setSelected(settings.isUseLidroid());
+			// weather
+			weatherSize.setValue(settings.getWeatherSize());
 
-		validateControls();
-		this.repaint();
+			validateControls();
+			this.repaint();
+		}
 	}
 
 	public RomSettings getSettings() {

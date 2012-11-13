@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JToolBar;
 import javax.swing.ListCellRenderer;
 
 import og.basics.gui.image.StaticImageHelper;
@@ -78,7 +79,19 @@ public class LockHandlePanel extends JPanel implements IconProviderInterface {
 		combo.setSelectedIndex(0);
 		setLayout(new BorderLayout());
 		this.add(overPane, BorderLayout.CENTER);
-		this.add(combo, BorderLayout.NORTH);
+		final JToolBar tollBar = makeButtonBar();
+
+		this.add(tollBar, BorderLayout.NORTH);
+	}
+
+	/**
+	 * Creating buttonbar
+	 */
+	private JToolBar makeButtonBar() {
+		final JToolBar toolBar = new JToolBar();
+		toolBar.setFloatable(false);
+		toolBar.add(combo);
+		return toolBar;
 	}
 
 	private void updateOverview() {

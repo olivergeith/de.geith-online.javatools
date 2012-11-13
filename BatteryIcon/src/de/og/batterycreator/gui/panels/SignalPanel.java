@@ -71,20 +71,20 @@ public class SignalPanel extends JPanel {
 		combo.setMaximumSize(new Dimension(300, 40));
 		setActivSignalCreator((AbstractSignalCreator) combo.getSelectedItem());
 		setLayout(new BorderLayout());
+		overPane.add(makeButtonBar(), BorderLayout.NORTH);
 		this.add(overPane, BorderLayout.CENTER);
 		this.add(settingsPanel, BorderLayout.WEST);
 
-		makeButtonBar();
 	}
 
 	/**
 	 * Creating buttonbar
 	 */
-	private void makeButtonBar() {
+	private JToolBar makeButtonBar() {
 		final JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		toolBar.add(combo);
-		this.add(toolBar, BorderLayout.NORTH);
+		return toolBar;
 	}
 
 	private void create() {

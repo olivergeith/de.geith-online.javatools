@@ -47,12 +47,15 @@ I use this frequently after full wipe installing a new rom...I add some of my ow
 
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Nov-xx-2012[/B] : Release 12.0[/COLOR]
+[COLOR="Blue"][B]Nov-xx-2012[/B] : Release 14.0[/COLOR]
 [LIST]
 [*]New Feature: Adding almost anything to be flashed alongside your Icons. (Apk's to system/app system/lib and so on)
 Add your own filesets to ./custom/XTRAS/... see example there!
 [*]Wider resize-range for toggles
-[*]Integrated small "Helpsystem"
+[*]Massive Refactoring of settings stuff 
+[*]ROM-Settings are now global (once set will be the same for all batteries)
+[*]New Text only Battery - use any font you want (Fonts here : http://www.dafont.com)
+[*]
 [/LIST]
 
 [SIZE="4"][B]Todo:[/B][/SIZE]

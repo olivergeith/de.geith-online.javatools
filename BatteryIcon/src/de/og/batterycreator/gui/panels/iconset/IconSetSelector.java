@@ -1,7 +1,6 @@
 package de.og.batterycreator.gui.panels.iconset;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -90,7 +89,8 @@ public class IconSetSelector extends JPanel {
 			}
 		});
 		combo.setSelectedIndex(0);
-		combo.setMaximumSize(new Dimension(500, 40));
+		combo.setMaximumSize(new Dimension(400, 40));
+		combo.setMaximumRowCount(10);
 
 		setLayout(new BorderLayout());
 		this.add(overPane, BorderLayout.CENTER);
@@ -138,11 +138,11 @@ public class IconSetSelector extends JPanel {
 
 			final JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 			if (value instanceof ImageIcon) {
-				if (isSelected)
-					renderer.setBackground(Color.darkGray.darker());
-				else
-					renderer.setBackground(Color.black);
-				renderer.setForeground(Color.white);
+				// if (isSelected)
+				// renderer.setBackground(Color.darkGray.darker());
+				// else
+				// renderer.setBackground(Color.black);
+				// renderer.setForeground(Color.white);
 				final ImageIcon icon = value;
 				renderer.setIcon(icon);
 				if (index > 0) {

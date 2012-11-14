@@ -30,6 +30,8 @@ public class RawIconSetSelector extends IconSetSelector {
 
 		html += "<font size=2 color=black>";
 		html += "These iconsets are added to the flashable zip as they are!<br>";
+		html += "They will be flashed to the framework-res eg. SystemUi <br>";
+		html += "drawable-folder selected in tab 'RomSettings'<br><br>";
 		html += "There will be: <br>";
 		html += "- no resizing<br>";
 		html += "- no file (re-)nameing<br>";

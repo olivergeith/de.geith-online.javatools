@@ -55,7 +55,8 @@ Add your own filesets to ./custom/XTRAS/... see example there!
 [*]Massive Refactoring of settings stuff 
 [*]ROM-Settings are now global (once set will be the same for all batteries)
 [*]New Text only Battery - use any font you want (Fonts here : http://www.dafont.com)
-[*]
+[*]New Featue "Theming/Morphs"... theme almost anything! 
+Put your png's in ./custom/MORPH/<YourTheme>/... See example there!
 [/LIST]
 
 [SIZE="4"][B]Todo:[/B][/SIZE]

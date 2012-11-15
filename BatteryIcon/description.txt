@@ -49,15 +49,24 @@ I use this frequently after full wipe installing a new rom...I add some of my ow
 [SIZE="4"][B]Changelog:[/B][/SIZE]
 [COLOR="Blue"][B]Nov-xx-2012[/B] : Release 14.0[/COLOR]
 [LIST]
-[*]New Feature: Adding almost anything to be flashed alongside your Icons. (Apk's to system/app system/lib and so on)
+[*]New advanced Feature: [B]"Filesets"[/B] Adding apk's, libs, media, almost anything to be flashed alongside your Icons. (Apk's to system/app system/lib and so on)
 Add your own filesets to ./custom/XTRAS/... see example there!
 [*]Wider resize-range for toggles
 [*]Massive Refactoring of settings stuff 
-[*]ROM-Settings are now global (once set will be the same for all batteries)
-[*]New Text only Battery - use any font you want (Fonts here : http://www.dafont.com)
-[*]New Featue "Theming/Morphs"... theme almost anything! 
+[*]Settings can be saved separately for Rom, Battery, Wifi...
+[*]New Rom Preset for MORPHOLOGY SOCIETY [URL="http://forum.xda-developers.com/showthread.php?t=1968724"]MORPHOLOGY SOCIETY[/URL]
+[*]ROM-Settings are now global (once set will be the same for all batteries, wifi, and so on...)
+[*]New Text only Battery - use any font you want (Fancy fonts can be found here : [url]http://www.dafont.com[/url])
+[*]New advanced Featue [B]"Theme/Morph"[/B]... theme almost anything! 
 Put your png's in ./custom/MORPH/<YourTheme>/... See example there!
 [/LIST]
+
+These new [B]"Theme" and "Fileset" Features[/B] make it possible, to create addons to your Rom. Flash them with only [B]one flashable zip[/B]!
+For example you can flash your Battery-Icons along with themed icons for almost any other app. And you cann add additional apk's, media, libs, data...
+Personally I use this to flash the Android 4.2 Camera along with my prefered battery and lockring...as an example.
+
+But be carefull this is a very advanced features. You should know how your rom looks from the inside! You need to be familiar with directory structures in a rom and in its apk's and so on...
+[SIZE="4"][COLOR="DarkRed"][B]Noobs keep away from those new features!!![/B][/COLOR][/SIZE]
 
 [SIZE="4"][B]Todo:[/B][/SIZE]
 [LIST]

@@ -9,9 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import de.og.batterycreator.gui.widgets.OverviewCreator;
-
 import og.basics.gui.image.StaticImageHelper;
+import de.og.batterycreator.gui.widgets.OverviewCreator;
 
 /**
  * {@link IconSet} is a collection of Icons in One Folder that are flashed
@@ -47,6 +46,7 @@ public class IconSet {
 		if (pngs.length > 0) {
 			for (final File png : pngs) {
 				final ImageIcon icon = new ImageIcon(png.getPath());
+				icon.setDescription(png.getName());
 				icons.add(icon);
 				filenamesAndPath.add(png.getPath());
 			}

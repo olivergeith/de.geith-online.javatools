@@ -1,6 +1,7 @@
 package de.og.batterycreator.gui.panels.iconset;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -16,8 +17,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import javax.swing.ListCellRenderer;
+import javax.swing.border.EmptyBorder;
 
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
@@ -25,6 +29,7 @@ import de.og.batterycreator.gui.widgets.OverviewPanel;
 public class IconSetSelector extends JPanel {
 	private static final long serialVersionUID = -2767025548199058416L;
 
+	private final JList<ImageIcon> list = new JList<ImageIcon>();
 	private final JComboBox<ImageIcon> combo = new JComboBox<ImageIcon>();
 	private final OverviewPanel overPane = new OverviewPanel();
 	private final ImageIcon nada = IconStore.nothingIcon;
@@ -66,9 +71,16 @@ public class IconSetSelector extends JPanel {
 	}
 
 	private void initUI() {
+		// Icon Liste
+		final JScrollPane scroller = new JScrollPane();
+		list.setBackground(Color.black);
+		list.setCellRenderer(new IconListCellRenderer());
+		scroller.add(list);
+		scroller.getViewport().setView(list);
+		scroller.setPreferredSize(new Dimension(750, 500));
+
 		combo.addItem(nada);
 		addSetsFromFilesystem();
-
 		combo.setRenderer(new MyCellRenderer());
 		combo.setToolTipText("Choose your " + setTypeName + " Iconset");
 		System.out.println("Loading Custom " + setTypeName + " Icon Sets!");
@@ -77,15 +89,24 @@ public class IconSetSelector extends JPanel {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
 				final ImageIcon icon = (ImageIcon) combo.getSelectedItem();
+				list.removeAll();
+				list.repaint();
 				if (!icon.equals(nada)) {
 					final int index = combo.getSelectedIndex();
 					final IconSet set = iconSets.elementAt(index - 1);
-					overPane.setOverview(set.getOverviewsmall());
+					list.setListData(set.getIcons());
+					final ImageIcon over = set.getOverview();
+					if (over.getIconWidth() > 600 || over.getIconHeight() > 600)
+						overPane.setOverview(set.getOverviewsmall());
+					else
+						overPane.setOverview(over);
 					overPane.setText("");
 				} else {
 					overPane.setOverview(icon);
+					list.setListData(new Vector<ImageIcon>());
 					overPane.setText("   Choose " + setTypeName + "-Set from Dropdownbox");
 				}
+				list.repaint();
 			}
 		});
 		combo.setSelectedIndex(0);
@@ -93,7 +114,13 @@ public class IconSetSelector extends JPanel {
 		combo.setMaximumRowCount(10);
 
 		setLayout(new BorderLayout());
-		this.add(overPane, BorderLayout.CENTER);
+		// Tabbed Pane
+		final JTabbedPane tabPane = new JTabbedPane();
+		// battTabPane.setTabPlacement(JTabbedPane.LEFT);
+		tabPane.addTab("Overview", IconStore.overIcon, overPane, "Get an Overview of your icons");
+		tabPane.addTab("List", IconStore.listIcon, scroller, "Get an Overview of your icons");
+
+		this.add(tabPane, BorderLayout.CENTER);
 		makeButtonBar();
 	}
 
@@ -191,4 +218,29 @@ public class IconSetSelector extends JPanel {
 			filenamesAndPath = new Vector<String>();
 		}
 	}
+
+	/**
+	 * Renderer für IconList
+	 */
+	private class IconListCellRenderer implements ListCellRenderer<ImageIcon> {
+		protected DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
+
+		public Component getListCellRendererComponent(final JList<? extends ImageIcon> list, final ImageIcon value, final int index, final boolean isSelected,
+				final boolean cellHasFocus) {
+			ImageIcon iconName = null;
+
+			final JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+			if (value instanceof ImageIcon) {
+				iconName = value;
+				renderer.setBorder(new EmptyBorder(1, 1, 1, 1));
+				renderer.setText(iconName.getDescription());
+				renderer.setBackground(Color.black);
+				renderer.setForeground(Color.white);
+				renderer.setBorder(new EmptyBorder(1, 1, 1, 1));
+			}
+			return renderer;
+		}
+
+	}
+
 }

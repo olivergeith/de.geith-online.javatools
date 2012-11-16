@@ -2,15 +2,16 @@ package de.og.batterycreator.gui;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
-import javax.swing.AbstractAction;
-import javax.swing.Icon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTabbedPane;
+import javax.swing.JToggleButton;
 
 import og.basics.gui.LToolBar;
 import og.basics.gui.icon.CommonIconProvider;
@@ -37,8 +38,11 @@ import de.og.batterycreator.zipcreator.ZipMaker;
 public class IconCreatingPanelNew extends JPanel {
 	private static final long serialVersionUID = -2956273745014471932L;
 
+	private final JButton zipButton = new JButton(IconStore.zipIcon);
+	private final JButton createButton = new JButton(CommonIconProvider.getInstance().BUTTON_ICON_START);
+	private final JToggleButton advancedToggle = new JToggleButton(IconStore.moreIcon, false);
 	private final JTabbedPane tabPane = new JTabbedPane();
-
+	private final LToolBar toolBar = new LToolBar();
 	private final RomSettingsPanel romSettingsPanel = new RomSettingsPanel();
 	private final BatteryPanel battPanel = new BatteryPanel(romSettingsPanel.getSettings());
 	private final WifiPanel wifiPanel = new WifiPanel(romSettingsPanel.getSettings());
@@ -64,6 +68,8 @@ public class IconCreatingPanelNew extends JPanel {
 
 	private final JFrame parentFrame;
 
+	private JTabbedPane advancedTabPane;
+
 	public IconCreatingPanelNew(final JFrame parentFrame) {
 		this.parentFrame = parentFrame;
 		initUI();
@@ -71,16 +77,51 @@ public class IconCreatingPanelNew extends JPanel {
 
 	private void initUI() {
 		setLayout(new BorderLayout());
-		// Prograssbar int
+		zipButton.setToolTipText("Create flashble Zip!");
+		zipButton.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(final ActionEvent e) {
+				startZipThread();
+			}
+		});
+		createButton.setToolTipText("Create/Refresh icons");
+		createButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(final ActionEvent e) {
+				create();
+			}
+		});
+
+		// Tooglebutton
+		advancedToggle.setSelected(false);
+		advancedToggle.setToolTipText("Show Advanced Features...Noobs stay away!!!!");
+		advancedToggle.addActionListener(new ActionListener() {
+			boolean firstTime = true;
+
+			@Override
+			public void actionPerformed(final ActionEvent e) {
+				if (firstTime == true) {
+					JOptionPane
+							.showMessageDialog(
+									IconCreatingPanelNew.this,
+									"You are entering dangerous terrain!!!\n\nNoobs keep away from those advanced features!!!\n\nYou need to know what you are doing!!!\n- You know how your Rom looks from the inside?\n- You know how your apk's look from the inside ?\n No? then stay away from this feature!",
+									"Attention", JOptionPane.WARNING_MESSAGE);
+					firstTime = false;
+				}
+
+				validatePanel(advancedToggle.isSelected());
+			}
+		});
+
+		// Prograssbar int
 		progressBar.setIndeterminate(false);
 		progressBar.setMinimum(0);
 		progressBar.setMaximum(maxsteps);
 		progressBar.setStringPainted(true);
 		resetProgressBar();
 
-		// advanced Tab
-		final JTabbedPane advancedTabPane = new JTabbedPane();
+		advancedTabPane = new JTabbedPane();
 		// Main Tabbed Pane
 		tabPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabPane.addTab("RomSettings", IconStore.cfgIcon, romSettingsPanel, "RomSettings");
@@ -91,7 +132,8 @@ public class IconCreatingPanelNew extends JPanel {
 		tabPane.addTab("Toggle", IconStore.toggleIcon, toggleBox, "Get an Overview of your toggles");
 		tabPane.addTab("Weather", IconStore.weatherIcon, weatherBox, "Get an Overview of your weather icons");
 		tabPane.addTab("Lockring", IconStore.lockringIcon, lockHandleSelector, "See your choosen Lockring!");
-		tabPane.addTab("Advanced Theming", IconStore.additionalIcon, advancedTabPane, "Advanced Stuff!!");
+		// tabPane.addTab("Advanced Theming", IconStore.additionalIcon,
+		// advancedTabPane, "Advanced Stuff!!");
 
 		advancedTabPane.addTab("SystemUI Mods", IconStore.androidredIcon, systemUIBox, "Get an Overview of your icons");
 		advancedTabPane.addTab("FrameWorkRes Mods", IconStore.androidblueIcon, frameworkresBox, "Get an Overview of your icons");
@@ -107,17 +149,24 @@ public class IconCreatingPanelNew extends JPanel {
 		makeButtonBar();
 	}
 
+	private void validatePanel(final boolean advancedMode) {
+		if (advancedMode == false)
+			tabPane.remove(advancedTabPane);
+		else
+			tabPane.addTab("Advanced Theming", IconStore.additionalIcon, advancedTabPane, "Advanced Stuff!!");
+
+	}
+
 	/**
 	 * Creating buttonbar
 	 */
 	private void makeButtonBar() {
-		final CreateAktion createAktion = new CreateAktion("Create Icons", CommonIconProvider.getInstance().BUTTON_ICON_START);
-		final ZipAktion zipAktion = new ZipAktion("Create Zip", IconStore.zipIcon);
-		final LToolBar toolBar = new LToolBar();
 		toolBar.setFloatable(false);
-		toolBar.add(createAktion, true);
-		toolBar.add(zipAktion, true);
-		add(toolBar, BorderLayout.NORTH);
+		toolBar.add(advancedToggle);
+		toolBar.add(new JPanel());
+		toolBar.add(createButton);
+		toolBar.add(zipButton);
+		// add(toolBar, BorderLayout.NORTH);
 	}
 
 	/**
@@ -256,39 +305,6 @@ public class IconCreatingPanelNew extends JPanel {
 	}
 
 	/**
-	 * Create Action for creating off all icons
-	 * 
-	 */
-	private class CreateAktion extends AbstractAction {
-		private static final long serialVersionUID = 1L;
-
-		public CreateAktion(final String arg0, final Icon arg1) {
-			super(arg0, arg1);
-		}
-
-		public void actionPerformed(final ActionEvent arg0) {
-			create();
-		}
-	}
-
-	/**
-	 * Zipping Action
-	 * 
-	 */
-	private class ZipAktion extends AbstractAction {
-		private static final long serialVersionUID = 1L;
-
-		public ZipAktion(final String arg0, final Icon arg1) {
-			super(arg0, arg1);
-		}
-
-		public void actionPerformed(final ActionEvent arg0) {
-			startZipThread();
-			// doZip();
-		}
-	}
-
-	/**
 	 * Startet den Thread
 	 * 
 	 * @param startDir
@@ -337,6 +353,13 @@ public class IconCreatingPanelNew extends JPanel {
 	private void resetProgressBar() {
 		progressBar.setValue(0);
 		progressBar.setString("Create your Icons");
+	}
+
+	/**
+	 * @return the toolBar
+	 */
+	public LToolBar getToolBar() {
+		return toolBar;
 	}
 
 }

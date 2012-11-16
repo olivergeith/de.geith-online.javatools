@@ -2,13 +2,12 @@ package de.og.batterycreator.main;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.AbstractAction;
-import javax.swing.Icon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 
+import og.basics.gui.LToolBar;
 import og.basics.gui.about.UniversalAboutDialog;
 import og.basics.gui.about.VersionDetails;
 import og.basics.gui.icon.CommonIconProvider;
@@ -17,15 +16,15 @@ import de.og.batterycreator.gui.iconstore.IconStore;
 
 public class IconCreatorFrame extends JFrame {
 
+	private final JButton aboutButton = new JButton(CommonIconProvider.getInstance().BUTTON_ICON_INFO);
+	private final JButton exitButton = new JButton(CommonIconProvider.getInstance().BUTTON_ICON_CANCEL);
 	private static final String APP_NAME = "The Battery Icon Creator & ROM-Fumbler";
-	public static final String VERSION_NR = "14.0";
-	private static final String VERSION_DATE = "15.11.2012";
+	public static final String VERSION_NR = "15.0";
+	private static final String VERSION_DATE = "xx.xx.2012";
 	private static final long serialVersionUID = 1L;
 	private static IconCreatorFrame frame;
-	private BeendenAktion beendenAktion;
-	private AboutAktion aboutAktion;
 	private final IconCreatingPanelNew iconCreatingPanel = new IconCreatingPanelNew(this);
-	private final JMenuBar menuBar = new JMenuBar();
+	LToolBar toolBar = iconCreatingPanel.getToolBar();
 
 	public static void main(final String[] args) {
 		System.out.println("Starting " + APP_NAME);
@@ -35,7 +34,7 @@ public class IconCreatorFrame extends JFrame {
 
 	public IconCreatorFrame() {
 		super();
-		setTitle(APP_NAME + " ----- Version " + VERSION_NR);
+		setTitle(APP_NAME + " ----- Version " + VERSION_NR + "   (" + VERSION_DATE + ")");
 		setIconImage(IconStore.logoIcon.getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 100, 300, 1280);
@@ -49,54 +48,31 @@ public class IconCreatorFrame extends JFrame {
 	 * Gui Init
 	 */
 	private void initUI() {
+
+		aboutButton.setToolTipText("About this supercool App :-)!");
+		aboutButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(final ActionEvent e) {
+				showAbout();
+			}
+		});
+		exitButton.setToolTipText("Exit this supercool App!");
+		exitButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(final ActionEvent e) {
+				System.exit(0);
+			}
+		});
+
 		getContentPane().setLayout(new BorderLayout());
-		setJMenuBar(menuBar);
-		// Menü und Buttonbar erzeugen
-		createAktionen();
 		makeMenuAndButtonBar();
-		getContentPane().add(iconCreatingPanel);
+		getContentPane().add(toolBar, BorderLayout.NORTH);
+		getContentPane().add(iconCreatingPanel, BorderLayout.CENTER);
 	}
 
 	private void makeMenuAndButtonBar() {
-		final JMenu dateiMenu = new JMenu("Datei");
-		menuBar.add(dateiMenu);
-		dateiMenu.add(beendenAktion);
-		dateiMenu.add(aboutAktion);
-	}
-
-	/**
-	 * Aktionen erzeugen und in einem Vector mit Aktionen ablegen
-	 */
-	private void createAktionen() {
-		beendenAktion = new BeendenAktion("Beenden", CommonIconProvider.getInstance().BUTTON_ICON_CANCEL);
-		aboutAktion = new AboutAktion("About", CommonIconProvider.getInstance().BUTTON_ICON_INFO);
-	}
-
-	private class BeendenAktion extends AbstractAction {
-		private static final long serialVersionUID = 1L;
-
-		public BeendenAktion(final String arg0, final Icon arg1) {
-			super(arg0, arg1);
-		}
-
-		public void actionPerformed(final ActionEvent arg0) {
-			System.exit(0);
-
-		}
-	}
-
-	private class AboutAktion extends AbstractAction {
-		private static final long serialVersionUID = 1L;
-
-		public AboutAktion(final String arg0, final Icon arg1) {
-			super(arg0, arg1);
-		}
-
-		public void actionPerformed(final ActionEvent arg0) {
-			showAbout();
-
-		}
-
+		toolBar.add(exitButton, 0);
+		toolBar.add(aboutButton, 1);
 	}
 
 	public void showAbout() {

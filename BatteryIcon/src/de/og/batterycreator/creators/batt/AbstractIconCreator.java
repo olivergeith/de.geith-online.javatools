@@ -42,6 +42,13 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 		return false;
 	}
 
+	// ###############################################################################
+	// Special features
+	// ###############################################################################
+	public boolean supportsNoBg() {
+		return false;
+	}
+
 	public boolean supportsStrokeWidth() {
 		return false;
 	}

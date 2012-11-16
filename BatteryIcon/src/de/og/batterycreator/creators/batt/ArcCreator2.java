@@ -30,6 +30,11 @@ public class ArcCreator2 extends AbstractIconCreator {
 		return true;
 	}
 
+	@Override
+	public boolean supportsNoBg() {
+		return true;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -42,8 +47,10 @@ public class ArcCreator2 extends AbstractIconCreator {
 		BufferedImage img = new BufferedImage(41, 41, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img);
 
-		g2d.setColor(settings.getIconColorInActiv());
-		g2d.drawArc(2, 2, 37, 37, 0, 360);
+		if (!settings.isNoBG()) {
+			g2d.setColor(settings.getIconColorInActiv());
+			g2d.drawArc(2, 2, 37, 37, 0, 360);
+		}
 
 		g2d.setColor(settings.getActivIconColor(percentage, charge));
 		if (settings.isFlip())

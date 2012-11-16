@@ -20,6 +20,11 @@ public class ArcSunCreator extends AbstractIconCreator {
 		return true;
 	}
 
+	@Override
+	public boolean supportsNoBg() {
+		return true;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -32,9 +37,10 @@ public class ArcSunCreator extends AbstractIconCreator {
 		BufferedImage img = new BufferedImage(41, 41, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img);
 
-		g2d.setColor(settings.getIconColorInActiv());
-		g2d.fillArc(1, 1, 39, 39, 0, 360);
-
+		if (!settings.isNoBG()) {
+			g2d.setColor(settings.getIconColorInActiv());
+			g2d.fillArc(1, 1, 39, 39, 0, 360);
+		}
 		g2d.setColor(settings.getActivIconColor(percentage, charge));
 		if (settings.isFlip())
 			g2d.fillArc(0, 0, 41, 41, 90, -Math.round(percentage * (360f / 100f)));

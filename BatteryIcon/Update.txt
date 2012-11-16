@@ -1,20 +1,21 @@
-[B][SIZE="3"]New Version out of [SIZE="3"][URL="http://forum.xda-developers.com/showthread.php?t=1918500"]The Battery Icon Creator[/URL][/SIZE] [/SIZE][/B]
+[B][SIZE="3"]New Version out of [SIZE="3"][URL="http://forum.xda-developers.com/showthread.php?t=1918500"]The Battery Icon Creator & Rom Fumbler[/URL][/SIZE] [/SIZE][/B]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Nov-05-2012[/B] : Release 12.0[/COLOR]
+[COLOR="Blue"][B]Nov-15-2012[/B] : Release 14.0[/COLOR]
 [LIST]
-[*]New Skull Battery (request from xda user "didi")
-[*]New VNV Nation Battery
-[*]Bringing back the old transparent "Arc Batteries" (request from xda user "thekenster")
-[*]New Honeycomb Battery
-[*]AOKP CircleBattery now suppoerts strokewidth (but in a different way than you might expect ;))
-[*][B][COLOR="Blue"]Fixed compatibility problems with latest "resurrection remix rom" version 3.1.2 (framework-res now hdpi...systemUI still xhdpi)[/COLOR][/B]
-[*]Default settings are now for RR 3.1.2!
-[*]No more changing of build-prop in template.zip derived from UniversalFlasherTool
+[*]New advanced Feature: [B]"Filesets"[/B] Adding apk's, libs, media, almost anything to be flashed alongside your Icons. (Apk's to system/app system/lib and so on)
+Add your own filesets to ./custom/XTRAS/... see example there!
+[*]Wider resize-range for toggles
+[*]Massive Refactoring of settings stuff 
+[*]Settings can be saved separately for Rom, Battery, Wifi...
+[*]New Rom Preset for MORPHOLOGY SOCIETY [URL="http://forum.xda-developers.com/showthread.php?t=1968724"]MORPHOLOGY SOCIETY[/URL]
+[*]ROM-Settings are now global (once set will be the same for all batteries, wifi, and so on...)
+[*]New Text only Battery - use any font you want (Fancy fonts can be found here : [url]http://www.dafont.com[/url])
+[*]New advanced Featue [B]"Theme/Morph"[/B]... theme almost anything! 
+Put your png's in ./custom/MORPH/<YourTheme>/... See example there!
+[*]Many Gui changes
+[*]lots of things I forgot
 [/LIST]
 
-The tool now handles with the problem, that framework-res has other dpi than systemUI...in latest RR 3.1.2!
-
-This means all your old Mod's are not compatible any more, when they have stuff in it that ends up in framework-res! You need to create your MOD again! (On the bright side...the old Mod's will not do any harm...they will just add pngs to framework-res, that are never read ;))
 
 Happy modding & flashing :)

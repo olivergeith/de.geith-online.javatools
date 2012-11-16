@@ -53,6 +53,7 @@ public class BattSettingsPanel extends SettingsPanel {
 
 	private final SliderAndLabel sliderStroke = new SliderAndLabel(1, 10);
 	private final JCheckBox cboxFlip = createCheckbox("Flip Icon", "Mirror's the Icon...ony has effect on a few styls!");
+	private final JCheckBox cboxNoBG = createCheckbox("No Backgr.", "Removes the -normally gray- background!");
 
 	private final JCheckBox cboxColoredFont = createCheckbox("Low battery Colors", "...");
 	private final JCheckBox cboxColoredIcon = createCheckbox("Low battery Colors", "...");
@@ -188,7 +189,8 @@ public class BattSettingsPanel extends SettingsPanel {
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(JGoodiesHelper.createBlackLabel("These settings only work on some styls"), cc.xyw(2, ++row, 3));
 		builder.add(JGoodiesHelper.createBlackLabel("Stroke Width"), cc.xyw(6, row, 3));
-		builder.add(cboxFlip, cc.xyw(2, ++row, 3));
+		builder.add(cboxFlip, cc.xyw(2, ++row, 1));
+		builder.add(cboxNoBG, cc.xyw(4, row, 1));
 		builder.add(sliderStroke, cc.xyw(6, row, 1));
 		builder.add(sliderStroke.getValueLabel(), cc.xyw(8, row, 1));
 
@@ -214,6 +216,7 @@ public class BattSettingsPanel extends SettingsPanel {
 			cboxTransparentBgrnd.setSelected(settings.isTransparentBackground());
 
 			cboxFlip.setSelected(settings.isFlip());
+			cboxNoBG.setSelected(settings.isNoBG());
 			sliderStroke.setValue(settings.getStrokewidth());
 
 			cboxShowFont.setSelected(settings.isShowFont());
@@ -264,6 +267,7 @@ public class BattSettingsPanel extends SettingsPanel {
 		settings.setTransparentBackground(cboxTransparentBgrnd.isSelected());
 
 		settings.setFlip(cboxFlip.isSelected());
+		settings.setNoBG(cboxNoBG.isSelected());
 		settings.setStrokewidth(sliderStroke.getValue());
 
 		settings.setShowFont(cboxShowFont.isSelected());
@@ -317,9 +321,10 @@ public class BattSettingsPanel extends SettingsPanel {
 		}
 	}
 
-	public void enableSupportedFeatures(final boolean supportsFlip, final boolean suppoertsStrokewidth) {
+	public void enableSupportedFeatures(final boolean supportsFlip, final boolean suppoertsStrokewidth, final boolean noBG) {
 		cboxFlip.setEnabled(supportsFlip);
 		sliderStroke.setEnabled(suppoertsStrokewidth);
+		cboxNoBG.setEnabled(noBG);
 	}
 
 	/**

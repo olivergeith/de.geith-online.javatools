@@ -61,6 +61,7 @@ public class BattSettings implements Serializable {
 	private boolean useGradiantForMediumColor = false;
 	private boolean useGradiantForNormalColor = false;
 	private boolean flip = false;
+	private boolean noBG = false;
 	private int strokewidth = 3;
 
 	private int lowBattTheshold = 10;
@@ -548,5 +549,20 @@ public class BattSettings implements Serializable {
 	 */
 	public void setBackgroundColor(final Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
+	}
+
+	/**
+	 * @return the noBG
+	 */
+	public boolean isNoBG() {
+		return noBG;
+	}
+
+	/**
+	 * @param noBG
+	 *            the noBG to set
+	 */
+	public void setNoBG(final boolean noBG) {
+		this.noBG = noBG;
 	}
 }

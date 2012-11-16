@@ -17,9 +17,9 @@ import de.og.batterycreator.gui.iconstore.IconStore;
 
 public class IconCreatorFrame extends JFrame {
 
-	private static final String APP_NAME = "The Battery Icon Creator";
+	private static final String APP_NAME = "The Battery Icon Creator & ROM-Fumbler";
 	public static final String VERSION_NR = "14.0";
-	private static final String VERSION_DATE = "xx.11.2012";
+	private static final String VERSION_DATE = "15.11.2012";
 	private static final long serialVersionUID = 1L;
 	private static IconCreatorFrame frame;
 	private BeendenAktion beendenAktion;
@@ -28,7 +28,7 @@ public class IconCreatorFrame extends JFrame {
 	private final JMenuBar menuBar = new JMenuBar();
 
 	public static void main(final String[] args) {
-		System.out.println("Starting The Battery Icon Creator");
+		System.out.println("Starting " + APP_NAME);
 		frame = new IconCreatorFrame();
 
 	}
@@ -93,17 +93,34 @@ public class IconCreatorFrame extends JFrame {
 		}
 
 		public void actionPerformed(final ActionEvent arg0) {
-			final VersionDetails details = new VersionDetails();
-			details.setApplicationname(APP_NAME);
-			details.setCompany("www.geith-online.de");
-			details.setVersion(VERSION_NR);
-			details.setDate(VERSION_DATE);
-			details.setLogo(IconStore.logoIcon);
-			details.setCopyright("by Oliver Geith");
-			details.setDescription("This application can create icons for batteries...and much more !");
-			final UniversalAboutDialog aboutDialog = new UniversalAboutDialog(frame, details);
-			aboutDialog.setVisible(true);
+			showAbout();
 
 		}
+
 	}
+
+	public void showAbout() {
+		final VersionDetails details = new VersionDetails();
+		details.setApplicationname(APP_NAME);
+		details.setCompany("www.geith-online.de");
+		details.setVersion(VERSION_NR);
+		details.setDate(VERSION_DATE);
+		details.setLogo(IconStore.logoIcon);
+		details.setCopyright("by Oliver Geith");
+		details.setDescription(getDescription());
+		final UniversalAboutDialog aboutDialog = new UniversalAboutDialog(frame, details);
+		aboutDialog.setVisible(true);
+	}
+
+	public String getDescription() {
+		String str = "This application can... ";
+		str += "...create icons for batteries...<br>";
+		str += "...modify the wifi and signal icons <br>";
+		str += "...modify toggle icons <br>";
+		str += "...modify notification background <br>";
+		str += "...create flashable zips!<br>";
+		str += "...and much more advanced stuff...Check it out!!<br>";
+		return str;
+	}
+
 }

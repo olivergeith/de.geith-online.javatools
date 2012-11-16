@@ -38,13 +38,14 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 	// ###############################################################################
 	// Special features
 	// ###############################################################################
+	public boolean supportsGradient() {
+		return false;
+	}
+
 	public boolean supportsFlip() {
 		return false;
 	}
 
-	// ###############################################################################
-	// Special features
-	// ###############################################################################
 	public boolean supportsNoBg() {
 		return false;
 	}

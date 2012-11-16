@@ -109,7 +109,6 @@ public class IconCreatingPanelNew extends JPanel {
 									"Attention", JOptionPane.WARNING_MESSAGE);
 					firstTime = false;
 				}
-
 				validatePanel(advancedToggle.isSelected());
 			}
 		});

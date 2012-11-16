@@ -1,5 +1,7 @@
 package de.og.batterycreator.creators.batt;
 
+import java.awt.Color;
+import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -25,6 +27,11 @@ public class ArcSunCreator extends AbstractIconCreator {
 		return true;
 	}
 
+	@Override
+	public boolean supportsGradient() {
+		return true;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -38,10 +45,25 @@ public class ArcSunCreator extends AbstractIconCreator {
 		final Graphics2D g2d = initGrafics2D(img);
 
 		if (!settings.isNoBG()) {
-			g2d.setColor(settings.getIconColorInActiv());
+			if (settings.isBattGradient()) {
+				final Color col1 = settings.getIconColorInActiv();
+				final Color col2 = col1.darker().darker().darker();
+				final GradientPaint gradientFill = new GradientPaint(1, 1, col2, 1, 39, col1);
+				g2d.setPaint(gradientFill);
+			} else {
+				g2d.setColor(settings.getIconColorInActiv());
+			}
 			g2d.fillArc(1, 1, 39, 39, 0, 360);
 		}
-		g2d.setColor(settings.getActivIconColor(percentage, charge));
+
+		if (settings.isBattGradient()) {
+			final Color col1 = settings.getActivIconColor(percentage, charge);
+			final Color col2 = col1.darker().darker().darker();
+			final GradientPaint gradientFill = new GradientPaint(0, 0, col1, 0, 41, col2);
+			g2d.setPaint(gradientFill);
+		} else {
+			g2d.setColor(settings.getActivIconColor(percentage, charge));
+		}
 		if (settings.isFlip())
 			g2d.fillArc(0, 0, 41, 41, 90, -Math.round(percentage * (360f / 100f)));
 		else

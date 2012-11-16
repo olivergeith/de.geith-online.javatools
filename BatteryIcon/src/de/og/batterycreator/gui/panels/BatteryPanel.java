@@ -36,6 +36,7 @@ import de.og.batterycreator.creators.batt.BatterySymbolCreator;
 import de.og.batterycreator.creators.batt.BatteryVerticalSymbolCreator;
 import de.og.batterycreator.creators.batt.BinaryBarsCreator;
 import de.og.batterycreator.creators.batt.BinarySquaresCreator;
+import de.og.batterycreator.creators.batt.Box2Creator;
 import de.og.batterycreator.creators.batt.BoxCreator;
 import de.og.batterycreator.creators.batt.BrickBattCreator;
 import de.og.batterycreator.creators.batt.BrickBattNoGapCreator;
@@ -86,6 +87,7 @@ public class BatteryPanel extends JPanel {
 		combo.addItem(new HoneycombCreator(romSettings));
 		combo.addItem(new AOKPCircleModCreator(romSettings));
 		combo.addItem(new BoxCreator(romSettings));
+		combo.addItem(new Box2Creator(romSettings));
 		combo.addItem(new BubbleCreator(romSettings));
 		combo.addItem(new BrickBattCreator(romSettings));
 		combo.addItem(new BrickBattNoGapCreator(romSettings));
@@ -122,7 +124,7 @@ public class BatteryPanel extends JPanel {
 				if (cre != null) {
 					activBattCreator = cre;
 					settingsPanel.setSettings(cre.getBattSettings());
-					settingsPanel.enableSupportedFeatures(cre.supportsFlip(), cre.supportsStrokeWidth(), cre.supportsNoBg());
+					settingsPanel.enableSupportedFeatures(cre.supportsFlip(), cre.supportsStrokeWidth(), cre.supportsNoBg(), cre.supportsGradient());
 					create();
 				}
 			}

@@ -54,6 +54,7 @@ public class BattSettingsPanel extends SettingsPanel {
 	private final SliderAndLabel sliderStroke = new SliderAndLabel(1, 10);
 	private final JCheckBox cboxFlip = createCheckbox("Flip Icon", "Mirror's the Icon...ony has effect on a few styls!");
 	private final JCheckBox cboxNoBG = createCheckbox("No Backgr.", "Removes the -normally gray- background!");
+	private final JCheckBox cboxBattGradient = createCheckbox("Gradient", "Gradients within Iconcolor");
 
 	private final JCheckBox cboxColoredFont = createCheckbox("Low battery Colors", "...");
 	private final JCheckBox cboxColoredIcon = createCheckbox("Low battery Colors", "...");
@@ -193,6 +194,7 @@ public class BattSettingsPanel extends SettingsPanel {
 		builder.add(cboxNoBG, cc.xyw(4, row, 1));
 		builder.add(sliderStroke, cc.xyw(6, row, 1));
 		builder.add(sliderStroke.getValueLabel(), cc.xyw(8, row, 1));
+		builder.add(cboxBattGradient, cc.xyw(2, ++row, 1));
 
 		final JPanel cfp = builder.getPanel();
 		return cfp;
@@ -216,6 +218,7 @@ public class BattSettingsPanel extends SettingsPanel {
 			cboxTransparentBgrnd.setSelected(settings.isTransparentBackground());
 
 			cboxFlip.setSelected(settings.isFlip());
+			cboxBattGradient.setSelected(settings.isBattGradient());
 			cboxNoBG.setSelected(settings.isNoBG());
 			sliderStroke.setValue(settings.getStrokewidth());
 
@@ -267,6 +270,7 @@ public class BattSettingsPanel extends SettingsPanel {
 		settings.setTransparentBackground(cboxTransparentBgrnd.isSelected());
 
 		settings.setFlip(cboxFlip.isSelected());
+		settings.setBattGradient(cboxBattGradient.isSelected());
 		settings.setNoBG(cboxNoBG.isSelected());
 		settings.setStrokewidth(sliderStroke.getValue());
 
@@ -321,10 +325,11 @@ public class BattSettingsPanel extends SettingsPanel {
 		}
 	}
 
-	public void enableSupportedFeatures(final boolean supportsFlip, final boolean suppoertsStrokewidth, final boolean noBG) {
+	public void enableSupportedFeatures(final boolean supportsFlip, final boolean suppoertsStrokewidth, final boolean noBG, final boolean battGradient) {
 		cboxFlip.setEnabled(supportsFlip);
 		sliderStroke.setEnabled(suppoertsStrokewidth);
 		cboxNoBG.setEnabled(noBG);
+		cboxBattGradient.setEnabled(battGradient);
 	}
 
 	/**

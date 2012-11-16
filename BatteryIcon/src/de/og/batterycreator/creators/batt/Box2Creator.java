@@ -9,18 +9,25 @@ import javax.swing.ImageIcon;
 
 import de.og.batterycreator.cfg.RomSettings;
 
-public class BatterySymbolCreator extends AbstractIconCreator {
+public class Box2Creator extends AbstractIconCreator {
 
-	public BatterySymbolCreator(final RomSettings romSettings) {
+	protected static String name = "Box2Battery";
+
+	public Box2Creator(final RomSettings romSettings) {
 		super(romSettings);
+		settings.setFontXOffset(-1);
+		settings.setStrokewidth(1);
 		settings.setBattGradient(true);
 		settings.setUseGradiantForMediumColor(true);
-		settings.setUseGradiantForNormalColor(true);
+		settings.setUseGradiantForNormalColor(false);
 		settings.setLowBattTheshold(1);
 		settings.setMedBattTheshold(50);
 	}
 
-	protected static String name = "BatterySymbol";
+	@Override
+	public boolean supportsStrokeWidth() {
+		return true;
+	}
 
 	@Override
 	public boolean supportsGradient() {
@@ -36,37 +43,40 @@ public class BatterySymbolCreator extends AbstractIconCreator {
 	public ImageIcon createImage(final int percentage, final boolean charge) {
 
 		// Create a graphics contents on the buffered image
-		BufferedImage img = new BufferedImage(41, 41, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage img = new BufferedImage(40, 40, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img);
 
-		g2d.setColor(Color.gray);
-		g2d.fillRect(5, 3, 31, 37); // Battery Border
-		g2d.fillRect(10, 0, 21, 3); // Battery Knob
+		g2d.setColor(settings.getIconColorInActiv().brighter());
+		final int w = settings.getStrokewidth();
+		g2d.fillRect(0, 0, 40, w);
+		g2d.fillRect(0, 40 - w, 40, w);
+		g2d.fillRect(0, 0, w, 40);
+		g2d.fillRect(40 - w, 0, w, 40);
 
 		if (settings.isBattGradient()) {
 			final Color col1 = settings.getIconColorInActiv();
 			final Color col2 = col1.darker().darker().darker();
-			final GradientPaint gradientFill = new GradientPaint(7, 5, col2, 27, 5, col1);
+			final GradientPaint gradientFill = new GradientPaint(w, 5, col2, 40 - w - w, 40, col1);
 			g2d.setPaint(gradientFill);
 		} else {
 			g2d.setColor(settings.getIconColorInActiv());
 		}
-		g2d.fillRect(7, 5, 27, 33); // Inner Battery
+		g2d.fillRect(w, w, 40 - w - w, 40 - w - w); // Inner Battery
 
-		final int h = Math.round(31f / 100f * percentage);
-
+		final int h = Math.round((40f - w - w - 2) / 100f * percentage);
 		if (settings.isBattGradient()) {
 			final Color col1 = settings.getActivIconColor(percentage, charge);
 			final Color col2 = col1.darker().darker().darker();
-			final GradientPaint gradientFill = new GradientPaint(8, h, col1, 25, h, col2);
+			final GradientPaint gradientFill = new GradientPaint(w, 5, col1, 40 - w - w, 5, col2);
 			g2d.setPaint(gradientFill);
 		} else {
 			g2d.setColor(settings.getActivIconColor(percentage, charge));
 		}
-		g2d.fillRect(8, 6 + 31 - h, 25, h); // Battery Border
+		g2d.fillRect(w + 1, 40 - w - 1 - h, 40 - w - w - 2, h);
 
-		// Schrift
+		g2d.setPaintMode();
 		drawPercentage(g2d, percentage, charge, img);
+
 		// Filewriting
 		img = writeFile(percentage, charge, img);
 		return new ImageIcon(img);

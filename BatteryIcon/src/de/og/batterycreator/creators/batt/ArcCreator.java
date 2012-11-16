@@ -1,6 +1,7 @@
 package de.og.batterycreator.creators.batt;
 
 import java.awt.Color;
+import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -18,6 +19,11 @@ public class ArcCreator extends AbstractIconCreator {
 
 	@Override
 	public boolean supportsFlip() {
+		return true;
+	}
+
+	@Override
+	public boolean supportsGradient() {
 		return true;
 	}
 
@@ -43,7 +49,14 @@ public class ArcCreator extends AbstractIconCreator {
 		ecke = 4;
 		g2d.fillArc(ecke, ecke, d - ecke * 2, d - ecke * 2, 0, 360);
 
-		g2d.setColor(settings.getActivIconColor(percentage, charge));
+		if (settings.isBattGradient()) {
+			final Color col1 = settings.getActivIconColor(percentage, charge);
+			final Color col2 = col1.darker().darker().darker();
+			final GradientPaint gradientFill = new GradientPaint(1, 1, col1, 1, 41, col2);
+			g2d.setPaint(gradientFill);
+		} else {
+			g2d.setColor(settings.getActivIconColor(percentage, charge));
+		}
 		if (!settings.isFlip()) {
 			ecke = 0;
 			g2d.fillArc(ecke, ecke, d - ecke * 2, d - ecke * 2, 90, -Math.round(percentage * (360f / 100f)));

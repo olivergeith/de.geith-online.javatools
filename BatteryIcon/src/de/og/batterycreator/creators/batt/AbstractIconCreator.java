@@ -141,7 +141,7 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 			final Graphics2D g = resizedChargeIcon.createGraphics();
 			g.drawImage(chargeIcon.getImage(), 0, 0, null);
 			if (settings.isResizeChargeSymbol())
-				resizedChargeIcon = StaticImageHelper.resizeAdvanced2Height(resizedChargeIcon, settings.getResizeChargeSymbolHeight());
+				resizedChargeIcon = StaticImageHelper.resize2Height(resizedChargeIcon, settings.getResizeChargeSymbolHeight());
 
 			final int w = resizedChargeIcon.getWidth();
 			final int h = resizedChargeIcon.getHeight();

@@ -51,6 +51,7 @@ import de.og.batterycreator.creators.batt.FontOnlyCreator;
 import de.og.batterycreator.creators.batt.HoneycombCreator;
 import de.og.batterycreator.creators.batt.NoBattIcons;
 import de.og.batterycreator.creators.batt.ScalaBatteryCreator;
+import de.og.batterycreator.creators.batt.TwoBarsCreator;
 import de.og.batterycreator.creators.batt.XORAndroidCreator;
 import de.og.batterycreator.creators.batt.XORApfelCreator;
 import de.og.batterycreator.creators.batt.XORSkullCreator;
@@ -95,6 +96,7 @@ public class BatteryPanel extends JPanel {
 		combo.addItem(new BrickDecimalCreator(romSettings));
 		combo.addItem(new BrickDecimal2Creator(romSettings));
 		combo.addItem(new BrickDecimal3Creator(romSettings));
+		combo.addItem(new TwoBarsCreator(romSettings));
 		combo.addItem(new DecimalBarCreator(romSettings));
 		combo.addItem(new DecimalBar2Creator(romSettings));
 		combo.addItem(new BinaryBarsCreator(romSettings));

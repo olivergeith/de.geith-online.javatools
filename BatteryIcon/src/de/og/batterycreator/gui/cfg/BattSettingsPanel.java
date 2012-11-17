@@ -74,7 +74,7 @@ public class BattSettingsPanel extends SettingsPanel {
 
 	private final SliderAndLabel sliderReduceOn100 = new SliderAndLabel(-5, 0);
 
-	private final SliderAndLabel sliderResizeChargeSymbol = new SliderAndLabel(15, 30);
+	private final SliderAndLabel sliderResizeChargeSymbol = new SliderAndLabel(15, 40);
 	private final JCheckBox cboxResizeChargeSymbol = createCheckbox("resize Charge Symbol to: (pixel)", " Resize the Charge Symbol to make it fit better");
 
 	private final JFontChooserButton fontButton = new JFontChooserButton("Choose Font", fontSizes);

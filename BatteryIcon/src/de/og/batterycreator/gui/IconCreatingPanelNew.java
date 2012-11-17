@@ -15,12 +15,12 @@ import javax.swing.JToggleButton;
 
 import og.basics.gui.LToolBar;
 import og.basics.gui.icon.CommonIconProvider;
-import de.og.batterycreator.cfg.gui.RomSettingsPanel;
 import de.og.batterycreator.creators.batt.AbstractIconCreator;
 import de.og.batterycreator.creators.signal.AbstractSignalCreator;
 import de.og.batterycreator.creators.signal.NoSignalIcons;
 import de.og.batterycreator.creators.wifi.AbstractWifiCreator;
 import de.og.batterycreator.creators.wifi.NoWifiIcons;
+import de.og.batterycreator.gui.cfg.RomSettingsPanel;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.panels.BatteryPanel;
 import de.og.batterycreator.gui.panels.LockHandlePanel;
@@ -39,7 +39,7 @@ public class IconCreatingPanelNew extends JPanel {
 	private static final long serialVersionUID = -2956273745014471932L;
 
 	private final JButton zipButton = new JButton(IconStore.zipIcon);
-	private final JButton createButton = new JButton(CommonIconProvider.getInstance().BUTTON_ICON_START);
+	private final JButton createButton = new JButton(CommonIconProvider.BUTTON_ICON_START);
 	private final JToggleButton advancedToggle = new JToggleButton(IconStore.moreIcon, false);
 	private final JTabbedPane tabPane = new JTabbedPane();
 	private final LToolBar toolBar = new LToolBar();

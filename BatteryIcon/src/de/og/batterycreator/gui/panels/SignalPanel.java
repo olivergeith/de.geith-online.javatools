@@ -19,12 +19,12 @@ import javax.swing.ListCellRenderer;
 
 import og.basics.gui.image.StaticImageHelper;
 import de.og.batterycreator.cfg.RomSettings;
-import de.og.batterycreator.cfg.gui.WifiSignaleSettingsPanel;
 import de.og.batterycreator.creators.signal.AbstractSignalCreator;
 import de.og.batterycreator.creators.signal.ArcSignalCreator;
 import de.og.batterycreator.creators.signal.ForkSignalCreator;
 import de.og.batterycreator.creators.signal.NoSignalIcons;
 import de.og.batterycreator.creators.signal.TowerSignalCreator;
+import de.og.batterycreator.gui.cfg.WifiSignaleSettingsPanel;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
 

@@ -22,7 +22,6 @@ import javax.swing.border.EmptyBorder;
 
 import og.basics.gui.image.StaticImageHelper;
 import de.og.batterycreator.cfg.RomSettings;
-import de.og.batterycreator.cfg.gui.BattSettingsPanel;
 import de.og.batterycreator.creators.batt.AOKPCircleModCreator;
 import de.og.batterycreator.creators.batt.AbstractIconCreator;
 import de.og.batterycreator.creators.batt.AppleBatteryCreator;
@@ -55,6 +54,7 @@ import de.og.batterycreator.creators.batt.XORAndroidCreator;
 import de.og.batterycreator.creators.batt.XORApfelCreator;
 import de.og.batterycreator.creators.batt.XORSkullCreator;
 import de.og.batterycreator.creators.batt.XORVnvCreator;
+import de.og.batterycreator.gui.cfg.BattSettingsPanel;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
 

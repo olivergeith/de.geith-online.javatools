@@ -19,7 +19,6 @@ import javax.swing.ListCellRenderer;
 
 import og.basics.gui.image.StaticImageHelper;
 import de.og.batterycreator.cfg.RomSettings;
-import de.og.batterycreator.cfg.gui.WifiSignaleSettingsPanel;
 import de.og.batterycreator.creators.wifi.AbstractWifiCreator;
 import de.og.batterycreator.creators.wifi.BrickWifi2Creator;
 import de.og.batterycreator.creators.wifi.CircleWifiCreator;
@@ -29,6 +28,7 @@ import de.og.batterycreator.creators.wifi.StarGateWifiCreator;
 import de.og.batterycreator.creators.wifi.TextWifiCreator;
 import de.og.batterycreator.creators.wifi.TopCornerWifiCreator;
 import de.og.batterycreator.creators.wifi.TowerWifiCreator;
+import de.og.batterycreator.gui.cfg.WifiSignaleSettingsPanel;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
 

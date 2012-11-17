@@ -31,7 +31,7 @@ public class LTitleMenuItem extends JMenuItem {
 		final GradientPaint gradientFill = new GradientPaint(0, 0, c1, w, 0, c2);
 		g2.setPaint(gradientFill);
 		g2.fillRect(0, 0, w - 1, h);
-		g2.drawImage(CommonIconProvider.getInstance().BUTTON_ICON_EXIT.getImage(), w - 18, 5, null);
+		g2.drawImage(CommonIconProvider.BUTTON_ICON_EXIT.getImage(), w - 18, 5, null);
 		// g2.drawImage(LIconManager.ICON_WONDOWS_XP_CLOSE.getImage(), w-23, 1,
 		// null);
 		// Text ausgeben

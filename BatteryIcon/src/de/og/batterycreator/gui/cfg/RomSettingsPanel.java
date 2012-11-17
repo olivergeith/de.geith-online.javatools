@@ -1,4 +1,4 @@
-package de.og.batterycreator.cfg.gui;
+package de.og.batterycreator.gui.cfg;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -321,8 +321,8 @@ public class RomSettingsPanel extends SettingsPanel {
 	 * Creating buttonbar
 	 */
 	private void makeButtonBar() {
-		final LoadSettingsAktion loadAktion = new LoadSettingsAktion("Load Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_OPEN);
-		final SaveSettingsAktion saveAktion = new SaveSettingsAktion("Save Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_SAVE);
+		final LoadSettingsAktion loadAktion = new LoadSettingsAktion("Load Settings for selected Creator", CommonIconProvider.BUTTON_ICON_OPEN);
+		final SaveSettingsAktion saveAktion = new SaveSettingsAktion("Save Settings for selected Creator", CommonIconProvider.BUTTON_ICON_SAVE);
 		final JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		toolBar.add(loadAktion);

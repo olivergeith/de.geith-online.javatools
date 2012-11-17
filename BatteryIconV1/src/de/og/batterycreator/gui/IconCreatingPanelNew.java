@@ -155,9 +155,9 @@ public class IconCreatingPanelNew extends JPanel implements ActionListener {
 	 * Creating buttonbar
 	 */
 	private void makeButtonBar() {
-		final LoadSettingsAktion loadAktion = new LoadSettingsAktion("Load Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_OPEN);
-		final SaveSettingsAktion saveAktion = new SaveSettingsAktion("Save Settings for selected Creator", CommonIconProvider.getInstance().BUTTON_ICON_SAVE);
-		final CreateAktion createAktion = new CreateAktion("Create Icons", CommonIconProvider.getInstance().BUTTON_ICON_START);
+		final LoadSettingsAktion loadAktion = new LoadSettingsAktion("Load Settings for selected Creator", CommonIconProvider.BUTTON_ICON_OPEN);
+		final SaveSettingsAktion saveAktion = new SaveSettingsAktion("Save Settings for selected Creator", CommonIconProvider.BUTTON_ICON_SAVE);
+		final CreateAktion createAktion = new CreateAktion("Create Icons", CommonIconProvider.BUTTON_ICON_START);
 		final ZipAktion zipAktion = new ZipAktion("Create flashable Zip", IconStore.zipIcon);
 		final JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);

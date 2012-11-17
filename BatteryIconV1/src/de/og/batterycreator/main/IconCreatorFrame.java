@@ -68,8 +68,8 @@ public class IconCreatorFrame extends JFrame {
 	 * Aktionen erzeugen und in einem Vector mit Aktionen ablegen
 	 */
 	private void createAktionen() {
-		beendenAktion = new BeendenAktion("Beenden", CommonIconProvider.getInstance().BUTTON_ICON_CANCEL);
-		aboutAktion = new AboutAktion("About", CommonIconProvider.getInstance().BUTTON_ICON_INFO);
+		beendenAktion = new BeendenAktion("Beenden", CommonIconProvider.BUTTON_ICON_CANCEL);
+		aboutAktion = new AboutAktion("About", CommonIconProvider.BUTTON_ICON_INFO);
 	}
 
 	private class BeendenAktion extends AbstractAction {

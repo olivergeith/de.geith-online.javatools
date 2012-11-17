@@ -16,8 +16,8 @@ import de.og.batterycreator.gui.iconstore.IconStore;
 
 public class IconCreatorFrame extends JFrame {
 
-	private final JButton aboutButton = new JButton(CommonIconProvider.getInstance().BUTTON_ICON_INFO);
-	private final JButton exitButton = new JButton(CommonIconProvider.getInstance().BUTTON_ICON_CANCEL);
+	private final JButton aboutButton = new JButton(CommonIconProvider.BUTTON_ICON_INFO);
+	private final JButton exitButton = new JButton(CommonIconProvider.BUTTON_ICON_EXIT);
 	private static final String APP_NAME = "The Battery Icon Creator & ROM-Fumbler";
 	public static final String VERSION_NR = "15.0";
 	private static final String VERSION_DATE = "xx.xx.2012";

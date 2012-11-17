@@ -63,6 +63,7 @@ public class BattSettings implements Serializable {
 	private boolean flip = false;
 	private boolean noBG = false;
 	private boolean battGradient = false;
+	private int battGradientLevel = 2;
 	private int strokewidth = 3;
 
 	private int lowBattTheshold = 10;
@@ -580,5 +581,20 @@ public class BattSettings implements Serializable {
 	 */
 	public void setBattGradient(final boolean battGradient) {
 		this.battGradient = battGradient;
+	}
+
+	/**
+	 * @return the battGradientLevel
+	 */
+	public int getBattGradientLevel() {
+		return battGradientLevel;
+	}
+
+	/**
+	 * @param battGradientLevel
+	 *            the battGradientLevel to set
+	 */
+	public void setBattGradientLevel(final int battGradientLevel) {
+		this.battGradientLevel = battGradientLevel;
 	}
 }

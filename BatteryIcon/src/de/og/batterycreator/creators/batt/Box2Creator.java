@@ -55,7 +55,7 @@ public class Box2Creator extends AbstractIconCreator {
 
 		if (settings.isBattGradient()) {
 			final Color col1 = settings.getIconColorInActiv();
-			final Color col2 = col1.darker().darker().darker();
+			final Color col2 = getBattGardientSecondColor(col1);
 			final GradientPaint gradientFill = new GradientPaint(w, 5, col2, 40 - w - w, 40, col1);
 			g2d.setPaint(gradientFill);
 		} else {
@@ -66,7 +66,7 @@ public class Box2Creator extends AbstractIconCreator {
 		final int h = Math.round((40f - w - w - 2) / 100f * percentage);
 		if (settings.isBattGradient()) {
 			final Color col1 = settings.getActivIconColor(percentage, charge);
-			final Color col2 = col1.darker().darker().darker();
+			final Color col2 = getBattGardientSecondColor(col1);
 			final GradientPaint gradientFill = new GradientPaint(w, 5, col1, 40 - w - w, 5, col2);
 			g2d.setPaint(gradientFill);
 		} else {

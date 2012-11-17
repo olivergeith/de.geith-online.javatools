@@ -55,6 +55,7 @@ public class BattSettingsPanel extends SettingsPanel {
 	private final JCheckBox cboxFlip = createCheckbox("Flip Icon", "Mirror's the Icon...ony has effect on a few styls!");
 	private final JCheckBox cboxNoBG = createCheckbox("No Backgr.", "Removes the -normally gray- background!");
 	private final JCheckBox cboxBattGradient = createCheckbox("Gradient", "Gradients within Iconcolor");
+	private final SliderAndLabel sliderBattGradientLevel = new SliderAndLabel(1, 5);
 
 	private final JCheckBox cboxColoredFont = createCheckbox("Low battery Colors", "...");
 	private final JCheckBox cboxColoredIcon = createCheckbox("Low battery Colors", "...");
@@ -189,12 +190,15 @@ public class BattSettingsPanel extends SettingsPanel {
 		builder.add(JGoodiesHelper.createGroupLabel("Misc Options ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(JGoodiesHelper.createBlackLabel("These settings only work on some styls"), cc.xyw(2, ++row, 3));
-		builder.add(JGoodiesHelper.createBlackLabel("Stroke Width"), cc.xyw(6, row, 3));
 		builder.add(cboxFlip, cc.xyw(2, ++row, 1));
 		builder.add(cboxNoBG, cc.xyw(4, row, 1));
-		builder.add(sliderStroke, cc.xyw(6, row, 1));
-		builder.add(sliderStroke.getValueLabel(), cc.xyw(8, row, 1));
-		builder.add(cboxBattGradient, cc.xyw(2, ++row, 1));
+		builder.add(cboxBattGradient, cc.xyw(6, row, 1));
+		builder.add(JGoodiesHelper.createBlackLabel("Stroke Width"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Gradient Level"), cc.xyw(6, row, 3));
+		builder.add(sliderStroke, cc.xyw(2, ++row, 1));
+		builder.add(sliderStroke.getValueLabel(), cc.xyw(4, row, 1));
+		builder.add(sliderBattGradientLevel, cc.xyw(6, row, 1));
+		builder.add(sliderBattGradientLevel.getValueLabel(), cc.xyw(8, row, 1));
 
 		final JPanel cfp = builder.getPanel();
 		return cfp;
@@ -219,6 +223,7 @@ public class BattSettingsPanel extends SettingsPanel {
 
 			cboxFlip.setSelected(settings.isFlip());
 			cboxBattGradient.setSelected(settings.isBattGradient());
+			sliderBattGradientLevel.setValue(settings.getBattGradientLevel());
 			cboxNoBG.setSelected(settings.isNoBG());
 			sliderStroke.setValue(settings.getStrokewidth());
 
@@ -271,6 +276,7 @@ public class BattSettingsPanel extends SettingsPanel {
 
 		settings.setFlip(cboxFlip.isSelected());
 		settings.setBattGradient(cboxBattGradient.isSelected());
+		settings.setBattGradientLevel(sliderBattGradientLevel.getValue());
 		settings.setNoBG(cboxNoBG.isSelected());
 		settings.setStrokewidth(sliderStroke.getValue());
 
@@ -330,6 +336,7 @@ public class BattSettingsPanel extends SettingsPanel {
 		sliderStroke.setEnabled(suppoertsStrokewidth);
 		cboxNoBG.setEnabled(noBG);
 		cboxBattGradient.setEnabled(battGradient);
+		sliderBattGradientLevel.setEnabled(battGradient);
 	}
 
 	/**

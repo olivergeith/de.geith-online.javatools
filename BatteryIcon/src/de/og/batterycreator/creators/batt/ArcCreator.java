@@ -51,7 +51,7 @@ public class ArcCreator extends AbstractIconCreator {
 
 		if (settings.isBattGradient()) {
 			final Color col1 = settings.getActivIconColor(percentage, charge);
-			final Color col2 = col1.darker().darker().darker();
+			final Color col2 = getBattGardientSecondColor(col1);
 			final GradientPaint gradientFill = new GradientPaint(1, 1, col1, 1, 41, col2);
 			g2d.setPaint(gradientFill);
 		} else {

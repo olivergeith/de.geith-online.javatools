@@ -48,8 +48,8 @@ public class AppleBatteryCreator extends AbstractIconCreator {
 
 		if (settings.isBattGradient()) {
 			final Color col1 = settings.getIconColorInActiv();
-			final Color col2 = col1.darker().darker().darker();
-			final GradientPaint gradientFill = new GradientPaint(3, 9, col2, 3, 23, col1);
+			final Color col2 = getBattGardientSecondColor(col1);
+			final GradientPaint gradientFill = new GradientPaint(3, 9, col2, 3, 9 + 23, col1);
 			g2d.setPaint(gradientFill);
 		} else {
 			g2d.setColor(settings.getIconColorInActiv());
@@ -61,8 +61,8 @@ public class AppleBatteryCreator extends AbstractIconCreator {
 
 		if (settings.isBattGradient()) {
 			final Color col1 = settings.getActivIconColor(percentage, charge);
-			final Color col2 = col1.darker();
-			final GradientPaint gradientFill = new GradientPaint(4, 10, col1, 4, 21, col2);
+			final Color col2 = getBattGardientSecondColor(col1);
+			final GradientPaint gradientFill = new GradientPaint(4, 10, col1, 4, 10 + 21, col2);
 			g2d.setPaint(gradientFill);
 		} else {
 			g2d.setColor(settings.getActivIconColor(percentage, charge));

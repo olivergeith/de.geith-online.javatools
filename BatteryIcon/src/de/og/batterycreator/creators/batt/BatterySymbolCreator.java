@@ -45,8 +45,8 @@ public class BatterySymbolCreator extends AbstractIconCreator {
 
 		if (settings.isBattGradient()) {
 			final Color col1 = settings.getIconColorInActiv();
-			final Color col2 = col1.darker().darker().darker();
-			final GradientPaint gradientFill = new GradientPaint(7, 5, col2, 27, 5, col1);
+			final Color col2 = getBattGardientSecondColor(col1);
+			final GradientPaint gradientFill = new GradientPaint(7, 5, col2, 7 + 27, 5, col1);
 			g2d.setPaint(gradientFill);
 		} else {
 			g2d.setColor(settings.getIconColorInActiv());
@@ -57,8 +57,8 @@ public class BatterySymbolCreator extends AbstractIconCreator {
 
 		if (settings.isBattGradient()) {
 			final Color col1 = settings.getActivIconColor(percentage, charge);
-			final Color col2 = col1.darker().darker().darker();
-			final GradientPaint gradientFill = new GradientPaint(8, h, col1, 25, h, col2);
+			final Color col2 = getBattGardientSecondColor(col1);
+			final GradientPaint gradientFill = new GradientPaint(8, h, col1, 8 + 25, h, col2);
 			g2d.setPaint(gradientFill);
 		} else {
 			g2d.setColor(settings.getActivIconColor(percentage, charge));

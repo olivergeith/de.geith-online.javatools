@@ -61,7 +61,7 @@ public class BatteryVerticalSymbolCreator extends AbstractIconCreator {
 																	// Knob
 			if (settings.isBattGradient()) {
 				final Color col1 = settings.getIconColorInActiv();
-				final Color col2 = col1.darker().darker().darker();
+				final Color col2 = getBattGardientSecondColor(col1);
 				final GradientPaint gradientFill = new GradientPaint(2, offsetOben + 2, col2, 2, height - 4, col1);
 				g2d.setPaint(gradientFill);
 			} else {
@@ -71,7 +71,7 @@ public class BatteryVerticalSymbolCreator extends AbstractIconCreator {
 
 			if (settings.isBattGradient()) {
 				final Color col1 = settings.getActivIconColor(percentage, charge);
-				final Color col2 = col1.darker().darker().darker();
+				final Color col2 = getBattGardientSecondColor(col1);
 				final GradientPaint gradientFill = new GradientPaint(3, offsetOben + 3, col1, 3, height - 6, col2);
 				g2d.setPaint(gradientFill);
 			} else {
@@ -84,8 +84,8 @@ public class BatteryVerticalSymbolCreator extends AbstractIconCreator {
 																// Border
 			if (settings.isBattGradient()) {
 				final Color col1 = settings.getIconColorInActiv();
-				final Color col2 = col1.darker().darker().darker();
-				final GradientPaint gradientFill = new GradientPaint(knobWidth + 2, offsetOben + 2, col2, knobWidth + 2, height - 4, col1);
+				final Color col2 = getBattGardientSecondColor(col1);
+				final GradientPaint gradientFill = new GradientPaint(knobWidth + 2, offsetOben + 2, col2, knobWidth + 2, offsetOben + 2 + height - 4, col1);
 				g2d.setPaint(gradientFill);
 			} else {
 				g2d.setColor(settings.getIconColorInActiv());
@@ -94,9 +94,9 @@ public class BatteryVerticalSymbolCreator extends AbstractIconCreator {
 			// Battery
 			if (settings.isBattGradient()) {
 				final Color col1 = settings.getActivIconColor(percentage, charge);
-				final Color col2 = col1.darker().darker().darker();
-				final GradientPaint gradientFill = new GradientPaint(knobWidth + width - 3 - w, offsetOben + 3, col1, knobWidth + width - 3 - w, height - 6,
-						col2);
+				final Color col2 = getBattGardientSecondColor(col1);
+				final GradientPaint gradientFill = new GradientPaint(knobWidth + width - 3 - w, offsetOben + 3, col1, knobWidth + width - 3 - w, offsetOben + 3
+						+ height - 6, col2);
 				g2d.setPaint(gradientFill);
 			} else {
 				g2d.setColor(settings.getActivIconColor(percentage, charge));

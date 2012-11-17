@@ -62,18 +62,8 @@ public class AOKPCircleModCreator extends AbstractIconCreator {
 		g2d.setColor(Color.black);
 		g2d.fillArc(6, 6, 29, 29, 0, 360);
 
-		// g2d.setColor(stylSettings.getActivIconColor(percentage, charge));
-		// if (stylSettings.isFlip())
-		// g2d.fillArc(2, 2, 37, 37, 90, -Math.round(percentage * (360f /
-		// 100f)));
-		// else
-		// g2d.fillArc(2, 2, 37, 37, 90, +Math.round(percentage * (360f /
-		// 100f)));
-
-		// for later customisation...
-
+		// percentage
 		drawPercentage(g2d, percentage, charge, img);
-
 		// Filewriting
 		img = writeFile(percentage, charge, img);
 		return new ImageIcon(img);

@@ -120,6 +120,19 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 		}
 	}
 
+	/**
+	 * Creates a darker Color of the given color...used for gradients
+	 * 
+	 * @param col1
+	 * @return
+	 */
+	public Color getBattGardientSecondColor(final Color col1) {
+		Color col2 = col1;
+		for (int i = 0; i <= settings.getBattGradientLevel(); i++)
+			col2 = col2.darker();
+		return col2;
+	}
+
 	private void drawChargeIcon(final Graphics2D g2d, final BufferedImage img) {
 		final ImageIcon chargeIcon = settings.getChargeIcon();
 		if (chargeIcon != null) {

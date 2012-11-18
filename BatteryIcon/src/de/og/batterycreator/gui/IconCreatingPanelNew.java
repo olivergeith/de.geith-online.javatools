@@ -63,7 +63,7 @@ public class IconCreatingPanelNew extends JPanel {
 	private Thread t = null;
 	private boolean isrunning = false;
 	// private boolean stopnow = false;
-	private final int maxsteps = 13;
+	private final int maxsteps = 14;
 	private int step = 0;
 
 	private final JFrame parentFrame;
@@ -266,7 +266,7 @@ public class IconCreatingPanelNew extends JPanel {
 	 * Creates the desired Icons ;-)
 	 */
 	private void create() {
-		step = 0;
+		step = 1;
 		// Creating Battery Icons
 		updateProgressBar(step++, "Creating Battery Icons (if configured)");
 		battPanel.createAllImages(romSettingsPanel.getSettings());
@@ -350,6 +350,7 @@ public class IconCreatingPanelNew extends JPanel {
 	}
 
 	private void resetProgressBar() {
+		step = 1;
 		progressBar.setValue(0);
 		progressBar.setString("Create your Icons");
 	}

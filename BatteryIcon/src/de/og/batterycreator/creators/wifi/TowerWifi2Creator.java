@@ -10,18 +10,17 @@ import javax.swing.ImageIcon;
 
 import de.og.batterycreator.cfg.RomSettings;
 
-public class BrickWifi2Creator extends AbstractWifiCreator {
-	public static String name = "BrickWifi.V2";
+public class TowerWifi2Creator extends AbstractWifiCreator {
+	public static String name = "TowerWifi2";
 
 	private static final int imgMitte = 17;
 	private static final int imgWidth = 39;
 	private static final int imgHeight = 36;
 	private static final int height = 5;
-	private static final int width = 4;
-	private static final int gap = 1;
-	private static final int offsetUnten = 4;
+	private static final int width = 6;
+	private static final int stroke = 4;
 
-	public BrickWifi2Creator(final RomSettings romSettings) {
+	public TowerWifi2Creator(final RomSettings romSettings) {
 		super(romSettings);
 		settings.setInColor(Color.white);
 		settings.setOutColor(Color.white);
@@ -38,27 +37,35 @@ public class BrickWifi2Creator extends AbstractWifiCreator {
 		// Create a graphics contents on the buffered image
 		BufferedImage img = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img);
-		g2d.setStroke(new BasicStroke(2f));
+		g2d.setStroke(new BasicStroke(stroke));
+		final int offsetunten = 5;
+		for (int i = 4; i >= 0; i--) {
+			Color col = getConnectColor(fully);
 
-		if (level == 0 && fully == true) {
-			for (int i = 0; i < 5; i++) {
-				g2d.setColor(getSettings().getColorInActiv());
-				final Rectangle rect = new Rectangle(imgMitte - i * width, imgHeight - offsetUnten - height - (i) * (height + gap), (1 + 2 * i) * width, height);
-				g2d.drawRect(rect.x, rect.y, rect.width, rect.height);
-			}
-		} else {
-			for (int i = 0; i < 5; i++) {
-				g2d.setColor(getConnectColor(fully));
+			final Rectangle rect = new Rectangle(imgMitte - (i * width), imgHeight - offsetunten - ((1 + i) * height), width * (2 * i + 1), height
+					* (2 * i + 1));
 
-				final Rectangle rect = new Rectangle(imgMitte - i * width, imgHeight - offsetUnten - height - (i) * (height + gap), (1 + 2 * i) * width, height);
-				if (i <= level)
-					g2d.fillRect(rect.x, rect.y, rect.width, rect.height);
-				else {
-					g2d.setColor(getSettings().getColorInActiv());
-					g2d.fillRect(rect.x, rect.y, rect.width, rect.height);
+			if (i > 0) {
+				if (i > level) {
+					col = getSettings().getColorInActiv();
 				}
+				if (level == 0 && fully == true)
+					col = getSettings().getColorInActiv().darker().darker();
+				rect.y = rect.y - 2;
+				g2d.setColor(getSettings().getBackgroundColor());
+				g2d.fillArc(rect.x - 1, rect.y - 1, rect.width + 2, rect.height + 2, 50, 80);
+				g2d.setColor(col);
+				g2d.fillArc(rect.x, rect.y, rect.width, rect.height, 50, 80);
+			} else {
+				if (level == 0 && fully == true)
+					col = getSettings().getColorInActiv().darker().darker();
+				g2d.setColor(getSettings().getBackgroundColor());
+				g2d.fillArc(rect.x - 2, rect.y - 2, rect.width + 4, rect.height + 4, 0, 360);
+				g2d.setColor(col);
+				g2d.fillArc(rect.x - 1, rect.y - 1, rect.width + 2, rect.height + 2, 0, 360);
 			}
 		}
+
 		// Filewriting
 		img = writeFile(getFileName(level, fully), img);
 		return new ImageIcon(img);
@@ -70,8 +77,8 @@ public class BrickWifi2Creator extends AbstractWifiCreator {
 		BufferedImage img = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img, true);
 
-		final Rectangle rectin = new Rectangle(10, 20, 18, 18);
-		final Rectangle rectout = new Rectangle(10, 1, 18, 18);
+		final Rectangle rectin = new Rectangle(imgMitte - width + 1, height * 3 + 2, width * 3, height * 3);
+		final Rectangle rectout = new Rectangle(imgMitte - width + 1, 1, width * 3, height * 3);
 		if (in) {
 			g2d.setColor(getSettings().getInColor());
 			g2d.fillArc(rectin.x, rectin.y, rectin.width, rectin.height, 65, 50);

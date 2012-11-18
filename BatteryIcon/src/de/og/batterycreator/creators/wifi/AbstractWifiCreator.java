@@ -32,7 +32,7 @@ public abstract class AbstractWifiCreator extends AbstractCreator {
 
 	public abstract ImageIcon createInOutImage(boolean in, boolean out);
 
-	private WifiSignalSettings settings = new WifiSignalSettings();
+	protected WifiSignalSettings settings = new WifiSignalSettings();
 
 	protected Color getConnectColor(final boolean fully) {
 		Color col = getSettings().getColor();
@@ -212,9 +212,10 @@ public abstract class AbstractWifiCreator extends AbstractCreator {
 	}
 
 	/**
-	 * @param settings the settings to set
+	 * @param settings
+	 *            the settings to set
 	 */
-	public void setSettings(WifiSignalSettings settings) {
+	public void setSettings(final WifiSignalSettings settings) {
 		this.settings = settings;
 	}
 

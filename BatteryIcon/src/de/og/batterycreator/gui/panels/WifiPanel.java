@@ -20,6 +20,7 @@ import javax.swing.ListCellRenderer;
 import og.basics.gui.image.StaticImageHelper;
 import de.og.batterycreator.cfg.RomSettings;
 import de.og.batterycreator.creators.wifi.AbstractWifiCreator;
+import de.og.batterycreator.creators.wifi.BrickWifi1Creator;
 import de.og.batterycreator.creators.wifi.BrickWifi2Creator;
 import de.og.batterycreator.creators.wifi.CircleWifiCreator;
 import de.og.batterycreator.creators.wifi.ForkWifiCreator;
@@ -27,6 +28,7 @@ import de.og.batterycreator.creators.wifi.NoWifiIcons;
 import de.og.batterycreator.creators.wifi.StarGateWifiCreator;
 import de.og.batterycreator.creators.wifi.TextWifiCreator;
 import de.og.batterycreator.creators.wifi.TopCornerWifiCreator;
+import de.og.batterycreator.creators.wifi.TowerWifi2Creator;
 import de.og.batterycreator.creators.wifi.TowerWifiCreator;
 import de.og.batterycreator.gui.cfg.WifiSignaleSettingsPanel;
 import de.og.batterycreator.gui.iconstore.IconStore;
@@ -50,8 +52,10 @@ public class WifiPanel extends JPanel {
 
 	private void fillFillCreatorList() {
 		combo.addItem(new NoWifiIcons(romSettings));
+		combo.addItem(new BrickWifi1Creator(romSettings));
 		combo.addItem(new BrickWifi2Creator(romSettings));
 		combo.addItem(new TowerWifiCreator(romSettings));
+		combo.addItem(new TowerWifi2Creator(romSettings));
 		combo.addItem(new TopCornerWifiCreator(romSettings));
 		combo.addItem(new ForkWifiCreator(romSettings));
 		combo.addItem(new StarGateWifiCreator(romSettings));

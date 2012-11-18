@@ -26,7 +26,7 @@ public abstract class AbstractSignalCreator extends AbstractCreator {
 	}
 
 	protected static final int NULL_LEVEL = 5;
-	private WifiSignalSettings settings = new WifiSignalSettings();
+	protected WifiSignalSettings settings = new WifiSignalSettings();
 
 	// ###############################################################################
 	// Abstracte Methoden
@@ -213,9 +213,10 @@ public abstract class AbstractSignalCreator extends AbstractCreator {
 	}
 
 	/**
-	 * @param settings the settings to set
+	 * @param settings
+	 *            the settings to set
 	 */
-	public void setSettings(WifiSignalSettings settings) {
+	public void setSettings(final WifiSignalSettings settings) {
 		this.settings = settings;
 	}
 

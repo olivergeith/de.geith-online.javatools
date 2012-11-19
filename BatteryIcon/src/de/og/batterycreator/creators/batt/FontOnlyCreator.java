@@ -23,16 +23,6 @@ public class FontOnlyCreator extends AbstractIconCreator {
 		settings.setColoredFont(true);
 	}
 
-	@Override
-	public boolean supportsFlip() {
-		return true;
-	}
-
-	@Override
-	public boolean supportsGradient() {
-		return true;
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -45,9 +35,6 @@ public class FontOnlyCreator extends AbstractIconCreator {
 		BufferedImage img = new BufferedImage(40, 40, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img);
 
-		// g2d.setColor(settings.getIconColorInActiv());
-		//
-		// g2d.setPaintMode();
 		drawPercentage(g2d, percentage, charge, img);
 
 		// Filewriting

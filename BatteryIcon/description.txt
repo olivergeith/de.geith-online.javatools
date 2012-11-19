@@ -55,10 +55,11 @@ I use this frequently after full wipe installing a new rom...I add some of my ow
 [*]Some Batteries (ArcBattery2...) can now be configured to have NO grey backround
 [*]Create and Zip button back on top right corner of the frame
 [*]New: [B][COLOR="Green"]Real Circle Animation[/COLOR][/B] during charge...very Cool...like Jkay Mod!!! But only for RR and maybe other AOKP-Roms!
-[*]New Setting for use same Color on ChargeIcons as on normal icons!
+[*]New Setting to use same color on chargeicons as on normal icons!
 [*]4 new Battery styles and some old optimized
 [*][COLOR="green"][B]Gradient Battery Colors[/B][/COLOR] in some styles...looks very cool...
-[*]new Wifi and Signal styles
+[*]New Wifi and Signal styles
+[*]Glowing Charge Animation
 [*]Additional Warning when activating advanced features 
 [*]Advanced stuff is now hidden by default..."Noobs keep away" Messagebox, when activated. (Activate advanced stuff with new button in buttonbar)
 [/LIST]

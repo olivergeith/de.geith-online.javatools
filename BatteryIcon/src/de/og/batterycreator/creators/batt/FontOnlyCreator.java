@@ -1,6 +1,5 @@
 package de.og.batterycreator.creators.batt;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -29,6 +28,11 @@ public class FontOnlyCreator extends AbstractIconCreator {
 		return true;
 	}
 
+	@Override
+	public boolean supportsGradient() {
+		return true;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -41,16 +45,9 @@ public class FontOnlyCreator extends AbstractIconCreator {
 		BufferedImage img = new BufferedImage(40, 40, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img);
 
-		g2d.setColor(settings.getIconColorInActiv());
-
-		if (settings.isFlip()) {
-			final Color col = settings.getActivIconColor(percentage, charge);
-			final Color col2 = new Color(col.getRed(), col.getGreen(), col.getBlue(), 64);
-			g2d.setColor(col2);
-			g2d.fillArc(0, 0, 40, 40, 0, 360);
-		}
-
-		g2d.setPaintMode();
+		// g2d.setColor(settings.getIconColorInActiv());
+		//
+		// g2d.setPaintMode();
 		drawPercentage(g2d, percentage, charge, img);
 
 		// Filewriting

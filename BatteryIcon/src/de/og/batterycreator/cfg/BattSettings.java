@@ -44,6 +44,10 @@ public class BattSettings implements Serializable {
 	private Color iconColorMedBatt = COLOR_Med_BATT;
 	private Color iconChargeColor = COLOR_CHARGE;
 
+	private Color iconChargeGlowColor = Color.orange;
+	private boolean chargeGlow = false;
+	private int chargeGlowRadius = 30;
+
 	private boolean transparentBackground = true;
 	private Color backgroundColor = COLOR_BGRND;
 
@@ -629,6 +633,51 @@ public class BattSettings implements Serializable {
 	 */
 	public void setUseChargeAnimation(final boolean useChargeAnimation) {
 		this.useChargeAnimation = useChargeAnimation;
+	}
+
+	/**
+	 * @return the iconChargeGlowColor
+	 */
+	public Color getIconChargeGlowColor() {
+		return iconChargeGlowColor;
+	}
+
+	/**
+	 * @param iconChargeGlowColor
+	 *            the iconChargeGlowColor to set
+	 */
+	public void setIconChargeGlowColor(final Color iconChargeGlowColor) {
+		this.iconChargeGlowColor = iconChargeGlowColor;
+	}
+
+	/**
+	 * @return the chargeGlow
+	 */
+	public boolean isChargeGlow() {
+		return chargeGlow;
+	}
+
+	/**
+	 * @param chargeGlow
+	 *            the chargeGlow to set
+	 */
+	public void setChargeGlow(final boolean chargeGlow) {
+		this.chargeGlow = chargeGlow;
+	}
+
+	/**
+	 * @return the chargeGlowRadius
+	 */
+	public int getChargeGlowRadius() {
+		return chargeGlowRadius;
+	}
+
+	/**
+	 * @param chargeGlowRadius
+	 *            the chargeGlowRadius to set
+	 */
+	public void setChargeGlowRadius(final int chargeGlowRadius) {
+		this.chargeGlowRadius = chargeGlowRadius;
 	}
 
 }

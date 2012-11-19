@@ -5,7 +5,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -90,6 +92,7 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 
 	protected void drawPercentage(final Graphics2D g2d, final int percentage, final boolean charge, final BufferedImage img) {
 		if (settings.isShowFont()) {
+			drawGlowOnCharge(g2d, percentage, charge, img);
 			int yoff = 8;
 			if (charge && settings.isShowChargeSymbol()) {
 				drawChargeIcon(g2d, img);
@@ -117,6 +120,79 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 			}
 		} else if (charge && settings.isShowChargeSymbol()) {
 			drawChargeIcon(g2d, img);
+		}
+	}
+
+	/**
+	 * Draws a glow behind a charge Symbol or number
+	 * 
+	 * @param g2d
+	 * @param percentage
+	 * @param charge
+	 * @param img
+	 */
+	private void drawGlowOnCharge(final Graphics2D g2d, final int percentage, final boolean charge, final BufferedImage img) {
+		if (settings.isChargeGlow() && charge == true) {
+			int centertranparenz = 170;
+
+			final int mod = percentage % 10;
+			switch (mod) {
+			case 0:
+				centertranparenz = centertranparenz * 10 / 10;
+				break;
+			case 1:
+				centertranparenz = centertranparenz * 8 / 10;
+				break;
+			case 2:
+				centertranparenz = centertranparenz * 6 / 10;
+				break;
+			case 3:
+				centertranparenz = centertranparenz * 4 / 10;
+				break;
+			case 4:
+				centertranparenz = centertranparenz * 2 / 10;
+				break;
+			case 5:
+				centertranparenz = centertranparenz * 0 / 10;
+				break;
+			case 6:
+				centertranparenz = centertranparenz * 2 / 10;
+				break;
+			case 7:
+				centertranparenz = centertranparenz * 4 / 10;
+				break;
+			case 8:
+				centertranparenz = centertranparenz * 6 / 10;
+				break;
+			case 9:
+				centertranparenz = centertranparenz * 8 / 10;
+				break;
+			default:
+				centertranparenz = centertranparenz * 10 / 10;
+				break;
+			}
+
+			// centertranparenz = centertranparenz / steps * mod;
+
+			// getting the Colors right...
+			final Color col = settings.getIconChargeGlowColor();
+			final Color col2 = new Color(col.getRed(), col.getGreen(), col.getBlue(), centertranparenz);
+			final Color col3 = new Color(0, 0, 0, 0);
+
+			// creating paint
+			final Point2D center = new Point2D.Float(img.getWidth() / 2, img.getHeight() / 2);
+			final float radius = settings.getChargeGlowRadius();
+			final float[] dist = {
+					0.0f, 1.0f
+			};
+			final Color[] colors = {
+					col2, col3
+			};
+			final RadialGradientPaint p = new RadialGradientPaint(center, radius, dist, colors);
+
+			// painting
+			g2d.setPaint(p);
+			g2d.fillArc(-10, -10, img.getWidth() + 10, img.getHeight() + 10, 0, 360);
 		}
 	}
 

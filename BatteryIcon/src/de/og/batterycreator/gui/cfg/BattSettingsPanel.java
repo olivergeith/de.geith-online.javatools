@@ -42,7 +42,8 @@ public class BattSettingsPanel extends SettingsPanel {
 	private final ChargeIconSelector chargeIconSeletor = new ChargeIconSelector();
 
 	private final JCheckBox cboxUseChargeColor = createCheckbox("Use charge color", "Use ChargeColor (green), else use normal battery colors");
-	private final JCheckBox cboxUseChargeAnimation = createCheckbox("Use ChargeAnimation (AOKP only)", "Use ChargeAnimation (Experimental and AOKP only)");
+	private final JCheckBox cboxUseChargeAnimation = createCheckbox("Apply cool ChargeAnimation (AOKP only)",
+			"Apply cool ChargeAnimation (Experimental and AOKP only)");
 
 	private final JCheckBox cboxTransparentBgrnd = createCheckbox("Transparent Background (switchOff = experimental !)",
 			"Use this, when your statusbar Background is not black!");
@@ -53,6 +54,10 @@ public class BattSettingsPanel extends SettingsPanel {
 	private final JColorSelectButton iconColorMedBatt = new JColorSelectButton("MedBatt", "Color when Med battery");
 	private final JColorSelectButton iconColorInactiv = new JColorSelectButton("Inactiv", "Color for inactiv Iconelements");
 	private final JColorSelectButton iconColorCharge = new JColorSelectButton("Charge Color", "Color when charging");
+
+	private final JColorSelectButton iconColorGlowCharge = new JColorSelectButton("Charge Glow Color", "Glow Color when charging");
+	private final JCheckBox cboxChargeGlow = createCheckbox("ChargeGlowAnim", "Glow Animation behind charge symbol or number");
+	private final SliderAndLabel sliderChargGlowRadius = new SliderAndLabel(10, 50);
 
 	private final SliderAndLabel sliderStroke = new SliderAndLabel(1, 10);
 	private final JCheckBox cboxFlip = createCheckbox("Flip Icon", "Mirror's the Icon...ony has effect on a few styls!");
@@ -181,6 +186,13 @@ public class BattSettingsPanel extends SettingsPanel {
 		builder.add(cboxTransparentBgrnd, cc.xyw(2, ++row, 5));
 		builder.add(backgroundColor, cc.xyw(8, row, 1));
 
+		builder.add(JGoodiesHelper.createBlackLabel("Glow behind Chargesymbol"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Glow Radius"), cc.xyw(6, row, 3));
+		builder.add(cboxChargeGlow, cc.xyw(2, ++row, 1));
+		builder.add(iconColorGlowCharge, cc.xyw(4, row, 1));
+		builder.add(sliderChargGlowRadius, cc.xyw(6, row, 1));
+		builder.add(sliderChargGlowRadius.getValueLabel(), cc.xyw(8, row, 1));
+
 		builder.add(JGoodiesHelper.createGroupLabel("Thresholds..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(JGoodiesHelper.createBlackLabel("...for Low Battery-Levels"), cc.xyw(2, ++row, 3));
@@ -195,15 +207,16 @@ public class BattSettingsPanel extends SettingsPanel {
 		builder.add(JGoodiesHelper.createGroupLabel("Misc Options ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(JGoodiesHelper.createBlackLabel("These settings only work on some styls"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Stroke Width"), cc.xyw(6, row, 3));
 		builder.add(cboxFlip, cc.xyw(2, ++row, 1));
 		builder.add(cboxNoBG, cc.xyw(4, row, 1));
-		builder.add(cboxBattGradient, cc.xyw(6, row, 1));
-		builder.add(JGoodiesHelper.createBlackLabel("Stroke Width"), cc.xyw(2, ++row, 3));
-		builder.add(JGoodiesHelper.createBlackLabel("Gradient Level"), cc.xyw(6, row, 3));
-		builder.add(sliderStroke, cc.xyw(2, ++row, 1));
-		builder.add(sliderStroke.getValueLabel(), cc.xyw(4, row, 1));
-		builder.add(sliderBattGradientLevel, cc.xyw(6, row, 1));
-		builder.add(sliderBattGradientLevel.getValueLabel(), cc.xyw(8, row, 1));
+		builder.add(sliderStroke, cc.xyw(6, row, 1));
+		builder.add(sliderStroke.getValueLabel(), cc.xyw(8, row, 1));
+		builder.add(JGoodiesHelper.createBlackLabel("Gradient within battery"), cc.xyw(2, ++row, 1));
+		builder.add(JGoodiesHelper.createBlackLabel("Gradient Level"), cc.xyw(4, row, 1));
+		builder.add(cboxBattGradient, cc.xyw(2, ++row, 1));
+		builder.add(sliderBattGradientLevel, cc.xyw(4, row, 1));
+		builder.add(sliderBattGradientLevel.getValueLabel(), cc.xyw(6, row, 1));
 
 		final JPanel cfp = builder.getPanel();
 		return cfp;
@@ -238,6 +251,10 @@ public class BattSettingsPanel extends SettingsPanel {
 			cboxColoredIcon.setSelected(settings.isColoredIcon());
 			cboxUseChargeColor.setSelected(settings.isUseChargeColor());
 			cboxUseChargeAnimation.setSelected(settings.isUseChargeAnimation());
+
+			cboxChargeGlow.setSelected(settings.isChargeGlow());
+			iconColorGlowCharge.setColor(settings.getIconChargeGlowColor());
+			sliderChargGlowRadius.setValue(settings.getChargeGlowRadius());
 
 			sliderMedBatt.setValue(settings.getMedBattTheshold());
 			sliderLowBatt.setValue(settings.getLowBattTheshold());
@@ -294,6 +311,14 @@ public class BattSettingsPanel extends SettingsPanel {
 		settings.setUseChargeColor(cboxUseChargeColor.isSelected());
 		settings.setUseChargeAnimation(cboxUseChargeAnimation.isSelected());
 
+		settings.setChargeGlow(cboxChargeGlow.isSelected());
+		settings.setIconChargeGlowColor(iconColorGlowCharge.getColor());
+		settings.setChargeGlowRadius(sliderChargGlowRadius.getValue());
+
+		cboxChargeGlow.setSelected(settings.isChargeGlow());
+		iconColorGlowCharge.setColor(settings.getIconChargeGlowColor());
+		sliderChargGlowRadius.setValue(settings.getChargeGlowRadius());
+
 		settings.setMedBattTheshold(sliderMedBatt.getValue());
 		settings.setLowBattTheshold(sliderLowBatt.getValue());
 
@@ -339,6 +364,10 @@ public class BattSettingsPanel extends SettingsPanel {
 		if (!backgroundColor.isEnabled()) {
 			backgroundColor.setBackground(Color.black);
 		}
+
+		sliderChargGlowRadius.setEnabled(cboxChargeGlow.isSelected());
+		iconColorGlowCharge.setEnabled(cboxChargeGlow.isSelected());
+
 	}
 
 	public void enableSupportedFeatures(final boolean supportsFlip, final boolean suppoertsStrokewidth, final boolean noBG, final boolean battGradient) {

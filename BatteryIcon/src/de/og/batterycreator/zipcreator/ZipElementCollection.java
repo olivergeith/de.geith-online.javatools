@@ -15,10 +15,25 @@ public class ZipElementCollection {
 	 * @param elements
 	 * @param pathInArchiv
 	 */
+	public void addElement(final String ele, final String pathInArchiv) {
+
+		if (ele != null && ele.length() > 0 && pathInArchiv != null && pathInArchiv.length() > 0) {
+			System.out.println("Adding Element: " + ele + " to path: " + pathInArchiv);
+			zipelEments.add(new ZipElement(ele, pathInArchiv));
+		}
+	}
+
+	/**
+	 * Adds files to the collection, that will end all in one path
+	 * 
+	 * @param elements
+	 * @param pathInArchiv
+	 */
 	public void addElements(final Vector<String> elements, final String pathInArchiv) {
 
 		if (elements != null && pathInArchiv != null && pathInArchiv.length() > 0) {
 			for (final String ele : elements) {
+				System.out.println("Adding Element: " + ele + " to path: " + pathInArchiv);
 				zipelEments.add(new ZipElement(ele, pathInArchiv));
 			}
 		}
@@ -35,6 +50,7 @@ public class ZipElementCollection {
 		if (elements != null && pathInArchiv != null) {
 			if (elements.size() == pathInArchiv.size()) {
 				for (int i = 0; i < elements.size(); i++) {
+					System.out.println("Adding Element: " + elements.get(i) + " to path: " + pathInArchiv.get(i));
 					zipelEments.add(new ZipElement(elements.get(i), pathInArchiv.get(i)));
 				}
 			}

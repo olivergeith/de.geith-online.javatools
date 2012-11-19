@@ -177,6 +177,7 @@ public class IconCreatingPanelNew extends JPanel {
 		updateProgressBar(step++, "Creating and deploying Icons to ./pngs");
 		create();
 
+		final ZipElementCollection zipCollection = new ZipElementCollection();
 		final ZipMaker zipper = new ZipMaker();
 		final Vector<String> files2add2Lidroid = new Vector<String>();
 		final Vector<String> files2add2SystemUI = new Vector<String>();
@@ -186,6 +187,9 @@ public class IconCreatingPanelNew extends JPanel {
 		final AbstractIconCreator activBattCreator = battPanel.getActivBattCreator();
 		if (activBattCreator != null) {
 			files2add2SystemUI.addAll(activBattCreator.getAllFilenamesAndPath());
+			if (activBattCreator.getBattSettings().isUseChargeAnimation() == true) {
+				zipCollection.addElement("./template/stat_sys_battery_charge_circle.xml", "MORPH/system/app/SystemUI.apk/res/drawable/");
+			}
 		}
 		// Add Wifi Icons
 		updateProgressBar(step++, "Adding Wifi Icons (if configured)");
@@ -221,12 +225,11 @@ public class IconCreatingPanelNew extends JPanel {
 		updateProgressBar(step++, "Adding SystemUI Mods (if configured)");
 		files2add2SystemUI.addAll(systemUIBox.getAllFilenamesAndPath());
 		// FrameWorkRES
-		updateProgressBar(step++, "Adding SystemUI Mods (if configured)");
+		updateProgressBar(step++, "Adding framework-res Mods (if configured)");
 		files2add2Framework.addAll(frameworkresBox.getAllFilenamesAndPath());
 
 		// ZipElementCollection anlegen und alle Zipelemente einfügen
 		updateProgressBar(step++, "Creating ZipCollection");
-		final ZipElementCollection zipCollection = new ZipElementCollection();
 		zipCollection.addElements(files2add2SystemUI, romSettingsPanel.getSettings().getFolderSystemUIInZip());
 		zipCollection.addElements(files2add2Framework, romSettingsPanel.getSettings().getFolderFrameworkInZip());
 		zipCollection.addElements(files2add2Lidroid, romSettingsPanel.getSettings().getFolderLidroidInZip());

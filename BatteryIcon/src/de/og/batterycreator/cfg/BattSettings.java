@@ -35,6 +35,9 @@ public class BattSettings implements Serializable {
 	private Color fontColorMedBatt = COLOR_Med_BATT;
 	private Color fontChargeColor = COLOR_FONT;
 
+	private boolean useChargeColor = true;
+	private boolean useChargeAnimation = false;
+
 	private Color iconColorInActiv = COLOR_INACTIV;
 	private Color iconColor = COLOR_AOKP_BLUE;
 	private Color iconColorLowBatt = COLOR_LOW_BATT;
@@ -234,7 +237,7 @@ public class BattSettings implements Serializable {
 	 */
 	public Color getActivIconColor(final int percentage, final boolean charge) {
 		Color col;
-		if (charge)
+		if (charge && useChargeColor)
 			col = getIconChargeColor();
 		else
 			col = getActivIconColor(percentage);
@@ -250,7 +253,7 @@ public class BattSettings implements Serializable {
 	 */
 	public Color getActivFontColor(final int percentage, final boolean charge) {
 		Color col;
-		if (charge)
+		if (charge && useChargeColor)
 			col = getFontChargeColor();
 		else
 			col = getActivFontColor(percentage);
@@ -597,4 +600,35 @@ public class BattSettings implements Serializable {
 	public void setBattGradientLevel(final int battGradientLevel) {
 		this.battGradientLevel = battGradientLevel;
 	}
+
+	/**
+	 * @return the useChargeColor
+	 */
+	public boolean isUseChargeColor() {
+		return useChargeColor;
+	}
+
+	/**
+	 * @param useChargeColor
+	 *            the useChargeColor to set
+	 */
+	public void setUseChargeColor(final boolean useChargeColor) {
+		this.useChargeColor = useChargeColor;
+	}
+
+	/**
+	 * @return the useChargeAnimation
+	 */
+	public boolean isUseChargeAnimation() {
+		return useChargeAnimation;
+	}
+
+	/**
+	 * @param useChargeAnimation
+	 *            the useChargeAnimation to set
+	 */
+	public void setUseChargeAnimation(final boolean useChargeAnimation) {
+		this.useChargeAnimation = useChargeAnimation;
+	}
+
 }

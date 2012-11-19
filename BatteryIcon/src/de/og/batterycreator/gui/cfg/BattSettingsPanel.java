@@ -41,6 +41,9 @@ public class BattSettingsPanel extends SettingsPanel {
 	private final JColorSelectButton fontColorCharge = new JColorSelectButton("Charge Color", "Color when charging");
 	private final ChargeIconSelector chargeIconSeletor = new ChargeIconSelector();
 
+	private final JCheckBox cboxUseChargeColor = createCheckbox("Use charge color", "Use ChargeColor (green), else use normal battery colors");
+	private final JCheckBox cboxUseChargeAnimation = createCheckbox("Use ChargeAnimation (AOKP only)", "Use ChargeAnimation (Experimental and AOKP only)");
+
 	private final JCheckBox cboxTransparentBgrnd = createCheckbox("Transparent Background (switchOff = experimental !)",
 			"Use this, when your statusbar Background is not black!");
 	private final JColorSelectButton backgroundColor = new JColorSelectButton("Background Color", "Color if not transparent");
@@ -152,6 +155,7 @@ public class BattSettingsPanel extends SettingsPanel {
 
 		builder.add(cboxShowChargeSymbol, cc.xyw(2, ++row, 1));
 		builder.add(chargeIconSeletor, cc.xyw(4, row, 1));
+		builder.add(cboxUseChargeAnimation, cc.xyw(6, row, 3));
 
 		builder.add(JGoodiesHelper.createBlackLabel("ChargeIcon Pixel Position Offsets X"), cc.xyw(2, ++row, 3));
 		builder.add(JGoodiesHelper.createBlackLabel("ChargeIcon Pixel Position Offsets Y"), cc.xyw(6, row, 3));
@@ -168,13 +172,14 @@ public class BattSettingsPanel extends SettingsPanel {
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 
 		builder.add(iconColorInactiv, cc.xyw(2, ++row, 1));
-		builder.add(backgroundColor, cc.xyw(4, row, 1));
+		builder.add(cboxUseChargeColor, cc.xyw(4, row, 1));
 		builder.add(cboxColoredIcon, cc.xyw(6, row, 3));
 		builder.add(iconColor, cc.xyw(2, ++row, 1));
 		builder.add(iconColorCharge, cc.xyw(4, row, 1));
 		builder.add(iconColorLowBatt, cc.xyw(6, row, 1));
 		builder.add(iconColorMedBatt, cc.xyw(8, row, 1));
-		builder.add(cboxTransparentBgrnd, cc.xyw(1, ++row, 6));
+		builder.add(cboxTransparentBgrnd, cc.xyw(2, ++row, 5));
+		builder.add(backgroundColor, cc.xyw(8, row, 1));
 
 		builder.add(JGoodiesHelper.createGroupLabel("Thresholds..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
@@ -231,6 +236,8 @@ public class BattSettingsPanel extends SettingsPanel {
 			cboxShowChargeSymbol.setSelected(settings.isShowChargeSymbol());
 			cboxColoredFont.setSelected(settings.isColoredFont());
 			cboxColoredIcon.setSelected(settings.isColoredIcon());
+			cboxUseChargeColor.setSelected(settings.isUseChargeColor());
+			cboxUseChargeAnimation.setSelected(settings.isUseChargeAnimation());
 
 			sliderMedBatt.setValue(settings.getMedBattTheshold());
 			sliderLowBatt.setValue(settings.getLowBattTheshold());
@@ -284,6 +291,8 @@ public class BattSettingsPanel extends SettingsPanel {
 		settings.setShowChargeSymbol(cboxShowChargeSymbol.isSelected());
 		settings.setColoredFont(cboxColoredFont.isSelected());
 		settings.setColoredIcon(cboxColoredIcon.isSelected());
+		settings.setUseChargeColor(cboxUseChargeColor.isSelected());
+		settings.setUseChargeAnimation(cboxUseChargeAnimation.isSelected());
 
 		settings.setMedBattTheshold(sliderMedBatt.getValue());
 		settings.setLowBattTheshold(sliderLowBatt.getValue());
@@ -314,6 +323,7 @@ public class BattSettingsPanel extends SettingsPanel {
 		cboxColoredFont.setEnabled(cboxShowFont.isSelected());
 		iconColorMedBatt.setEnabled(cboxColoredIcon.isSelected());
 		iconColorLowBatt.setEnabled(cboxColoredIcon.isSelected());
+		iconColorCharge.setEnabled(cboxUseChargeColor.isSelected());
 		chargeIconSeletor.setEnabled(cboxShowChargeSymbol.isSelected());
 		fontButton.setEnabled(cboxShowFont.isSelected());
 		slidericonXOffset.setEnabled(cboxShowChargeSymbol.isSelected());

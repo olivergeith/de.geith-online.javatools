@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:android="http://schemas.android.com/apk/res/android">
+  <xs:import namespace="http://schemas.android.com/apk/res/android" schemaLocation="android.xsd"/>
+  <xs:element name="level-list">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="item"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="item">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="animation-list"/>
+      </xs:sequence>
+      <xs:attribute ref="android:drawable"/>
+      <xs:attribute ref="android:duration"/>
+      <xs:attribute ref="android:maxLevel"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="animation-list">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="item"/>
+      </xs:sequence>
+      <xs:attribute ref="android:oneshot" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

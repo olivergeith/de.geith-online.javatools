@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Infrastruktur">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Tabelle"/>
+      </xs:sequence>
+      <xs:attribute name="AktivierungsDatum" use="required" type="xs:integer"/>
+      <xs:attribute name="DatenQuelle" use="required" type="xs:NCName"/>
+      <xs:attribute name="GenDatum" use="required" type="xs:integer"/>
+      <xs:attribute name="GlobalVersion" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Tabelle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Format"/>
+        <xs:element maxOccurs="unbounded" ref="STRECKENABSCHNITTE"/>
+      </xs:sequence>
+      <xs:attribute name="Name" use="required" type="xs:NCName"/>
+      <xs:attribute name="Nummer" use="required" type="xs:integer"/>
+      <xs:attribute name="Range" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Format">
+    <xs:complexType>
+      <xs:attribute name="BZ_NR_FB_IN_GR" use="required"/>
+      <xs:attribute name="BZ_NR_FB_IN_RI" use="required"/>
+      <xs:attribute name="EBU_KEY" use="required"/>
+      <xs:attribute name="SPLKN_KEY" use="required"/>
+      <xs:attribute name="STRABSCH_BETRIEBSKURZNAME" use="required"/>
+      <xs:attribute name="STRABSCH_BETRIEBSNAME" use="required"/>
+      <xs:attribute name="STRABSCH_BTRSTBISZMSTZUSAETZLI" use="required"/>
+      <xs:attribute name="STRABSCH_BTRSTVONZMSTZUSAETZLI" use="required"/>
+      <xs:attribute name="STRABSCH_DRUCKERTUECHTIGUNG" use="required"/>
+      <xs:attribute name="STRABSCH_EXTERN_KEY" use="required"/>
+      <xs:attribute name="STRABSCH_KEY" use="required"/>
+      <xs:attribute name="STRABSCH_KM_BIS" use="required"/>
+      <xs:attribute name="STRABSCH_KM_UEBLBIS" use="required"/>
+      <xs:attribute name="STRABSCH_KM_UEBLVON" use="required"/>
+      <xs:attribute name="STRABSCH_KM_VON" use="required"/>
+      <xs:attribute name="STRABSCH_LAENGE" use="required"/>
+      <xs:attribute name="STRABSCH_LAUFFAEHIGKEIT" use="required"/>
+      <xs:attribute name="STRABSCH_NAME11" use="required"/>
+      <xs:attribute name="STRABSCH_NOTBREMSUEBERBR" use="required"/>
+      <xs:attribute name="STRABSCH_NUMMER" use="required"/>
+      <xs:attribute name="SWFPLGR_KEY_HAT_BTRST_BIS" use="required"/>
+      <xs:attribute name="SWFPLGR_KEY_HAT_BTRST_VON" use="required"/>
+      <xs:attribute name="SWSTRART_KEY" use="required"/>
+      <xs:attribute name="SWSTRBART_KEY" use="required"/>
+      <xs:attribute name="SWSTRBNZ_KEY" use="required"/>
+      <xs:attribute name="SWSTRBSART_KEY" use="required"/>
+      <xs:attribute name="SWSTRBTRA_KEY" use="required"/>
+      <xs:attribute name="SWSTRBWEIS_KEY" use="required"/>
+      <xs:attribute name="SWSTRKAT_KEY" use="required"/>
+      <xs:attribute name="SWSTRKLAS_KEY" use="required"/>
+      <xs:attribute name="SWSTRQUA_KEY" use="required"/>
+      <xs:attribute name="SWSTRSPUR_KEY" use="required"/>
+      <xs:attribute name="SWSTRZLB_KEY" use="required"/>
+      <xs:attribute name="SWZLST_KEY" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="STRECKENABSCHNITTE">
+    <xs:complexType>
+      <xs:attribute name="BZ_NR_FB_IN_GR" use="required"/>
+      <xs:attribute name="BZ_NR_FB_IN_RI" use="required"/>
+      <xs:attribute name="EBU_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="SPLKN_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="STRABSCH_BETRIEBSKURZNAME" use="required"/>
+      <xs:attribute name="STRABSCH_BETRIEBSNAME" use="required"/>
+      <xs:attribute name="STRABSCH_BTRSTBISZMSTZUSAETZLI" use="required"/>
+      <xs:attribute name="STRABSCH_BTRSTVONZMSTZUSAETZLI" use="required"/>
+      <xs:attribute name="STRABSCH_DRUCKERTUECHTIGUNG" use="required" type="xs:NCName"/>
+      <xs:attribute name="STRABSCH_EXTERN_KEY" use="required"/>
+      <xs:attribute name="STRABSCH_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="STRABSCH_KM_BIS" use="required" type="xs:integer"/>
+      <xs:attribute name="STRABSCH_KM_UEBLBIS" use="required"/>
+      <xs:attribute name="STRABSCH_KM_UEBLVON" use="required"/>
+      <xs:attribute name="STRABSCH_KM_VON" use="required" type="xs:integer"/>
+      <xs:attribute name="STRABSCH_LAENGE" use="required" type="xs:integer"/>
+      <xs:attribute name="STRABSCH_LAUFFAEHIGKEIT" use="required" type="xs:integer"/>
+      <xs:attribute name="STRABSCH_NAME11" use="required"/>
+      <xs:attribute name="STRABSCH_NOTBREMSUEBERBR" use="required" type="xs:NCName"/>
+      <xs:attribute name="STRABSCH_NUMMER" use="required" type="xs:integer"/>
+      <xs:attribute name="SWFPLGR_KEY_HAT_BTRST_BIS" use="required"/>
+      <xs:attribute name="SWFPLGR_KEY_HAT_BTRST_VON" use="required"/>
+      <xs:attribute name="SWSTRART_KEY" use="required"/>
+      <xs:attribute name="SWSTRBART_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="SWSTRBNZ_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="SWSTRBSART_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="SWSTRBTRA_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="SWSTRBWEIS_KEY" use="required"/>
+      <xs:attribute name="SWSTRKAT_KEY" use="required"/>
+      <xs:attribute name="SWSTRKLAS_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="SWSTRQUA_KEY" use="required"/>
+      <xs:attribute name="SWSTRSPUR_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="SWSTRZLB_KEY" use="required"/>
+      <xs:attribute name="SWZLST_KEY" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

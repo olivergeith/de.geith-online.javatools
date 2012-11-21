@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Infrastruktur">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Tabelle"/>
+      </xs:sequence>
+      <xs:attribute name="AktivierungsDatum" use="required" type="xs:integer"/>
+      <xs:attribute name="DatenQuelle" use="required" type="xs:NCName"/>
+      <xs:attribute name="GenDatum" use="required" type="xs:integer"/>
+      <xs:attribute name="GlobalVersion" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Tabelle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="DURCHGANGSKNOTEN"/>
+      </xs:sequence>
+      <xs:attribute name="Name" use="required" type="xs:NCName"/>
+      <xs:attribute name="Nummer" use="required" type="xs:integer"/>
+      <xs:attribute name="Range" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DURCHGANGSKNOTEN">
+    <xs:complexType>
+      <xs:attribute name="ABW_BTRST_KEY" use="required"/>
+      <xs:attribute name="BOGEN_RADIUS_FALLEND" use="required"/>
+      <xs:attribute name="BOGEN_RADIUS_STEIGEND" use="required"/>
+      <xs:attribute name="BPKT_POSITION_X" use="required"/>
+      <xs:attribute name="BPKT_POSITION_X_LEIDAS" use="required"/>
+      <xs:attribute name="BPKT_POSITION_Y" use="required"/>
+      <xs:attribute name="BPKT_POSITION_Y_LEIDAS" use="required"/>
+      <xs:attribute name="BRWEG_WERT" use="required"/>
+      <xs:attribute name="BSTGKNT_KEY" use="required"/>
+      <xs:attribute name="BUE_BAUART" use="required"/>
+      <xs:attribute name="BUE_LAENGE" use="required"/>
+      <xs:attribute name="BUE_STRASSENART" use="required"/>
+      <xs:attribute name="BUE_UEBERWACH_ART" use="required"/>
+      <xs:attribute name="DGKN_TYPE" use="required" type="xs:NCName"/>
+      <xs:attribute name="FSTRGR_BAUART" use="required"/>
+      <xs:attribute name="FSTRGR_FORTSCHALTENTFERNUNG" use="required"/>
+      <xs:attribute name="FSTRGR_FORTSCHALTUNG_ZUGENDE" use="required"/>
+      <xs:attribute name="FSTRGR_IST_ZL_SIGNAL" use="required"/>
+      <xs:attribute name="FSTRGR_SIGNALGRUPPE" use="required"/>
+      <xs:attribute name="FZMP_GLEIS_BEZ" use="required"/>
+      <xs:attribute name="FZMP_GLEIS_BEZ_EXT" use="required"/>
+      <xs:attribute name="FZMP_GLEIS_WIRKUNGSRICHTUNG" use="required"/>
+      <xs:attribute name="FZSS_FAHRSTRASSEN_AUFLOESEZEIT" use="required"/>
+      <xs:attribute name="GLBZN_BEZ_EXT" use="required"/>
+      <xs:attribute name="GLBZN_GLEIS_BEZ" use="required"/>
+      <xs:attribute name="HPL_GLEIS_BEZ" use="required"/>
+      <xs:attribute name="HPL_GLEIS_BEZ_EXTERN" use="required"/>
+      <xs:attribute name="HPL_NUTZLAENGE" use="required"/>
+      <xs:attribute name="HSIG_DWEG_AUFLOESEZEIT" use="required"/>
+      <xs:attribute name="HSIG_STANDORTART" use="required"/>
+      <xs:attribute name="LZBBERKW_MNEIG_FALLEND" use="required"/>
+      <xs:attribute name="LZBBERKW_MNEIG_STEIGEND" use="required"/>
+      <xs:attribute name="LZBELEM_MASSGEBENDE_NEIGUNG" use="required"/>
+      <xs:attribute name="LZBTAF_FS_BILDEZEIT" use="required"/>
+      <xs:attribute name="MNEIG_GEFAELLE" use="required"/>
+      <xs:attribute name="MNEIG_STEIGUNG" use="required"/>
+      <xs:attribute name="NBGL_LFD_NR" use="required"/>
+      <xs:attribute name="NBGL_TYP" use="required"/>
+      <xs:attribute name="NEIG_NEIGUNG_FALLEND" use="required"/>
+      <xs:attribute name="NEIG_NEIGUNG_STEIGEND" use="required"/>
+      <xs:attribute name="OLSG_BZ_BZN_FALLEND" use="required"/>
+      <xs:attribute name="OLSG_BZ_BZN_STEIGEND" use="required"/>
+      <xs:attribute name="OLSG_NAME_FALLEND" use="required"/>
+      <xs:attribute name="OLSG_NAME_STEIGEND" use="required"/>
+      <xs:attribute name="RIABKN_WIRKUNGSRICHTUNG" use="required"/>
+      <xs:attribute name="SHSIG_DWEG_AUFLOESEZEIT" use="required"/>
+      <xs:attribute name="SHSIG_FS_BILDEZEIT" use="required"/>
+      <xs:attribute name="SPLKN_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="STRKLAS_KEY_HAT_FALLEND" use="required"/>
+      <xs:attribute name="STRKLAS_KEY_HAT_STEIGEND" use="required"/>
+      <xs:attribute name="SWBUEART_KEY_GEHOERT_ZU" use="required"/>
+      <xs:attribute name="SWFWPKTA_KEYHAT_ALS_HAUPTSIG" use="required"/>
+      <xs:attribute name="SWFWPKTA_KEYHAT_ALS_VORSIG" use="required"/>
+      <xs:attribute name="SWGLBETRZU_KEY_HAT_FALLEND" use="required"/>
+      <xs:attribute name="SWGLBETRZU_KEY_HAT_STEIGEND" use="required"/>
+      <xs:attribute name="SWGLZUS_KEY_HAT_FALLEND" use="required"/>
+      <xs:attribute name="SWGLZUS_KEY_HAT_STEIGEND" use="required"/>
+      <xs:attribute name="SZSS_FS_AUFLOESEZEIT" use="required"/>
+      <xs:attribute name="TUNNEL_QUERSCHNITT_FALLEND" use="required"/>
+      <xs:attribute name="TUNNEL_QUERSCHNITT_STEIGEND" use="required"/>
+      <xs:attribute name="VSIG_FAHRSTRASSEN_BILDEZEIT" use="required"/>
+      <xs:attribute name="VSIG_STANDORTART" use="required"/>
+      <xs:attribute name="ZF_KEY_HAT_FALLEND" use="required"/>
+      <xs:attribute name="ZF_KEY_HAT_STEIGEND" use="required"/>
+      <xs:attribute name="ZNMA_KEY" use="required"/>
+      <xs:attribute name="ZWHALT_HALTEZEIT" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

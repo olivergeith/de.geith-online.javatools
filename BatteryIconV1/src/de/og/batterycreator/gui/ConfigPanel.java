@@ -23,8 +23,8 @@ import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-import de.og.batterycreator.creators.settings.RomPreset;
-import de.og.batterycreator.creators.settings.StyleSettings;
+import de.og.batterycreator.creators.cfg.RomPreset;
+import de.og.batterycreator.creators.cfg.StyleSettings;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.DrawableComboBox;
 import de.og.batterycreator.gui.widgets.SliderAndLabel;

@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 
-import de.og.batterycreator.creators.settings.RomPreset;
+import de.og.batterycreator.creators.cfg.RomPreset;
 
 public class DrawableComboBox extends JComboBox<String> {
 	private static final long serialVersionUID = 1L;

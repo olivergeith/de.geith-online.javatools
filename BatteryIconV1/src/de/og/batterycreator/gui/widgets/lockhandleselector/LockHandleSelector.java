@@ -22,7 +22,7 @@ import javax.swing.ListCellRenderer;
 
 import og.basics.gui.image.StaticImageHelper;
 import de.og.batterycreator.creators.IconProviderInterface;
-import de.og.batterycreator.creators.settings.StyleSettings;
+import de.og.batterycreator.creators.cfg.StyleSettings;
 import de.og.batterycreator.gui.ConfigPanel;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.OverviewPanel;

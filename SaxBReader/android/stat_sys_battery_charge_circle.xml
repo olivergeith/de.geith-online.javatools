@@ -10607,7 +10607,7 @@
     </item>
     <item ns2:maxLevel="101">
         <animation-list ns2:oneshot="false">
-            <item ns2:duration="2000" ns2:drawable="@drawable/stat_sys_battery_circle_101"/>
+            <item ns2:duration="2000" ns2:drawable="@drawable/stat_sys_battery_circle_full"/>
             <item ns2:duration="80" ns2:drawable="@drawable/stat_sys_battery_circle_charge_anim1"/>
             <item ns2:duration="80" ns2:drawable="@drawable/stat_sys_battery_circle_charge_anim2"/>
             <item ns2:duration="80" ns2:drawable="@drawable/stat_sys_battery_circle_charge_anim3"/>

@@ -13,6 +13,9 @@ import de.og.battanimation.Item;
 import de.og.battanimation.LevelList;
 
 public class BattAnimater {
+	private static final int DURATION_ANIMATION = 80;
+	private static final int DURATION = 2000;
+
 	/**
 	 * @param args
 	 * @throws Exception
@@ -61,14 +64,18 @@ public class BattAnimater {
 
 			// setting fist animation png
 			final Item mainit = new Item();
-			mainit.setDuration(2000);
-			mainit.setDrawable("@drawable/stat_sys_battery_circle_" + i);
+			mainit.setDuration(DURATION);
+			if (i == 101) {
+				mainit.setDrawable("@drawable/stat_sys_battery_circle_full");
+			} else {
+				mainit.setDrawable("@drawable/stat_sys_battery_circle_" + i);
+			}
 			drawableItems.add(mainit);
 
 			// adding the charge png's
 			for (int j = 1; j <= 100; j++) {
 				final Item anit = new Item();
-				anit.setDuration(80);
+				anit.setDuration(DURATION_ANIMATION);
 				anit.setDrawable("@drawable/stat_sys_battery_circle_charge_anim" + j);
 				drawableItems.add(anit);
 			}

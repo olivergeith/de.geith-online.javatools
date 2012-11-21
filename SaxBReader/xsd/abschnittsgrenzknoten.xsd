@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Infrastruktur">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Tabelle"/>
+      </xs:sequence>
+      <xs:attribute name="AktivierungsDatum" use="required" type="xs:integer"/>
+      <xs:attribute name="DatenQuelle" use="required" type="xs:NCName"/>
+      <xs:attribute name="GenDatum" use="required" type="xs:integer"/>
+      <xs:attribute name="GlobalVersion" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Tabelle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ABSCHNITTSGRENZKNOTEN"/>
+      </xs:sequence>
+      <xs:attribute name="Name" use="required" type="xs:NCName"/>
+      <xs:attribute name="Nummer" use="required" type="xs:integer"/>
+      <xs:attribute name="Range" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ABSCHNITTSGRENZKNOTEN">
+    <xs:complexType>
+      <xs:attribute name="ABGRKN_BF_GRENZKM" use="required" type="xs:integer"/>
+      <xs:attribute name="ABGRKN_GLEISKENNZEICHEN" use="required" type="xs:integer"/>
+      <xs:attribute name="ABGRKN_KM_UEBERLAENGE" use="required"/>
+      <xs:attribute name="ABGRKN_ORIENTIERUNG" use="required" type="xs:integer"/>
+      <xs:attribute name="ABGRKN_POSITION_X" use="required"/>
+      <xs:attribute name="ABGRKN_POSITION_X_LEIDAS" use="required"/>
+      <xs:attribute name="ABGRKN_POSITION_Y" use="required" type="xs:integer"/>
+      <xs:attribute name="ABGRKN_POSITION_Y_LEIDAS" use="required" type="xs:integer"/>
+      <xs:attribute name="ABGRKN_TYPE" use="required" type="xs:NCName"/>
+      <xs:attribute name="KWENDEL_ELEMENTNAME" use="required"/>
+      <xs:attribute name="SPLKN_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="SPLKN_KEY_IST_PARTNER_VON" use="required"/>
+      <xs:attribute name="STRABSCH_KEY" use="required"/>
+      <xs:attribute name="WANFANG_BAUART" use="required"/>
+      <xs:attribute name="ZNMA_KEY" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

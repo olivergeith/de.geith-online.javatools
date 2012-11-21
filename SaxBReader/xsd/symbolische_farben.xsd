@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Infrastruktur">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Tabelle"/>
+      </xs:sequence>
+      <xs:attribute name="AktivierungsDatum" use="required" type="xs:integer"/>
+      <xs:attribute name="DatenQuelle" use="required" type="xs:NCName"/>
+      <xs:attribute name="GenDatum" use="required" type="xs:integer"/>
+      <xs:attribute name="GlobalVersion" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Tabelle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Format"/>
+        <xs:element maxOccurs="unbounded" ref="ORGT_SYMBOLISCHE_FARBEN"/>
+      </xs:sequence>
+      <xs:attribute name="Name" use="required" type="xs:NCName"/>
+      <xs:attribute name="Nummer" use="required" type="xs:integer"/>
+      <xs:attribute name="Range" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Format">
+    <xs:complexType>
+      <xs:attribute name="FARBE_KEY" use="required" type="xs:NCName"/>
+      <xs:attribute name="SYMFARB_ENUM" use="required"/>
+      <xs:attribute name="SYMFARB_KENNUNG" use="required" type="xs:NCName"/>
+      <xs:attribute name="SYMFARB_KEY" use="required" type="xs:NCName"/>
+      <xs:attribute name="SYMFARB_NAME" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ORGT_SYMBOLISCHE_FARBEN">
+    <xs:complexType>
+      <xs:attribute name="FARBE_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="SYMFARB_ENUM" use="required" type="xs:NCName"/>
+      <xs:attribute name="SYMFARB_KENNUNG" use="required" type="xs:integer"/>
+      <xs:attribute name="SYMFARB_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="SYMFARB_NAME" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

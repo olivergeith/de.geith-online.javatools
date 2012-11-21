@@ -137,10 +137,15 @@ public class StaticImageHelper {
 	 * @return
 	 */
 	public static BufferedImage resizeAdvanced2Height(BufferedImage image, final int height) {
-		image = createCompatibleImage(image);
-		image = resize2Height(image, 100);
-		image = blurImage(image);
-		image = resize2Height(image, height);
+		// nur bei Verkleinerungen anwenden
+		if (height < image.getHeight()) {
+			image = createCompatibleImage(image);
+			image = resize2Height(image, image.getHeight() * 3);
+			image = blurImage(image);
+			image = resize2Height(image, height);
+		} else {
+			image = resize2Height(image, height);
+		}
 		return image;
 	}
 

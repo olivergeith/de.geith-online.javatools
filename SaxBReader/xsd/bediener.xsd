@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Infrastruktur">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Tabelle"/>
+      </xs:sequence>
+      <xs:attribute name="AktivierungsDatum" use="required" type="xs:integer"/>
+      <xs:attribute name="DatenQuelle" use="required" type="xs:NCName"/>
+      <xs:attribute name="GenDatum" use="required" type="xs:integer"/>
+      <xs:attribute name="GlobalVersion" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Tabelle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Format"/>
+        <xs:element maxOccurs="unbounded" ref="ORGT_BEDIENER"/>
+      </xs:sequence>
+      <xs:attribute name="Name" use="required" type="xs:NCName"/>
+      <xs:attribute name="Nummer" use="required" type="xs:integer"/>
+      <xs:attribute name="Range" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Format">
+    <xs:complexType>
+      <xs:attribute name="BED_KENNUNG" use="required"/>
+      <xs:attribute name="BED_KEY" use="required" type="xs:NCName"/>
+      <xs:attribute name="BED_NAME" use="required"/>
+      <xs:attribute name="BED_PASSWORT" use="required"/>
+      <xs:attribute name="BED_VORNAME" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ORGT_BEDIENER">
+    <xs:complexType>
+      <xs:attribute name="BED_KENNUNG" use="required" type="xs:NCName"/>
+      <xs:attribute name="BED_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="BED_NAME" use="required"/>
+      <xs:attribute name="BED_PASSWORT" use="required"/>
+      <xs:attribute name="BED_VORNAME" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

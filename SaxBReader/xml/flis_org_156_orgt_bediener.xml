@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<Infrastruktur GlobalVersion="156" DatenQuelle="LeiDa-S" GenDatum="1346842686" AktivierungsDatum="1339279200">
+ <Tabelle Name="ORGT_BEDIENER" Nummer="001" Range="ALL">
+  <Format BED_KEY="int" BED_KENNUNG="char[40]" BED_NAME="char[30]" BED_VORNAME="char[30]" BED_PASSWORT="char[10]"/>
+  <ORGT_BEDIENER BED_KEY="104" BED_KENNUNG="Schach" BED_NAME="Schach" BED_VORNAME="Janet" BED_PASSWORT="oexs5iYx"/>
+  <ORGT_BEDIENER BED_KEY="432" BED_KENNUNG="Kroh" BED_NAME="Kroh" BED_VORNAME="Birgit" BED_PASSWORT="o32Cy9_0"/>
+  <ORGT_BEDIENER BED_KEY="636" BED_KENNUNG="Technik" BED_NAME="Techniker" BED_VORNAME="Instandsetzer" BED_PASSWORT="J6Efxq??"/>
+  <ORGT_BEDIENER BED_KEY="187" BED_KENNUNG="abc" BED_NAME="anton" BED_VORNAME="berta" BED_PASSWORT="Q8_8ylyr"/>
+  <ORGT_BEDIENER BED_KEY="228" BED_KENNUNG="jbe" BED_NAME="Bechmann" BED_VORNAME="Jutta" BED_PASSWORT="RtwjyKuy"/>
+  <ORGT_BEDIENER BED_KEY="392" BED_KENNUNG="disponent" BED_NAME="disponent" BED_VORNAME="leidas-sf" BED_PASSWORT="qkhOHpZ8"/>
+  <ORGT_BEDIENER BED_KEY="723" BED_KENNUNG="Adler" BED_NAME="Adler" BED_VORNAME="Isabella" BED_PASSWORT="BrCxVWCE"/>
+  <ORGT_BEDIENER BED_KEY="473" BED_KENNUNG="Apel" BED_NAME="Apel" BED_VORNAME="Andreas" BED_PASSWORT="Eq1o5MCX"/>
+  <ORGT_BEDIENER BED_KEY="472" BED_KENNUNG="BLNalles" BED_NAME="Alles" BED_VORNAME="Karl" BED_PASSWORT="w3Az2vtx"/>
+ </Tabelle>
+</Infrastruktur>

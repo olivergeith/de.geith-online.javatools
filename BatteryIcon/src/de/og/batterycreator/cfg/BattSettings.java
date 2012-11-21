@@ -36,7 +36,6 @@ public class BattSettings implements Serializable {
 	private Color fontChargeColor = COLOR_FONT;
 
 	private boolean useChargeColor = true;
-	private boolean useChargeAnimation = false;
 
 	private Color iconColorInActiv = COLOR_INACTIV;
 	private Color iconColor = COLOR_AOKP_BLUE;
@@ -618,21 +617,6 @@ public class BattSettings implements Serializable {
 	 */
 	public void setUseChargeColor(final boolean useChargeColor) {
 		this.useChargeColor = useChargeColor;
-	}
-
-	/**
-	 * @return the useChargeAnimation
-	 */
-	public boolean isUseChargeAnimation() {
-		return useChargeAnimation;
-	}
-
-	/**
-	 * @param useChargeAnimation
-	 *            the useChargeAnimation to set
-	 */
-	public void setUseChargeAnimation(final boolean useChargeAnimation) {
-		this.useChargeAnimation = useChargeAnimation;
 	}
 
 	/**

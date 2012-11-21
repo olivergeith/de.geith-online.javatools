@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://schemas.android.com/apk/res/android" xmlns:android="http://schemas.android.com/apk/res/android">
+  <xs:import schemaLocation="battanimation.xsd"/>
+  <xs:attribute name="drawable"/>
+  <xs:attribute name="duration" type="xs:int"/>
+  <xs:attribute name="maxLevel" type="xs:int"/>
+  <xs:attribute name="oneshot" type="xs:boolean"/>
+</xs:schema>

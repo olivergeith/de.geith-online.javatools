@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Infrastruktur">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Tabelle"/>
+      </xs:sequence>
+      <xs:attribute name="AktivierungsDatum" use="required" type="xs:integer"/>
+      <xs:attribute name="DatenQuelle" use="required" type="xs:NCName"/>
+      <xs:attribute name="GenDatum" use="required" type="xs:integer"/>
+      <xs:attribute name="GlobalVersion" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Tabelle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Format"/>
+        <xs:element maxOccurs="unbounded" ref="BETRIEBSSTELLEN"/>
+      </xs:sequence>
+      <xs:attribute name="Name" use="required" type="xs:NCName"/>
+      <xs:attribute name="Nummer" use="required" type="xs:integer"/>
+      <xs:attribute name="Range" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Format">
+    <xs:complexType>
+      <xs:attribute name="BTRST_ANZEIGEKATEGORIE" use="required"/>
+      <xs:attribute name="BTRST_BAHNSTELLENNR" use="required"/>
+      <xs:attribute name="BTRST_BST_UIC_NR" use="required"/>
+      <xs:attribute name="BTRST_BZ_ORTSBEZEICHNER" use="required"/>
+      <xs:attribute name="BTRST_DS100" use="required"/>
+      <xs:attribute name="BTRST_EXTERN_KEY" use="required"/>
+      <xs:attribute name="BTRST_KEY" use="required"/>
+      <xs:attribute name="BTRST_NAME_16" use="required"/>
+      <xs:attribute name="BTRST_NAME_40" use="required"/>
+      <xs:attribute name="BTRST_POSITION_X" use="required"/>
+      <xs:attribute name="BTRST_POSITION_X_LEIDAS" use="required"/>
+      <xs:attribute name="BTRST_POSITION_Y" use="required"/>
+      <xs:attribute name="BTRST_POSITION_Y_LEIDAS" use="required"/>
+      <xs:attribute name="BZ_KEY" use="required"/>
+      <xs:attribute name="EBU_KEY" use="required"/>
+      <xs:attribute name="OE_KEY" use="required"/>
+      <xs:attribute name="OE_KEY_IST_BENACHBART_ZU" use="required"/>
+      <xs:attribute name="SWBETRZ_KEY" use="required"/>
+      <xs:attribute name="SWBTRSTA_KEY" use="required"/>
+      <xs:attribute name="SWBUNDESL_KEY_LIEGT_IN" use="required"/>
+      <xs:attribute name="SWZLST_KEY_GEHOERT_ZU" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BETRIEBSSTELLEN">
+    <xs:complexType>
+      <xs:attribute name="BTRST_ANZEIGEKATEGORIE" use="required" type="xs:integer"/>
+      <xs:attribute name="BTRST_BAHNSTELLENNR" use="required" type="xs:integer"/>
+      <xs:attribute name="BTRST_BST_UIC_NR" use="required" type="xs:integer"/>
+      <xs:attribute name="BTRST_BZ_ORTSBEZEICHNER" use="required" type="xs:NCName"/>
+      <xs:attribute name="BTRST_DS100" use="required" type="xs:NCName"/>
+      <xs:attribute name="BTRST_EXTERN_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="BTRST_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="BTRST_NAME_16" use="required" type="xs:NCName"/>
+      <xs:attribute name="BTRST_NAME_40" use="required" type="xs:NCName"/>
+      <xs:attribute name="BTRST_POSITION_X" use="required"/>
+      <xs:attribute name="BTRST_POSITION_X_LEIDAS" use="required"/>
+      <xs:attribute name="BTRST_POSITION_Y" use="required"/>
+      <xs:attribute name="BTRST_POSITION_Y_LEIDAS" use="required"/>
+      <xs:attribute name="BZ_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="EBU_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="OE_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="OE_KEY_IST_BENACHBART_ZU" use="required"/>
+      <xs:attribute name="SWBETRZ_KEY" use="required"/>
+      <xs:attribute name="SWBTRSTA_KEY" use="required" type="xs:integer"/>
+      <xs:attribute name="SWBUNDESL_KEY_LIEGT_IN" use="required" type="xs:integer"/>
+      <xs:attribute name="SWZLST_KEY_GEHOERT_ZU" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

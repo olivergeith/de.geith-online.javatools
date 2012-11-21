@@ -32,6 +32,7 @@ import de.og.batterycreator.gui.panels.iconset.IconSetSelector;
 import de.og.batterycreator.gui.panels.iconset.RawIconSetSelector;
 import de.og.batterycreator.gui.panels.notification.NotificationAreaBG;
 import de.og.batterycreator.gui.panels.recurseiconset.RecurseIconSetSelector;
+import de.og.batterycreator.gui.panels.xmlset.RecurseXMLSetSelector;
 import de.og.batterycreator.zipcreator.ZipElementCollection;
 import de.og.batterycreator.zipcreator.ZipMaker;
 
@@ -54,6 +55,7 @@ public class IconCreatingPanelNew extends JPanel {
 	private final NotificationAreaBG notificationBG = new NotificationAreaBG();
 	private final RawIconSetSelector systemUIBox = new RawIconSetSelector("SystemUIMod", "./custom/systemui-mods/");
 	private final RawIconSetSelector frameworkresBox = new RawIconSetSelector("FrameworkResMod", "./custom/frameworkres-mods/");
+	private final RecurseXMLSetSelector xmlBox = new RecurseXMLSetSelector();
 
 	private final RecurseFileSetSelector filesetBox = new RecurseFileSetSelector();
 	private final RecurseIconSetSelector iconsetBox = new RecurseIconSetSelector();
@@ -63,7 +65,7 @@ public class IconCreatingPanelNew extends JPanel {
 	private Thread t = null;
 	private boolean isrunning = false;
 	// private boolean stopnow = false;
-	private final int maxsteps = 14;
+	private final int maxsteps = 15;
 	private int step = 0;
 
 	private final JFrame parentFrame;
@@ -138,6 +140,7 @@ public class IconCreatingPanelNew extends JPanel {
 		advancedTabPane.addTab("FrameWorkRes Mods", IconStore.androidblueIcon, frameworkresBox, "Get an Overview of your icons");
 		advancedTabPane.addTab("Themes/Morphs", IconStore.folderIcon, iconsetBox, "Add any Themes/Morphs you want...");
 		advancedTabPane.addTab("Filesets", IconStore.folder2Icon, filesetBox, "Add Filesets like apk's, lib's, media...");
+		advancedTabPane.addTab("XML-Sets", IconStore.folder2Icon, xmlBox, "Add XML-Sets to any apk...Most dangerous!");
 
 		tabPane.setSelectedIndex(1);
 		// Panel zusammensetzen
@@ -187,9 +190,6 @@ public class IconCreatingPanelNew extends JPanel {
 		final AbstractIconCreator activBattCreator = battPanel.getActivBattCreator();
 		if (activBattCreator != null) {
 			files2add2SystemUI.addAll(activBattCreator.getAllFilenamesAndPath());
-			if (activBattCreator.getBattSettings().isUseChargeAnimation() == true) {
-				zipCollection.addElement("./template/stat_sys_battery_charge_circle.xml", "MORPH/system/app/SystemUI.apk/res/drawable/");
-			}
 		}
 		// Add Wifi Icons
 		updateProgressBar(step++, "Adding Wifi Icons (if configured)");
@@ -243,6 +243,11 @@ public class IconCreatingPanelNew extends JPanel {
 		updateProgressBar(step++, "Adding XTRAS to ZipCollection");
 		if (filesetBox.getSelectedSet() != null) {
 			zipCollection.addElements(filesetBox.getSelectedSet().getFilenamesAndPath(), filesetBox.getSelectedSet().getAllPathInZip());
+		}
+		// Adding XXML-Set
+		updateProgressBar(step++, "Adding XML's to ZipCollection");
+		if (xmlBox.getSelectedSet() != null) {
+			zipCollection.addElements(xmlBox.getSelectedSet().getFilenamesAndPath(), xmlBox.getSelectedSet().getAllPathInZip());
 		}
 
 		// now the actual zipping...

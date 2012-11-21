@@ -75,10 +75,10 @@ public class RecurseIconSetSelector extends JPanel {
 
 		combo.addItem(new RecurseIconSet(NADA));
 		combo.setMaximumSize(new Dimension(400, 40));
+		System.out.println("Loading Custom Recurse Icon Sets!");
 		addSetsFromFilesystem();
 		combo.setRenderer(new MyCellRenderer());
 		combo.setToolTipText("Choose your Iconset");
-		System.out.println("Loading Custom Recurse Icon Sets!");
 		combo.addActionListener(new ActionListener() {
 
 			@Override

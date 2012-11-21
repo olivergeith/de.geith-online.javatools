@@ -42,8 +42,6 @@ public class BattSettingsPanel extends SettingsPanel {
 	private final ChargeIconSelector chargeIconSeletor = new ChargeIconSelector();
 
 	private final JCheckBox cboxUseChargeColor = createCheckbox("Use charge color", "Use ChargeColor (green), else use normal battery colors");
-	private final JCheckBox cboxUseChargeAnimation = createCheckbox("Apply cool ChargeAnimation (AOKP only)",
-			"Apply cool ChargeAnimation (Experimental and AOKP only)");
 
 	private final JCheckBox cboxTransparentBgrnd = createCheckbox("Transparent Background (switchOff = experimental !)",
 			"Use this, when your statusbar Background is not black!");
@@ -160,7 +158,6 @@ public class BattSettingsPanel extends SettingsPanel {
 
 		builder.add(cboxShowChargeSymbol, cc.xyw(2, ++row, 1));
 		builder.add(chargeIconSeletor, cc.xyw(4, row, 1));
-		builder.add(cboxUseChargeAnimation, cc.xyw(6, row, 3));
 
 		builder.add(JGoodiesHelper.createBlackLabel("ChargeIcon Pixel Position Offsets X"), cc.xyw(2, ++row, 3));
 		builder.add(JGoodiesHelper.createBlackLabel("ChargeIcon Pixel Position Offsets Y"), cc.xyw(6, row, 3));
@@ -250,7 +247,6 @@ public class BattSettingsPanel extends SettingsPanel {
 			cboxColoredFont.setSelected(settings.isColoredFont());
 			cboxColoredIcon.setSelected(settings.isColoredIcon());
 			cboxUseChargeColor.setSelected(settings.isUseChargeColor());
-			cboxUseChargeAnimation.setSelected(settings.isUseChargeAnimation());
 
 			cboxChargeGlow.setSelected(settings.isChargeGlow());
 			iconColorGlowCharge.setColor(settings.getIconChargeGlowColor());
@@ -309,7 +305,6 @@ public class BattSettingsPanel extends SettingsPanel {
 		settings.setColoredFont(cboxColoredFont.isSelected());
 		settings.setColoredIcon(cboxColoredIcon.isSelected());
 		settings.setUseChargeColor(cboxUseChargeColor.isSelected());
-		settings.setUseChargeAnimation(cboxUseChargeAnimation.isSelected());
 
 		settings.setChargeGlow(cboxChargeGlow.isSelected());
 		settings.setIconChargeGlowColor(iconColorGlowCharge.getColor());

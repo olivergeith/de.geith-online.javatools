@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<Infrastruktur GlobalVersion="156" DatenQuelle="LeiDa-S" GenDatum="1341819676" AktivierungsDatum="1339279200">
+ <Tabelle Name="STRECKEN" Nummer="010" Range="ALL">
+  <Format STR_KEY="int[10]" STR_EXTERN_KEY="int[15]" STR_NR="int[4]" STR_KURZNAME="char[30]"/>
+  <STRECKEN STR_KEY="1369" STR_EXTERN_KEY="6653" STR_NR="6653" STR_KURZNAME="Werdau - Mehltheuer"/>
+  <STRECKEN STR_KEY="1370" STR_EXTERN_KEY="7807" STR_NR="7807" STR_KURZNAME="Rumburk - Ebersbach Grenze"/>
+  <STRECKEN STR_KEY="1371" STR_EXTERN_KEY="6362" STR_NR="6362" STR_KURZNAME="Leipzig-Connewitz - Hof Hbf"/>
+ </Tabelle>
+</Infrastruktur>

@@ -1,21 +1,19 @@
-[B][SIZE="3"]New Version out of [SIZE="3"][URL="http://forum.xda-developers.com/showthread.php?t=1918500"]The Battery Icon Creator & Rom Fumbler[/URL][/SIZE] [/SIZE][/B]
+[B][SIZE="3"]New Version out of 
+[SIZE="3"][URL="http://forum.xda-developers.com/showthread.php?t=1918500"]"The Rom Fumbler" aka "The Battery Icon Creator"[/URL][/SIZE] [/SIZE][/B]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Nov-15-2012[/B] : Release 14.0[/COLOR]
+[COLOR="Blue"][B]Nov-xx-2012[/B] : Release 15.0[/COLOR]
 [LIST]
-[*]New advanced Feature: [B]"Filesets"[/B] Adding apk's, libs, media, almost anything to be flashed alongside your Icons. (Apk's to system/app system/lib and so on)
-Add your own filesets to ./custom/XTRAS/... see example there!
-[*]Wider resize-range for toggles
-[*]Massive Refactoring of settings stuff 
-[*]Settings can be saved separately for Rom, Battery, Wifi...
-[*]New Rom Preset for MORPHOLOGY SOCIETY [URL="http://forum.xda-developers.com/showthread.php?t=1968724"]MORPHOLOGY SOCIETY[/URL]
-[*]ROM-Settings are now global (once set will be the same for all batteries, wifi, and so on...)
-[*]New Text only Battery - use any font you want (Fancy fonts can be found here : [url]http://www.dafont.com[/url])
-[*]New advanced Featue [B]"Theme/Morph"[/B]... theme almost anything! 
-Put your png's in ./custom/MORPH/<YourTheme>/... See example there!
-[*]Many Gui changes
-[*]lots of things I forgot
+[*]Some Batteries (ArcBattery2...) can now be configured to have NO grey backround
+[*]Create and Zip button back on top right corner of the frame
+[*]New: [B][COLOR="Green"]Real Circle Animation[/COLOR][/B] during charge...very Cool...like Jkay Mod!!! But only for RR and maybe other AOKP-Roms!
+[*]New Setting to use same color on chargeicons as on normal icons!
+[*]4 new Battery styles and some old optimized
+[*][COLOR="green"][B]Gradient Battery Colors[/B][/COLOR] in some styles...looks very cool...
+[*]New Wifi and Signal styles
+[*]Glowing Charge Animation
+[*]Additional Warning when activating advanced features 
+[*]Advanced stuff is now hidden by default..."Noobs keep away" Messagebox, when activated. (Activate advanced stuff with new button in buttonbar)
 [/LIST]
-
 
 Happy modding & flashing :)

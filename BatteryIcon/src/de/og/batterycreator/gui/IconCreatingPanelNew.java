@@ -50,11 +50,11 @@ public class IconCreatingPanelNew extends JPanel {
 	private final SignalPanel signalPanel = new SignalPanel(romSettingsPanel.getSettings());
 
 	private final LockHandlePanel lockHandleSelector = new LockHandlePanel();
-	private final IconSetSelector toggleBox = new IconSetSelector("Toggle", "./custom/toggles/");
+	private final IconSetSelector toggleBox = new IconSetSelector("Toggles", "./custom/toggles/");
 	private final IconSetSelector weatherBox = new IconSetSelector("Weather", "./custom/weather/");
 	private final NotificationAreaBG notificationBG = new NotificationAreaBG();
-	private final RawIconSetSelector systemUIBox = new RawIconSetSelector("SystemUIMod", "./custom/systemui-mods/");
-	private final RawIconSetSelector frameworkresBox = new RawIconSetSelector("FrameworkResMod", "./custom/frameworkres-mods/");
+	private final RawIconSetSelector systemUIBox = new RawIconSetSelector("SystemUIMods", "./custom/systemui-mods/");
+	private final RawIconSetSelector frameworkresBox = new RawIconSetSelector("FrameworkResMods", "./custom/frameworkres-mods/");
 	private final RecurseXMLSetSelector xmlBox = new RecurseXMLSetSelector();
 
 	private final RecurseFileSetSelector filesetBox = new RecurseFileSetSelector();
@@ -131,7 +131,7 @@ public class IconCreatingPanelNew extends JPanel {
 		tabPane.addTab("Wifi", IconStore.wifiIcon, wifiPanel, "Create your Wifi Icons here");
 		tabPane.addTab("Signal", IconStore.signalIcon, signalPanel, "Create your Signal Icons here");
 		tabPane.addTab("NotificationPanel", IconStore.notificationIcon, notificationBG, "Transparent Notification Panel");
-		tabPane.addTab("Toggle", IconStore.toggleIcon, toggleBox, "Get an Overview of your toggles");
+		tabPane.addTab("Toggles", IconStore.toggleIcon, toggleBox, "Get an Overview of your toggles");
 		tabPane.addTab("Weather", IconStore.weatherIcon, weatherBox, "Get an Overview of your weather icons");
 		tabPane.addTab("Lockring", IconStore.lockringIcon, lockHandleSelector, "See your choosen Lockring!");
 		// tabPane.addTab("Advanced Theming", IconStore.additionalIcon,

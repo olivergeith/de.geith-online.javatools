@@ -13,5 +13,9 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/tpp/jgoodies-forms-1.6.0-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/TPP-Libs/logback-access-1.0.7.jar"/>
+	<classpathentry kind="lib" path="/TPP-Libs/logback-classic-1.0.7.jar"/>
+	<classpathentry kind="lib" path="/TPP-Libs/logback-core-1.0.7.jar"/>
+	<classpathentry kind="lib" path="/TPP-Libs/slf4j-api-1.7.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

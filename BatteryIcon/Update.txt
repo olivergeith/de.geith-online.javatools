@@ -4,16 +4,20 @@
 [SIZE="4"][B]Changelog:[/B][/SIZE]
 [COLOR="Blue"][B]Nov-xx-2012[/B] : Release 15.0[/COLOR]
 [LIST]
-[*]Some Batteries (ArcBattery2...) can now be configured to have NO grey backround
+[*]Some Batteries (ArcBattery2...) can now be configured to have NO (normally grey) background
 [*]Create and Zip button back on top right corner of the frame
 [*]New: [B][COLOR="Green"]Real Circle Animation[/COLOR][/B] during charge...very Cool...like Jkay Mod!!! But only for RR and maybe other AOKP-Roms!
 [*]New Setting to use same color on chargeicons as on normal icons!
 [*]4 new Battery styles and some old optimized
 [*][COLOR="green"][B]Gradient Battery Colors[/B][/COLOR] in some styles...looks very cool...
 [*]New Wifi and Signal styles
-[*]Glowing Charge Animation
+[*]Glowing Charge Icon (useful if charge is animated)
 [*]Additional Warning when activating advanced features 
 [*]Advanced stuff is now hidden by default..."Noobs keep away" Messagebox, when activated. (Activate advanced stuff with new button in buttonbar)
+[*]New advanced feature to morph xml's into any apk's
+... xml's need to be compiled (no plain readable xml's!) 
+... xml's need to be compile by you (hint learn how to use "apktool")
+... predefined xml's with "charge animations" (AOKP-Roms only!!!)
 [/LIST]
 
 Happy modding & flashing :)

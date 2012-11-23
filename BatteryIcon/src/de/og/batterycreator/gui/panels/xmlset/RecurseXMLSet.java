@@ -5,6 +5,9 @@ import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.util.Vector;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author Tom
  * 
@@ -16,6 +19,8 @@ public class RecurseXMLSet {
 	private final Vector<String> allPathInZip = new Vector<String>();
 	private final Vector<File> xmlFiles = new Vector<File>();
 	private final Vector<String> filenamesAndPath = new Vector<String>();
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(RecurseXMLSet.class);
 
 	@Override
 	public String toString() {
@@ -48,7 +53,7 @@ public class RecurseXMLSet {
 			for (final File xml : files) {
 				String pathInZip = "MORPH" + xml.getParent().substring(dir.getPath().length());
 				pathInZip = pathInZip.replace('\\', '/') + "/";
-				// System.out.println(xml.getPath() + " ---> " + pathInZip);
+				LOGGER.info(xml.getPath() + " ---> " + pathInZip);
 				allPathInZip.add(pathInZip);
 				xmlFiles.add(xml);
 				filenamesAndPath.add(xml.getPath());
@@ -119,7 +124,8 @@ public class RecurseXMLSet {
 	 * @param args
 	 */
 	public static void main(final String[] args) throws Exception {
-		new RecurseXMLSet("./custom/MORPH_XML/(AOKP) ChargeAnimation for CircleMod and Normal Battery");
+		LOGGER.info("Starting");
+		new RecurseXMLSet("./custom/MORPH_XML/(AOKP) ChargeAnimationCircleMod_FullCircle");
 	}
 
 }

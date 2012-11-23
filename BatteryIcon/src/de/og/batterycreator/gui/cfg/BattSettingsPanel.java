@@ -170,6 +170,14 @@ public class BattSettingsPanel extends SettingsPanel {
 		builder.add(sliderResizeChargeSymbol, cc.xyw(6, row, 1));
 		builder.add(sliderResizeChargeSymbol.getValueLabel(), cc.xyw(8, row, 1));
 
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createBlackLabel("Glow behind Chargesymbol"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Glow Radius"), cc.xyw(6, row, 3));
+		builder.add(cboxChargeGlow, cc.xyw(2, ++row, 1));
+		builder.add(iconColorGlowCharge, cc.xyw(4, row, 1));
+		builder.add(sliderChargGlowRadius, cc.xyw(6, row, 1));
+		builder.add(sliderChargGlowRadius.getValueLabel(), cc.xyw(8, row, 1));
+
 		builder.add(JGoodiesHelper.createGroupLabel("Battery Icon..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 
@@ -182,13 +190,6 @@ public class BattSettingsPanel extends SettingsPanel {
 		builder.add(iconColorMedBatt, cc.xyw(8, row, 1));
 		builder.add(cboxTransparentBgrnd, cc.xyw(2, ++row, 5));
 		builder.add(backgroundColor, cc.xyw(8, row, 1));
-
-		builder.add(JGoodiesHelper.createBlackLabel("Glow behind Chargesymbol"), cc.xyw(2, ++row, 3));
-		builder.add(JGoodiesHelper.createBlackLabel("Glow Radius"), cc.xyw(6, row, 3));
-		builder.add(cboxChargeGlow, cc.xyw(2, ++row, 1));
-		builder.add(iconColorGlowCharge, cc.xyw(4, row, 1));
-		builder.add(sliderChargGlowRadius, cc.xyw(6, row, 1));
-		builder.add(sliderChargGlowRadius.getValueLabel(), cc.xyw(8, row, 1));
 
 		builder.add(JGoodiesHelper.createGroupLabel("Thresholds..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));

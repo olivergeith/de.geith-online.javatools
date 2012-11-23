@@ -164,8 +164,8 @@ public class RecurseXMLSetSelector extends JPanel {
 		html += "---- <font size=3 color=green><b>./custom/MORPH_XML/'your_xmlset_name'/system/app/SystemUI.apk/res/drawable/abc.xml</b></font><br>";
 		html += "See my examples in ./custom/MORPH_XML/...<br><br>";
 		html += "<font size=4 color=red>Attention these XMLs need to be compiled!!! ... NO plain XML's here!!!</font> <br>";
-		html += "Don't aks me how to do that!!!<br>";
-		html += "-> Just one hint: use apktool to de- and recompile or Android SDK!<br><br>";
+		html += "Don't ask me how to do that!!!<br>";
+		html += "-> Just one hint: use apktool to de- and recompile!<br><br>";
 		html += "<font size=4 color=red>Make sure you know what you are doing here! <br>";
 		html += "<b>This is the most dangerous feature in this tool!</b></font><br>";
 		html += "I'm not responsable if you damage your device!!!<br>";

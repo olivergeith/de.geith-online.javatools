@@ -192,7 +192,7 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 
 			// painting
 			g2d.setPaint(p);
-			g2d.fillArc(-10, -10, img.getWidth() + 10, img.getHeight() + 10, 0, 360);
+			g2d.fillArc(-10, -10, img.getWidth() + 20, img.getHeight() + 20, 0, 360);
 		}
 	}
 

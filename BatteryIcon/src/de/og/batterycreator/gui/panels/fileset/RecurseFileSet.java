@@ -47,7 +47,7 @@ public class RecurseFileSet {
 				String pathInZip = "XTRAS" + f.getParent().substring(dir.getPath().length());
 				// String pathInZip = "XTRAS" + f.getParent();
 				pathInZip = pathInZip.replace('\\', '/') + "/";
-				System.out.println(f.getPath() + " ---> " + pathInZip);
+				// System.out.println(f.getPath() + " ---> " + pathInZip);
 				allPathInZip.add(pathInZip);
 				filenamesAndPath.add(f.getPath());
 				// System.out.println(f.getParent() + " ---> " + pathInZip);

@@ -50,7 +50,7 @@ public class RecurseIconSet {
 			for (final File png : files) {
 				String pathInZip = "MORPH" + png.getParent().substring(dir.getPath().length());
 				pathInZip = pathInZip.replace('\\', '/') + "/";
-				System.out.println(png.getPath() + " ---> " + pathInZip);
+				// System.out.println(png.getPath() + " ---> " + pathInZip);
 				allPathInZip.add(pathInZip);
 				filenamesAndPath.add(png.getPath());
 				final ImageIcon icon = new ImageIcon(png.getPath());

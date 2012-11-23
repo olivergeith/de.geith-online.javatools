@@ -140,7 +140,7 @@ public class BatteryPanel extends JPanel {
 
 		combo.setToolTipText("Choose your IconCreator...then press play-button");
 		combo.setRenderer(new BattCreatorListCellRenderer());
-		combo.setMaximumRowCount(10);
+		combo.setMaximumRowCount(15);
 		combo.setMaximumSize(new Dimension(300, 40));
 		// Icon Liste
 		final JScrollPane scroller = new JScrollPane();

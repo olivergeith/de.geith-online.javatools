@@ -110,6 +110,7 @@ public class IconCreatingPanelNew extends JPanel {
 									"You are entering dangerous terrain!!!\n\nNoobs keep away from those advanced features!!!\n\nYou need to know what you are doing!!!\n- You know how your Rom looks from the inside?\n- You know how your apk's look from the inside ?\n No? then stay away from this feature!",
 									"Attention", JOptionPane.WARNING_MESSAGE);
 					firstTime = false;
+
 				}
 				validatePanel(advancedToggle.isSelected());
 			}
@@ -154,8 +155,10 @@ public class IconCreatingPanelNew extends JPanel {
 	private void validatePanel(final boolean advancedMode) {
 		if (advancedMode == false)
 			tabPane.remove(advancedTabPane);
-		else
+		else {
 			tabPane.addTab("Advanced Theming", IconStore.additionalIcon, advancedTabPane, "Advanced Stuff!!");
+			tabPane.setSelectedIndex(8);
+		}
 
 	}
 

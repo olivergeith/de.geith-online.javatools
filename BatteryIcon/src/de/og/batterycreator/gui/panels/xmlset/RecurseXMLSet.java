@@ -48,7 +48,7 @@ public class RecurseXMLSet {
 			for (final File xml : files) {
 				String pathInZip = "MORPH" + xml.getParent().substring(dir.getPath().length());
 				pathInZip = pathInZip.replace('\\', '/') + "/";
-				System.out.println(xml.getPath() + " ---> " + pathInZip);
+				// System.out.println(xml.getPath() + " ---> " + pathInZip);
 				allPathInZip.add(pathInZip);
 				xmlFiles.add(xml);
 				filenamesAndPath.add(xml.getPath());

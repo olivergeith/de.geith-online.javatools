@@ -7,11 +7,15 @@ import java.util.Vector;
 
 import javax.swing.ImageIcon;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author Tom
  * 
  */
 public class RecurseIconSet {
+	private static final Logger LOGGER = LoggerFactory.getLogger(RecurseIconSet.class);
 
 	private final File dir;
 
@@ -28,13 +32,13 @@ public class RecurseIconSet {
 
 		dir = new File(startDir);
 		// Den Verzeichnisbaum rekursiv traversieren...
-		// System.out.println("#######################################################");
-		// System.out.println("Scanning the Folder " + dir.getPath());
-		// System.out.println("#######################################################");
+		LOGGER.debug("#######################################################");
+		LOGGER.debug("Scanning the Folder " + dir.getPath());
+		LOGGER.debug("#######################################################");
 		allPathInZip.removeAllElements();
 		filenamesAndPath.removeAllElements();
 		findAllFilesInDirTree(dir);
-		// System.out.println("#######################################################");
+		LOGGER.debug("#######################################################");
 	}
 
 	/**
@@ -50,7 +54,7 @@ public class RecurseIconSet {
 			for (final File png : files) {
 				String pathInZip = "MORPH" + png.getParent().substring(dir.getPath().length());
 				pathInZip = pathInZip.replace('\\', '/') + "/";
-				// System.out.println(png.getPath() + " ---> " + pathInZip);
+				LOGGER.debug(png.getPath() + " ---> " + pathInZip);
 				allPathInZip.add(pathInZip);
 				filenamesAndPath.add(png.getPath());
 				final ImageIcon icon = new ImageIcon(png.getPath());

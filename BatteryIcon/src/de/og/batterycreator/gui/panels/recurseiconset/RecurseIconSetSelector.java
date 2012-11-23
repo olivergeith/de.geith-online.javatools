@@ -22,9 +22,13 @@ import javax.swing.JToolBar;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.og.batterycreator.gui.iconstore.IconStore;
 
 public class RecurseIconSetSelector extends JPanel {
+	private static final Logger LOGGER = LoggerFactory.getLogger(RecurseIconSetSelector.class);
 	private static final long serialVersionUID = -2767025548199058416L;
 
 	private final JList<ImageIcon> list = new JList<ImageIcon>();
@@ -75,7 +79,6 @@ public class RecurseIconSetSelector extends JPanel {
 
 		combo.addItem(new RecurseIconSet(NADA));
 		combo.setMaximumSize(new Dimension(400, 40));
-		System.out.println("Loading Custom Recurse Icon Sets!");
 		addSetsFromFilesystem();
 		combo.setRenderer(new MyCellRenderer());
 		combo.setToolTipText("Choose your Iconset");
@@ -123,6 +126,7 @@ public class RecurseIconSetSelector extends JPanel {
 	 * 
 	 */
 	private void addSetsFromFilesystem() {
+		LOGGER.info("Loading Custom Recurse Icon Sets!");
 		final File dir = new File(rootDir);
 		if (!dir.exists())
 			dir.mkdirs();
@@ -130,6 +134,7 @@ public class RecurseIconSetSelector extends JPanel {
 		final File[] setDirs = findCustomDirs(dir);
 		if (setDirs != null) {
 			for (final File setDir : setDirs) {
+				LOGGER.debug("Found: " + setDir.getName());
 				final RecurseIconSet set = new RecurseIconSet(setDir.getPath());
 				sets.add(set);
 				combo.addItem(set);

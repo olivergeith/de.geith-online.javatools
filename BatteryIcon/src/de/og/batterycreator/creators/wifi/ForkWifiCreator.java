@@ -34,7 +34,6 @@ public class ForkWifiCreator extends AbstractWifiCreator {
 		final int stufenbreite = Math.round(maxWidth / 5f);
 		final int width = (level + 1) * stufenbreite;
 		final Rectangle rect = new Rectangle(x, y, width, height);
-		// System.out.println("Rect for level " + level + " = " + rect);
 		return rect;
 	}
 

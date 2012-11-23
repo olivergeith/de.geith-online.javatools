@@ -7,9 +7,14 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.og.batterycreator.cfg.RomSettings;
 
 public class BinaryBarsCreator extends AbstractIconCreator {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(BinaryBarsCreator.class);
 
 	public BinaryBarsCreator(final RomSettings romSettings) {
 		super(romSettings);
@@ -38,7 +43,7 @@ public class BinaryBarsCreator extends AbstractIconCreator {
 		String binary = Integer.toBinaryString(percentage);
 		while (binary.length() < 7)
 			binary = "0" + binary;
-		// System.out.println(binary);
+		LOGGER.debug("Binary Code: " + binary);
 
 		final char c01 = binary.charAt(6);
 		final char c02 = binary.charAt(5);

@@ -38,7 +38,6 @@ public class TextWifiCreator extends AbstractWifiCreator {
 		final int width = stufenbreite;
 		final int x = offsetlinks + (level * (gap + stufenbreite));
 		final Rectangle rect = new Rectangle(x, y, width, height);
-		// System.out.println("Rect for level " + level + " = " + rect);
 		return rect;
 	}
 

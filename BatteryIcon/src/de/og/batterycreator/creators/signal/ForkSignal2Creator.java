@@ -38,7 +38,6 @@ public class ForkSignal2Creator extends AbstractSignalCreator {
 		final int y = imgHeight - offsetUnten - hoehe;
 		final int x = level * (gap + breite) + offsetlinks;
 		final Rectangle rect = new Rectangle(x, y, breite, hoehe);
-		// System.out.println("Rect for level " + level + " = " + rect);
 		return rect;
 	}
 

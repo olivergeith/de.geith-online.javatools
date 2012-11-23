@@ -19,11 +19,15 @@ import javax.swing.JToolBar;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
 
 public class RecurseXMLSetSelector extends JPanel {
 	private static final long serialVersionUID = -2767025548199058416L;
+	private static final Logger LOGGER = LoggerFactory.getLogger(RecurseXMLSetSelector.class);
 
 	private final JComboBox<RecurseXMLSet> combo = new JComboBox<RecurseXMLSet>();
 	private final OverviewPanel overPane = new OverviewPanel();
@@ -68,7 +72,6 @@ public class RecurseXMLSetSelector extends JPanel {
 		addSetsFromFilesystem();
 		combo.setRenderer(new MyCellRenderer());
 		combo.setToolTipText("Choose your Fileset");
-		System.out.println("Loading Custom XML Sets!");
 		combo.addActionListener(new ActionListener() {
 
 			@Override
@@ -107,6 +110,7 @@ public class RecurseXMLSetSelector extends JPanel {
 	 * 
 	 */
 	private void addSetsFromFilesystem() {
+		LOGGER.info("Loading Custom XML Sets!");
 		final File dir = new File(rootDir);
 		if (!dir.exists())
 			dir.mkdirs();
@@ -114,6 +118,7 @@ public class RecurseXMLSetSelector extends JPanel {
 		final File[] setDirs = findCustomDirs(dir);
 		if (setDirs != null) {
 			for (final File setDir : setDirs) {
+				LOGGER.debug("Found: " + setDir.getName());
 				final RecurseXMLSet set = new RecurseXMLSet(setDir.getPath());
 				sets.add(set);
 				combo.addItem(set);

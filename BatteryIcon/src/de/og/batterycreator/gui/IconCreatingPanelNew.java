@@ -15,6 +15,10 @@ import javax.swing.JToggleButton;
 
 import og.basics.gui.LToolBar;
 import og.basics.gui.icon.CommonIconProvider;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.og.batterycreator.creators.batt.AbstractIconCreator;
 import de.og.batterycreator.creators.signal.AbstractSignalCreator;
 import de.og.batterycreator.creators.signal.NoSignalIcons;
@@ -37,6 +41,7 @@ import de.og.batterycreator.zipcreator.ZipElementCollection;
 import de.og.batterycreator.zipcreator.ZipMaker;
 
 public class IconCreatingPanelNew extends JPanel {
+	private static final Logger LOGGER = LoggerFactory.getLogger(IconCreatingPanelNew.class);
 	private static final long serialVersionUID = -2956273745014471932L;
 
 	private final JButton zipButton = new JButton(IconStore.zipIcon);
@@ -180,7 +185,6 @@ public class IconCreatingPanelNew extends JPanel {
 	private void doZip() {
 		// first create everything again, to fill the deploy area with latest
 		// settings
-		updateProgressBar(step++, "Creating and deploying Icons to ./pngs");
 		create();
 
 		final ZipElementCollection zipCollection = new ZipElementCollection();
@@ -277,7 +281,7 @@ public class IconCreatingPanelNew extends JPanel {
 	 * Creates the desired Icons ;-)
 	 */
 	private void create() {
-		step = 1;
+		resetProgressBar();
 		// Creating Battery Icons
 		updateProgressBar(step++, "Creating Battery Icons (if configured)");
 		battPanel.createAllImages(romSettingsPanel.getSettings());
@@ -355,7 +359,7 @@ public class IconCreatingPanelNew extends JPanel {
 	}
 
 	private void updateProgressBar(final int value, final String text) {
-		System.out.println("Progress: " + value + " " + text);
+		LOGGER.info("Progress: " + value + " " + text);
 		progressBar.setValue(value);
 		progressBar.setString(text);
 	}

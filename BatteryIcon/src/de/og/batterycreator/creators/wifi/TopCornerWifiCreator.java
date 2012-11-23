@@ -8,9 +8,13 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.og.batterycreator.cfg.RomSettings;
 
 public class TopCornerWifiCreator extends AbstractWifiCreator {
+	private static final Logger LOGGER = LoggerFactory.getLogger(TopCornerWifiCreator.class);
 	public static String name = "TopCornerWifi";
 
 	private static final int imgMitte = 0;
@@ -39,7 +43,7 @@ public class TopCornerWifiCreator extends AbstractWifiCreator {
 		if (level == 0 && fully == true) {
 			for (int i = 4; i >= 0; i--) {
 				final Rectangle rect = new Rectangle(imgMitte - (i * width), offsetunten - ((1 + i) * height), width * (2 * i + 1), height * (2 * i + 1));
-				System.out.println("Wifirect = " + rect);
+				LOGGER.debug("Wifirect = " + rect);
 				rect.y = rect.y - 2;
 				g2d.setColor(Color.black);
 				g2d.fillArc(rect.x - 1, rect.y - 1, rect.width + 2, rect.height + 2, 0, -90);

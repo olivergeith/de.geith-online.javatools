@@ -4,11 +4,15 @@ import java.io.File;
 import java.io.FileFilter;
 import java.util.Vector;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author Tom
  * 
  */
 public class RecurseFileSet {
+	private static final Logger LOGGER = LoggerFactory.getLogger(RecurseFileSet.class);
 
 	private final File dir;
 
@@ -24,13 +28,13 @@ public class RecurseFileSet {
 
 		dir = new File(startDir);
 		// Den Verzeichnisbaum rekursiv traversieren...
-		// System.out.println("#######################################################");
-		// System.out.println("Scanning the Folder " + dir.getPath());
-		// System.out.println("#######################################################");
+		LOGGER.debug("#######################################################");
+		LOGGER.debug("Scanning the Folder " + dir.getPath());
+		LOGGER.debug("#######################################################");
 		allPathInZip.removeAllElements();
 		filenamesAndPath.removeAllElements();
 		findAllFilesInDirTree(dir);
-		// System.out.println("#######################################################");
+		LOGGER.debug("#######################################################");
 	}
 
 	/**
@@ -47,10 +51,10 @@ public class RecurseFileSet {
 				String pathInZip = "XTRAS" + f.getParent().substring(dir.getPath().length());
 				// String pathInZip = "XTRAS" + f.getParent();
 				pathInZip = pathInZip.replace('\\', '/') + "/";
-				// System.out.println(f.getPath() + " ---> " + pathInZip);
+				LOGGER.debug(f.getPath() + " ---> " + pathInZip);
 				allPathInZip.add(pathInZip);
 				filenamesAndPath.add(f.getPath());
-				// System.out.println(f.getParent() + " ---> " + pathInZip);
+				LOGGER.debug(f.getParent() + " ---> " + pathInZip);
 			}
 		}
 	}

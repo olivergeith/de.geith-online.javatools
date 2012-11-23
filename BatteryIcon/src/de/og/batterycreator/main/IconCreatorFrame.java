@@ -11,10 +11,15 @@ import og.basics.gui.LToolBar;
 import og.basics.gui.about.UniversalAboutDialog;
 import og.basics.gui.about.VersionDetails;
 import og.basics.gui.icon.CommonIconProvider;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.og.batterycreator.gui.IconCreatingPanelNew;
 import de.og.batterycreator.gui.iconstore.IconStore;
 
 public class IconCreatorFrame extends JFrame {
+	private static final Logger LOGGER = LoggerFactory.getLogger(IconCreatorFrame.class);
 
 	private final JButton aboutButton = new JButton(CommonIconProvider.BUTTON_ICON_INFO);
 	private final JButton exitButton = new JButton(CommonIconProvider.BUTTON_ICON_EXIT);
@@ -27,7 +32,7 @@ public class IconCreatorFrame extends JFrame {
 	LToolBar toolBar = iconCreatingPanel.getToolBar();
 
 	public static void main(final String[] args) {
-		System.out.println("Starting " + APP_NAME);
+		LOGGER.info("Starting " + APP_NAME);
 		frame = new IconCreatorFrame();
 
 	}
@@ -39,7 +44,7 @@ public class IconCreatorFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 100, 300, 1280);
 		initUI();
-		System.out.println("Showing up Frame!");
+		LOGGER.info("Showing up Frame!");
 		setVisible(true);
 		pack();
 	}

@@ -20,6 +20,9 @@ import javax.swing.event.ChangeListener;
 import og.basics.gui.image.StaticImageHelper;
 import og.basics.jgoodies.JGoodiesHelper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
@@ -29,6 +32,7 @@ import de.og.batterycreator.creators.IconProviderInterface;
 import de.og.batterycreator.gui.widgets.SliderAndLabel;
 
 public class NotificationAreaBG extends JPanel implements IconProviderInterface {
+	private static final Logger LOGGER = LoggerFactory.getLogger(NotificationAreaBG.class);
 
 	private static final String PROVIDER_NAME = "Transparent NotificationArea";
 	private static final long serialVersionUID = 7145187966709405687L;
@@ -155,7 +159,7 @@ public class NotificationAreaBG extends JPanel implements IconProviderInterface 
 		// kommt...
 		if (activBox.isSelected()) {
 			filenamesAndPath.addElement(outf.getPath());
-			System.out.println("Creating notification" + outf.getPath());
+			LOGGER.info("Creating notification" + outf.getPath());
 		}
 		notificationBG = new ImageIcon(img);
 	}

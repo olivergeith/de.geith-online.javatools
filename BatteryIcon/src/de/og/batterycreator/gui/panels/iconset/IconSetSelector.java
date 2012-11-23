@@ -23,11 +23,15 @@ import javax.swing.JToolBar;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
 
 public class IconSetSelector extends JPanel {
 	private static final long serialVersionUID = -2767025548199058416L;
+	private static final Logger LOGGER = LoggerFactory.getLogger(IconSetSelector.class);
 
 	private final JList<ImageIcon> list = new JList<ImageIcon>();
 	private final JComboBox<ImageIcon> combo = new JComboBox<ImageIcon>();
@@ -83,7 +87,6 @@ public class IconSetSelector extends JPanel {
 		addSetsFromFilesystem();
 		combo.setRenderer(new MyCellRenderer());
 		combo.setToolTipText("Choose your " + setTypeName + " Iconset");
-		System.out.println("Loading Custom " + setTypeName + " Icon Sets!");
 		combo.addActionListener(new ActionListener() {
 
 			@Override
@@ -138,6 +141,7 @@ public class IconSetSelector extends JPanel {
 	 * 
 	 */
 	private void addSetsFromFilesystem() {
+		LOGGER.info("Loading Custom " + setTypeName + " Icon Sets!");
 		final File dir = new File(rootDir);
 		if (!dir.exists())
 			dir.mkdirs();
@@ -145,6 +149,7 @@ public class IconSetSelector extends JPanel {
 		final File[] setDirs = findCustomDirs(dir);
 		if (setDirs != null) {
 			for (final File setDir : setDirs) {
+				LOGGER.debug("Found: " + setDir.getName());
 				final IconSet set = new IconSet(setDir);
 				iconSets.add(set);
 				combo.addItem(set.getOverviewStripe());

@@ -15,7 +15,11 @@ import java.util.zip.ZipOutputStream;
 
 import og.basics.gui.file.FileDialogs;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ZipMaker {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ZipMaker.class);
 
 	public static void main(final String[] args) {
 		final Vector<ZipElement> files2add = new Vector<ZipElement>();
@@ -43,13 +47,8 @@ public class ZipMaker {
 	}
 
 	private void traceInfo(final String txt) {
-		System.out.println(txt);
+		LOGGER.info(txt);
 	}
-
-	// private void traceError(final String txt) {
-	// if (tracer != null)
-	// tracer.appendErrorText(txt);
-	// }
 
 	public File getTemplate() {
 		return template;
@@ -112,6 +111,9 @@ public class ZipMaker {
 		zos.finish();
 		zos.close();
 		traceInfo("ZipCreator: Closing Template-Zip " + template.getPath());
+		traceInfo("...");
+		traceInfo("..");
+		traceInfo(".");
 		zipSrc.close();
 		return true;
 	}

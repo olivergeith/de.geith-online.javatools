@@ -34,7 +34,6 @@ public class BrickBattNoGapCreator extends AbstractIconCreator {
 			final int w = 4;
 			final int x = (j % 10) * 4;
 			final int y = 36 - (j / 10) * 4;
-			// System.out.println("j=" + j + " x=" + x + " y=" + y);
 
 			final Rectangle rec = new Rectangle(x, y, w, h);
 			drawRect(rec, g2d, charge, percentage > j, percentage);

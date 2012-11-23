@@ -22,12 +22,17 @@ import javax.swing.JToolBar;
 import javax.swing.ListCellRenderer;
 
 import og.basics.gui.image.StaticImageHelper;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.og.batterycreator.cfg.RomSettings;
 import de.og.batterycreator.creators.IconProviderInterface;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
 
 public class LockHandlePanel extends JPanel implements IconProviderInterface {
+	private static final Logger LOGGER = LoggerFactory.getLogger(LockHandlePanel.class);
 
 	JComboBox<ImageIcon> combo = new JComboBox<ImageIcon>();
 
@@ -111,7 +116,7 @@ public class LockHandlePanel extends JPanel implements IconProviderInterface {
 		final File outf = new File(CUSTOM_OUT_DIR + romSettings.getLockHandleFileName());
 		final ImageIcon icon = getSelectedIcon();
 		if (!icon.equals(nada)) {
-			System.out.println("Creating Lockhandle");
+			LOGGER.info("Creating Lockhandle");
 			final File dir = new File(CUSTOM_OUT_DIR);
 			if (!dir.exists())
 				dir.mkdirs();
@@ -137,7 +142,7 @@ public class LockHandlePanel extends JPanel implements IconProviderInterface {
 	}
 
 	private Vector<ImageIcon> fillIconVector() {
-		System.out.println("Loading Custom Lockhandles!");
+		LOGGER.info("Loading Custom Lockhandles!");
 		handleList.add(nada);
 		handleList.add(origlock);
 		handleList.add(androidlock);

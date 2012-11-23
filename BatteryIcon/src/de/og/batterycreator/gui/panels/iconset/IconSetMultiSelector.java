@@ -17,10 +17,14 @@ import javax.swing.ListCellRenderer;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.og.batterycreator.gui.widgets.OverviewPanel;
 
 public class IconSetMultiSelector extends JList<IconSet> {
 	private static final long serialVersionUID = -2767025548199058416L;
+	private static final Logger LOGGER = LoggerFactory.getLogger(IconSetMultiSelector.class);
 
 	private final OverviewPanel overPane = new OverviewPanel();
 	private final Vector<String> filenamesAndPath = new Vector<String>();
@@ -64,11 +68,11 @@ public class IconSetMultiSelector extends JList<IconSet> {
 	}
 
 	private void initUI() {
-		addSetsFromFilesystem();
+		LOGGER.info("Loading Custom " + setTypeName + " Icon Sets!");
 
+		addSetsFromFilesystem();
 		setCellRenderer(new MyCellRenderer());
 		setToolTipText("Choose your " + setTypeName + " Iconset");
-		System.out.println("Loading Custom " + setTypeName + " Icon Sets!");
 		// overPane.add(this, BorderLayout.WEST);
 		addListSelectionListener(new ListSelectionListener() {
 

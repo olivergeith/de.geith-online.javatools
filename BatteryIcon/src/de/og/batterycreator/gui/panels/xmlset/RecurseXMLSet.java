@@ -14,13 +14,13 @@ import org.slf4j.LoggerFactory;
  */
 public class RecurseXMLSet {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(RecurseXMLSet.class);
+
 	private final File dir;
 
 	private final Vector<String> allPathInZip = new Vector<String>();
 	private final Vector<File> xmlFiles = new Vector<File>();
 	private final Vector<String> filenamesAndPath = new Vector<String>();
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(RecurseXMLSet.class);
 
 	@Override
 	public String toString() {
@@ -31,13 +31,13 @@ public class RecurseXMLSet {
 
 		dir = new File(startDir);
 		// Den Verzeichnisbaum rekursiv traversieren...
-		// System.out.println("#######################################################");
-		// System.out.println("Scanning the Folder " + dir.getPath());
-		// System.out.println("#######################################################");
+		LOGGER.debug("#######################################################");
+		LOGGER.debug("Scanning the Folder " + dir.getPath());
+		LOGGER.debug("#######################################################");
 		allPathInZip.removeAllElements();
 		xmlFiles.removeAllElements();
 		findAllFilesInDirTree(dir);
-		// System.out.println("#######################################################");
+		LOGGER.debug("#######################################################");
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class RecurseXMLSet {
 			for (final File xml : files) {
 				String pathInZip = "MORPH" + xml.getParent().substring(dir.getPath().length());
 				pathInZip = pathInZip.replace('\\', '/') + "/";
-				LOGGER.info(xml.getPath() + " ---> " + pathInZip);
+				LOGGER.debug(xml.getPath() + " ---> " + pathInZip);
 				allPathInZip.add(pathInZip);
 				xmlFiles.add(xml);
 				filenamesAndPath.add(xml.getPath());

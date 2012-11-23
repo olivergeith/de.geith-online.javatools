@@ -19,10 +19,14 @@ import javax.swing.JToolBar;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
 
 public class RecurseFileSetSelector extends JPanel {
+	private static final Logger LOGGER = LoggerFactory.getLogger(RecurseFileSetSelector.class);
 	private static final long serialVersionUID = -2767025548199058416L;
 
 	private final JComboBox<RecurseFileSet> combo = new JComboBox<RecurseFileSet>();
@@ -68,7 +72,6 @@ public class RecurseFileSetSelector extends JPanel {
 		addSetsFromFilesystem();
 		combo.setRenderer(new MyCellRenderer());
 		combo.setToolTipText("Choose your Fileset");
-		System.out.println("Loading Custom File Sets!");
 		combo.addActionListener(new ActionListener() {
 
 			@Override
@@ -107,6 +110,7 @@ public class RecurseFileSetSelector extends JPanel {
 	 * 
 	 */
 	private void addSetsFromFilesystem() {
+		LOGGER.info("Loading Custom File Sets!");
 		final File dir = new File(rootDir);
 		if (!dir.exists())
 			dir.mkdirs();

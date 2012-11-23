@@ -10,7 +10,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ChargeIconSelector extends JComboBox<ImageIcon> {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ChargeIconSelector.class);
 	private static final long serialVersionUID = -7712530632645291404L;
 
 	private static final ImageIcon charge01 = new ImageIcon(ChargeIconSelector.class.getResource("charge01.png"));
@@ -54,7 +58,7 @@ public class ChargeIconSelector extends JComboBox<ImageIcon> {
 		addItem(charge40);
 		addItem(charge41);
 		addItem(charge42);
-		System.out.println("Loading Custom Charge Icons!");
+		LOGGER.info("Loading Custom Charge Icons!");
 		addAdditionalIconsFromFilesystem();
 
 		addActionListener(new ActionListener() {

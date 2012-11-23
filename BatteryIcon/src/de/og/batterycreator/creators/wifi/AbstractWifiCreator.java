@@ -10,6 +10,9 @@ import java.io.File;
 
 import javax.swing.ImageIcon;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.og.batterycreator.cfg.RomSettings;
 import de.og.batterycreator.cfg.WifiSignalSettings;
 import de.og.batterycreator.creators.AbstractCreator;
@@ -20,6 +23,7 @@ import de.og.batterycreator.main.IconCreatorFrame;
  * 
  */
 public abstract class AbstractWifiCreator extends AbstractCreator {
+	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractWifiCreator.class);
 
 	public AbstractWifiCreator(final RomSettings romSettings) {
 		super(romSettings);
@@ -46,7 +50,7 @@ public abstract class AbstractWifiCreator extends AbstractCreator {
 	// ###############################################################################
 	@Override
 	public void createAllImages() {
-		System.out.println("Wifi: Creating Icons!");
+		LOGGER.info("Wifi: Creating Icons!");
 		iconMap.removeAllElements();
 		filenames.removeAllElements();
 		filenamesAndPath.removeAllElements();
@@ -124,7 +128,7 @@ public abstract class AbstractWifiCreator extends AbstractCreator {
 	// ###############################################################################
 	@Override
 	public ImageIcon createOverview() {
-		System.out.println("Wifi: Creating Overview!");
+		LOGGER.info("Wifi: Creating Overview!");
 		if (iconMap != null && iconMap.size() > 0) {
 			final ImageIcon img1 = iconMap.get(0);
 			final int iw = img1.getIconWidth();

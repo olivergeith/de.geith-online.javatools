@@ -15,6 +15,10 @@ import java.io.File;
 import javax.swing.ImageIcon;
 
 import og.basics.gui.image.StaticImageHelper;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.og.batterycreator.cfg.BattSettings;
 import de.og.batterycreator.cfg.RomSettings;
 import de.og.batterycreator.creators.AbstractCreator;
@@ -25,6 +29,8 @@ import de.og.batterycreator.main.IconCreatorFrame;
  * 
  */
 public abstract class AbstractIconCreator extends AbstractCreator {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractIconCreator.class);
 
 	public AbstractIconCreator(final RomSettings romSettings) {
 		super(romSettings);
@@ -64,10 +70,11 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 		iconMap.removeAllElements();
 		filenames.removeAllElements();
 		filenamesAndPath.removeAllElements();
-		System.out.println("Battery: Creating Icons!");
+		LOGGER.info("Battery: Creating Icons!");
 		createImages();
-		System.out.println("Battery: Creating ChargeIcons!");
+		LOGGER.info("Battery: Creating ChargeIcons!");
 		createChargeImages();
+		LOGGER.info("Battery: Creating Overview!");
 		overview = createOverview();
 	}
 
@@ -285,7 +292,7 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 	// ###############################################################################
 	@Override
 	public ImageIcon createOverview() {
-		System.out.println("Battery: Creating Overview!");
+		LOGGER.info("Battery: Creating Overview!");
 		if (iconMap != null && iconMap.size() > 100) {
 			final ImageIcon img1 = iconMap.get(0);
 			final int iw = img1.getIconWidth();

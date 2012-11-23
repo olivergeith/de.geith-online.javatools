@@ -54,7 +54,7 @@ public class BattSettingsPanel extends SettingsPanel {
 	private final JColorSelectButton iconColorCharge = new JColorSelectButton("Charge Color", "Color when charging");
 
 	private final JColorSelectButton iconColorGlowCharge = new JColorSelectButton("Charge Glow Color", "Glow Color when charging");
-	private final JCheckBox cboxChargeGlow = createCheckbox("ChargeGlowAnim", "Glow Animation behind charge symbol or number");
+	private final JCheckBox cboxChargeGlow = createCheckbox("ChargeGlow", "Glow Animation behind charge symbol or number");
 	private final SliderAndLabel sliderChargGlowRadius = new SliderAndLabel(10, 50);
 
 	private final SliderAndLabel sliderStroke = new SliderAndLabel(1, 10);

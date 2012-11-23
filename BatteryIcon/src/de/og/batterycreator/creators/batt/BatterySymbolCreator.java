@@ -41,7 +41,7 @@ public class BatterySymbolCreator extends AbstractIconCreator {
 
 		g2d.setColor(Color.gray);
 		g2d.fillRect(5, 3, 31, 37); // Battery Border
-		g2d.fillRect(10, 0, 21, 3); // Battery Knob
+		g2d.fillRect(12, 0, 17, 3); // Battery Knob
 
 		if (settings.isBattGradient()) {
 			final Color col1 = settings.getIconColorInActiv();

@@ -25,7 +25,7 @@ public class IconCreatorFrame extends JFrame {
 	private final JButton exitButton = new JButton(CommonIconProvider.BUTTON_ICON_EXIT);
 	private static final String APP_NAME = "'The Rom Fumbler' aka 'The Battery Icon Creator'";
 	public static final String VERSION_NR = "15.0";
-	private static final String VERSION_DATE = "xx.xx.2012";
+	private static final String VERSION_DATE = "23.11.2012";
 	private static final long serialVersionUID = 1L;
 	private static IconCreatorFrame frame;
 	private final IconCreatingPanelNew iconCreatingPanel = new IconCreatingPanelNew(this);

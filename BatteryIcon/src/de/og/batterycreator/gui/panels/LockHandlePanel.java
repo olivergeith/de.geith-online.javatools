@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 import de.og.batterycreator.cfg.RomSettings;
 import de.og.batterycreator.creators.IconProviderInterface;
 import de.og.batterycreator.gui.iconstore.IconStore;
+import de.og.batterycreator.gui.widgets.OverviewCreator;
 import de.og.batterycreator.gui.widgets.OverviewPanel;
 
 public class LockHandlePanel extends JPanel implements IconProviderInterface {
@@ -38,6 +39,7 @@ public class LockHandlePanel extends JPanel implements IconProviderInterface {
 
 	private static final String PROVIDER_NAME = "Lockhandle";
 	private static final String CUSTOM_DIR = "./custom/lockhandles/";
+	// private static final String CUSTOM_DIR = "H:/_IconLibrary/Lockrings/";
 	private static final String CUSTOM_OUT_DIR = "./pngs/deploy/lock/";
 
 	private static final long serialVersionUID = -7712530632645291404L;
@@ -48,7 +50,7 @@ public class LockHandlePanel extends JPanel implements IconProviderInterface {
 
 	private final Vector<ImageIcon> handleList = new Vector<ImageIcon>();
 	protected OverviewPanel overPane = new OverviewPanel();
-
+	private ImageIcon overview;
 	private final Vector<String> filenamesAndPath = new Vector<String>();
 
 	public LockHandlePanel() {
@@ -107,6 +109,7 @@ public class LockHandlePanel extends JPanel implements IconProviderInterface {
 		} else {
 			overPane.setText("   Choose Lockring from Dropdownbox");
 			overPane.setOverview(icon);
+			overPane.setOverview(overview);
 		}
 
 	}
@@ -160,8 +163,18 @@ public class LockHandlePanel extends JPanel implements IconProviderInterface {
 			for (final File fi : pngs) {
 				handleList.add(new ImageIcon(fi.getPath()));
 			}
+			overview = OverviewCreator.createResizedOverviewIcon(handleList.subList(1, handleList.size() - 1), "Lockrings", 800);
+			writeOverview(overview, "Lockrings");
 		}
 		return handleList;
+	}
+
+	private void writeOverview(final ImageIcon over, final String name) {
+		final File rootDir = new File(CUSTOM_DIR);
+		final String filename = rootDir.getPath() + File.separator + "overview_" + name + ".png";
+		final File overFile = new File(filename);
+		if (!overFile.exists())
+			StaticImageHelper.writePNG(over, overFile);
 	}
 
 	/**

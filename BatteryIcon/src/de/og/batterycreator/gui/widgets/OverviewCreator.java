@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -17,28 +18,28 @@ public class OverviewCreator {
 	public OverviewCreator() {
 	}
 
-	public static ImageIcon createResizedOverviewIcon(final Vector<ImageIcon> iconMap, final String name, final int size) {
+	public static ImageIcon createResizedOverviewIcon(final List<ImageIcon> iconMap, final String name, final int size) {
 		final BufferedImage bimg = createResizedOverviewImage(iconMap, name, size);
 		if (bimg != null)
 			return new ImageIcon(bimg);
 		return null;
 	}
 
-	public static BufferedImage createResizedOverviewImage(final Vector<ImageIcon> iconMap, final String name, final int size) {
+	public static BufferedImage createResizedOverviewImage(final List<ImageIcon> iconMap, final String name, final int size) {
 		final BufferedImage bimg = createOverviewImage(iconMap, name);
 		if (bimg != null)
 			return StaticImageHelper.resizeLongestSide2Size(bimg, size);
 		return null;
 	}
 
-	public static ImageIcon createOverviewIcon(final Vector<ImageIcon> iconMap, final String name) {
+	public static ImageIcon createOverviewIcon(final List<ImageIcon> iconMap, final String name) {
 		final BufferedImage bimg = createOverviewImage(iconMap, name);
 		if (bimg != null)
 			return new ImageIcon(bimg);
 		return null;
 	}
 
-	public static BufferedImage createOverviewImage(final Vector<ImageIcon> iconMap, final String name) {
+	public static BufferedImage createOverviewImage(final List<ImageIcon> iconMap, final String name) {
 		if (iconMap != null && iconMap.size() > 0) {
 			final ImageIcon img1 = iconMap.get(0);
 			final int iw = img1.getIconWidth();
@@ -72,7 +73,7 @@ public class OverviewCreator {
 				final int z = i / 10;
 				final int e = i % 10;
 				final int index = z * 10 + e;
-				final ImageIcon img = iconMap.elementAt(index);
+				final ImageIcon img = iconMap.get(index);
 				g2d.drawImage(img.getImage(), 1 + e * (iw + 1), 1 + z * (ih + 1) + offsetOben, null);
 			}
 			return over;

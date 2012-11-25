@@ -9,6 +9,7 @@
 ... selectable in RomSettings
 [*]Template for S3 Nexus added 
 ... Rom Preset for Morphology Society changed to the new S3 Template
+[*]New ArcGradientBattery Style 
 [/LIST]
 
 Happy modding & flashing :)

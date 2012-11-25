@@ -74,6 +74,7 @@ public class RomPreset {
 
 	public static final String templateS2 = "./template/template.zip";
 	public static final String templateS3Nexus = "./template/templateS3Nexus.zip";
+	public static final String templateMorphology = "./template/templateMorphology.zip";
 
 	public static final String APPLY = "Apply Settings for Rom...";
 
@@ -86,8 +87,11 @@ public class RomPreset {
 		presets.add(new RomPreset("Default", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI,
 				NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_HDPI, templateS2));
 
-		presets.add(new RomPreset("Resurrection Remix JB 3.1.2 and above", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP,
-				BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_HDPI, templateS2));
+		presets.add(new RomPreset("Resurrection Remix (S2 i9100) JB 3.1.2 and above", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_HDPI,
+				BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_HDPI, templateS2));
+
+		presets.add(new RomPreset("Resurrection Remix (S3 i9300) JB 3.1.2 and above", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_HDPI,
+				BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_HDPI, templateS3Nexus));
 
 		presets.add(new RomPreset("Resurrection Remix JB 3.x.x-3.1.1", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_XHDPI, BATT_ICON_NAME_AOKP,
 				BATT_ICON_CHARGE_NAME_AOKP, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_XHDPI, templateS2));
@@ -99,7 +103,7 @@ public class RomPreset {
 				LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI, templateS2));
 
 		presets.add(new RomPreset("[MORPHOLOGY SOCIETY] Galaxy S3", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI_S3, DRAWABLE_HDPI, BATT_ICON_NAME_STOCK_ICS_JKAY,
-				BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI_S3, true, WEATHER_XHDPI, templateS3Nexus));
+				BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI_S3, true, WEATHER_XHDPI, templateMorphology));
 
 		presets.add(new RomPreset("HydraH2O ICS 1.x", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP,
 				LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI, templateS2));

@@ -42,6 +42,7 @@ public class TemplateChooser extends JComboBox<String> {
 				}
 			});
 			for (final File fi : files) {
+				LOGGER.info(" Found Template: " + fi.getPath());
 				templates.add(fi);
 				addItem(fi.getPath().replace('\\', '/'));
 			}

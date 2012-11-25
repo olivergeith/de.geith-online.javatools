@@ -189,7 +189,7 @@ public class RomSettingsPanel extends SettingsPanel {
 		builder.add(JGoodiesHelper.createGroupLabel("Rom-Settings..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(JGoodiesHelper.createBlackLabel("Rom Presets"), cc.xyw(2, ++row, 3));
-		builder.add(romPresetCombo, cc.xyw(2, ++row, 3));
+		builder.add(romPresetCombo, cc.xyw(2, ++row, 5));
 
 		builder.add(JGoodiesHelper.createGroupLabel("Template..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));

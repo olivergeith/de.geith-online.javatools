@@ -149,7 +149,7 @@ public class IconSetSelector extends JPanel {
 		final File[] setDirs = findCustomDirs(dir);
 		if (setDirs != null) {
 			for (final File setDir : setDirs) {
-				LOGGER.debug("Found: " + setDir.getName());
+				LOGGER.debug(" Found: " + setDir.getName());
 				final IconSet set = new IconSet(setDir);
 				iconSets.add(set);
 				combo.addItem(set.getOverviewStripe());

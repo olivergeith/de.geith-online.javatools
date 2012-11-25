@@ -118,7 +118,7 @@ public class RecurseXMLSetSelector extends JPanel {
 		final File[] setDirs = findCustomDirs(dir);
 		if (setDirs != null) {
 			for (final File setDir : setDirs) {
-				LOGGER.debug("Found: " + setDir.getName());
+				LOGGER.debug(" Found: " + setDir.getName());
 				final RecurseXMLSet set = new RecurseXMLSet(setDir.getPath());
 				sets.add(set);
 				combo.addItem(set);

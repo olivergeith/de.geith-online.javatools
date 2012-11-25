@@ -7,8 +7,9 @@
 [*]Use your own template.zip and add it to the ./template folder
 ... don't rename/delete or temper with the original templates in ./template!!! Use a new filename!
 ... selectable in RomSettings
-[*]Template for S3 Nexus added 
-... Rom Preset for Morphology Society changed to the new S3 Template
+[*]Template for S3/Nexus and Morphology Society added 
+... RomPreset for Morphology Society changed to the new Template
+... make sure you download the extratemplates.zip and extract its contens to ./templates
 [*]New ArcGradientBattery Style 
 [/LIST]
 

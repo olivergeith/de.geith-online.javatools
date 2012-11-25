@@ -58,7 +58,7 @@ public class ArcGradientCreator extends AbstractIconCreator {
 		final int x = (int) Math.round(r * Math.sin(w * Math.PI / 180));
 		final int y = (int) Math.round(r * Math.cos(w * Math.PI / 180));
 
-		g2d.fillArc(19 + x, 19 + y, 4, 4, 0, 360);
+		g2d.fillArc(18 + x, 18 + y, 5, 5, 0, 360);
 	}
 
 	@Override

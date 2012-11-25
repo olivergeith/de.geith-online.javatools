@@ -134,7 +134,7 @@ public class RecurseIconSetSelector extends JPanel {
 		final File[] setDirs = findCustomDirs(dir);
 		if (setDirs != null) {
 			for (final File setDir : setDirs) {
-				LOGGER.debug("Found: " + setDir.getName());
+				LOGGER.debug(" Found: " + setDir.getName());
 				final RecurseIconSet set = new RecurseIconSet(setDir.getPath());
 				sets.add(set);
 				combo.addItem(set);

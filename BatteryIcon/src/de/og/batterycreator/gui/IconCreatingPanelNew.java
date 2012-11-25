@@ -188,7 +188,7 @@ public class IconCreatingPanelNew extends JPanel {
 		create();
 
 		final ZipElementCollection zipCollection = new ZipElementCollection();
-		final ZipMaker zipper = new ZipMaker();
+		final ZipMaker zipper = new ZipMaker(romSettingsPanel.getSettings().getTemplate());
 		final Vector<String> files2add2Lidroid = new Vector<String>();
 		final Vector<String> files2add2SystemUI = new Vector<String>();
 		final Vector<String> files2add2Framework = new Vector<String>();

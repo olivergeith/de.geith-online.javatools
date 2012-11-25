@@ -28,6 +28,7 @@ import de.og.batterycreator.cfg.SettingsPersistor;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.DrawableComboBox;
 import de.og.batterycreator.gui.widgets.SliderAndLabel;
+import de.og.batterycreator.gui.widgets.TemplateChooser;
 
 public class RomSettingsPanel extends SettingsPanel {
 	private static final long serialVersionUID = 1L;
@@ -78,6 +79,9 @@ public class RomSettingsPanel extends SettingsPanel {
 	private final JTextField fileWifiPattern = new JTextField();
 	private final JTextField fileWifiPatternFully = new JTextField();
 
+	// Template
+	private final TemplateChooser templateChooser = new TemplateChooser();
+
 	// Construktor
 	public RomSettingsPanel() {
 		initComponents();
@@ -111,6 +115,7 @@ public class RomSettingsPanel extends SettingsPanel {
 					sliderBattSize.setValue(pre.getBattsize());
 					cboxUseLidroid.setSelected(pre.isUseLidroid());
 					cboxUseLidroid.setVisible(pre.isUseLidroid());
+					templateChooser.setSelectedItem(pre.getTemplate());
 				}
 			}
 		});
@@ -185,6 +190,12 @@ public class RomSettingsPanel extends SettingsPanel {
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(JGoodiesHelper.createBlackLabel("Rom Presets"), cc.xyw(2, ++row, 3));
 		builder.add(romPresetCombo, cc.xyw(2, ++row, 3));
+
+		builder.add(JGoodiesHelper.createGroupLabel("Template..."), cc.xyw(2, ++row, 7));
+		builder.addSeparator("", cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createBlackLabel("TemplateFile for flashable-Zip"), cc.xyw(2, ++row, 3));
+		builder.add(templateChooser, cc.xyw(2, ++row, 3));
+
 		builder.add(JGoodiesHelper.createGroupLabel("Resizing..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(JGoodiesHelper.createBlackLabel("Choose your SystemUI's resolution"), cc.xyw(2, ++row, 3));
@@ -275,6 +286,9 @@ public class RomSettingsPanel extends SettingsPanel {
 			// weather
 			weatherSize.setValue(settings.getWeatherSize());
 
+			// template
+			templateChooser.setSelectedItem(settings.getTemplate());
+
 			validateControls();
 			this.repaint();
 		}
@@ -314,6 +328,10 @@ public class RomSettingsPanel extends SettingsPanel {
 		settings.setUseLidroid(cboxUseLidroid.isSelected());
 		// weather
 		settings.setWeatherSize(weatherSize.getValue());
+
+		// template
+		settings.setTemplate((String) templateChooser.getSelectedItem());
+
 		return settings;
 	}
 

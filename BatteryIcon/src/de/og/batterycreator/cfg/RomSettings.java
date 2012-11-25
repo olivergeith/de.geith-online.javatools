@@ -49,6 +49,8 @@ public class RomSettings implements Serializable {
 	private String fileWifiOut = RomPreset.WIFI_ICON_NAME_OUT;
 	private String fileWifiInOut = RomPreset.WIFI_ICON_NAME_INOUT;
 
+	private String template = new String("./template/template.zip");
+
 	public String getFolderSystemUIInZip() {
 		return folderSystemUIInZip;
 	}
@@ -433,6 +435,21 @@ public class RomSettings implements Serializable {
 	 */
 	public String getLidroidDrawableFolder() {
 		return lidroidDrawableFolder;
+	}
+
+	/**
+	 * @return the template
+	 */
+	public String getTemplate() {
+		return template;
+	}
+
+	/**
+	 * @param template
+	 *            the template to set
+	 */
+	public void setTemplate(final String template) {
+		this.template = template;
 	}
 
 }

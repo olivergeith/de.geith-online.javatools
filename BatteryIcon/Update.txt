@@ -2,25 +2,13 @@
 [SIZE="3"][URL="http://forum.xda-developers.com/showthread.php?t=1918500"]"The Rom Fumbler" aka "The Battery Icon Creator"[/URL][/SIZE] [/SIZE][/B]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Nov-xx-2012[/B] : Release 15.0[/COLOR]
+[COLOR="Blue"][B]Nov-xx-2012[/B] : Release 16.0[/COLOR]
 [LIST]
-[*]Some Batteries (ArcBattery2...) can now be configured to have NO (normally grey) background
-[*]Create and Zip button back on top right corner of the frame
-[*]New: [B][COLOR="Green"]Real Circle Animation[/COLOR][/B] during charge...very Cool...like Jkay Mod!!! But only for RR and maybe other AOKP-Roms!
-[*]New Setting to use same colors on charge-icons as on normal icons!
-[*]4 new Battery styles and some old optimized
-[*][COLOR="green"][B]Gradient Battery Colors[/B][/COLOR] in some styles...looks very cool...
-[*]New Wifi and Signal styles
-[*]Glowing Charge Icon (useful if charge is animated)
-[*]Additional Warning when activating advanced features 
-[*]Advanced stuff is now hidden by default..."Noobs keep away" Messagebox, when activated. (Activate advanced stuff with new button in buttonbar!)
-[*]New advanced feature to morph xml's into any apk's
-... xml's need to be compiled! (no plain readable xml's!) 
-... xml's need to be compiled by you! (hint learn how to use "apktool")
-... predefined xml's with "charge animations" (AOKP-Roms only!!!)
-[*]Lots of internal changes like using ... 
-... [URL="http://logback.qos.ch/index.html"]"LOGBack-Java-Lib"[/URL] and 
-... [URL="http://www.slf4j.org"]"slf4j-Java-Lib"[/URL] for tracing.
+[*]Use your own template.zip and add it to the ./template folder
+... don't rename/delete or temper with the original templates in ./template!!! Use a new filename!
+... selectable in RomSettings
+[*]Template for S3 Nexus added 
+... Rom Preset for Morphology Society changed to the new S3 Template
 [/LIST]
 
 Happy modding & flashing :)

@@ -26,7 +26,7 @@ public class ZipMaker {
 		files2add.add(new ZipElement("./tmp/stat_sys_battery_circle_0.png", "MORPH/system/app/SystemUI.apk/res/drawable-xhdpi/"));
 		files2add.add(new ZipElement("./tmp/stat_sys_battery_circle_1.png", "MORPH/system/app/SystemUI.apk/res/drawable-xhdpi/"));
 		files2add.add(new ZipElement("./tmp/stat_sys_battery_circle_2.png", "MORPH/system/app/SystemUI.apk/res/drawable-xhdpi/"));
-		final ZipMaker zipper = new ZipMaker();
+		final ZipMaker zipper = new ZipMaker("./template/template.zip");
 		try {
 			zipper.addFilesToArchive(files2add, "ArcBattery");
 		} catch (final Exception e) {
@@ -39,7 +39,8 @@ public class ZipMaker {
 	private File template = new File("./template/template.zip");
 	private final static String OUT_DIR = "./flashablezip_out/";
 
-	public ZipMaker() {
+	public ZipMaker(final String templ) {
+		template = new File(templ);
 		// creating outdirs
 		final File pa = new File(OUT_DIR);
 		if (!pa.exists())

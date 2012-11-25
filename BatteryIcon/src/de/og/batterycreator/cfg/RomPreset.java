@@ -72,45 +72,49 @@ public class RomPreset {
 	public static final String DRAWABLE_720DP_HDPI = "drawable-sw720dp-hdpi";
 	public static final String DRAWABLE_600DP_HDPI = "drawable-sw600dp-hdpi";
 
+	public static final String templateS2 = "./template/template.zip";
+	public static final String templateS3Nexus = "./template/templateS3Nexus.zip";
+
 	public static final String APPLY = "Apply Settings for Rom...";
+
 	private static Vector<RomPreset> presets = new Vector<RomPreset>();
 
 	static {
 		presets.add(new RomPreset(APPLY, DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI,
-				NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_HDPI));
+				NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_HDPI, templateS2));
 
 		presets.add(new RomPreset("Default", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI,
-				NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_HDPI));
+				NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_HDPI, templateS2));
 
 		presets.add(new RomPreset("Resurrection Remix JB 3.1.2 and above", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP,
-				BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_HDPI));
+				BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_HDPI, templateS2));
 
 		presets.add(new RomPreset("Resurrection Remix JB 3.x.x-3.1.1", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_XHDPI, BATT_ICON_NAME_AOKP,
-				BATT_ICON_CHARGE_NAME_AOKP, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_XHDPI));
+				BATT_ICON_CHARGE_NAME_AOKP, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_XHDPI, templateS2));
 
 		presets.add(new RomPreset("Resurrection Remix ICS 2.6-2.7", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP,
-				BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI));
+				BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI, templateS2));
 
 		presets.add(new RomPreset("RootBox JB 2.x - 3.x", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP,
-				LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI));
+				LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI, templateS2));
 
 		presets.add(new RomPreset("[MORPHOLOGY SOCIETY] Galaxy S3", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI_S3, DRAWABLE_HDPI, BATT_ICON_NAME_STOCK_ICS_JKAY,
-				BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI_S3, true, WEATHER_XHDPI));
+				BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI_S3, true, WEATHER_XHDPI, templateS3Nexus));
 
 		presets.add(new RomPreset("HydraH2O ICS 1.x", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP,
-				LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI));
+				LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI, templateS2));
 
 		presets.add(new RomPreset("Original AOKP JB", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP,
-				LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI));
+				LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI, templateS2));
 
 		presets.add(new RomPreset("Original CM9/CM10 + 1%-Mod!!!", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP,
-				BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI));
+				BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI, templateS2));
 
 		presets.add(new RomPreset("Stock ROM ICS incl. JKay", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI, BATT_ICON_NAME_STOCK_ICS_JKAY,
-				BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY, LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI));
+				BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY, LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI, templateS2));
 
 		presets.add(new RomPreset("Full xhdpi AOKP ROM", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_XHDPI, BATT_ICON_NAME_AOKP,
-				BATT_ICON_CHARGE_NAME_AOKP, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_XHDPI));
+				BATT_ICON_CHARGE_NAME_AOKP, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_XHDPI, templateS2));
 
 	}
 
@@ -125,10 +129,11 @@ public class RomPreset {
 	private final int notificationHeight;
 	private final int battsize;
 	private final boolean useLidroid;
+	private final String template;
 
 	public RomPreset(final String romName, final String systemUIDrawableFolder, final int battsize, final String frameworkDrawableFolder,
 			final String filePattern, final String filePatternCharge, final int lockHandleSize, final int notificationHeight, final int toggleSize,
-			final boolean useLidroid, final int weatherSize) {
+			final boolean useLidroid, final int weatherSize, final String template) {
 		super();
 		this.romName = romName;
 		this.systemUIDrawableFolder = systemUIDrawableFolder;
@@ -141,6 +146,7 @@ public class RomPreset {
 		this.toggleSize = toggleSize;
 		this.useLidroid = useLidroid;
 		this.weatherSize = weatherSize;
+		this.template = template;
 	}
 
 	public static Vector<RomPreset> getPresets() {
@@ -209,5 +215,12 @@ public class RomPreset {
 	 */
 	public boolean isUseLidroid() {
 		return useLidroid;
+	}
+
+	/**
+	 * @return the template
+	 */
+	public String getTemplate() {
+		return template;
 	}
 }

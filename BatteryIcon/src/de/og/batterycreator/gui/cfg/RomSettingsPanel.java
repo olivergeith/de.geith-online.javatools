@@ -44,6 +44,7 @@ public class RomSettingsPanel extends SettingsPanel {
 	// Drawable
 	DrawableComboBox frameworkDrawableFolderCombo = new DrawableComboBox();
 	DrawableComboBox systemUIDrawableFolderCombo = new DrawableComboBox();
+	DrawableComboBox lidroidDrawableFolderCombo = new DrawableComboBox();
 	// Battery
 	SliderAndLabel sliderBattSize = systemUIDrawableFolderCombo.getSliderBattSize();
 	JTextField filepattern = new JTextField();
@@ -94,8 +95,8 @@ public class RomSettingsPanel extends SettingsPanel {
 	 * Initialize Components
 	 */
 	private void initComponents() {
-		cboxUseLidroid.setForeground(Color.red.darker());
-		cboxUseLidroid.setVisible(false);
+		cboxUseLidroid.setForeground(Color.red.darker().darker());
+		// cboxUseLidroid.setVisible(false);
 
 		romPresetCombo.addActionListener(new ActionListener() {
 
@@ -114,7 +115,7 @@ public class RomSettingsPanel extends SettingsPanel {
 					weatherSize.setValue(pre.getWeatherSize());
 					sliderBattSize.setValue(pre.getBattsize());
 					cboxUseLidroid.setSelected(pre.isUseLidroid());
-					cboxUseLidroid.setVisible(pre.isUseLidroid());
+					lidroidDrawableFolderCombo.setEnabled(pre.isUseLidroid());
 					templateChooser.setSelectedItem(pre.getTemplate());
 				}
 			}
@@ -229,7 +230,9 @@ public class RomSettingsPanel extends SettingsPanel {
 		builder.add(toggleSize.getValueLabel(), cc.xyw(4, row, 1));
 		builder.add(weatherSize, cc.xyw(6, row, 1));
 		builder.add(weatherSize.getValueLabel(), cc.xyw(8, row, 1));
+		builder.add(JGoodiesHelper.createBlackLabel("Choose your lidroid-res's resolution"), cc.xyw(6, ++row, 3));
 		builder.add(cboxUseLidroid, cc.xyw(2, ++row, 3));
+		builder.add(lidroidDrawableFolderCombo, cc.xyw(6, row, 3));
 
 		builder.add(JGoodiesHelper.createGroupLabel("Notification BG Filename & Size ..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
@@ -255,6 +258,7 @@ public class RomSettingsPanel extends SettingsPanel {
 			// Drawables
 			systemUIDrawableFolderCombo.setSelectedItem(settings.getSystemUIDrawableFolder());
 			frameworkDrawableFolderCombo.setSelectedItem(settings.getFrameworkDrawableFolder());
+			lidroidDrawableFolderCombo.setSelectedItem(settings.getLidroidDrawableFolder());
 			// Battery
 			filepattern.setText(settings.getFilePattern());
 			filepatternCharge.setText(settings.getFilePatternCharge());
@@ -300,6 +304,7 @@ public class RomSettingsPanel extends SettingsPanel {
 		// Drawables
 		settings.setSystemUIDrawableFolder((String) systemUIDrawableFolderCombo.getSelectedItem());
 		settings.setFrameworkDrawableFolder((String) frameworkDrawableFolderCombo.getSelectedItem());
+		settings.setLidroidDrawableFolder((String) lidroidDrawableFolderCombo.getSelectedItem());
 		// Battery
 		settings.setFilePattern(filepattern.getText());
 		settings.setFilePatternCharge(filepatternCharge.getText());
@@ -339,8 +344,8 @@ public class RomSettingsPanel extends SettingsPanel {
 	 * Creating buttonbar
 	 */
 	private void makeButtonBar() {
-		final LoadSettingsAktion loadAktion = new LoadSettingsAktion("Load Settings for selected Creator", CommonIconProvider.BUTTON_ICON_OPEN);
-		final SaveSettingsAktion saveAktion = new SaveSettingsAktion("Save Settings for selected Creator", CommonIconProvider.BUTTON_ICON_SAVE);
+		final LoadSettingsAktion loadAktion = new LoadSettingsAktion("Load Rom-Settings", CommonIconProvider.BUTTON_ICON_OPEN);
+		final SaveSettingsAktion saveAktion = new SaveSettingsAktion("Save Rom-Settings", CommonIconProvider.BUTTON_ICON_SAVE);
 		final JToolBar toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		toolBar.add(loadAktion);
@@ -382,6 +387,6 @@ public class RomSettingsPanel extends SettingsPanel {
 
 	@Override
 	protected void validateControls() {
-
+		lidroidDrawableFolderCombo.setEnabled(cboxUseLidroid.isSelected());
 	}
 }

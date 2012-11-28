@@ -12,7 +12,6 @@ public abstract class SettingsPanel extends JPanel {
 	protected abstract void validateControls();
 
 	public SettingsPanel() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

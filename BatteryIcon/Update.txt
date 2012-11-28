@@ -12,6 +12,7 @@
 ... make sure you download the extratemplates.zip and extract its contens to ./templates
 [*]New ArcGradientBattery Style 
 [*]New zipalign binary in template*.zip's. Thanks @Naddict for this!
+[*]drawable Folder for Lidroid-res now selectable
 [/LIST]
 
 Happy modding & flashing :)

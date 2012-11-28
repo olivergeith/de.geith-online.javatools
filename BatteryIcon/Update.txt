@@ -11,6 +11,7 @@
 ... RomPreset for Morphology Society changed to the new Template
 ... make sure you download the extratemplates.zip and extract its contens to ./templates
 [*]New ArcGradientBattery Style 
+[*]New zipalign binary in template*.zip's
 [/LIST]
 
 Happy modding & flashing :)

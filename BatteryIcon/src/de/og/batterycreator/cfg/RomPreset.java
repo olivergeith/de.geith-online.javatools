@@ -74,7 +74,6 @@ public class RomPreset {
 
 	public static final String templateS2 = "./template/template.zip";
 	public static final String templateS3Nexus = "./template/templateS3Nexus.zip";
-	public static final String templateMorphology = "./template/templateMorphology.zip";
 
 	public static final String APPLY = "Apply Settings for Rom...";
 
@@ -103,7 +102,11 @@ public class RomPreset {
 				LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI, templateS2));
 
 		presets.add(new RomPreset("[MORPHOLOGY SOCIETY] Galaxy S3", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI_S3, DRAWABLE_HDPI, BATT_ICON_NAME_STOCK_ICS_JKAY,
-				BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI_S3, true, WEATHER_XHDPI, templateMorphology));
+				BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI_S3, true, WEATHER_XHDPI, templateS2));
+
+		presets.add(new RomPreset("Stock Galaxy S3/Nexus [sdcard under /data/media]", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_XHDPI,
+				BATT_ICON_NAME_STOCK_ICS_JKAY, BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI_S3, true, WEATHER_XHDPI,
+				templateS2));
 
 		presets.add(new RomPreset("HydraH2O ICS 1.x", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP,
 				LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI, templateS2));

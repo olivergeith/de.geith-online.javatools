@@ -269,10 +269,9 @@ public class IconCreatingPanelNew extends JPanel {
 		} catch (final Exception e) {
 			// Error during zip...
 			updateProgressBar(step++, "Done With Error!");
-			JOptionPane.showMessageDialog(IconCreatingPanelNew.this,
-					"ERROR: Zip was not created successfully!!!\nDid you create icons already ? (Play-Button?!)", "Zip creating ERROR",
+			JOptionPane.showMessageDialog(IconCreatingPanelNew.this, "ERROR: Zip was not created successfully!!!\n" + e.getMessage(), "Zip creating ERROR",
 					JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
+			LOGGER.error("" + e.getMessage());
 		}
 		resetProgressBar();
 	}

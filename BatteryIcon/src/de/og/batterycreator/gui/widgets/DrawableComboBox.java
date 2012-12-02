@@ -10,7 +10,7 @@ import de.og.batterycreator.cfg.RomPreset;
 public class DrawableComboBox extends JComboBox<String> {
 	private static final long serialVersionUID = 1L;
 	// systemui
-	private final SliderAndLabel sliderBattSize = new SliderAndLabel(25, 50);
+	private final SliderAndLabel sliderBattSize = new SliderAndLabel(25, 70);
 	private final SliderAndLabel sliderToggleSize = new SliderAndLabel(32, 100);
 	// frameworkres
 	private final SliderAndLabel sliderLockSize = new SliderAndLabel(130, 250);

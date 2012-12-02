@@ -59,6 +59,7 @@ public class RomPreset {
 	public static final int BATT_ICON_HEIGHT_XHDPI = 36;
 	public static final int BATT_ICON_HEIGHT_HDPI = 27;
 	public static final int BATT_ICON_HEIGHT_HDPI_S3 = 38;
+	public static final int BATT_ICON_HEIGHT_XHDPI_S3 = 50;
 	public static final int BATT_ICON_HEIGHT_720DP_XHDPI = 48;
 	public static final int BATT_ICON_HEIGHT_600DP_XHDPI = 43;
 	public static final int BATT_ICON_HEIGHT_720DP_HDPI = 48;
@@ -91,6 +92,9 @@ public class RomPreset {
 
 		presets.add(new RomPreset("Resurrection Remix (S3 i9300) JB 3.1.2 and above", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_HDPI,
 				BATT_ICON_NAME_AOKP, BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_HDPI, templateS3Nexus));
+
+		presets.add(new RomPreset("Omega Rom (S3 i9300)", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI_S3, DRAWABLE_XHDPI, BATT_ICON_NAME_STOCK_ICS_JKAY,
+				BATT_ICON_CHARGE_NAME_STOCK_ICS_JKAY, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_XHDPI, templateS3Nexus));
 
 		presets.add(new RomPreset("Resurrection Remix JB 3.x.x-3.1.1", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_XHDPI, BATT_ICON_NAME_AOKP,
 				BATT_ICON_CHARGE_NAME_AOKP, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_XHDPI, templateS2));

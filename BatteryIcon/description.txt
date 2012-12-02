@@ -57,7 +57,6 @@ So use with caution...you need to know what you are doing! You need to know how 
 [*]Add custom [B]"precompiled xml's"[/B] to your flashable-zip
 ... Add your own xml-sets to ./custom/MORPH_XML/<set-name> (see predefined examples in there)
 ... Predefined sets to change Battery-charge-Animation can be found here!
-... Predefined sets to add a 1% Battery-Mod to SystemUI can be found here! 
 [/LIST]
 
 [SIZE="4"][B]Confirmed to work with the following ROMs:[/B][/SIZE]

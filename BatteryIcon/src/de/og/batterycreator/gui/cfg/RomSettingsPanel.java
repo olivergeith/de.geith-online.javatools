@@ -121,6 +121,7 @@ public class RomSettingsPanel extends SettingsPanel {
 			}
 		});
 		romPresetCombo.setSelectedIndex(0);
+		romPresetCombo.setMaximumRowCount(20);
 	}
 
 	private void myInit() {

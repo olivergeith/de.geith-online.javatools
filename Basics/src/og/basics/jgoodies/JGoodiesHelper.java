@@ -13,7 +13,7 @@ public class JGoodiesHelper {
 	}
 
 	public static JLabel createGroupLabel(final String txt) {
-		final JLabel lab = createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 18), Color.BLUE.darker().darker());
+		final JLabel lab = createColoredFontLabel(txt, new Font(Font.SANS_SERIF, Font.BOLD, 14), Color.BLUE.darker().darker());
 		lab.setBorder(BorderFactory.createEmptyBorder(4, 0, 0, 0));
 		return lab;
 	}

@@ -1,0 +1,6 @@
+###############################################################
+This restores the original Charge-Animation
+###############################################################
+This is only for AOKP-Roms with a CircleMod.
+Don't try this on other Roms!
+

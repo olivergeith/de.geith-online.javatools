@@ -86,6 +86,16 @@ public class RecurseXMLSet {
 		return pngs;
 	}
 
+	public File findInfoFile() {
+		final String path = dir.getPath() + "/info.txt";
+		final File info = new File(path);
+		if (info.exists())
+			return info;
+		else
+			return null;
+
+	}
+
 	/**
 	 * @return the filenamesAndPath
 	 */

@@ -153,7 +153,7 @@ public class BattSettingsPanel extends SettingsPanel {
 		builder.add(sliderFontYOffset, cc.xyw(6, row, 1));
 		builder.add(sliderFontYOffset.getValueLabel(), cc.xyw(8, row, 1));
 
-		builder.add(JGoodiesHelper.createGroupLabel("Charge Icon..."), cc.xyw(2, ++row, 7));
+		builder.add(JGoodiesHelper.createGroupLabel("Icon..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 
 		builder.add(cboxShowChargeSymbol, cc.xyw(2, ++row, 1));
@@ -178,7 +178,6 @@ public class BattSettingsPanel extends SettingsPanel {
 		builder.add(sliderChargGlowRadius, cc.xyw(6, row, 1));
 		builder.add(sliderChargGlowRadius.getValueLabel(), cc.xyw(8, row, 1));
 
-		builder.add(JGoodiesHelper.createGroupLabel("Battery Icon..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 
 		builder.add(iconColorInactiv, cc.xyw(2, ++row, 1));

@@ -1,12 +1,16 @@
 package de.og.batterycreator.gui.panels.xmlset;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Vector;
 
 import javax.swing.DefaultListCellRenderer;
@@ -15,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JToolBar;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
@@ -36,6 +41,7 @@ public class RecurseXMLSetSelector extends JPanel {
 	private final String rootDir = "./custom/MORPH_XML";
 	private static final String NADA = "No XML's";
 	private final JLabel attention = new JLabel();
+	private final JTextArea infoArea = new JTextArea();
 
 	public RecurseXMLSetSelector() {
 		super();
@@ -65,6 +71,7 @@ public class RecurseXMLSetSelector extends JPanel {
 	private void initUI() {
 		attention.setText(createLableHtml());
 		attention.setBorder(new EmptyBorder(5, 5, 5, 5));
+		infoArea.setBackground(new Color(166, 245, 147));
 
 		combo.addItem(new RecurseXMLSet(NADA));
 		combo.setMaximumSize(new Dimension(400, 40));
@@ -81,9 +88,11 @@ public class RecurseXMLSetSelector extends JPanel {
 				if (index > 0) {
 					selectedSet = selected;
 					overPane.setText(selected.getContentHTML());
+					readInfoFile(selected);
 				} else {
 					overPane.setText("   Choose XML-Set from Dropdownbox");
 					selectedSet = null;
+					infoArea.setText("");
 				}
 			}
 		});
@@ -91,8 +100,13 @@ public class RecurseXMLSetSelector extends JPanel {
 			combo.setSelectedIndex(0);
 
 		setLayout(new BorderLayout());
+
+		final JPanel p = new JPanel(new BorderLayout());
+
 		this.add(attention, BorderLayout.EAST);
-		this.add(overPane, BorderLayout.CENTER);
+		p.add(overPane, BorderLayout.CENTER);
+		p.add(infoArea, BorderLayout.SOUTH);
+		this.add(p, BorderLayout.CENTER);
 		this.add(makeButtonBar(), BorderLayout.NORTH);
 	}
 
@@ -204,6 +218,25 @@ public class RecurseXMLSetSelector extends JPanel {
 	 */
 	public RecurseXMLSet getSelectedSet() {
 		return selectedSet;
+	}
+
+	private void readInfoFile(final RecurseXMLSet selected) {
+		final File info = selected.findInfoFile();
+		if (info == null) {
+			infoArea.setText("");
+			return;
+		} else {
+			try {
+
+				final FileReader fr = new FileReader(info.getPath());
+				final BufferedReader reader = new BufferedReader(fr);
+				infoArea.read(reader, null);
+
+			} catch (final IOException ioe) {
+				LOGGER.error("{}", ioe);
+			}
+		}
+
 	}
 
 }

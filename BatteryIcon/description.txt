@@ -1,5 +1,4 @@
-[SIZE="4"][B][CENTER]Welcome to[/CENTER][/B][/SIZE]
-[COLOR="navy"][SIZE="6"][B][CENTER]"The Rom Fumbler" aka "The Battery Icon Creator"[/CENTER][/B][/SIZE][/COLOR]
+[IMG]https://dl.dropbox.com/u/72571206/bic02.jpg[/IMG]
 
 [SIZE="4"][B]What is this ?[/B][/SIZE]
 This tool started as a "Creator/Renderer" for battery-icon-png's. And this is still the most prominent feature in this tool!
@@ -74,7 +73,13 @@ So use with caution...you need to know what you are doing! You need to know how 
 [*]...should work on many more...let me know!
 [/LIST]
 
+[SIZE="4"][B]Download:[/B][/SIZE]
+
+[B][SIZE="4"][URL="https://www.dropbox.com/sh/q8u74cbnnhi17a6/PVTSRqhXsn"]Download here![/URL][/SIZE][/B]
+
+
 [SIZE="4"][B]Changelog:[/B][/SIZE]
+[URL="http://forum.xda-developers.com/showpost.php?p=34969508&postcount=281"]Version 16.0[/URL]
 [URL="http://forum.xda-developers.com/showpost.php?p=34541151&postcount=245"]Version 15.0[/URL]
 [URL="http://forum.xda-developers.com/showpost.php?p=34115677&postcount=212"]Version 14.0[/URL]
 Version 13.0 ...there never was a Version 13
@@ -106,7 +111,6 @@ This tool is written in pure Java. So the only thing you need to have is a Java 
 [*]Unzip the tool to any directory
 [*]Step into that directory
 [*]Look around...see the ./custom/... folder? This is where you can put your own custom stuff
-[*]If you want more predefined custom stuff...Unzip the custom.zip to ./custom
 [*]Doubleclick in the Jar-file
 ... or better use the start.bat to start this tool!
 [*]Choose your ROM-Preset in tab "Rom-Settings" (Default values are for Resurrection Remix 3.1.2+)

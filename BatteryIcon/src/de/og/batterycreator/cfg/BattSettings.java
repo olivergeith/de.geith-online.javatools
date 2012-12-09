@@ -20,7 +20,7 @@ public class BattSettings implements Serializable {
 	private static final long serialVersionUID = 6505593229306008760L;
 
 	// Konstanten
-	public static final Color COLOR_INACTIV = Color.darkGray.brighter();
+	public static final Color COLOR_INACTIV = Color.darkGray;
 	public static final Color COLOR_BGRND = Color.black;
 	public static final Color COLOR_FONT = Color.white;
 	public static final Color COLOR_CHARGE = Color.green.darker();

@@ -71,6 +71,7 @@ So use with caution...you need to know what you are doing! You need to know how 
 [*][URL="http://forum.xda-developers.com/showthread.php?t=1968724"]Galaxy S3 "MORPHOLOGY SOCIETY"[/URL]
 [*][URL="http://forum.xda-developers.com/showpost.php?p=34934304&postcount=279"]Samsung Galaxy Exhibit 4G PACman ROM by Camcory[/URL] (Thanks GalaxyDozie for info)
 [*][URL="http://forum.xda-developers.com/showthread.php?t=1847600"]Chameleon XXLSJ hybrid (AOKP Edition)[/URL]
+[*][URL="http://forum.xda-developers.com/showthread.php?t=1903162"]JellyBam 5.x[/URL]
 [*]...should work on many more...let me know!
 [/LIST]
 

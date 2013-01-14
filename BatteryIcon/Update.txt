@@ -2,12 +2,9 @@
 [SIZE="3"][URL="http://forum.xda-developers.com/showthread.php?t=1918500"]"The Rom Fumbler" aka "The Battery Icon Creator"[/URL][/SIZE] [/SIZE][/B]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Jan-13-2013[/B] : Release 17.0[/COLOR]
+[COLOR="Blue"][B]Jan-xx-2013[/B] : Release 18.0[/COLOR]
 [LIST]
-[*]New Toggles, Wifi-icons and Battery-Icons from Kroz-Themes (Thanks for this [URL="http://forum.xda-developers.com/member.php?u=3185139"]Kroz[/URL]!)
-[*]Support for [URL="http://forum.xda-developers.com/showthread.php?t=1847600"]Chameleon XXLSJ hybrid (AOKP Edition)[/URL]..new RomPresets)
-[*]New RomPresets for Resurrection 3.1.3 (Android 4.2.1) because everything is back to xhdpi now (This is the default now if you startup the tool)
-[*]New Battery Style Arc4
+[*]New RomPresets for JellyBam 5.x (Android 4.2.1)
 [/LIST]
 
 This tool is still compatible to AOKP Android 4.2.1, but toggles are absolutly different now...so dont use the old toggles for Android 4.2

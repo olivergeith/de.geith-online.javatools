@@ -45,6 +45,7 @@ import de.og.batterycreator.creators.batt.BrickDecimal2Creator;
 import de.og.batterycreator.creators.batt.BrickDecimal3Creator;
 import de.og.batterycreator.creators.batt.BrickDecimalCreator;
 import de.og.batterycreator.creators.batt.BubbleCreator;
+import de.og.batterycreator.creators.batt.CastawayCreator;
 import de.og.batterycreator.creators.batt.ClockCreator;
 import de.og.batterycreator.creators.batt.ClockPointerCreator;
 import de.og.batterycreator.creators.batt.DecimalBar2Creator;
@@ -110,6 +111,7 @@ public class BatteryPanel extends JPanel {
 		combo.addItem(new AppleBatteryCreator(romSettings));
 		combo.addItem(new ClockCreator(romSettings));
 		combo.addItem(new ClockPointerCreator(romSettings));
+		combo.addItem(new CastawayCreator(romSettings));
 		combo.addItem(new ScalaBatteryCreator(romSettings));
 		combo.addItem(new XORAndroidCreator(romSettings));
 		combo.addItem(new XORApfelCreator(romSettings));

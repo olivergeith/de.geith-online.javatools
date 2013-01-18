@@ -5,7 +5,8 @@
 [COLOR="Blue"][B]Jan-xx-2013[/B] : Release 18.0[/COLOR]
 [LIST]
 [*]New RomPresets for JellyBam 5.x (Android 4.2.1)
-[*]2 new Castaway-Battery-Styles (a special wish over there at Morphology Society :-) )
+[*]4 new Castaway-Battery-Styles (a special wish over there at Morphology Society :-) )
+[*]2 new Tacho-Battery-Styles (a special wish over there at Morphology Society :-) )
 [*]New Custom OlliG Toggleset for Quicksettings-tiles of AOKP Android 4.2.1
 [/LIST]
 

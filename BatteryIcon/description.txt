@@ -15,7 +15,7 @@ And there are still more things it can do!!! ...so here is the "complete" featur
 [LIST]
 [*]Easy "all in one frame" Userinterface (you will find out how it works !)
 [*]lots of highly customizable [B]"Battery Icon Styles"[/B] (more to come...ideas always welcome !)
-... You can change colors, charge-icon, with or without percentage text, fonts, thesholds, gradients...
+... You can change colors, charge-icon, with or without percentage text, fonts, thresholds, gradients...
 ... add your own custom charge-icons...(place your own charge icons in folder ./custom/charge/ ...see samples there)
 ... control the naming, size and output-folder
 [*]highly customizable [B]"Wifi Icon Styles"[/B] (more to come...ideas welcome !)

@@ -13,18 +13,19 @@ import javax.swing.ImageIcon;
 import og.basics.grafics.Draw2DFunktions;
 import de.og.batterycreator.cfg.RomSettings;
 
-public class CastawayCreator2 extends AbstractIconCreator {
+public class CastawayCreator2Flip extends AbstractIconCreator {
 
-	protected static String name = "CastawayBattery.V2";
+	protected static String name = "CastawayBattery.V2.Flip";
 
-	public CastawayCreator2(final RomSettings romSettings) {
+	public CastawayCreator2Flip(final RomSettings romSettings) {
 		super(romSettings);
-		settings.setFontYOffset(-12);
-		settings.setFontXOffset(10);
+		settings.setFontYOffset(-11);
+		settings.setFontXOffset(-10);
 		settings.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));
-		settings.setIconXOffset(10);
-		settings.setIconYOffset(-11);
-		settings.setResizeChargeSymbolHeight(16);
+		settings.setReduceFontOn100(-3);
+		settings.setIconXOffset(-11);
+		settings.setIconYOffset(-10);
+		settings.setResizeChargeSymbolHeight(18);
 		settings.setLowBattTheshold(0);
 		settings.setMedBattTheshold(40);
 		settings.setUseGradiantForMediumColor(true);
@@ -66,9 +67,9 @@ public class CastawayCreator2 extends AbstractIconCreator {
 			col = settings.getIconColorInActiv();
 
 		g2d.setColor(col);
-		final int w = Math.round(90 - (0.9f * winkel));
+		final int w = Math.round(-90 + (0.9f * winkel));
 		final int r = 32;
-		final int x = 2 + (int) Math.round(r * Math.sin(w * Math.PI / 180));
+		final int x = imgWidth - 2 + (int) Math.round(r * Math.sin(w * Math.PI / 180));
 		final int y = imgHeight - 2 - (int) Math.round(r * Math.cos(w * Math.PI / 180));
 
 		Draw2DFunktions.fillCircle(g2d, x, y, 2, 0, 360);
@@ -77,19 +78,19 @@ public class CastawayCreator2 extends AbstractIconCreator {
 	private void drawZeiger(final Graphics2D g2d, final boolean charge, final int percentage) {
 		final Color col = settings.getActivIconColor(percentage, charge);
 		g2d.setColor(col);
-		final int w = Math.round(90 - (0.9f * percentage));
+		final int w = Math.round(-90 + (0.9f * percentage));
 		final int r = 13;
-		final int x = 2 + (int) Math.round(r * Math.sin(w * Math.PI / 180));
+		final int x = imgWidth - 2 + (int) Math.round(r * Math.sin(w * Math.PI / 180));
 		final int y = imgHeight - 2 - (int) Math.round(r * Math.cos(w * Math.PI / 180));
 
-		g2d.drawLine(2, imgHeight - 2, x, y);
+		g2d.drawLine(imgWidth - 2, imgHeight - 2, x, y);
 
 		g2d.setStroke(new BasicStroke(2f));
 		final int r2 = 26;
-		final int x2 = 2 + (int) Math.round(r2 * Math.sin(w * Math.PI / 180));
+		final int x2 = imgWidth - 2 + (int) Math.round(r2 * Math.sin(w * Math.PI / 180));
 		final int y2 = imgHeight - 2 - (int) Math.round(r2 * Math.cos(w * Math.PI / 180));
 
-		g2d.drawLine(2, imgHeight - 2, x2, y2);
+		g2d.drawLine(imgWidth - 2, imgHeight - 2, x2, y2);
 
 	}
 
@@ -110,8 +111,8 @@ public class CastawayCreator2 extends AbstractIconCreator {
 		final Color col3 = new Color(col.getRed(), col.getGreen(), col.getBlue(), 0);
 
 		// creating paint
-		final Point2D center = new Point2D.Float(0, imgHeight);
-		final float radius = 35;
+		final Point2D center = new Point2D.Float(imgWidth - 2, imgHeight);
+		final float radius = imgHeight - 10;
 		final float[] dist = {
 				0.0f, 1.0f
 		};
@@ -122,7 +123,8 @@ public class CastawayCreator2 extends AbstractIconCreator {
 
 		// painting
 		g2d.setPaint(p);
-		g2d.fillArc(-10, -10, imgWidth + 20, imgHeight + 20, 0, 360);
+		Draw2DFunktions.fillCircle(g2d, imgWidth - 2, imgHeight - 2, imgHeight, 0, 360);
+		// g2d.fillArc(-10, -10, imgWidth + 20, imgHeight + 20, 0, 360);
 	}
 
 	@Override

@@ -5,16 +5,12 @@
 [COLOR="Blue"][B]Jan-xx-2013[/B] : Release 18.0[/COLOR]
 [LIST]
 [*]New RomPresets for JellyBam 5.x (Android 4.2.1)
+[*]2 new Castaway-Battery-Styles (a special wish over there at Morphology Society :-) )
+[*]New Custom OlliG Toggleset for Quicksettings-tiles of AOKP Android 4.2.1
 [/LIST]
 
 This tool is still compatible to AOKP Android 4.2.1, but toggles are absolutly different now...so dont use the old toggles for Android 4.2
 I'm still looking for someone to provide custom toggle-icons for 4.2.
 
-[B]No more Attachement in OP, but new Download-Link ;)[/B]
-Uploading right now, and new Version should be up in about 10 minutes!
-
 Happy modding & flashing :)
-
-
-[URL="http://forum.xda-developers.com/member.php?u=3185139"]Kroz[/URL]
 

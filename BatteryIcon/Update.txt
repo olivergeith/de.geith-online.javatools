@@ -2,7 +2,7 @@
 [SIZE="3"][URL="http://forum.xda-developers.com/showthread.php?t=1918500"]"The Rom Fumbler" aka "The Battery Icon Creator"[/URL][/SIZE] [/SIZE][/B]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Jan-xx-2013[/B] : Release 18.0[/COLOR]
+[COLOR="Blue"][B]Jan-18-2013[/B] : Release 18.0[/COLOR]
 [LIST]
 [*]New RomPresets for JellyBam 5.x (Android 4.2.1)
 [*]4 new Castaway-Battery-Styles (a special wish over there at Morphology Society :-) )

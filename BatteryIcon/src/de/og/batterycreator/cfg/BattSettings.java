@@ -75,7 +75,8 @@ public class BattSettings implements Serializable {
 	private int lowBattTheshold = 10;
 	private int MedBattTheshold = 30;
 
-	private ImageIcon chargeIcon = null;
+	// this is transient because it should not be serialized
+	private transient ImageIcon chargeIcon = null;
 
 	public Color getFontColor() {
 		return fontColor;

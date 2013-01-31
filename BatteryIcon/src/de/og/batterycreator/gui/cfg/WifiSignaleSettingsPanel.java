@@ -160,7 +160,7 @@ public class WifiSignaleSettingsPanel extends SettingsPanel {
 		}
 
 		public void actionPerformed(final ActionEvent arg0) {
-			SettingsPersistor.saveWifiSettings("MyWifiSignalSettings", settings);
+			SettingsPersistor.saveWifiSettings("MyWifiSignalSettings", getSettings());
 		}
 	}
 

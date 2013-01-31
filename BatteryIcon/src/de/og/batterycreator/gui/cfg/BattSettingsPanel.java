@@ -414,7 +414,7 @@ public class BattSettingsPanel extends SettingsPanel {
 		}
 
 		public void actionPerformed(final ActionEvent arg0) {
-			SettingsPersistor.saveBattSettings("MyBattSettings", settings);
+			SettingsPersistor.saveBattSettings("MyBattSettings", getSettings());
 		}
 	}
 

@@ -382,7 +382,7 @@ public class RomSettingsPanel extends SettingsPanel {
 		}
 
 		public void actionPerformed(final ActionEvent arg0) {
-			SettingsPersistor.saveRomSettings("MyRomSettings", settings);
+			SettingsPersistor.saveRomSettings("MyRomSettings", getSettings());
 		}
 	}
 

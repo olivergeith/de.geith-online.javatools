@@ -31,10 +31,16 @@ public class TachoCreatorWideV2 extends AbstractIconCreator {
 		settings.setUseGradiantForMediumColor(true);
 		settings.setUseGradiantForNormalColor(false);
 		settings.setStrokewidth(4);
+		settings.setNoBG(false);
 	}
 
 	@Override
 	public boolean supportsStrokeWidth() {
+		return true;
+	}
+
+	@Override
+	public boolean supportsNoBg() {
 		return true;
 	}
 
@@ -54,7 +60,9 @@ public class TachoCreatorWideV2 extends AbstractIconCreator {
 		final Graphics2D g2d = initGrafics2D(img);
 
 		drawScala(g2d, charge, percentage);
-		drawGlow(g2d, percentage, charge);
+		if (!settings.isNoBG()) {
+			drawGlow(g2d, percentage, charge);
+		}
 		drawZeiger(g2d, charge, percentage);
 		drawPercentage(g2d, percentage, charge, img);
 

@@ -31,7 +31,7 @@ public class TachoCreator3Quater extends AbstractIconCreator {
 		settings.setUseGradiantForMediumColor(true);
 		settings.setUseGradiantForNormalColor(false);
 		settings.setStrokewidth(2);
-		settings.setFlip(true);
+		settings.setNoBG(false);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class TachoCreator3Quater extends AbstractIconCreator {
 	}
 
 	@Override
-	public boolean supportsFlip() {
+	public boolean supportsNoBg() {
 		return true;
 	}
 
@@ -60,7 +60,7 @@ public class TachoCreator3Quater extends AbstractIconCreator {
 		final Graphics2D g2d = initGrafics2D(img);
 
 		drawScala(g2d, charge, percentage);
-		if (settings.isFlip()) {
+		if (!settings.isNoBG()) {
 			drawGlow(g2d, percentage, charge);
 		}
 		drawZeiger(g2d, charge, percentage);

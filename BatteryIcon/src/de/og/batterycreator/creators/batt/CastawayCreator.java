@@ -56,9 +56,9 @@ public class CastawayCreator extends AbstractIconCreator {
 				drawScalaDots(j, g2d, charge, percentage);
 			}
 		}
+		drawGlow(g2d, percentage, charge);
 		drawZeiger(g2d, charge, percentage);
 		drawPercentage(g2d, percentage, charge, img);
-		drawGlow(g2d, percentage, charge);
 
 		// Filewriting
 		img = writeFile(percentage, charge, img);

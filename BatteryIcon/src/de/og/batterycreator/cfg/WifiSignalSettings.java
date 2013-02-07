@@ -14,7 +14,7 @@ public class WifiSignalSettings implements Serializable {
 	public static final Color COLOR_CHARGE = Color.green.darker();
 	public static final Color COLOR_Med_BATT = Color.orange;
 	public static final Color COLOR_LOW_BATT = Color.red;
-	public static final Color COLOR_AOKP_BLUE = new Color(15, 174, 234);
+	public static final Color COLOR_AOKP_BLUE = new Color(39, 135, 173);
 	public static final Font DEFAULT_FONT = new Font(Font.SANS_SERIF, Font.BOLD, 21);
 
 	// Member

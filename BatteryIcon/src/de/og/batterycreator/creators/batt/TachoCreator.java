@@ -35,6 +35,11 @@ public class TachoCreator extends AbstractIconCreator {
 	private final int imgWidth = 43;
 	private final int imgHeight = 43;
 
+	@Override
+	public boolean supportsNoBg() {
+		return true;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -50,7 +55,9 @@ public class TachoCreator extends AbstractIconCreator {
 		for (int j = 0; j <= 100; j = j + 1) {
 			drawScala(j, g2d, charge, percentage);
 		}
-		drawGlow(g2d, percentage, charge);
+		if (!settings.isNoBG()) {
+			drawGlow(g2d, percentage, charge);
+		}
 		drawZeiger(g2d, charge, percentage);
 		drawPercentage(g2d, percentage, charge, img);
 

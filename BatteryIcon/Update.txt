@@ -2,12 +2,19 @@
 [SIZE="3"][URL="http://forum.xda-developers.com/showthread.php?t=1918500"]"The Rom Fumbler" aka "The Battery Icon Creator"[/URL][/SIZE] [/SIZE][/B]
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Jan-18-2013[/B] : Release 19.0[/COLOR]
+[COLOR="Blue"][B]Feb-08-2013[/B] : Release 19.0[/COLOR]
 [LIST]
+[*]NoBgrd Option for all Tacho and Castaway Batteries
+[*]New Rom-Presets for Galaxy Nexus Rootbox
+[*]New Rom-Presets for S3 Rootbox
+[*]New OlliG AOKP 4.2 Toggle-Icons/Tiles V2
+[*]New TachoBattery v2
+[*]New 3Quater Tacho Battery
+[*]Cleaning up Rom Presets
 [/LIST]
 
 This tool is still compatible to AOKP Android 4.2.1, but toggles are absolutly different now...so dont use the old toggles for Android 4.2
-I'm still looking for someone to provide custom toggle-icons for 4.2.
+There are 2 Toggle-sets for 4.2.x now from me, but I'm still looking for someone to provide custom toggle-icons for 4.2.
 
 Happy modding & flashing :)
 

@@ -11,6 +11,7 @@
 [*]New TachoBattery v2
 [*]New 3Quater Tacho Battery
 [*]Cleaning up Rom Presets
+[*]Correct RGB now for AOKP/CM blue
 [/LIST]
 
 This tool is still compatible to AOKP Android 4.2.1, but toggles are absolutly different now...so dont use the old toggles for Android 4.2

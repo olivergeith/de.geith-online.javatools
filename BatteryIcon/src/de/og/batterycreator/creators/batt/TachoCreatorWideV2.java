@@ -119,7 +119,7 @@ public class TachoCreatorWideV2 extends AbstractIconCreator {
 	 * @param img
 	 */
 	private void drawGlow(final Graphics2D g2d, final int percentage, final boolean charge) {
-		final int centertranparenz = 150;
+		final int centertranparenz = 190;
 
 		// getting the Colors right...
 		final Color col = settings.getActivIconColor(percentage, charge);

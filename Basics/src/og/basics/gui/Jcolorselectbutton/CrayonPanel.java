@@ -107,14 +107,13 @@ public class CrayonPanel extends AbstractColorChooserPanel implements ActionList
 		boxOfCrayons.add(greenCrayon);
 		add(greenCrayon);
 
-		blueAOKPCrayon = createCrayon("AOKP blue", border, new Color(15, 174, 234));
+		blueAOKPCrayon = createCrayon("AOKP blue", border, new Color(39, 135, 173));
 		boxOfCrayons.add(blueAOKPCrayon);
 		add(blueAOKPCrayon);
 
 		darkgrayCrayon = createCrayon("Dark Gray", border, Color.darkGray);
 		boxOfCrayons.add(darkgrayCrayon);
 		add(darkgrayCrayon);
-
 	}
 
 	public void actionPerformed(final ActionEvent e) {

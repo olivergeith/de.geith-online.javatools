@@ -5,8 +5,8 @@
 [COLOR="Blue"][B]Feb-08-2013[/B] : Release 19.0[/COLOR]
 [LIST]
 [*]NoBgrd Option for all Tacho and Castaway Batteries
-[*]New Rom-Presets for Galaxy Nexus Rootbox
-[*]New Rom-Presets for S3 Rootbox
+[*]New Rom-Presets for Rootbox (Galaxy Nexus)
+[*]New Rom-Presets for Rootbox (Galaxy S3)
 [*]New OlliG AOKP 4.2 Toggle-Icons/Tiles V2 & V3
 [*]New TachoBattery v2
 [*]New 3Quater Tacho Battery

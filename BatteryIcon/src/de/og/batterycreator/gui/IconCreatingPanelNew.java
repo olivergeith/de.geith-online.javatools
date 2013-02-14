@@ -222,7 +222,7 @@ public class IconCreatingPanelNew extends JPanel {
 		}
 		// Add SignalWifi
 		updateProgressBar(step++, "Adding Signal%Wifi Icons (if configured)");
-		files2add2Framework.addAll(signalWifiBox.getAllFilenamesAndPath());
+		files2add2SystemUI.addAll(signalWifiBox.getAllFilenamesAndPath());
 
 		// Add Weather
 		updateProgressBar(step++, "Adding Weather Icons (if configured)");

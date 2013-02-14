@@ -12,29 +12,29 @@ public class RomSettings implements Serializable {
 	private String fileBattPattern = RomPreset.BATT_ICON_NAME_AOKP;
 	private String fileBattPatternCharge = RomPreset.BATT_ICON_CHARGE_NAME_AOKP;
 
-	private String frameworkDrawableFolder = RomPreset.DRAWABLE_XHDPI;
-	private String systemUIDrawableFolder = RomPreset.DRAWABLE_XHDPI;
+	private String frameworkDrawableFolder = RomPreset.DRAWABLE_HDPI;
+	private String systemUIDrawableFolder = RomPreset.DRAWABLE_HDPI;
 	private String lidroidDrawableFolder = RomPreset.DRAWABLE_HDPI;
 
-	private String folderSystemUIInZip = RomPreset.FOLDER_SYSTEMUI + RomPreset.DRAWABLE_XHDPI + "/";
-	private String folderFrameworkInZip = RomPreset.FOLDER_FRAMEWORK + RomPreset.DRAWABLE_XHDPI + "/";
+	private String folderSystemUIInZip = RomPreset.FOLDER_SYSTEMUI + RomPreset.DRAWABLE_HDPI + "/";
+	private String folderFrameworkInZip = RomPreset.FOLDER_FRAMEWORK + RomPreset.DRAWABLE_HDPI + "/";
 	private String folderLidroidInZip = RomPreset.FOLDER_LIDROID + RomPreset.DRAWABLE_HDPI + "/";
 
-	private int battIconSize = RomPreset.BATT_ICON_HEIGHT_XHDPI;
+	private int battIconSize = RomPreset.BATT_ICON_HEIGHT_HDPI;
 	private boolean useAdvancedResize = true;
 
 	// Lockhandle
 	private String lockHandleFileName = RomPreset.LOCKHANDLE_FILENAME_DEFAULT;
-	private int lockHandleSize = RomPreset.LOCK_XHDPI;
+	private int lockHandleSize = RomPreset.LOCK_HDPI;
 	// toggle
-	private int toggleSize = RomPreset.TOGGLE_XHDPI;
+	private int toggleSize = RomPreset.TOGGLE_HDPI;
 	private boolean useLidroid = false;
 	// weather
-	private int weatherSize = RomPreset.WEATHER_XHDPI;
+	private int weatherSize = RomPreset.WEATHER_HDPI;
 
 	// Notification
 	private String notificationBGFilename = RomPreset.NOTIFICATION_BG_FILENME;
-	private int notificationHeight = RomPreset.NOTIFICATION_XHDPI;
+	private int notificationHeight = RomPreset.NOTIFICATION_HDPI;
 	// Signal Stuff
 	private String fileSignalPattern = RomPreset.SIGNAL_ICON_NAME;
 	private String fileSignalEXtensionFully = RomPreset.SIGNAL_ICON_EXTENSION_FULLY;

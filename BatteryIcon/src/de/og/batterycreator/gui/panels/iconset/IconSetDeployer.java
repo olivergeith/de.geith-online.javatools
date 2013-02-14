@@ -45,7 +45,7 @@ public class IconSetDeployer {
 
 				final BufferedImage buff;
 				if (size > NO_RESIZING) {
-					buff = StaticImageHelper.resizeLongestSide2Size(StaticImageHelper.convertImageIcon(icon), size);
+					buff = StaticImageHelper.resize2Height(StaticImageHelper.convertImageIcon(icon), size);
 				} else {
 					buff = StaticImageHelper.convertImageIcon(icon);
 				}

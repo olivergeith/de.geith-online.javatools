@@ -26,8 +26,8 @@ public class RomPreset {
 	public static final String BATT_ICON_NAME_STOCK_ICS_JKAY = "stat_sys_battery_";
 
 	// is in frameworkres...
-	public static final int WEATHER_XHDPI = 162;
-	public static final int WEATHER_HDPI = 144;
+	public static final int WEATHER_XHDPI = 128;
+	public static final int WEATHER_HDPI = 98;
 	public static final int WEATHER_720DP_XHDPI = 162;
 	public static final int WEATHER_720DP_HDPI = 144;
 	public static final int WEATHER_600DP_XHDPI = 162;

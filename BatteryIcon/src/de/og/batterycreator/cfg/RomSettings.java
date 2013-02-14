@@ -12,12 +12,12 @@ public class RomSettings implements Serializable {
 	private String fileBattPattern = RomPreset.BATT_ICON_NAME_AOKP;
 	private String fileBattPatternCharge = RomPreset.BATT_ICON_CHARGE_NAME_AOKP;
 
-	private String frameworkDrawableFolder = RomPreset.DRAWABLE_HDPI;
+	private String frameworkDrawableFolder = RomPreset.DRAWABLE_XHDPI;
 	private String systemUIDrawableFolder = RomPreset.DRAWABLE_XHDPI;
 	private String lidroidDrawableFolder = RomPreset.DRAWABLE_HDPI;
 
 	private String folderSystemUIInZip = RomPreset.FOLDER_SYSTEMUI + RomPreset.DRAWABLE_XHDPI + "/";
-	private String folderFrameworkInZip = RomPreset.FOLDER_FRAMEWORK + RomPreset.DRAWABLE_HDPI + "/";
+	private String folderFrameworkInZip = RomPreset.FOLDER_FRAMEWORK + RomPreset.DRAWABLE_XHDPI + "/";
 	private String folderLidroidInZip = RomPreset.FOLDER_LIDROID + RomPreset.DRAWABLE_HDPI + "/";
 
 	private int battIconSize = RomPreset.BATT_ICON_HEIGHT_XHDPI;
@@ -25,12 +25,12 @@ public class RomSettings implements Serializable {
 
 	// Lockhandle
 	private String lockHandleFileName = RomPreset.LOCKHANDLE_FILENAME_DEFAULT;
-	private int lockHandleSize = RomPreset.LOCK_HDPI;
+	private int lockHandleSize = RomPreset.LOCK_XHDPI;
 	// toggle
 	private int toggleSize = RomPreset.TOGGLE_XHDPI;
 	private boolean useLidroid = false;
 	// weather
-	private int weatherSize = RomPreset.WEATHER_HDPI;
+	private int weatherSize = RomPreset.WEATHER_XHDPI;
 
 	// Notification
 	private String notificationBGFilename = RomPreset.NOTIFICATION_BG_FILENME;

@@ -14,7 +14,7 @@ public class DrawableComboBox extends JComboBox<String> {
 	private final SliderAndLabel sliderToggleSize = new SliderAndLabel(32, 100);
 	// frameworkres
 	private final SliderAndLabel sliderLockSize = new SliderAndLabel(130, 250);
-	private final SliderAndLabel sliderWeatherSize = new SliderAndLabel(100, 200);
+	private final SliderAndLabel sliderWeatherSize = new SliderAndLabel(50, 200);
 	private final SliderAndLabel sliderNotificationSize = new SliderAndLabel(2, 8);
 
 	public DrawableComboBox() {

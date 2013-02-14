@@ -15,6 +15,9 @@ The directory structure should look like this:
 After that restart the "Battery Icon Creator". 
 Hopefully it has found your new Folder "MySuperDuperToggles" and will present it in the toggles dropdownbox.
 
+The icons are resized if you create a flashable-zip to the defined toggle-heigth (Rom Settings)! 
+So if you want to stay flexible it might be a good idea to put xhdpi icons in here, even if you are on a hdpi ROM. (As said...the icons are resized to fit your Rom-Presets!)
+
 
 ########################################################################################################
 HowTo - Toggles...your own, custom toggles

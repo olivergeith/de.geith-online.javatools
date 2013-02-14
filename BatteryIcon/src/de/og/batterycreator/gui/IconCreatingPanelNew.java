@@ -55,6 +55,7 @@ public class IconCreatingPanelNew extends JPanel {
 	private final SignalPanel signalPanel = new SignalPanel(romSettingsPanel.getSettings());
 
 	private final LockHandlePanel lockHandleSelector = new LockHandlePanel();
+	private final IconSetSelector signalWifiBox = new IconSetSelector("Signal$Wifi", "./custom/signalwifi/");
 	private final IconSetSelector toggleBox = new IconSetSelector("Toggles", "./custom/toggles/");
 	private final IconSetSelector weatherBox = new IconSetSelector("Weather", "./custom/weather/");
 	private final NotificationAreaBG notificationBG = new NotificationAreaBG();
@@ -70,7 +71,7 @@ public class IconCreatingPanelNew extends JPanel {
 	private Thread t = null;
 	private boolean isrunning = false;
 	// private boolean stopnow = false;
-	private final int maxsteps = 15;
+	private final int maxsteps = 16;
 	private int step = 0;
 
 	private final JFrame parentFrame;
@@ -136,8 +137,9 @@ public class IconCreatingPanelNew extends JPanel {
 		tabPane.addTab("Wifi", IconStore.wifiIcon, wifiPanel, "Create your Wifi Icons here");
 		tabPane.addTab("Signal", IconStore.signalIcon, signalPanel, "Create your Signal Icons here");
 		tabPane.addTab("NotificationPanel", IconStore.notificationIcon, notificationBG, "Transparent Notification Panel");
-		tabPane.addTab("Toggles", IconStore.toggleIcon, toggleBox, "Get an Overview of your toggles");
-		tabPane.addTab("Weather", IconStore.weatherIcon, weatherBox, "Get an Overview of your weather icons");
+		tabPane.addTab("Toggles", IconStore.toggleIcon, toggleBox, "Predefined Toggle-Icon-Sets");
+		tabPane.addTab("Signal$Wifi", IconStore.signalwifiIcon, signalWifiBox, "Predefined Signal- and Wifi-Icon-Sets");
+		tabPane.addTab("Weather", IconStore.weatherIcon, weatherBox, "Predefined Weather-Icon-Sets");
 		tabPane.addTab("Lockring", IconStore.lockringIcon, lockHandleSelector, "See your choosen Lockring!");
 		// tabPane.addTab("Advanced Theming", IconStore.additionalIcon,
 		// advancedTabPane, "Advanced Stuff!!");
@@ -218,6 +220,10 @@ public class IconCreatingPanelNew extends JPanel {
 		} else { // default
 			files2add2SystemUI.addAll(toggleBox.getAllFilenamesAndPath());
 		}
+		// Add SignalWifi
+		updateProgressBar(step++, "Adding Signal%Wifi Icons (if configured)");
+		files2add2Framework.addAll(signalWifiBox.getAllFilenamesAndPath());
+
 		// Add Weather
 		updateProgressBar(step++, "Adding Weather Icons (if configured)");
 		files2add2Framework.addAll(weatherBox.getAllFilenamesAndPath());
@@ -304,6 +310,9 @@ public class IconCreatingPanelNew extends JPanel {
 		// creating toggles
 		updateProgressBar(step++, "Deploying Toggles (if configured)");
 		toggleBox.createAllImages(romSettingsPanel.getSettings().getToggleSize());
+		// creating Signal&Wifi
+		updateProgressBar(step++, "Deploying Signal&Wifi (if configured)");
+		signalWifiBox.createAllImages(romSettingsPanel.getSettings().getBattIconSize());
 		// creating weather
 		updateProgressBar(step++, "Deploying Weather Icons (if configured)");
 		weatherBox.createAllImages(romSettingsPanel.getSettings().getWeatherSize());

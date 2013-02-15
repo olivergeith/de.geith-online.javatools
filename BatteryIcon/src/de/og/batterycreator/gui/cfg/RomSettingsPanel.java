@@ -27,6 +27,7 @@ import de.og.batterycreator.cfg.RomSettings;
 import de.og.batterycreator.cfg.SettingsPersistor;
 import de.og.batterycreator.gui.iconstore.IconStore;
 import de.og.batterycreator.gui.widgets.DrawableComboBox;
+import de.og.batterycreator.gui.widgets.MorphpathSystemUIComboBox;
 import de.og.batterycreator.gui.widgets.SliderAndLabel;
 import de.og.batterycreator.gui.widgets.TemplateChooser;
 
@@ -45,6 +46,9 @@ public class RomSettingsPanel extends SettingsPanel {
 	DrawableComboBox frameworkDrawableFolderCombo = new DrawableComboBox();
 	DrawableComboBox systemUIDrawableFolderCombo = new DrawableComboBox();
 	DrawableComboBox lidroidDrawableFolderCombo = new DrawableComboBox();
+
+	// Morphpathes
+	MorphpathSystemUIComboBox morphpathSystemUIComboBox = new MorphpathSystemUIComboBox();
 	// Battery
 	SliderAndLabel sliderBattSize = systemUIDrawableFolderCombo.getSliderBattSize();
 	JTextField filepattern = new JTextField();
@@ -117,6 +121,7 @@ public class RomSettingsPanel extends SettingsPanel {
 					cboxUseLidroid.setSelected(pre.isUseLidroid());
 					lidroidDrawableFolderCombo.setEnabled(pre.isUseLidroid());
 					templateChooser.setSelectedItem(pre.getTemplate());
+					morphpathSystemUIComboBox.setSelectedItem(pre.getMorphPath2SystemUIRes());
 				}
 			}
 		});
@@ -193,6 +198,8 @@ public class RomSettingsPanel extends SettingsPanel {
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 		builder.add(JGoodiesHelper.createBlackLabel("Rom Presets"), cc.xyw(2, ++row, 3));
 		builder.add(romPresetCombo, cc.xyw(2, ++row, 5));
+		builder.add(JGoodiesHelper.createBlackLabel("Morph-Path to SystemUI.apk/res in Zip"), cc.xyw(2, ++row, 3));
+		builder.add(morphpathSystemUIComboBox, cc.xyw(2, ++row, 5));
 
 		builder.add(JGoodiesHelper.createGroupLabel("Template..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
@@ -261,6 +268,8 @@ public class RomSettingsPanel extends SettingsPanel {
 			systemUIDrawableFolderCombo.setSelectedItem(settings.getSystemUIDrawableFolder());
 			frameworkDrawableFolderCombo.setSelectedItem(settings.getFrameworkDrawableFolder());
 			lidroidDrawableFolderCombo.setSelectedItem(settings.getLidroidDrawableFolder());
+			// Morphpath
+			morphpathSystemUIComboBox.setSelectedItem(settings.getMorphPath2SystemUIRes());
 			// Battery
 			filepattern.setText(settings.getFilePattern());
 			filepatternCharge.setText(settings.getFilePatternCharge());
@@ -307,6 +316,7 @@ public class RomSettingsPanel extends SettingsPanel {
 		settings.setSystemUIDrawableFolder((String) systemUIDrawableFolderCombo.getSelectedItem());
 		settings.setFrameworkDrawableFolder((String) frameworkDrawableFolderCombo.getSelectedItem());
 		settings.setLidroidDrawableFolder((String) lidroidDrawableFolderCombo.getSelectedItem());
+		settings.setMorphPath2SystemUIRes((String) morphpathSystemUIComboBox.getSelectedItem());
 		// Battery
 		settings.setFilePattern(filepattern.getText());
 		settings.setFilePatternCharge(filepatternCharge.getText());

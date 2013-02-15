@@ -16,9 +16,12 @@ public class RomSettings implements Serializable {
 	private String systemUIDrawableFolder = RomPreset.DRAWABLE_HDPI;
 	private String lidroidDrawableFolder = RomPreset.DRAWABLE_HDPI;
 
-	private String folderSystemUIInZip = RomPreset.FOLDER_SYSTEMUI + RomPreset.DRAWABLE_HDPI + "/";
-	private String folderFrameworkInZip = RomPreset.FOLDER_FRAMEWORK + RomPreset.DRAWABLE_HDPI + "/";
-	private String folderLidroidInZip = RomPreset.FOLDER_LIDROID + RomPreset.DRAWABLE_HDPI + "/";
+	private String morphPath2SystemUIRes = RomPreset.MORPHPATH_SYSTEMUI;
+
+	private String folderSystemUIInZip = morphPath2SystemUIRes + RomPreset.DRAWABLE_HDPI + "/";
+
+	private String folderFrameworkInZip = RomPreset.MORPHPATH_FRAMEWORK + RomPreset.DRAWABLE_HDPI + "/";
+	private String folderLidroidInZip = RomPreset.MORPHPATH_LIDROID + RomPreset.DRAWABLE_HDPI + "/";
 
 	private int battIconSize = RomPreset.BATT_ICON_HEIGHT_HDPI;
 	private boolean useAdvancedResize = true;
@@ -109,7 +112,16 @@ public class RomSettings implements Serializable {
 	 */
 	public void setSystemUIDrawableFolder(final String systemUIDrawableFolder) {
 		this.systemUIDrawableFolder = systemUIDrawableFolder;
-		folderSystemUIInZip = RomPreset.FOLDER_SYSTEMUI + systemUIDrawableFolder + "/";
+		setFolderSystemUIInZip();
+	}
+
+	public void setMorphPath2SystemUIRes(final String morphPath2SystemUIRes) {
+		this.morphPath2SystemUIRes = morphPath2SystemUIRes;
+		setFolderSystemUIInZip();
+	}
+
+	private void setFolderSystemUIInZip() {
+		folderSystemUIInZip = morphPath2SystemUIRes + systemUIDrawableFolder + "/";
 	}
 
 	/**
@@ -118,7 +130,7 @@ public class RomSettings implements Serializable {
 	 */
 	public void setFrameworkDrawableFolder(final String frameworkDrawableFolder) {
 		this.frameworkDrawableFolder = frameworkDrawableFolder;
-		folderFrameworkInZip = RomPreset.FOLDER_FRAMEWORK + frameworkDrawableFolder + "/";
+		folderFrameworkInZip = RomPreset.MORPHPATH_FRAMEWORK + frameworkDrawableFolder + "/";
 	}
 
 	/**
@@ -127,7 +139,7 @@ public class RomSettings implements Serializable {
 	 */
 	public void setLidroidDrawableFolder(final String lidroidDrawableFolder) {
 		this.lidroidDrawableFolder = lidroidDrawableFolder;
-		folderLidroidInZip = RomPreset.FOLDER_LIDROID + lidroidDrawableFolder + "/";
+		folderLidroidInZip = RomPreset.MORPHPATH_LIDROID + lidroidDrawableFolder + "/";
 	}
 
 	/**
@@ -450,6 +462,10 @@ public class RomSettings implements Serializable {
 	 */
 	public void setTemplate(final String template) {
 		this.template = template;
+	}
+
+	public String getMorphPath2SystemUIRes() {
+		return morphPath2SystemUIRes;
 	}
 
 }

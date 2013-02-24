@@ -52,6 +52,7 @@ public class CrayonPanel extends AbstractColorChooserPanel implements ActionList
 	JToggleButton redCrayon;
 	JToggleButton greenCrayon;
 	JToggleButton blueAOKPCrayon;
+	JToggleButton blueAOKPCrayonlight;
 	JToggleButton darkgrayCrayon;
 
 	@Override
@@ -68,8 +69,8 @@ public class CrayonPanel extends AbstractColorChooserPanel implements ActionList
 			greenCrayon.setSelected(true);
 		} else if (blueAOKPCrayon.getBackground().equals(color)) {
 			blueAOKPCrayon.setSelected(true);
-		} else if (Color.blue.equals(color)) {
-			blueAOKPCrayon.setSelected(true);
+		} else if (blueAOKPCrayonlight.getBackground().equals(color)) {
+			blueAOKPCrayonlight.setSelected(true);
 		}
 	}
 
@@ -110,6 +111,10 @@ public class CrayonPanel extends AbstractColorChooserPanel implements ActionList
 		blueAOKPCrayon = createCrayon("AOKP blue", border, new Color(39, 135, 173));
 		boxOfCrayons.add(blueAOKPCrayon);
 		add(blueAOKPCrayon);
+
+		blueAOKPCrayonlight = createCrayon("AOKP blue (light)", border, new Color(51, 181, 229));
+		boxOfCrayons.add(blueAOKPCrayonlight);
+		add(blueAOKPCrayonlight);
 
 		darkgrayCrayon = createCrayon("Dark Gray", border, Color.darkGray);
 		boxOfCrayons.add(darkgrayCrayon);

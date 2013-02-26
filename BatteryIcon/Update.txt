@@ -1,12 +1,18 @@
 [B][SIZE="3"]New Version out of [URL="http://forum.xda-developers.com/showthread.php?t=1918500"]"The Rom Fumbler" aka "The Battery Icon Creator"[/URL][/SIZE][/B]
 
+Attention...as Resurrection Remix is not developed any more (at least it seems like this) I switched to Rootbox! 
+And therefor all defaults are now fitting for Rootbox i9100 (hdpi)
+
+Added predefinded custom iconsets for statusbar signal & wifi icons (based on new rootbox icons, but better readable)
+
 [SIZE="4"][B]Changelog:[/B][/SIZE]
-[COLOR="Blue"][B]Feb-xx-2013[/B] : Release 20.0[/COLOR]
+[COLOR="Blue"][B]Feb-26-2013[/B] : Release 20.0[/COLOR]
 [LIST]
 [*]New Tab for custom Signal & Wifi Icons (Statusbar-Icons) like the Toggle-Tab. So these icons will be resized to fit your Rom Settings. 
 Make sure you don't create Signal or Wifi-Icons with the Renderer at the same time, as this will result in a conflict when creating the flashable-zip!
 [*]New predefined Signal & Wifi Icon-Sets
-[*]Updated and polished 4.2 Toggle-Icon-Sets (new tiles like "hide-nav-bar", "silent hours" and so on...
+[*]Updated and polished 4.2 Toggle-Icon-Sets (new tiles like "hide-nav-bar", "silent hours" and so on...)
+[*]All default settings now for Rootbox i9100 (hdpi). Not xhdpi any more!!!
 [/LIST]
 
 Happy modding & flashing :)

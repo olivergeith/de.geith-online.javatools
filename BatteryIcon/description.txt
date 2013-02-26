@@ -23,35 +23,38 @@ And there are still more things it can do!!! ...so here is the "complete" featur
 [*]Creating of [B]overview.png's[/B] (If you want to show of your creations!)
 [*]Create [B]"flashable-zips"[/B]
 ... Creates a backup during flash (Thanks to the "Universal Flasher Tool") 
-... there are "ROM-Presets" for all ROM's confirmed to be compatible
-... lots of different ROM's supported (Best chances, if you have an AOKP-ROM) 
+... there are "Rom-Presets" for all Roms confirmed to be compatible
+... lots of different Roms supported (Best chances, if you have an AOKP-Rom) 
 ... Custom dpi-support
 [*]Add [B]"Toggles"[/B] to your flashable-zip 
-... predefined toggle-sets (Attention the predefined toggles only work with AOKP ROM's)
+... predefined toggle-sets (Attention the predefined toggles only work with AOKP roms)
 ... Add your own toggle-sets to folder ./custom/toggles/<setname>
+[*]Add [B]"Signal and Wifi icons"[/B] to your flashable-zip 
+... predefined signal&wifi-sets (Attention the predefined sets only work with AOKP roms)
+... Add your own signal&wifi-sets to folder ./custom/signalwifi/<setname>
 [*]Add [B]"Weather Icons"[/B] to your flashable-zip 
-... pedifined weather-sets (Attention the predefined weathericons only work with AOKP ROM's)
+... pedifined weather-sets (Attention the predefined weathericons only work with AOKP roms)
 ... Add your own weather-sets to folder ./custom/weather/<setname>
 [*]Add a custom [B]"Lockrings"[/B] to your flashable Zip
-... lockrings are resized and renamed to fit your ROM's framework-res.apk (ROM-Presets) 
+... lockrings are resized and renamed to fit your Rom's framework-res.apk (Rom-Presets) 
 ... predefined lockrings
 ... and you can add your own logrings to folder ./custom/lockhandle/*.png
 [*]Support for [B]"transparent notification area"[/B]
 [/LIST]
 
 [SIZE="4"][B]Advanced Features:[/B][/SIZE]
-With this advanced stuff you can create full themes for your ROM! 
+With this advanced stuff you can create full themes for your Rom! 
 Files added to the flashable-zip with these features are not resized, renamed, checked...
-So use with caution...you need to know what you are doing! You need to know how your ROM and apk's look from the inside...
+So use with caution...you need to know what you are doing! You need to know how your Rom and apk's look from the inside...
 [LIST]
 [*]Add any [B]"icon-set" to SystemUI.apk[/B] (use with caution!!! no checks, no resizing, ...)
 ... Add your own icon-sets to ./custom/systemui-mods/<foldername>  (see examples there)
 [*]Add any [B]"icon-set" to framework-res.apk[/B] (use with caution!!! no checks, no resizing, ...)
 ... Add your own icon-sets to ./custom/frameworkres-mod/<foldername> (see examples there)
-[*]Add custom [B]file-sets[/B] to your flashable-zip
+[*]Add custom [B]file-sets[/B] to your flashable zip
 ... Add your own file-sets to ./custom/XTRAS/<set-name> (see examples in there)
 ... for example add apk's, libs, media files whatever you want to be flashed alongside your icons
-... (I use this frequently after full wipe installing a new ROM...I add some of my own developed Apps to the ROM.)
+... (I use this frequently after full wipe installing a new rom...I add some of my own developed Apps to the rom.)
 [*]Add custom [B]"Themes/Morphs"[/B] to your flashable-zip
 ... Add your own icon-sets to ./custom/MORPH/<theme-name> (see examples in there)
 ... theme any apk
@@ -60,7 +63,7 @@ So use with caution...you need to know what you are doing! You need to know how 
 ... Predefined sets to change Battery-charge-Animation can be found here!
 [/LIST]
 
-[SIZE="4"][B]Confirmed to work with the following ROM's:[/B][/SIZE]
+[SIZE="4"][B]Confirmed to work with the following ROMs:[/B][/SIZE]
 [LIST]
 [*][URL="http://forum.xda-developers.com/showthread.php?t=1436854"]Resurection Remix 2.x &  3.x.x[/URL]
 [*][URL="http://forum.xda-developers.com/showthread.php?t=1403044"]HydraH2O 1.4.1[/URL] 
@@ -82,6 +85,8 @@ So use with caution...you need to know what you are doing! You need to know how 
 
 
 [SIZE="4"][B]Changelog:[/B][/SIZE]
+[URL="http://forum.xda-developers.com/showpost.php?p=38507003&postcount=370"]Version 20.0[/URL]
+[URL="http://forum.xda-developers.com/showpost.php?p=37744901&postcount=351"]Version 19.0[/URL]
 [URL="http://forum.xda-developers.com/showpost.php?p=36880285&postcount=314"]Version 18.0[/URL]
 [URL="http://forum.xda-developers.com/showpost.php?p=36652266&postcount=313"]Version 17.0[/URL]
 [URL="http://forum.xda-developers.com/showpost.php?p=34969508&postcount=281"]Version 16.0[/URL]
@@ -109,16 +114,16 @@ Version 1.0 Initial Version
 [*]And finally....A lot of things that you might come up with ;)
 [/LIST]
 
-[SIZE="4"][B]HowTo - General[/B][/SIZE]
+[SIZE="4"][B]Installation & How to use this tool (short version)[/B][/SIZE]
 This tool is written in pure Java. So the only thing you need to have is a Java Runtime 1.6 or 1.7.
 [LIST]
-[*]Download the zip('s) attached to this Post
+[*][B][SIZE="4"][URL="https://www.dropbox.com/sh/q8u74cbnnhi17a6/PVTSRqhXsn"]Download[/URL][/SIZE][/B] the BatteryIconCreator...zip
 [*]Unzip the tool to any directory
 [*]Step into that directory
-[*]Look around...see the ./custom/... folder? This is where you can put your own custom stuff
+[*]Look around...see the ./custom/... folder? This is where you can put your own custom stuff !
 [*]Doubleclick in the Jar-file
-... or better use the start.bat to start this tool!
-[*]Choose your ROM-Preset in tab "ROM-Settings" (Default values are for Resurrection Remix 3.1.2+)
+... or better use the [B]start.bat[/B] to start this tool! 
+[*]Choose your ROM-Preset in tab "Rom-Settings" (Default values are for Resurrection Remix...)
 [*]Choose a Battery Design 
 [*]Choose a Wifi Design 
 [*]Choose a Signal Design 
@@ -131,40 +136,12 @@ This tool is written in pure Java. So the only thing you need to have is a Java 
 ... find the flashable-zip in the "./flashablezip_out"-folder...
 [/LIST]
 
-[SIZE="4"][B]HowTo - Is my ROM supported? What Settings do I need?[/B][/SIZE]
-For a ROM to be supported, it ...
-[LIST]
-[*]needs to have a 1% battery mod!
-[*]needs to be deodexed
-[/LIST]
-Samsung Stock ROM's don't have a 1%mod until a Mod like JKay is applied.
-CM10 ROM's like the official nightlies or Paranoidandroid don't have a 1% mod either. 
-I am sure there are some Mod's out there that will do the trick with these ROM's...
-(You may want to try the linked tool in Resources-Section of this post)
-
-If your ROM has a 1% Mod and is deodexed, there are only a few things you need to investigate, to find the correct Settings for my tool.
-You need to...
-[LIST]
-[*]extract the SystemUI.apk from your ROM. Look in the flashabel zip of your ROM, 
-[*]...or use your phone and navigate with EsExplorer or Root-Explorer to /system/app and find SystemUI.apk there and 
-[*]...copy it to your internal or external SD card, so you can access the file from your Computer
-[*]Open SystemUI.apk with 7Zip and navigate to ...
-[*]...res\drawable-<xxxx> and find the ROM's original 1% battery icons in there
-[*]remember the folder you found your png's in. (normally [B]drawable-hdpi or drawable-xhdpi[/B])
-[*]see how the files are named? (something like [B]stat_sys_battery_circle_charge_anim<percentage>.png[/B])
-[*]check the height of the original png's
-[*]now you got everything to choose the correct ROM-settings in this tool:
-[*]...drawable-Folder
-[*]...naming convention/pattern of png's
-[*]...icon height
-[/LIST]
-If you found your ROM-settings, please let me know, what settings on what ROM you used. 
-So I can add the ROM to my compatibility list and add predefined settings to the tool itself in the next release.
-
 [SIZE="4"][B]Howto's FAQ from this thread:[/B][/SIZE]
 [LIST]
-[*][URL="http://forum.xda-developers.com/showpost.php?p=37647055&postcount=342"]You have some battery-Icons from somewhere and want to flash them to your ROM[/URL]
+[*][URL="http://forum.xda-developers.com/showpost.php?p=38272787&postcount=364"]HowTo: Is my Rom supported? & What settings do I need?[/URL]
+[*][URL="http://forum.xda-developers.com/showpost.php?p=37647055&postcount=342"]You have some battery-Icons from somewhere and want to flash them to your rom[/URL]
 [*][URL="http://forum.xda-developers.com/showpost.php?p=37342254&postcount=323"]During flashing you get: [B][error] we need one sd card mounted[/B][/URL]
+[*][URL="http://forum.xda-developers.com/showpost.php?p=38272452&postcount=363"]HowTo: Replacing xml's[/URL]
 [/LIST]
 
 [SIZE="4"][B]Resources[/B][/SIZE]

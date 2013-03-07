@@ -14,6 +14,7 @@ import java.io.File;
 
 import javax.swing.ImageIcon;
 
+import og.basics.grafics.Draw2DFunktions;
 import og.basics.gui.image.StaticImageHelper;
 
 import org.slf4j.Logger;
@@ -99,6 +100,7 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 
 	protected void drawPercentage(final Graphics2D g2d, final int percentage, final boolean charge, final BufferedImage img) {
 		if (settings.isShowFont()) {
+			drawGlow(g2d, percentage, charge, img);
 			drawGlowOnCharge(g2d, percentage, charge, img);
 			int yoff = 8;
 			if (charge && settings.isShowChargeSymbol()) {
@@ -184,7 +186,7 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 			// getting the Colors right...
 			final Color col = settings.getIconChargeGlowColor();
 			final Color col2 = new Color(col.getRed(), col.getGreen(), col.getBlue(), centertranparenz);
-			final Color col3 = new Color(0, 0, 0, 0);
+			final Color col3 = new Color(col.getRed(), col.getGreen(), col.getBlue(), 0);
 
 			// creating paint
 			final Point2D center = new Point2D.Float(img.getWidth() / 2, img.getHeight() / 2);
@@ -200,6 +202,42 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 			// painting
 			g2d.setPaint(p);
 			g2d.fillArc(-10, -10, img.getWidth() + 20, img.getHeight() + 20, 0, 360);
+		}
+	}
+
+	/**
+	 * Draws a glow behind a charge Symbol or number
+	 * 
+	 * @param g2d
+	 * @param percentage
+	 * @param charge
+	 * @param img
+	 */
+	private void drawGlow(final Graphics2D g2d, final int percentage, final boolean charge, final BufferedImage img) {
+		if (settings.isGlow()) {
+			final int centertranparenz = 190;
+
+			// getting the Colors right...
+			final Color col = settings.getActivIconColor(percentage, charge);
+			final Color col2 = new Color(col.getRed(), col.getGreen(), col.getBlue(), centertranparenz);
+			final Color col3 = new Color(col.getRed(), col.getGreen(), col.getBlue(), 0);
+
+			// creating paint
+			final Point2D center = new Point2D.Float(img.getWidth() / 2, img.getHeight() / 2);
+			final float radius = settings.getGlowRadius();
+			final float[] dist = {
+					0.0f, 1.0f
+			};
+			final Color[] colors = {
+					col2, col3
+			};
+			final RadialGradientPaint p = new RadialGradientPaint(center, radius, dist, colors);
+
+			// painting
+			g2d.setPaint(p);
+			Draw2DFunktions.fillCircle(g2d, img.getWidth() / 2, img.getHeight() / 2, img.getHeight(), 0, 360);
+			// g2d.fillArc(-10, -10, img.getWidth() + 20, img.getHeight() + 20,
+			// 0, 360);
 		}
 	}
 

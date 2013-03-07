@@ -54,7 +54,7 @@ public class BattSettingsPanel extends SettingsPanel {
 	private final JColorSelectButton iconColorCharge = new JColorSelectButton("Charge Color", "Color when charging");
 
 	private final JColorSelectButton iconColorGlowCharge = new JColorSelectButton("Charge Glow Color", "Glow Color when charging");
-	private final JCheckBox cboxChargeGlow = createCheckbox("ChargeGlow", "Glow Animation behind charge symbol or number");
+	private final JCheckBox cboxChargeGlow = createCheckbox("ChargeGlow", "Pulsing glow Animation behind charge symbol or number");
 	private final SliderAndLabel sliderChargGlowRadius = new SliderAndLabel(10, 50);
 
 	private final SliderAndLabel sliderStroke = new SliderAndLabel(1, 10);
@@ -69,6 +69,8 @@ public class BattSettingsPanel extends SettingsPanel {
 	private final JCheckBox cboxShowChargeSymbol = createCheckbox("Charge-Symbol", "Show Charge-Symbol when charging");
 	private final JCheckBox cboxUseGradientMediumLevels = createCheckbox("Gradient for Medium levels", "Use Gradient Colors between Low and Med Batterylevels");
 	private final JCheckBox cboxUseGradientNormalLevels = createCheckbox("Gradient for Normal levels", "Use Gradient Colors between Med and 100% Batterylevels");
+	private final JCheckBox cboxGlow = createCheckbox("Glow", "Glow behind percentages");
+	private final SliderAndLabel sliderGlowRadius = new SliderAndLabel(10, 50);
 
 	private final SliderAndLabel sliderLowBatt = new SliderAndLabel(0, 30);
 	private final SliderAndLabel sliderMedBatt = new SliderAndLabel(0, 100);
@@ -171,7 +173,7 @@ public class BattSettingsPanel extends SettingsPanel {
 		builder.add(sliderResizeChargeSymbol.getValueLabel(), cc.xyw(8, row, 1));
 
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
-		builder.add(JGoodiesHelper.createBlackLabel("Glow behind Chargesymbol"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Pulsing glow behind Chargesymbol"), cc.xyw(2, ++row, 3));
 		builder.add(JGoodiesHelper.createBlackLabel("Glow Radius"), cc.xyw(6, row, 3));
 		builder.add(cboxChargeGlow, cc.xyw(2, ++row, 1));
 		builder.add(iconColorGlowCharge, cc.xyw(4, row, 1));
@@ -189,6 +191,11 @@ public class BattSettingsPanel extends SettingsPanel {
 		builder.add(iconColorMedBatt, cc.xyw(8, row, 1));
 		builder.add(cboxTransparentBgrnd, cc.xyw(2, ++row, 5));
 		builder.add(backgroundColor, cc.xyw(8, row, 1));
+		builder.add(JGoodiesHelper.createBlackLabel("Glow behind numbers"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Glow Radius"), cc.xyw(4, row, 3));
+		builder.add(cboxGlow, cc.xyw(2, ++row, 1));
+		builder.add(sliderGlowRadius, cc.xyw(4, row, 1));
+		builder.add(sliderGlowRadius.getValueLabel(), cc.xyw(6, row, 1));
 
 		builder.add(JGoodiesHelper.createGroupLabel("Thresholds..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
@@ -252,6 +259,9 @@ public class BattSettingsPanel extends SettingsPanel {
 			iconColorGlowCharge.setColor(settings.getIconChargeGlowColor());
 			sliderChargGlowRadius.setValue(settings.getChargeGlowRadius());
 
+			cboxGlow.setSelected(settings.isGlow());
+			sliderGlowRadius.setValue(settings.getGlowRadius());
+
 			sliderMedBatt.setValue(settings.getMedBattTheshold());
 			sliderLowBatt.setValue(settings.getLowBattTheshold());
 
@@ -310,6 +320,9 @@ public class BattSettingsPanel extends SettingsPanel {
 		settings.setIconChargeGlowColor(iconColorGlowCharge.getColor());
 		settings.setChargeGlowRadius(sliderChargGlowRadius.getValue());
 
+		settings.setGlow(cboxGlow.isSelected());
+		settings.setGlowRadius(sliderGlowRadius.getValue());
+
 		cboxChargeGlow.setSelected(settings.isChargeGlow());
 		iconColorGlowCharge.setColor(settings.getIconChargeGlowColor());
 		sliderChargGlowRadius.setValue(settings.getChargeGlowRadius());
@@ -362,6 +375,8 @@ public class BattSettingsPanel extends SettingsPanel {
 
 		sliderChargGlowRadius.setEnabled(cboxChargeGlow.isSelected());
 		iconColorGlowCharge.setEnabled(cboxChargeGlow.isSelected());
+
+		sliderGlowRadius.setEnabled(cboxGlow.isSelected());
 
 	}
 

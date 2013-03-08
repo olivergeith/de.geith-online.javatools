@@ -2,6 +2,7 @@ package de.og.batterycreator.creators.batt;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.RadialGradientPaint;
 import java.awt.geom.Point2D;
@@ -43,6 +44,11 @@ public class TachoCreatorWideV3 extends AbstractIconCreator {
 		return true;
 	}
 
+	@Override
+	public boolean supportsGradient() {
+		return true;
+	}
+
 	private final int imgWidth = 82;
 	private final int imgHeight = 41;
 
@@ -58,6 +64,7 @@ public class TachoCreatorWideV3 extends AbstractIconCreator {
 		BufferedImage img = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D g2d = initGrafics2D(img);
 
+		drawBackGrnd(g2d, charge, percentage);
 		drawScala(g2d, charge, percentage);
 		if (!settings.isNoBG()) {
 			drawGlow(g2d, percentage, charge);
@@ -67,6 +74,18 @@ public class TachoCreatorWideV3 extends AbstractIconCreator {
 		// Filewriting
 		img = writeFile(percentage, charge, img);
 		return new ImageIcon(img);
+	}
+
+	private void drawBackGrnd(final Graphics2D g2d, final boolean charge, final int percentage) {
+		// Hintergrund
+		if (settings.isBattGradient()) {
+			final Color col1 = settings.getActivIconColor(percentage, charge).darker();
+			// final Color col1 = settings.getIconColorInActiv();
+			final Color col2 = getBattGardientSecondColor(col1);
+			final GradientPaint gradientFill = new GradientPaint(0, 0, col2, 0, imgHeight, col1);
+			g2d.setPaint(gradientFill);
+			g2d.fillRect(0, 1, imgWidth - 1, imgHeight - 2);
+		}
 	}
 
 	private void drawScala(final Graphics2D g2d, final boolean charge, final int percentage) {

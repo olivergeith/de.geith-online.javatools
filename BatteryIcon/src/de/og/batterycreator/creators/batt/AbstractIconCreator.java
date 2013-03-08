@@ -99,9 +99,9 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 	}
 
 	protected void drawPercentage(final Graphics2D g2d, final int percentage, final boolean charge, final BufferedImage img) {
+		drawGlow(g2d, percentage, charge, img);
+		drawGlowOnChargeAnimation(g2d, percentage, charge, img);
 		if (settings.isShowFont()) {
-			drawGlow(g2d, percentage, charge, img);
-			drawGlowOnCharge(g2d, percentage, charge, img);
 			int yoff = 8;
 			if (charge && settings.isShowChargeSymbol()) {
 				drawChargeIcon(g2d, img);
@@ -140,7 +140,7 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 	 * @param charge
 	 * @param img
 	 */
-	private void drawGlowOnCharge(final Graphics2D g2d, final int percentage, final boolean charge, final BufferedImage img) {
+	private void drawGlowOnChargeAnimation(final Graphics2D g2d, final int percentage, final boolean charge, final BufferedImage img) {
 		if (settings.isChargeGlow() && charge == true) {
 			int centertranparenz = 170;
 
@@ -215,8 +215,12 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 	 */
 	private void drawGlow(final Graphics2D g2d, final int percentage, final boolean charge, final BufferedImage img) {
 		if (settings.isGlow()) {
+			// aus aussteigen, wenn gerade charge, aber bei cahrge kein glow
+			// soll!
+			if (charge == true && settings.isGlowForChargeToo() == false) {
+				return;
+			}
 			final int centertranparenz = 190;
-
 			// getting the Colors right...
 			final Color col = settings.getActivIconColor(percentage, charge);
 			final Color col2 = new Color(col.getRed(), col.getGreen(), col.getBlue(), centertranparenz);
@@ -235,9 +239,10 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 
 			// painting
 			g2d.setPaint(p);
-			Draw2DFunktions.fillCircle(g2d, img.getWidth() / 2, img.getHeight() / 2, img.getHeight(), 0, 360);
-			// g2d.fillArc(-10, -10, img.getWidth() + 20, img.getHeight() + 20,
-			// 0, 360);
+			final int centerX = settings.getFontXOffset() + img.getWidth() / 2;
+			final int centerY = settings.getFontYOffset() + img.getHeight() / 2;
+			final int r = img.getHeight();
+			Draw2DFunktions.fillCircle(g2d, centerX, centerY, r, 0, 360);
 		}
 	}
 

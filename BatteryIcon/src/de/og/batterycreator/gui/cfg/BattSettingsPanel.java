@@ -71,6 +71,7 @@ public class BattSettingsPanel extends SettingsPanel {
 	private final JCheckBox cboxUseGradientNormalLevels = createCheckbox("Gradient for Normal levels", "Use Gradient Colors between Med and 100% Batterylevels");
 	private final JCheckBox cboxGlow = createCheckbox("Glow", "Glow behind percentages");
 	private final SliderAndLabel sliderGlowRadius = new SliderAndLabel(10, 50);
+	private final JCheckBox cboxGlowForChargeToo = createCheckbox("Also for Charge", "Glow behind charge icon too!");
 
 	private final SliderAndLabel sliderLowBatt = new SliderAndLabel(0, 30);
 	private final SliderAndLabel sliderMedBatt = new SliderAndLabel(0, 100);
@@ -155,6 +156,13 @@ public class BattSettingsPanel extends SettingsPanel {
 		builder.add(sliderFontYOffset, cc.xyw(6, row, 1));
 		builder.add(sliderFontYOffset.getValueLabel(), cc.xyw(8, row, 1));
 
+		builder.add(JGoodiesHelper.createBlackLabel("Glow behind"), cc.xyw(2, ++row, 3));
+		builder.add(JGoodiesHelper.createBlackLabel("Glow Radius"), cc.xyw(4, row, 3));
+		builder.add(cboxGlow, cc.xyw(2, ++row, 1));
+		builder.add(sliderGlowRadius, cc.xyw(4, row, 1));
+		builder.add(sliderGlowRadius.getValueLabel(), cc.xyw(6, row, 1));
+		builder.add(cboxGlowForChargeToo, cc.xyw(8, row, 1));
+
 		builder.add(JGoodiesHelper.createGroupLabel("Icon..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 
@@ -191,11 +199,6 @@ public class BattSettingsPanel extends SettingsPanel {
 		builder.add(iconColorMedBatt, cc.xyw(8, row, 1));
 		builder.add(cboxTransparentBgrnd, cc.xyw(2, ++row, 5));
 		builder.add(backgroundColor, cc.xyw(8, row, 1));
-		builder.add(JGoodiesHelper.createBlackLabel("Glow behind numbers"), cc.xyw(2, ++row, 3));
-		builder.add(JGoodiesHelper.createBlackLabel("Glow Radius"), cc.xyw(4, row, 3));
-		builder.add(cboxGlow, cc.xyw(2, ++row, 1));
-		builder.add(sliderGlowRadius, cc.xyw(4, row, 1));
-		builder.add(sliderGlowRadius.getValueLabel(), cc.xyw(6, row, 1));
 
 		builder.add(JGoodiesHelper.createGroupLabel("Thresholds..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
@@ -261,6 +264,7 @@ public class BattSettingsPanel extends SettingsPanel {
 
 			cboxGlow.setSelected(settings.isGlow());
 			sliderGlowRadius.setValue(settings.getGlowRadius());
+			cboxGlowForChargeToo.setSelected(settings.isGlowForChargeToo());
 
 			sliderMedBatt.setValue(settings.getMedBattTheshold());
 			sliderLowBatt.setValue(settings.getLowBattTheshold());
@@ -322,6 +326,7 @@ public class BattSettingsPanel extends SettingsPanel {
 
 		settings.setGlow(cboxGlow.isSelected());
 		settings.setGlowRadius(sliderGlowRadius.getValue());
+		settings.setGlowForChargeToo(cboxGlowForChargeToo.isSelected());
 
 		cboxChargeGlow.setSelected(settings.isChargeGlow());
 		iconColorGlowCharge.setColor(settings.getIconChargeGlowColor());
@@ -377,7 +382,7 @@ public class BattSettingsPanel extends SettingsPanel {
 		iconColorGlowCharge.setEnabled(cboxChargeGlow.isSelected());
 
 		sliderGlowRadius.setEnabled(cboxGlow.isSelected());
-
+		cboxGlowForChargeToo.setEnabled(cboxGlow.isSelected());
 	}
 
 	public void enableSupportedFeatures(final boolean supportsFlip, final boolean suppoertsStrokewidth, final boolean noBG, final boolean battGradient) {

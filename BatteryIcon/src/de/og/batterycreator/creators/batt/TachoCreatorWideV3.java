@@ -97,9 +97,7 @@ public class TachoCreatorWideV3 extends AbstractIconCreator {
 		g2d.fillRect(1, 1, imgWidth - 2, 1 + settings.getStrokewidth());
 
 		for (int i = 0; i <= 100; i += 10) {
-			System.out.println("i=" + i);
 			final int x = Math.round((imgWidth - 3) / 100f * i);
-			System.out.println("x=" + x);
 			g2d.fillRect(x, 1, 2, 5 + settings.getStrokewidth());
 		}
 
@@ -108,9 +106,7 @@ public class TachoCreatorWideV3 extends AbstractIconCreator {
 		final int w = Math.round((imgWidth - 3) / 100f * percentage);
 		g2d.fillRect(1, 1, w, 1 + settings.getStrokewidth());
 		for (int i = 0; i <= percentage; i += 10) {
-			System.out.println("i=" + i);
 			final int x = Math.round((imgWidth - 3) / 100f * i);
-			System.out.println("x=" + x);
 			g2d.fillRect(x, 1, 2, 5 + settings.getStrokewidth());
 		}
 

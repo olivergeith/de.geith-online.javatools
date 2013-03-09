@@ -17,10 +17,11 @@ public class RomSettings implements Serializable {
 	private String lidroidDrawableFolder = RomPreset.DRAWABLE_HDPI;
 
 	private String morphPath2SystemUIRes = RomPreset.MORPHPATH_SYSTEMUI;
-
 	private String folderSystemUIInZip = morphPath2SystemUIRes + RomPreset.DRAWABLE_HDPI + "/";
 
-	private String folderFrameworkInZip = RomPreset.MORPHPATH_FRAMEWORK + RomPreset.DRAWABLE_HDPI + "/";
+	private String morphPath2Framework = RomPreset.MORPHPATH_FRAMEWORK;
+	private String folderFrameworkInZip = morphPath2Framework + RomPreset.DRAWABLE_HDPI + "/";
+
 	private String folderLidroidInZip = RomPreset.MORPHPATH_LIDROID + RomPreset.DRAWABLE_HDPI + "/";
 
 	private int battIconSize = RomPreset.BATT_ICON_HEIGHT_HDPI;
@@ -106,10 +107,7 @@ public class RomSettings implements Serializable {
 		return frameworkDrawableFolder;
 	}
 
-	/**
-	 * @param systemUIDrawableFolder
-	 *            the zipOutFolder to set
-	 */
+	// Systemui
 	public void setSystemUIDrawableFolder(final String systemUIDrawableFolder) {
 		this.systemUIDrawableFolder = systemUIDrawableFolder;
 		setFolderSystemUIInZip();
@@ -124,13 +122,19 @@ public class RomSettings implements Serializable {
 		folderSystemUIInZip = morphPath2SystemUIRes + systemUIDrawableFolder + "/";
 	}
 
-	/**
-	 * @param frameworkDrawableFolder
-	 *            the frameworkDrawableFolder to set
-	 */
+	// framework
+	public void setMorphPath2Framework(final String morphPath2Framework) {
+		this.morphPath2Framework = morphPath2Framework;
+		setFolderFrameworkInZip();
+	}
+
 	public void setFrameworkDrawableFolder(final String frameworkDrawableFolder) {
 		this.frameworkDrawableFolder = frameworkDrawableFolder;
-		folderFrameworkInZip = RomPreset.MORPHPATH_FRAMEWORK + frameworkDrawableFolder + "/";
+		setFolderFrameworkInZip();
+	}
+
+	private void setFolderFrameworkInZip() {
+		folderFrameworkInZip = morphPath2Framework + frameworkDrawableFolder + "/";
 	}
 
 	/**
@@ -466,6 +470,10 @@ public class RomSettings implements Serializable {
 
 	public String getMorphPath2SystemUIRes() {
 		return morphPath2SystemUIRes;
+	}
+
+	public String getMorphPath2FrameworkRes() {
+		return morphPath2Framework;
 	}
 
 }

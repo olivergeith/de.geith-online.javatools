@@ -65,7 +65,7 @@ public class BattSettingsPanel extends SettingsPanel {
 
 	private final JCheckBox cboxColoredFont = createCheckbox("Low battery Colors", "...");
 	private final JCheckBox cboxColoredIcon = createCheckbox("Low battery Colors", "...");
-	private final JCheckBox cboxShowFont = createCheckbox("Show percentages", "...");
+	private final JCheckBox cboxShowFont = createCheckbox("Show %numb", "...");
 	private final JCheckBox cboxShowChargeSymbol = createCheckbox("Charge-Symbol", "Show Charge-Symbol when charging");
 	private final JCheckBox cboxUseGradientMediumLevels = createCheckbox("Gradient for Medium levels", "Use Gradient Colors between Low and Med Batterylevels");
 	private final JCheckBox cboxUseGradientNormalLevels = createCheckbox("Gradient for Normal levels", "Use Gradient Colors between Med and 100% Batterylevels");
@@ -87,6 +87,8 @@ public class BattSettingsPanel extends SettingsPanel {
 	private final JCheckBox cboxResizeChargeSymbol = createCheckbox("resize Charge Symbol to: (pixel)", " Resize the Charge Symbol to make it fit better");
 
 	private final JFontChooserButton fontButton = new JFontChooserButton("Choose Font", fontSizes);
+
+	private final JCheckBox cboxAddPercent = createCheckbox("Add '%'", "Add '%' behind numbers");
 
 	// Construktor
 	public BattSettingsPanel() {
@@ -134,9 +136,8 @@ public class BattSettingsPanel extends SettingsPanel {
 		builder.add(JGoodiesHelper.createGroupLabel("Percentages..."), cc.xyw(2, ++row, 7));
 		builder.addSeparator("", cc.xyw(2, ++row, 7));
 
-		builder.add(cboxShowChargeSymbol, cc.xyw(2, ++row, 3));
-
-		builder.add(cboxShowFont, cc.xyw(2, ++row, 3));
+		builder.add(cboxShowFont, cc.xyw(2, ++row, 1));
+		builder.add(cboxAddPercent, cc.xyw(4, row, 1));
 		builder.add(cboxColoredFont, cc.xyw(6, row, 3));
 
 		builder.add(fontColor, cc.xyw(2, ++row, 1));
@@ -253,6 +254,7 @@ public class BattSettingsPanel extends SettingsPanel {
 			sliderStroke.setValue(settings.getStrokewidth());
 
 			cboxShowFont.setSelected(settings.isShowFont());
+			cboxAddPercent.setSelected(settings.isAddPercent());
 			cboxShowChargeSymbol.setSelected(settings.isShowChargeSymbol());
 			cboxColoredFont.setSelected(settings.isColoredFont());
 			cboxColoredIcon.setSelected(settings.isColoredIcon());
@@ -315,6 +317,7 @@ public class BattSettingsPanel extends SettingsPanel {
 		settings.setStrokewidth(sliderStroke.getValue());
 
 		settings.setShowFont(cboxShowFont.isSelected());
+		settings.setAddPercent(cboxAddPercent.isSelected());
 		settings.setShowChargeSymbol(cboxShowChargeSymbol.isSelected());
 		settings.setColoredFont(cboxColoredFont.isSelected());
 		settings.setColoredIcon(cboxColoredIcon.isSelected());
@@ -354,6 +357,7 @@ public class BattSettingsPanel extends SettingsPanel {
 
 	@Override
 	protected void validateControls() {
+		cboxAddPercent.setEnabled(cboxShowFont.isSelected());
 		fontColor.setEnabled(cboxShowFont.isSelected());
 		fontColorMedBatt.setEnabled(cboxShowFont.isSelected() && cboxColoredFont.isSelected());
 		fontColorLowBatt.setEnabled(cboxShowFont.isSelected() && cboxColoredFont.isSelected());

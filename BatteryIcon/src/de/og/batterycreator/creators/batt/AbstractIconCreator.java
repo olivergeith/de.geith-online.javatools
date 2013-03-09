@@ -118,7 +118,9 @@ public abstract class AbstractIconCreator extends AbstractCreator {
 				final FontMetrics metrix = g2d.getFontMetrics();
 				// Farbe für Schrift
 				g2d.setColor(settings.getActivFontColor(percentage, charge));
-				final String str = "" + percentage;
+				String str = "" + percentage;
+				if (settings.isAddPercent())
+					str += "%";
 				final Rectangle2D strRect = metrix.getStringBounds(str, g2d);
 				final int strxpos = 1 + settings.getFontXOffset() + (int) (Math.round(img.getWidth() / 2) - Math.round(strRect.getWidth() / 2));
 				final int strypos = img.getHeight() / 2 + yoff + settings.getFontYOffset();

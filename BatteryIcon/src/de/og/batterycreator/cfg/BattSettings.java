@@ -78,6 +78,8 @@ public class BattSettings implements Serializable {
 	private int lowBattTheshold = 10;
 	private int MedBattTheshold = 30;
 
+	private boolean addPercent = false;
+
 	// this is transient because it should not be serialized
 	private transient ImageIcon chargeIcon = null;
 
@@ -711,6 +713,21 @@ public class BattSettings implements Serializable {
 	 */
 	public void setGlowForChargeToo(final boolean glowForChargeToo) {
 		this.glowForChargeToo = glowForChargeToo;
+	}
+
+	/**
+	 * @return the addPercent
+	 */
+	public boolean isAddPercent() {
+		return addPercent;
+	}
+
+	/**
+	 * @param addPercent
+	 *            the addPercent to set
+	 */
+	public void setAddPercent(final boolean addPercent) {
+		this.addPercent = addPercent;
 	}
 
 }

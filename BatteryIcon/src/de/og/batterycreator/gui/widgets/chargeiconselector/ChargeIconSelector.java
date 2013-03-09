@@ -28,6 +28,9 @@ public class ChargeIconSelector extends JComboBox<ImageIcon> {
 	private static final ImageIcon charge21 = new ImageIcon(ChargeIconSelector.class.getResource("charge21.png"));
 	private static final ImageIcon charge22 = new ImageIcon(ChargeIconSelector.class.getResource("charge22.png"));
 	private static final ImageIcon charge23 = new ImageIcon(ChargeIconSelector.class.getResource("charge23.png"));
+	private static final ImageIcon charge24 = new ImageIcon(ChargeIconSelector.class.getResource("charge24.png"));
+	private static final ImageIcon charge25 = new ImageIcon(ChargeIconSelector.class.getResource("charge25.png"));
+	private static final ImageIcon charge26 = new ImageIcon(ChargeIconSelector.class.getResource("charge26.png"));
 	private static final ImageIcon charge30 = new ImageIcon(ChargeIconSelector.class.getResource("charge30.png"));
 	private static final ImageIcon charge31 = new ImageIcon(ChargeIconSelector.class.getResource("charge31.png"));
 	private static final ImageIcon charge32 = new ImageIcon(ChargeIconSelector.class.getResource("charge32.png"));
@@ -45,6 +48,9 @@ public class ChargeIconSelector extends JComboBox<ImageIcon> {
 		addItem(charge21);
 		addItem(charge22);
 		addItem(charge23);
+		addItem(charge24);
+		addItem(charge25);
+		addItem(charge26);
 		addItem(charge01);
 		addItem(charge02);
 		addItem(charge03);

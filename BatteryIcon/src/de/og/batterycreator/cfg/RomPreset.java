@@ -29,6 +29,8 @@ public class RomPreset {
 
 	public static final String BATT_ICON_CHARGE_NAME_ROOTBOX_ALT = "stat_sys_battery_altcircle_charge_anim";
 	public static final String BATT_ICON_NAME_ROOTBOX_ALT = "stat_sys_battery_altcircle_";
+	public static final String BATT_ICON_CHARGE_NAME_ROOTBOX_SQUARE = "stat_sys_battery_square_charge_anim";
+	public static final String BATT_ICON_NAME_ROOTBOX_SQUARE = "stat_sys_battery_square_";
 
 	// is in frameworkres...
 	public static final int WEATHER_XHDPI = 128;
@@ -98,9 +100,12 @@ public class RomPreset {
 		// Rootbox
 		presets.add(new RomPreset("(S2 i9100) RootBox 2.x - 3.x", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI, BATT_ICON_NAME_AOKP,
 				BATT_ICON_CHARGE_NAME_AOKP, LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI, templateS2, MORPHPATH_SYSTEMUI, MORPHPATH_FRAMEWORK));
-		presets.add(new RomPreset("(S2 i9100) RootBox 2.x - 3.x (alternative CircleMod)", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI,
+		presets.add(new RomPreset("(S2 i9100) RootBox 2.x - 3.x (Speedometer)", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI,
 				BATT_ICON_NAME_ROOTBOX_ALT, BATT_ICON_CHARGE_NAME_ROOTBOX_ALT, LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI, templateS2,
 				MORPHPATH_SYSTEMUI, MORPHPATH_FRAMEWORK));
+		presets.add(new RomPreset("(S2 i9100) RootBox 2.x - 3.x (Square)", DRAWABLE_HDPI, BATT_ICON_HEIGHT_HDPI, DRAWABLE_HDPI, BATT_ICON_NAME_ROOTBOX_SQUARE,
+				BATT_ICON_CHARGE_NAME_ROOTBOX_SQUARE, LOCK_HDPI, NOTIFICATION_HDPI, TOGGLE_HDPI, false, WEATHER_HDPI, templateS2, MORPHPATH_SYSTEMUI,
+				MORPHPATH_FRAMEWORK));
 
 		// Resurrection
 		presets.add(new RomPreset("(S2 i9100) Resurrection Remix 3.1.3 and above", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_XHDPI, BATT_ICON_NAME_AOKP,
@@ -156,9 +161,12 @@ public class RomPreset {
 		presets.add(new RomPreset("(Galaxy Nexus) RootBox 3.x ", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_XHDPI, BATT_ICON_NAME_AOKP,
 				BATT_ICON_CHARGE_NAME_AOKP, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_XHDPI, templateS3Nexus, MORPHPATH_SYSTEMUI,
 				MORPHPATH_FRAMEWORK));
-		presets.add(new RomPreset("(Galaxy Nexus) RootBox 3.x (alternative CircleMod)", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_XHDPI,
+		presets.add(new RomPreset("(Galaxy Nexus) RootBox 3.x (Speedometer)", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_XHDPI,
 				BATT_ICON_NAME_ROOTBOX_ALT, BATT_ICON_CHARGE_NAME_ROOTBOX_ALT, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_XHDPI,
 				templateS3Nexus, MORPHPATH_SYSTEMUI, MORPHPATH_FRAMEWORK));
+		presets.add(new RomPreset("(Galaxy Nexus) RootBox 3.x (Sqare)", DRAWABLE_XHDPI, BATT_ICON_HEIGHT_XHDPI, DRAWABLE_XHDPI, BATT_ICON_NAME_ROOTBOX_SQUARE,
+				BATT_ICON_CHARGE_NAME_ROOTBOX_SQUARE, LOCK_XHDPI, NOTIFICATION_XHDPI, TOGGLE_XHDPI, false, WEATHER_XHDPI, templateS3Nexus, MORPHPATH_SYSTEMUI,
+				MORPHPATH_FRAMEWORK));
 	}
 
 	private final String romName;

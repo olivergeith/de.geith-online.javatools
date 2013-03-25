@@ -1,2 +1,0 @@
-Place custom ChargeIcons here. 
-They should be in png-format and around 30x30 pixels big. (up to 40x40 is ok...check it out yourself ;-))

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.3//EN" "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+
+<!--
+    This configuration file was written by the eclipse-cs plugin configuration editor
+-->
+<!--
+    Checkstyle-Configuration: Leidis-FI lokal SVN
+    Description: none
+-->
+<module name="Checker">
+  <property name="severity" value="warning"/>
+  <module name="TreeWalker">
+    <module name="FileContentsHolder"/>
+    <module name="PackageName">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Packages befinden sich in der Domaene de.db.*"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="NM-PCKG"/>
+      <property name="format" value="^de\.db\.([a-z0-9_\.]*)*$"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
+    </module>
+    <module name="JavadocMethod">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Kap. 2.3 Kommentierung"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="Kap. 2.3 CMT"/>
+      <property name="suppressLoadErrors" value="true"/>
+    </module>
+    <module name="JavadocVariable">
+      <property name="scope" value="package"/>
+    </module>
+    <module name="JavadocType">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Kap. 2.3 Kommentierung"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="Kap. 2.3 CMT"/>
+    </module>
+    <module name="MemberName">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Kap. 2.4 Namenskonventionen"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="NM-UPPER"/>
+    </module>
+    <module name="MethodName">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Kap. 2.4 Namenskonventionen"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="NM-UPPER"/>
+    </module>
+    <module name="TypeName">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Kap. 2.4 Namenskonventionen"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="NM-UPPER"/>
+    </module>
+    <module name="ConstantName">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Kap. 2.4 Namenskonventionen"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="NM-UPPER"/>
+    </module>
+    <module name="ParameterName">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Verwende Praefixe bei Bezeichnern"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="NM-PREFIX"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
+    </module>
+    <module name="LocalVariableName">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Verwende Praefixe bei Bezeichnern"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="NM-PREFIX"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
+    </module>
+    <module name="StaticVariableName">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Verwende Praefixe bei Bezeichnern"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="NM-PREFIX"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
+    </module>
+    <module name="LineLength">
+      <property name="severity" value="warning"/>
+      <property name="max" value="120"/>
+    </module>
+    <module name="GenericWhitespace">
+      <property name="severity" value="warning"/>
+    </module>
+    <module name="WhitespaceAfter">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Verwendung von Leerzeichen"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="FM-SPACE"/>
+    </module>
+    <module name="ModifierOrder">
+      <metadata name="net.sf.eclipsecs.core.comment" value="public Methoden stehen vor private Methoden"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="STR-MTHDORDER"/>
+    </module>
+    <module name="EmptyBlock">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Ein catch-Block ist nie leer"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="DEX-CATCH"/>
+      <property name="option" value="text"/>
+      <property name="tokens" value="LITERAL_CATCH"/>
+    </module>
+    <module name="EmptyBlock">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Ein catch-Block ist nie leer"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="DEX-CATCH"/>
+      <property name="tokens" value="LITERAL_DO,LITERAL_ELSE,LITERAL_FINALLY,LITERAL_IF,LITERAL_FOR,LITERAL_TRY,LITERAL_WHILE,STATIC_INIT"/>
+    </module>
+    <module name="DefaultComesLast">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Formatierung von switch-Anweisungen"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="FM-SWITCH"/>
+    </module>
+    <module name="FinalLocalVariable">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Benutze final fuer nicht aenderbare Member"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="DAT-FINAL"/>
+    </module>
+    <module name="MissingSwitchDefault">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Formatierung von switch-Anweisungen"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="FM-SWITCH"/>
+    </module>
+    <module name="StringLiteralEquality">
+      <property name="severity" value="warning"/>
+    </module>
+    <module name="OneStatementPerLine">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Nur eine Anweisung pro Zeile"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="FM-STATEMENTS"/>
+    </module>
+    <module name="MethodLength">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Eine Methode hat nicht zu groß zu sein"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="STR-MTHDSIZE"/>
+    </module>
+    <module name="VisibilityModifier">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Verwende einen Sichtbarkeitstyp"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="DMM-VSBLTYUSE"/>
+      <property name="protectedAllowed" value="true"/>
+    </module>
+    <module name="TodoComment">
+      <property name="severity" value="warning"/>
+    </module>
+    <module name="DeclarationOrder">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Konstruktoren stehen oben in der Klasse"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="[STR-CONSTR]"/>
+    </module>
+    <module name="WhitespaceAround">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Verwendung von Leerzeichen"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="[FM-SPACE]"/>
+      <property name="allowEmptyConstructors" value="true"/>
+      <property name="allowEmptyMethods" value="true"/>
+    </module>
+    <module name="CyclomaticComplexity">
+      <property name="severity" value="info"/>
+    </module>
+    <module name="LeftCurly">
+      <metadata name="net.sf.eclipsecs.core.comment" value="FM-IF,FM-FOR,FM-WHILE,FM-SWITCH"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="[LeftCurly:FM-IF,FM-FOR,FM-WHILE,FM-SWITCH]"/>
+    </module>
+    <module name="RightCurly">
+      <metadata name="net.sf.eclipsecs.core.comment" value="FM-IF,FM-FOR,FM-WHILE,FM-SWITCH"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="[RightCurly:FM-IF,FM-FOR,FM-WHILE,FM-SWITCH]"/>
+    </module>
+    <module name="NeedBraces">
+      <metadata name="net.sf.eclipsecs.core.comment" value="FM-IF,FM-FOR,FM-WHILE,FM-SWITCH"/>
+      <property name="severity" value="warning"/>
+      <property name="id" value="[NeedBraces:FM-IF,FM-FOR,FM-WHILE,FM-SWITCH]"/>
+    </module>
+    <module name="DeclarationOrder"/>
+    <module name="Regexp">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Don't print to stdout or stderr! Only use a logger!"/>
+      <property name="id" value="[out.println]"/>
+      <property name="format" value="System\.out\.println"/>
+      <property name="illegalPattern" value="true"/>
+      <property name="ignoreComments" value="true"/>
+    </module>
+    <module name="Regexp">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Don't print to stdout or stderr! Only use a logger!"/>
+      <property name="id" value="[err.println]"/>
+      <property name="format" value="System\.err\.println"/>
+      <property name="illegalPattern" value="true"/>
+      <property name="ignoreComments" value="true"/>
+    </module>
+    <module name="Regexp">
+      <metadata name="net.sf.eclipsecs.core.comment" value="Don't print to stdout or stderr! Only use a logger!"/>
+      <property name="id" value="[printStackTrace]"/>
+      <property name="format" value="printStackTrace"/>
+      <property name="illegalPattern" value="true"/>
+      <property name="ignoreComments" value="true"/>
+    </module>
+    <module name="JavadocMethod">
+      <property name="allowMissingPropertyJavadoc" value="true"/>
+      <property name="suppressLoadErrors" value="true"/>
+    </module>
+  </module>
+  <module name="RegexpHeader">
+    <property name="header" value="//\*{78}\n//\n//     Copyright \(c\) \d\d\d\d by Funkwerk Information Technologies GmbH, 24145 Kiel\n//\n// All rights reserved. The reproduction, distribution and utilisation of this document\n// as well as the communication of its contents to others without explicit authorisation\n// is prohibited. Offenders will be held liable for the payment of damages.\n// All rights reserved in the event of the grant of a patent, utility model or design.\n// \(DIN ISO 16016:2002-05, Section 5.1\)\n//\n// Alle Rechte vorbehalten. Weitergabe sowie Vervielfaeltigung dieses Dokuments,\n// Verwertung und Mitteilung seines Inhalts sind verboten, soweit nicht ausdruecklich\n// gestattet. Zuwiderhandlungen verpflichten zu Schadenersatz. Alle Rechte fuer den\n// Fall der Patent-, Geschmacks- und Gebrauchsmustererteilung vorbehalten.\n// \(DIN ISO 16016:2002-05, Abschnitt 5.1\)\n//\n//\*{78}"/>
+    <property name="fileExtensions" value="java"/>
+  </module>
+  <module name="SuppressionCommentFilter">
+    <property name="offCommentFormat" value="CHECKSTYLEOFF ([\w\|]+)"/>
+    <property name="onCommentFormat" value="CHECKSTYLEON ([\w\|]+)"/>
+    <property name="checkFormat" value="$1"/>
+  </module>
+  <module name="SuppressWithNearbyCommentFilter">
+    <property name="checkFormat" value="$1"/>
+  </module>
+  <module name="SuppressWithNearbyCommentFilter">
+    <property name="commentFormat" value="SUPPRESS CHECKSTYLE NEXT (\w+)"/>
+    <property name="checkFormat" value="$1"/>
+    <property name="influenceFormat" value="1"/>
+  </module>
+  <module name="SuppressWithNearbyCommentFilter">
+    <property name="commentFormat" value="@generated"/>
+    <property name="influenceFormat" value="9999"/>
+  </module>
+  <module name="SuppressWithNearbyCommentFilter">
+    <property name="commentFormat" value="@generated"/>
+    <property name="influenceFormat" value="-9999"/>
+  </module>
+  <module name="JavadocPackage">
+    <property name="severity" value="ignore"/>
+    <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
+  </module>
+  <module name="FileLength">
+    <metadata name="net.sf.eclipsecs.core.comment" value="Eine Klasse hat nicht zu groß zu sein"/>
+    <property name="severity" value="warning"/>
+    <property name="id" value="[STR-CLASSSIZE]"/>
+  </module>
+</module>
